@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="NormCode: Structured AI Planning That You Can Audit - A language for building multi-step AI workflows with explicit data isolation and full auditability.">
+    <link rel="icon" type="image/png" href="Psylensai_log_raw.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+    <title>PsylensAI 心镜智 - Structured AI Planning That You Can Audit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #4DA3FF;
+            --accent-hover: #3B8FE8;
+            --text-primary: #111827;
+            --text-secondary: #374151;
+            --text-muted: #6b7280;
+            --bg-page: #fafafa;
+            --bg-white: #ffffff;
+            --border: #e5e7eb;
+            --code-bg: #1e1e1e;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            margin-top: 56px;
+            padding: 2.5rem 2rem 2rem;
+            text-align: center;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-video {
+            max-width: 1000px;
+            margin: 0 auto 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #0a0a0a;
+            position: relative;
+            aspect-ratio: 2560 / 1176;
+        }
+
+        .hero-video video {
+            width: 100%;
+            height: calc(100% + 1px);
+            display: block;
+            object-fit: cover;
+            margin-top: -1px;
+            margin-bottom: -4px;
+            cursor: pointer;
+        }
+
+        .video-fullscreen-hint {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .hero-video:hover .video-fullscreen-hint {
+            opacity: 1;
+        }
+
+        .fullscreen-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .fullscreen-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+        }
+
+        .video-fullscreen-hint span {
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-speed-control {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 15;
+            display: none;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 6px 10px;
+            border-radius: 6px;
+            backdrop-filter: blur(4px);
+        }
+
+        .video-speed-control label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .video-speed-control select {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .video-speed-control select:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .video-speed-control select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* Fullscreen styles - for container fullscreen */
+        .hero-video:fullscreen,
+        .hero-video:-webkit-full-screen {
+            background: #000;
+        }
+
+        .hero-video:fullscreen video,
+        .hero-video:-webkit-full-screen video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            margin-top: 0;
+        }
+
+        .hero-video:fullscreen .video-speed-control,
+        .hero-video:-webkit-full-screen .video-speed-control {
+            display: flex;
+            top: 20px;
+            right: 20px;
+        }
+
+        .hero-video:fullscreen .video-fullscreen-hint,
+        .hero-video:-webkit-full-screen .video-fullscreen-hint {
+            display: none;
+        }
+
+        /* Fullscreen styles - for video element fullscreen (native controls) */
+        video:fullscreen,
+        video:-webkit-full-screen {
+            object-fit: contain !important;
+            margin-top: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        #demo-video:fullscreen,
+        #demo-video:-webkit-full-screen {
+            object-fit: contain !important;
+            margin-top: 0 !important;
+        }
+
+        /* Video loading overlay */
+        .video-loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f26 50%, #0f1419 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 10;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .video-loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .video-loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(77, 163, 255, 0.2);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .video-loading-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .video-loading-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .video-loading-progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .video-error-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1f26 0%, #0f1419 100%);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 11;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .video-error-overlay.visible {
+            display: flex;
+        }
+
+        .video-error-icon {
+            font-size: 2rem;
+        }
+
+        .video-error-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .video-retry-btn {
+            padding: 0.5rem 1.25rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background 0.15s ease;
+        }
+
+        .video-retry-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.75rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.15s ease, transform 0.1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-primary .btn-icon {
+            flex-shrink: 0;
+        }
+
+        .download-size {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        /* Download button states */
+        .btn-primary.downloading {
+            background: linear-gradient(90deg, var(--accent-hover) 0%, var(--accent) 50%, var(--accent-hover) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .btn-primary.download-started {
+            background: #22c55e;
+            pointer-events: none;
+        }
+
+        /* Ripple effect */
+        .btn-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .download-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.75rem;
+            background: var(--bg-white);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.15s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+            background: var(--bg-page);
+        }
+
+        .btn-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 3rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        #features {
+            background: var(--bg-page);
+            padding: 3rem 2rem;
+        }
+
+        .use-cases-section {
+            background: var(--bg-white);
+            padding: 3rem 2rem;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.4;
+        }
+
+        section h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            padding: 1.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: border-color 0.15s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--text-muted);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.65;
+            font-size: 0.925rem;
+        }
+
+        /* Use Cases */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .use-case-card {
+            background: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .use-case-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .use-case-card p {
+            color: var(--text-muted);
+            font-size: 0.925rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: opacity 0.15s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 280px;
+                height: 100vh;
+                background: var(--bg-white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 2rem;
+                transition: right 0.2s ease;
+                border-left: 1px solid var(--border);
+            }
+
+            nav .nav-links.active {
+                right: 0;
+            }
+
+            nav .nav-links a {
+                font-size: 1.1rem;
+            }
+
+
+            h1 {
+                font-size: 1.25rem;
+            }
+
+            section h2 {
+                font-size: 1.25rem;
+            }
+
+            .hero {
+                padding: 2.5rem 1.5rem 2rem;
+            }
+
+            section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            #features {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .use-cases-section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .code-example {
+                padding: 1.5rem;
+                font-size: 0.8rem;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.1rem;
+            }
+
+            section h2 {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem 1.5rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                justify-content: center;
+                padding: 0.7rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Subtle animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation will be loaded by load-nav.js -->
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-i18n="hero.title">NormCode 规范码 — Structured AI Planning That You Can Audit</h1>
+
+            <div class="hero-video">
+                <!-- Speed control -->
+                <div class="video-speed-control">
+                    <label for="speed-select">Speed:</label>
+                    <select id="speed-select">
+                        <option value="1">1x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="1.75" selected>1.75x</option>
+                        <option value="2">2x</option>
+                        <option value="2.5">2.5x</option>
+                    </select>
+                </div>
+                <!-- Loading overlay -->
+                <div class="video-loading-overlay" id="video-loading">
+                    <div class="video-loading-spinner"></div>
+                    <div class="video-loading-text" id="video-loading-text" data-i18n="video.loading">Loading demo
+                        video...</div>
+                    <div class="video-loading-progress">
+                        <div class="video-loading-progress-bar" id="video-progress-bar"></div>
+                    </div>
+                </div>
+                <!-- Error overlay -->
+                <div class="video-error-overlay" id="video-error">
+                    <div class="video-error-icon">📹</div>
+                    <div class="video-error-text" data-i18n="video.error">Video couldn't load. This may be due to a slow
+                        connection.</div>
+                    <button class="video-retry-btn" onclick="retryVideo()" data-i18n="video.retry">Retry</button>
+                </div>
+                <!-- Fullscreen button overlay -->
+                <div class="video-fullscreen-hint" id="fullscreen-hint">
+                    <div class="fullscreen-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <polyline points="9 21 3 21 3 15"></polyline>
+                            <line x1="21" y1="3" x2="14" y2="10"></line>
+                            <line x1="3" y1="21" x2="10" y2="14"></line>
+                        </svg>
+                    </div>
+                    <span>Click to watch fullscreen</span>
+                </div>
+                <!-- Video element -->
+                <video id="demo-video" autoplay muted loop playsinline preload="auto">
+                    <source src="normcode_canvas_demo_combined.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="hero-actions">
+                <a href="NormCodeCanvasSetup-1.0.6-alpha.exe" class="btn-primary" download
+                    title="Alpha Demo ~21 MB download">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span data-i18n="hero.downloadBtn">Download Windows Alpha Demo</span>
+                    <span class="download-size" data-i18n="hero.downloadSize">(~22 MB)</span>
+                </a>
+                <a href="https://github.com/GEOGUANSIN/normCode" class="btn-secondary" target="_blank"
+                    rel="noopener noreferrer">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    <span data-i18n="hero.githubBtn">GitHub</span>
+                </a>
+                <a href="https://arxiv.org/abs/2512.10563" class="btn-secondary" target="_blank"
+                    rel="noopener noreferrer">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span data-i18n="hero.paperBtn">Paper</span>
+                </a>
+                <a href="democh_20260120_134822.normcode-portable.zip" class="btn-secondary" download>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    <span data-i18n="hero.exampleBtn">Example Project</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="features" class="fade-in">
+        <h2 class="section-title" data-i18n="features.title">Key Features — Explicit data isolation as a language-level
+            constraint.</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 data-i18n="features.dataIsolation.title">Data Isolation</h3>
+                <p data-i18n="features.dataIsolation.text">Each step only sees what you explicitly pass. No hidden
+                    context. Full visibility when debugging.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 data-i18n="features.auditability.title">Full Auditability</h3>
+                <p data-i18n="features.auditability.text">Inspect inputs and outputs at every step. SQLite checkpointing
+                    lets you pause, resume, or fork.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 data-i18n="features.efficiency.title">Efficient Execution</h3>
+                <p data-i18n="features.efficiency.text">Only semantic steps cost tokens. Data routing is free.
+                    Dependency-driven scheduling.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 data-i18n="features.visualDebugger.title">Visual Debugger</h3>
+                <p data-i18n="features.visualDebugger.text">Canvas App provides a graph view with breakpoints and
+                    real-time execution monitoring.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 data-i18n="features.resumable.title">Resumable Workflows</h3>
+                <p data-i18n="features.resumable.text">Long-running workflows can be paused and resumed. Fork from any
+                    checkpoint.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 data-i18n="features.automatable.title">AI-Derivable Plans</h3>
+                <p data-i18n="features.automatable.text">AI can derive plans from natural language. The compiler
+                    transforms instructions into formal plans.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases-section fade-in">
+        <h2 class="section-title" data-i18n="useCases.title">When to Use NormCode — Best for complex workflows where
+            transparency matters.</h2>
+
+        <div class="use-cases-grid">
+            <div class="use-case-card">
+                <h3 data-i18n="useCases.multiStep.title">Multi-step Workflows</h3>
+                <p data-i18n="useCases.multiStep.text">Workflows with 5+ LLM calls where isolation and debuggability pay
+                    off.</p>
+            </div>
+
+            <div class="use-case-card">
+                <h3 data-i18n="useCases.auditable.title">Auditable AI</h3>
+                <p data-i18n="useCases.auditable.text">Legal, medical, and finance applications where you must prove
+                    what each step saw.</p>
+            </div>
+
+            <div class="use-case-card">
+                <h3 data-i18n="useCases.longRunning.title">Long-running Tasks</h3>
+                <p data-i18n="useCases.longRunning.text">Built-in checkpointing makes long-running workflows resumable
+                    and forkable.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>NormCode 规范码</strong> — <span data-i18n="footer.tagline">Structured AI Planning That You Can
+                Audit</span></p>
+        <p>广州心镜智科技工作室 © 2025</p>
+        <p style="margin-top: 0.75rem;">
+            <a href="https://arxiv.org/abs/2512.10563" target="_blank" rel="noopener noreferrer"
+                data-i18n="footer.researchPaper">Research Paper</a> ·
+            <a href="https://github.com/GEOGUANSIN/normCode" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+        <p style="margin-top: 0.5rem;">
+            <span data-i18n="footer.contact">Contact:</span> <a
+                href="mailto:xin.guan@psylensai.com">xin.guan@psylensai.com</a>
+        </p>
+        <p style="margin-top: 0.75rem; font-size: 0.8rem; opacity: 0.8;">
+            <span data-i18n="footer.offices">Offices:</span><br>
+            <span data-i18n="footer.office2">广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地</span>
+        </p>
+    </footer>
+
+    <script src="load-nav.js"></script>
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                nav: {
+                    companyName: 'Psylens.AI',
+                    features: 'Features',
+                    docs: 'Documentation',
+                    overview: 'Overview',
+                    syntax: 'Syntax Reference',
+                    execution: 'Execution Model',
+                    compilation: 'Compilation',
+                    examples: 'Examples',
+                    team: 'Team'
+                },
+                hero: {
+                    title: 'NormCode 规范码 — Structured AI Planning That You Can Audit',
+                    downloadBtn: 'Download Windows Alpha Demo',
+                    downloadSize: '(~22 MB)',
+                    githubBtn: 'GitHub',
+                    paperBtn: 'Paper',
+                    exampleBtn: 'Example Project'
+                },
+                features: {
+                    title: 'Key Features — Explicit data isolation as a language-level constraint.',
+                    dataIsolation: {
+                        title: 'Data Isolation',
+                        text: 'Each step only sees what you explicitly pass. No hidden context. Full visibility when debugging.'
+                    },
+                    auditability: {
+                        title: 'Full Auditability',
+                        text: 'Inspect inputs and outputs at every step. SQLite checkpointing lets you pause, resume, or fork.'
+                    },
+                    efficiency: {
+                        title: 'Efficient Execution',
+                        text: 'Only semantic steps cost tokens. Data routing is free. Dependency-driven scheduling.'
+                    },
+                    visualDebugger: {
+                        title: 'Visual Debugger',
+                        text: 'Canvas App provides a graph view with breakpoints and real-time execution monitoring.'
+                    },
+                    resumable: {
+                        title: 'Resumable Workflows',
+                        text: 'Long-running workflows can be paused and resumed. Fork from any checkpoint.'
+                    },
+                    automatable: {
+                        title: 'AI-Derivable Plans',
+                        text: 'AI can derive plans from natural language. The compiler transforms instructions into formal plans.'
+                    }
+                },
+                useCases: {
+                    title: 'When to Use NormCode — Best for complex workflows where transparency matters.',
+                    multiStep: {
+                        title: 'Multi-step Workflows',
+                        text: 'Workflows with 5+ LLM calls where isolation and debuggability pay off.'
+                    },
+                    auditable: {
+                        title: 'Auditable AI',
+                        text: 'Legal, medical, and finance applications where you must prove what each step saw.'
+                    },
+                    longRunning: {
+                        title: 'Long-running Tasks',
+                        text: 'Built-in checkpointing makes long-running workflows resumable and forkable.'
+                    }
+                },
+                footer: {
+                    tagline: 'Structured AI Planning That You Can Audit',
+                    researchPaper: 'Research Paper',
+                    contact: 'Contact:',
+                    offices: 'Offices:',
+                    office2: 'TIMETABLE GBA Youth Innovation Base, Chuangxiangwan, Nansha, Guangzhou'
+                },
+                video: {
+                    loading: 'Loading demo video...',
+                    error: "Video couldn't load. This may be due to a slow connection.",
+                    retry: 'Retry'
+                }
+            },
+            zh: {
+                nav: {
+                    companyName: '心镜智',
+                    features: '核心功能',
+                    docs: '文档',
+                    overview: '概述',
+                    syntax: '语法参考',
+                    execution: '执行模型',
+                    compilation: '编译流程',
+                    examples: '示例',
+                    team: '团队'
+                },
+                hero: {
+                    title: 'NormCode 规范码 — 可审计的结构化AI规划',
+                    downloadBtn: '下载 Windows Alpha 演示版',
+                    downloadSize: '(~22 MB)',
+                    githubBtn: 'GitHub',
+                    paperBtn: '论文',
+                    exampleBtn: '示例项目'
+                },
+                features: {
+                    title: '核心功能 — 显式数据隔离作为语言级约束。构建时即可审计。',
+                    dataIsolation: {
+                        title: '数据隔离',
+                        text: '每个步骤只能看到您明确传递的内容。没有隐藏上下文。调试时完全可见。'
+                    },
+                    auditability: {
+                        title: '完全可审计',
+                        text: '检查每个步骤的输入和输出。SQLite检查点让您可以暂停、恢复或分叉。'
+                    },
+                    efficiency: {
+                        title: '高效执行',
+                        text: '只有语义步骤消耗token。数据路由免费。依赖驱动的调度。'
+                    },
+                    visualDebugger: {
+                        title: '可视化调试器',
+                        text: 'Canvas App提供图形视图，支持断点和实时执行监控。'
+                    },
+                    resumable: {
+                        title: '可恢复的工作流',
+                        text: '长时间运行的工作流可以暂停和恢复。从任何检查点分叉。'
+                    },
+                    automatable: {
+                        title: 'AI可推导计划',
+                        text: 'AI可以从自然语言推导计划。编译器将指令转换为正式计划。'
+                    }
+                },
+                useCases: {
+                    title: '何时使用NormCode — 最适合需要透明度的复杂工作流。',
+                    multiStep: {
+                        title: '多步骤工作流',
+                        text: '包含5+ LLM调用的工作流，隔离和可调试性会带来回报。'
+                    },
+                    auditable: {
+                        title: '可审计的AI',
+                        text: '法律、医疗和金融应用，您必须证明每个步骤看到的内容。'
+                    },
+                    longRunning: {
+                        title: '长时间运行的任务',
+                        text: '内置检查点使长时间运行的工作流可恢复和可分叉。'
+                    }
+                },
+                footer: {
+                    tagline: '可审计的结构化AI规划',
+                    researchPaper: '研究论文',
+                    contact: '联系方式：',
+                    offices: '办公地址：',
+                    office2: '广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地'
+                },
+                video: {
+                    loading: '正在加载演示视频...',
+                    error: '视频无法加载。可能是由于网络连接缓慢。',
+                    retry: '重试'
+                }
+            }
+        };
+
+        // Language management
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        // Expose setLanguage globally so load-nav.js can call it
+        window.setLanguage = function (lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const keys = key.split('.');
+                let value = translations[lang];
+
+                for (const k of keys) {
+                    value = value?.[k];
+                }
+
+                if (value !== undefined) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.value = value;
+                    } else if (value.includes('<code') || value.includes('<span') || value.includes('<strong')) {
+                        el.innerHTML = value;
+                    } else {
+                        el.textContent = value;
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+        };
+
+        // Initialize language
+        setLanguage(currentLang);
+
+        // Language switcher buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
+
+        // Mobile menu toggle is handled by load-nav.js
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Video loading handling
+        const video = document.getElementById('demo-video');
+        const loadingOverlay = document.getElementById('video-loading');
+        const loadingText = document.getElementById('video-loading-text');
+        const progressBar = document.getElementById('video-progress-bar');
+        const errorOverlay = document.getElementById('video-error');
+
+        let videoLoadTimeout;
+
+        function hideLoadingOverlay() {
+            if (loadingOverlay) {
+                loadingOverlay.classList.add('hidden');
+            }
+        }
+
+        function showError() {
+            if (loadingOverlay) loadingOverlay.classList.add('hidden');
+            if (errorOverlay) errorOverlay.classList.add('visible');
+        }
+
+        function retryVideo() {
+            if (errorOverlay) errorOverlay.classList.remove('visible');
+            if (loadingOverlay) loadingOverlay.classList.remove('hidden');
+            if (progressBar) progressBar.style.width = '0%';
+            if (loadingText) loadingText.textContent = 'Retrying...';
+
+            if (video) {
+                video.load();
+                video.play().catch(() => { });
+            }
+            startVideoLoadTimeout();
+        }
+
+        function startVideoLoadTimeout() {
+            // If video doesn't start playing within 30 seconds, show error
+            clearTimeout(videoLoadTimeout);
+            videoLoadTimeout = setTimeout(() => {
+                if (video && video.readyState < 3) {
+                    showError();
+                }
+            }, 30000);
+        }
+
+        if (video) {
+            startVideoLoadTimeout();
+
+            // Track loading progress via XHR for accurate progress
+            const videoSrc = video.querySelector('source')?.src || 'normcode_canvas_demo_combined.mp4';
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', videoSrc, true);
+            xhr.responseType = 'blob';
+
+            xhr.onprogress = (e) => {
+                if (e.lengthComputable && progressBar && loadingText) {
+                    const percent = Math.round((e.loaded / e.total) * 100);
+                    progressBar.style.width = percent + '%';
+                    const loadedMB = (e.loaded / (1024 * 1024)).toFixed(1);
+                    const totalMB = (e.total / (1024 * 1024)).toFixed(1);
+                    loadingText.textContent = `Loading video... ${loadedMB}/${totalMB} MB (${percent}%)`;
+                }
+            };
+
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    const blob = xhr.response;
+                    const blobUrl = URL.createObjectURL(blob);
+                    video.src = blobUrl;
+                    video.load();
+                    video.play().catch(() => { });
+                } else {
+                    showError();
+                }
+            };
+
+            xhr.onerror = () => {
+                // Fallback to native loading if XHR fails (CORS)
+                console.log('XHR failed, falling back to native video loading');
+            };
+
+            xhr.send();
+
+            // Speed control
+            const speedSelect = document.getElementById('speed-select');
+            const defaultSpeed = 1.75;
+            const heroVideo = document.querySelector('.hero-video');
+            const fullscreenHint = document.getElementById('fullscreen-hint');
+
+            function setVideoSpeed(speed) {
+                if (video) {
+                    video.playbackRate = speed;
+                }
+            }
+
+            if (speedSelect) {
+                speedSelect.addEventListener('change', (e) => {
+                    setVideoSpeed(parseFloat(e.target.value));
+                });
+            }
+
+            // Fullscreen handling - click video to enter fullscreen
+            function enterFullscreen() {
+                if (heroVideo.requestFullscreen) {
+                    heroVideo.requestFullscreen();
+                } else if (heroVideo.webkitRequestFullscreen) {
+                    heroVideo.webkitRequestFullscreen();
+                } else if (heroVideo.msRequestFullscreen) {
+                    heroVideo.msRequestFullscreen();
+                } else if (video.webkitEnterFullscreen) {
+                    // iOS fallback
+                    video.webkitEnterFullscreen();
+                }
+            }
+
+            // Click on video or container to enter fullscreen
+            video.addEventListener('click', enterFullscreen);
+            if (fullscreenHint) {
+                fullscreenHint.style.pointerEvents = 'auto';
+                fullscreenHint.addEventListener('click', enterFullscreen);
+            }
+
+            // Toggle controls based on fullscreen state
+            function handleFullscreenChange() {
+                const isFullscreen = document.fullscreenElement ||
+                    document.webkitFullscreenElement ||
+                    document.msFullscreenElement;
+
+                if (isFullscreen) {
+                    video.controls = true;
+                    if (fullscreenHint) fullscreenHint.style.display = 'none';
+                } else {
+                    video.controls = false;
+                    if (fullscreenHint) fullscreenHint.style.display = '';
+                }
+            }
+
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+            // Native video events as fallback/backup
+            video.addEventListener('loadedmetadata', () => {
+                setVideoSpeed(defaultSpeed);
+            });
+
+            video.addEventListener('canplaythrough', () => {
+                clearTimeout(videoLoadTimeout);
+                hideLoadingOverlay();
+                setVideoSpeed(defaultSpeed);
+            });
+
+            video.addEventListener('playing', () => {
+                clearTimeout(videoLoadTimeout);
+                hideLoadingOverlay();
+            });
+
+            video.addEventListener('error', () => {
+                clearTimeout(videoLoadTimeout);
+                showError();
+            });
+
+            // If video is already ready (cached)
+            if (video.readyState >= 3) {
+                setVideoSpeed(defaultSpeed);
+                hideLoadingOverlay();
+            }
+        }
+
+        // Download button with enhanced feedback
+        document.querySelectorAll('.btn-primary[download]').forEach(btn => {
+            // Add ripple effect on click
+            btn.addEventListener('click', function (e) {
+                // Create ripple element
+                const ripple = document.createElement('span');
+                ripple.classList.add('btn-ripple');
+
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+
+                this.appendChild(ripple);
+
+                // Remove ripple after animation
+                setTimeout(() => ripple.remove(), 600);
+
+                // Store original content
+                const originalContent = this.innerHTML.replace(/<span class="btn-ripple".*?<\/span>/g, '');
+
+                // Show downloading state
+                this.classList.add('downloading');
+                this.innerHTML = `
+                    <svg class="btn-icon download-spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="12" cy="12" r="10" stroke-dasharray="50" stroke-dashoffset="15" stroke-linecap="round"></circle>
+                    </svg>
+                    <span>Preparing download...</span>
+                `;
+
+                // Show success state after brief delay
+                setTimeout(() => {
+                    this.classList.remove('downloading');
+                    this.classList.add('download-started');
+                    this.innerHTML = `
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>Download started!</span>
+                    `;
+                }, 800);
+
+                // Restore original button after download has started
+                setTimeout(() => {
+                    this.classList.remove('download-started');
+                    this.innerHTML = originalContent;
+                }, 4000);
+            });
+        });
+    </script>
+</body>
+
+</html>

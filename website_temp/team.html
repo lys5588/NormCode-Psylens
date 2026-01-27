@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet the Psylens.AI Team - Building auditable AI workflows with NormCode.">
+    <link rel="icon" type="image/png" href="Psylensai_log_raw.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+    <title>Team - NormCode 规范码</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #4DA3FF;
+            --accent-hover: #3B8FE8;
+            --text-primary: #111827;
+            --text-secondary: #374151;
+            --text-muted: #6b7280;
+            --bg-page: #fafafa;
+            --bg-white: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+
+        /* Page Header */
+        .page-header {
+            margin-top: 56px;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+        }
+
+        /* School Logos */
+        .school-logos {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .school-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            opacity: 0.75;
+            filter: grayscale(30%);
+            transition: all 0.2s ease;
+        }
+
+        .school-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .school-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Office Locations */
+        .office-locations {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .office-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .office-item svg {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            margin-top: 3px;
+            color: var(--accent);
+        }
+
+        .office-image {
+            margin-top: 1.25rem;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .office-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+        }
+
+        .office-image img:hover {
+            opacity: 1;
+        }
+
+        .office-image-caption {
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-page);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-section p {
+            margin-bottom: 0;
+        }
+
+        .contact-section a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-section a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.925rem;
+            margin-top: 2rem;
+            transition: color 0.15s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: opacity 0.15s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 280px;
+                height: 100vh;
+                background: var(--bg-white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 2rem;
+                transition: right 0.2s ease;
+                border-left: 1px solid var(--border);
+            }
+
+            nav .nav-links.active {
+                right: 0;
+            }
+
+
+            .page-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: 2rem 1.5rem;
+            }
+
+            .school-logos {
+                gap: 1rem;
+            }
+
+            .school-logo {
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be loaded by load-nav.js -->
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1 data-i18n="page.title">Our Team</h1>
+        <p data-i18n="page.subtitle">Building auditable AI for the future.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section>
+            <div class="info-card">
+                <h3 data-i18n="team.credentialsTitle">Background</h3>
+                <p data-i18n="team.credentials">
+                    Interdisciplinary team spanning AI, computer science, mathematics, law, and ethics. Core R&D members hold master's and doctoral degrees from leading institutions worldwide, with experience in AI governance research and enterprise AI safety.
+                </p>
+                <div class="school-logos">
+                    <div class="school-logo" data-i18n-title="schools.oxford">
+                        <img src="school_logo/Oxford-University-Circlet.svg.png" alt="Oxford University">
+                    </div>
+                    <div class="school-logo" data-i18n-title="schools.ucl">
+                        <img src="school_logo/University_College_London_logo.svg.png" alt="UCL">
+                    </div>
+                    <div class="school-logo" data-i18n-title="schools.cmu">
+                        <img src="school_logo/seal-4c-600x600-min.jpg" alt="CMU">
+                    </div>
+                    <div class="school-logo" data-i18n-title="schools.ucsd">
+                        <img src="school_logo/Seal_of_the_University_of_California,_San_Diego.svg.png" alt="UCSD">
+                    </div>
+                    <div class="school-logo" data-i18n-title="schools.cas">
+                        <img src="school_logo/Seal_of_the_Chinese_Academy_of_Sciences.png" alt="Chinese Academy of Sciences">
+                    </div>
+                    <div class="school-logo" data-i18n-title="schools.szu">
+                        <img src="school_logo/150px-Shenzhen_University_Logo.svg_-5.png" alt="Shenzhen University">
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3 data-i18n="team.focusTitle">What We Do</h3>
+                <p data-i18n="team.focus">
+                    NormCode transforms AI reasoning from black-box dialogue into structured, auditable execution chains. We solve the controllability, explainability, and reproducibility challenges in complex AI applications—targeting high-compliance domains like financial risk, legal review, and enterprise decision systems.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3 data-i18n="team.visionTitle">Our Vision</h3>
+                <p data-i18n="team.vision">
+                    Auditable AI for transparent, controllable development. We believe human values should be clearly expressed, recorded, and executed—then transformed into sustainable technical assets that can be owned, verified, and inherited.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3 data-i18n="team.companyTitle">Company</h3>
+                <p data-i18n="team.company">
+                    广州心镜智科技工作室 (Guangzhou Psylens Technology Studio)
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3 data-i18n="team.officesTitle">Office Locations</h3>
+                <div class="office-locations">
+                    <div class="office-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span data-i18n="team.office1">广州市南沙区南沙街香江国际金融中心4-2126</span>
+                    </div>
+                    <div class="office-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span data-i18n="team.office2">广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地</span>
+                    </div>
+                </div>
+                <div class="office-image">
+                    <img src="timetable.jpg" alt="TIMETABLE Office" data-i18n-alt="team.officeImageAlt">
+                    <div class="office-image-caption" data-i18n="team.officeImageCaption">TIMETABLE 粤港澳青创基地</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2 data-i18n="contact.title">Get in Touch</h2>
+            <p>
+                <a href="mailto:xin.guan@psylensai.com">xin.guan@psylensai.com</a>
+            </p>
+        </section>
+
+        <a href="index.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            <span data-i18n="nav.backHome">Back to Home</span>
+        </a>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>NormCode 规范码</strong> · <a href="https://github.com/GEOGUANSIN/normCode" target="_blank">GitHub</a> · <a href="https://arxiv.org/abs/2512.10563" target="_blank" data-i18n="footer.paper">Paper</a></p>
+    </footer>
+
+    <script src="load-nav.js"></script>
+    <script>
+        const translations = {
+            en: {
+                nav: {
+                    companyName: 'Psylens.AI',
+                    home: 'Home',
+                    docs: 'Documentation',
+                    overview: 'Overview',
+                    syntax: 'Syntax Reference',
+                    execution: 'Execution Model',
+                    compilation: 'Compilation',
+                    examples: 'Examples',
+                    team: 'Team',
+                    backHome: 'Back to Home'
+                },
+                page: {
+                    title: 'Our Team',
+                    subtitle: 'Building auditable AI for the future.'
+                },
+                team: {
+                    credentialsTitle: 'Background',
+                    credentials: 'Interdisciplinary team spanning AI, computer science, mathematics, law, and ethics. Core R&D members hold master\'s and doctoral degrees from leading institutions worldwide, with experience in AI governance research and enterprise AI safety.',
+                    focusTitle: 'What We Do',
+                    focus: 'NormCode transforms AI reasoning from black-box dialogue into structured, auditable execution chains. We solve the controllability, explainability, and reproducibility challenges in complex AI applications—targeting high-compliance domains like financial risk, legal review, and enterprise decision systems.',
+                    visionTitle: 'Our Vision',
+                    vision: 'Auditable AI for transparent, controllable development. We believe human values should be clearly expressed, recorded, and executed—then transformed into sustainable technical assets that can be owned, verified, and inherited.',
+                    companyTitle: 'Company',
+                    company: 'Guangzhou Psylens Technology Studio (广州心镜智科技工作室)',
+                    officesTitle: 'Office Locations',
+                    office1: 'Xiangjiang International Financial Center 4-2126, Nansha District, Guangzhou',
+                    office2: 'TIMETABLE GBA Youth Innovation Base, Building 4, Chuangxiangwan, Haibinlu, Huangge Town, Nansha District, Guangzhou',
+                    officeImageAlt: 'TIMETABLE Office',
+                    officeImageCaption: 'TIMETABLE GBA Youth Innovation Base'
+                },
+                contact: {
+                    title: 'Get in Touch'
+                },
+                schools: {
+                    oxford: 'University of Oxford',
+                    ucl: 'University College London',
+                    cmu: 'Carnegie Mellon University',
+                    ucsd: 'University of California, San Diego',
+                    cas: 'Chinese Academy of Sciences',
+                    szu: 'Shenzhen University'
+                },
+                footer: {
+                    paper: 'Paper'
+                }
+            },
+            zh: {
+                nav: {
+                    companyName: '心镜智',
+                    home: '首页',
+                    docs: '文档',
+                    overview: '概述',
+                    syntax: '语法参考',
+                    execution: '执行模型',
+                    compilation: '编译流程',
+                    examples: '示例',
+                    team: '团队',
+                    backHome: '返回首页'
+                },
+                page: {
+                    title: '我们的团队',
+                    subtitle: '构建面向未来的可审计AI。'
+                },
+                team: {
+                    credentialsTitle: '背景',
+                    credentials: '跨学科团队，涵盖人工智能、计算机科学、数学、法律和伦理等方向。核心研发人员均具备硕士及博士学历，来自全球顶尖院校，拥有AI治理研究和企业级AI安全实践经验。',
+                    focusTitle: '我们做什么',
+                    focus: 'NormCode将AI推理从"黑箱对话"转变为结构化、可审计的执行链路。我们解决复杂AI应用中的可控性、可解释性和可复现性问题——面向金融合规风控、法律审查和企业级智能决策等高合规性场景。',
+                    visionTitle: '我们的愿景',
+                    vision: '构建透明、可控的可审计AI。我们相信人类的价值理念应当被清晰地表达、记录与执行，并逐步转化为可被拥有、验证和继承的可持续技术资产。',
+                    companyTitle: '公司',
+                    company: '广州心镜智科技工作室',
+                    officesTitle: '办公地址',
+                    office1: '广州市南沙区南沙街香江国际金融中心4-2126',
+                    office2: '广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地',
+                    officeImageAlt: 'TIMETABLE 办公室',
+                    officeImageCaption: 'TIMETABLE 粤港澳青创基地'
+                },
+                contact: {
+                    title: '联系我们'
+                },
+                schools: {
+                    oxford: '牛津大学',
+                    ucl: '伦敦大学学院',
+                    cmu: '卡内基梅隆大学',
+                    ucsd: '加州大学圣地亚哥分校',
+                    cas: '中国科学院',
+                    szu: '深圳大学'
+                },
+                footer: {
+                    paper: '论文'
+                }
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        // Expose setLanguage globally so load-nav.js can call it
+        window.setLanguage = function(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang;
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const keys = key.split('.');
+                let value = translations[lang];
+                
+                for (const k of keys) {
+                    value = value?.[k];
+                }
+                
+                if (value !== undefined) {
+                    el.textContent = value;
+                }
+            });
+
+            // Handle title translations for tooltips
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                const keys = key.split('.');
+                let value = translations[lang];
+                
+                for (const k of keys) {
+                    value = value?.[k];
+                }
+                
+                if (value !== undefined) {
+                    el.title = value;
+                }
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+        };
+        
+        setLanguage(currentLang);
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+        // Mobile menu is handled by load-nav.js
+    </script>
+</body>
+</html>
+
