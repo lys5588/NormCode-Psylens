@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NormCode PPT Client - AI-powered presentation generation tool">
+    <meta name="theme-color" content="#1da1f2">
+    <meta property="og:title" content="NormCode PPT Client">
+    <meta property="og:description" content="AI-powered presentation generation with real-time progress tracking">
+    <meta property="og:type" content="website">
+    <title>NormCode PPT Client</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+
+    <!-- CSS Modules -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/status.css">
+    <link rel="stylesheet" href="css/files.css">
+    <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+    <!-- 3-panel layout -->
+    <div class="container">
+        <div id="panel-config"></div>
+        <div id="panel-execution"></div>
+        <div id="panel-browser"></div>
+    </div>
+    <div id="modals"></div>
+
+    <!-- HTML Partial Loader -->
+    <script>
+        async function loadPartial(id, path) {
+            try {
+                const resp = await fetch(path);
+                const html = await resp.text();
+                document.getElementById(id).outerHTML = html;
+            } catch (e) {
+                console.error(`Failed to load ${path}:`, e);
+            }
+        }
+
+        (async () => {
+            await Promise.all([
+                loadPartial('panel-config',    'html/panel-config.html'),
+                loadPartial('panel-execution', 'html/panel-execution.html'),
+                loadPartial('panel-browser',   'html/panel-browser.html'),
+                loadPartial('modals',          'html/modals.html'),
+            ]);
+
+            // After HTML is loaded, load JS modules in order
+            const scripts = [
+                'js/state.js',
+                'js/ui.js',
+                'js/files.js',
+                'js/server.js',
+                'js/inputs.js',
+                'js/run.js',
+                'js/events.js',
+                'js/outputs.js',
+                'js/preview.js',
+                'js/init.js',
+            ];
+
+            for (const src of scripts) {
+                await new Promise((resolve, reject) => {
+                    const s = document.createElement('script');
+                    s.src = src;
+                    s.onload = resolve;
+                    s.onerror = reject;
+                    document.body.appendChild(s);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

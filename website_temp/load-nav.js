@@ -35,6 +35,7 @@
             const filename = path.split('/').pop();
             return filename.replace('.html', '');
         }
+        if (path.includes('/demo/')) return 'demo';
         if (path.includes('team.html')) return 'team';
         if (path.includes('how-it-works.html')) return 'overview';
         return 'home';
@@ -51,6 +52,7 @@
         const docsActive = currentPage === 'overview' || currentPage === 'execution' || 
                           currentPage === 'compilation' || currentPage === 'syntax' || 
                           currentPage === 'examples' ? 'active' : '';
+        const demoActive = currentPage === 'demo' ? 'active' : '';
         const teamActive = currentPage === 'team' ? 'active' : '';
         
         // Determine which doc item is active
@@ -95,6 +97,7 @@
                                 <a href="${basePath}docs/examples.html" class="${examplesActive}" data-i18n="nav.examples">Examples</a>
                             </div>
                         </div>
+                        <a href="${basePath}demo/" class="${demoActive}" data-i18n="nav.demo">Demo</a>
                         <a href="${basePath}team.html" class="${teamActive}" data-i18n="nav.team">Team</a>
                         <div class="lang-switcher">
                             <button class="lang-btn${storedLang === 'en' ? ' active' : ''}" data-lang="en">EN</button>

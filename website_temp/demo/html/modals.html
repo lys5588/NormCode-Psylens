@@ -1,0 +1,37 @@
+<!-- Preview Modal -->
+<div id="previewModal" class="modal" onclick="if(event.target===this)closePreview()">
+    <div class="modal-content modal-content--wide">
+        <div class="modal-header">
+            <span>📋 输入预览（交互式）</span>
+            <button class="btn btn-sm btn-outline" onclick="closePreview()">✕</button>
+        </div>
+        <div class="modal-body">
+            <div id="previewJson"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="copyPreview()">📋 复制完整JSON</button>
+            <button class="btn btn-primary btn-auto" onclick="closePreview(); startRun();">🚀 使用此输入运行</button>
+        </div>
+    </div>
+</div>
+
+<!-- File Preview Modal -->
+<div id="filePreviewModal" class="modal" onclick="if(event.target===this)closeFilePreview()">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span id="filePreviewTitle">📄 文件预览</span>
+            <div>
+                <button class="btn btn-sm btn-outline" onclick="togglePreviewMode()">🖼️ 渲染视图</button>
+                <button class="btn btn-sm btn-outline" onclick="closeFilePreview()">✕</button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div id="filePreviewContent" class="file-preview-container"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="copyFilePreview()">📋 复制内容</button>
+            <button class="btn btn-outline" onclick="closeFilePreview()">关闭</button>
+        </div>
+    </div>
+</div>
+

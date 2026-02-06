@@ -1,0 +1,83 @@
+/* status.css — Status Bar, Progress, Events Log */
+
+.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--bg);
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--muted);
+    flex-shrink: 0;
+}
+
+.status-dot.connected { background: var(--success); }
+.status-dot.running   { background: var(--warning); animation: pulse 1s infinite; }
+.status-dot.error     { background: var(--danger); }
+.status-dot.paused    { background: #e67e22; }
+
+.status-text { flex: 1; font-size: 0.85rem; }
+
+/* Progress */
+.progress-bar {
+    height: 6px;
+    background: var(--bg);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--warning));
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.progress-fill.pulsing {
+    animation: progress-pulse 0.5s ease-in-out;
+}
+
+.progress-text { font-size: 0.75rem; color: var(--muted); }
+
+/* Events Log */
+.events-log {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.event {
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+}
+
+.event:last-child       { border-bottom: none; }
+.event-time             { color: var(--muted); min-width: 65px; font-size: 0.75rem; }
+.event-msg              { flex: 1; }
+.event-msg.started      { color: var(--warning); }
+.event-msg.completed    { color: var(--success); }
+.event-msg.failed       { color: var(--danger); }
+.event-msg.file         { color: #64b5f6; }
+.event-msg.pending      { color: #9b59b6; animation: pulse-loop 1s ease-in-out; }
+.event-msg.restarted    { color: #3498db; animation: pulse-loop 0.5s ease-in-out; }
+.event-msg.skipped      { color: var(--muted); }
+.event-msg.in_progress  { color: var(--warning); }
+.event-msg.retry        { color: #f39c12; }
+.event-msg.paused       { color: #e67e22; }
+.event-msg.info         { color: var(--primary); }
+.event-msg.cycle        { color: var(--muted); font-style: italic; }
+

@@ -1,0 +1,104 @@
+/* files.css — File Cards, File Grid, Inspector / File Tree */
+
+.files-grid          { display: grid; gap: 8px; }
+.files-grid--scroll  { max-height: 200px; overflow-y: auto; }
+
+.file-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--bg);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.file-card:hover { border-color: var(--primary); }
+
+.file-icon    { font-size: 1.5rem; }
+.file-info    { flex: 1; min-width: 0; }
+.file-name    { font-weight: 500; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file-meta    { font-size: 0.75rem; color: var(--muted); }
+.file-actions { display: flex; gap: 4px; }
+
+/* Inspector / File Tree */
+.inspector-tree {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.tree-item   { padding: 2px 0; cursor: pointer; }
+.tree-folder { color: var(--warning); padding: 4px 8px; display: inline-block; transition: background 0.15s; }
+
+.tree-item:hover > .tree-folder {
+    background: var(--bg);
+    border-radius: 4px;
+}
+
+.tree-folder::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 0.6rem;
+    transition: transform 0.15s;
+}
+
+.tree-item.open > .tree-folder::before { transform: rotate(90deg); }
+
+.tree-file {
+    color: var(--text);
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.tree-file:hover { background: var(--bg); color: var(--primary); }
+
+.tree-content {
+    display: none;
+    border-left: 1px solid var(--border);
+    margin-left: 8px;
+}
+
+.tree-item.open > .tree-content { display: block; }
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 10px;
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 2px;
+}
+
+.tab {
+    flex: 1;
+    padding: 6px 10px;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.tab.active { background: var(--surface); color: var(--text); }
+
+.tab-content        { display: none; }
+.tab-content.active { display: block; }
+
+/* JSON Viewer */
+.json-viewer {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    max-height: 300px;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
