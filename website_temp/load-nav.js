@@ -15,8 +15,8 @@
     // Determine base path based on current page location
     function getBasePath() {
         const path = window.location.pathname;
-        // If we're in a subdirectory (like docs/), go up one level
-        if (path.includes('/docs/')) {
+        // If we're in a subdirectory (like docs/ or demo/), go up one level
+        if (path.includes('/docs/') || path.includes('/demo/')) {
             return '../';
         }
         return '';
@@ -25,6 +25,8 @@
     // Determine if current page is index.html (home page)
     function isHomePage() {
         const path = window.location.pathname;
+        // Exclude subdirectory index pages (like /demo/index.html)
+        if (path.includes('/demo/') || path.includes('/docs/')) return false;
         return path.endsWith('/') || path.endsWith('/index.html') || path.endsWith('/website_temp/') || path.endsWith('/website_temp/index.html');
     }
 
@@ -70,7 +72,7 @@
                 <div class="nav-content">
                     <a href="${basePath}index.html" class="nav-brand">
                         <img src="${basePath}Psylensai_log_raw.png" alt="Psylens.AI" class="logo-small">
-                        <span class="company-name" data-i18n="nav.companyName">Psylens.AI</span>
+                        <span class="company-name" data-i18n="nav.brandText">Psylens.AI</span>
                     </a>
                     <button class="menu-toggle" aria-label="Toggle navigation menu">
                         <span></span>
@@ -97,7 +99,7 @@
                                 <a href="${basePath}docs/examples.html" class="${examplesActive}" data-i18n="nav.examples">Examples</a>
                             </div>
                         </div>
-                        <a href="${basePath}demo/" class="${demoActive}" data-i18n="nav.demo">Demo</a>
+                        <a href="${basePath}demo/index.html" class="${demoActive}" data-i18n="nav.demo">Demo</a>
                         <a href="${basePath}team.html" class="${teamActive}" data-i18n="nav.team">Team</a>
                         <div class="lang-switcher">
                             <button class="lang-btn${storedLang === 'en' ? ' active' : ''}" data-lang="en">EN</button>

@@ -6,7 +6,7 @@
     display: grid;
     grid-template-columns: 380px 1fr 320px;
     gap: 16px;
-    height: calc(100vh - 72px);
+    height: calc(100vh - 90px);
 }
 
 .panel {
