@@ -21,6 +21,61 @@ body {
     color: var(--text);
     min-height: 100vh;
     padding: 20px;
+    padding-top: 52px;
+}
+
+/* Demo navigation bar */
+.demo-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    font-size: 0.85rem;
+}
+
+.demo-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.demo-nav-logo {
+    height: 22px;
+}
+
+.demo-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.demo-nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.demo-nav-links a:hover {
+    color: var(--primary);
+}
+
+.demo-nav-current {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding-right: 16px;
+    border-right: 1px solid var(--border);
 }
 
 /* Utilities */
