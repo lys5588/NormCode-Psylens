@@ -5,6 +5,14 @@
 async function connect() {
     serverUrl = document.getElementById('serverUrl').value.trim();
 
+    // If page is HTTPS but server is HTTP, redirect page to HTTP to avoid mixed content blocking
+    if (window.location.protocol === 'https:' && serverUrl.startsWith('http://')) {
+        const httpUrl = window.location.href.replace('https://', 'http://');
+        statusText.textContent = '正在切换到 HTTP 以连接服务器...';
+        window.location.href = httpUrl;
+        return;
+    }
+
     try {
         statusText.textContent = '正在连接...';
 
