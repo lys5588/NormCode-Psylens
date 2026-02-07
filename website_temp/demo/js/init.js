@@ -13,6 +13,6 @@ planSelect.addEventListener('change', async (e) => {
     await loadPlanDefaults(currentPlanId);
 });
 
-// Auto-connect on load
-setTimeout(connect, 500);
+// Auto-connect once on load (no retries)
+setTimeout(() => connect(true), 500);
 

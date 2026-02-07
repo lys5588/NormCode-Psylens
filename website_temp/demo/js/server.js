@@ -2,14 +2,14 @@
 // Server Connection & Plan Loading
 // ============================================================================
 
-async function connect() {
+async function connect(auto) {
     serverUrl = document.getElementById('serverUrl').value.trim();
 
-    // If page is HTTPS but server is HTTP, redirect page to HTTP to avoid mixed content blocking
+    // Mixed content: HTTPS page cannot fetch from HTTP server
     if (window.location.protocol === 'https:' && serverUrl.startsWith('http://')) {
-        const httpUrl = window.location.href.replace('https://', 'http://');
-        statusText.textContent = '正在切换到 HTTP 以连接服务器...';
-        window.location.href = httpUrl;
+        statusDot.className = 'status-dot error';
+        statusText.textContent = 'HTTPS 页面无法连接 HTTP 服务器 (混合内容限制)';
+        startBtn.disabled = true;
         return;
     }
 
