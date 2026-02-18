@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Responsive — All media queries consolidated in one place
+   ========================================================================== */
+
+
+/* ==========================================================================
+   TABLET & BELOW (≤ 900px)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* ==========================================================================
+   MOBILE LANDSCAPE & BELOW (≤ 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* ---- Navigation ---- */
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 280px;
+        height: 100vh;
+        background: var(--bg-white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-lg);
+        padding: var(--space-xl);
+        transition: right var(--transition-base);
+        border-left: 1px solid var(--border);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: var(--text-lg);
+    }
+
+    /* Mobile dropdown */
+    .nav-dropdown {
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-dropdown-trigger {
+        font-size: var(--text-lg);
+        justify-content: center;
+        width: 100%;
+    }
+
+    .nav-dropdown-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin-top: var(--space-sm);
+        background: transparent;
+        text-align: center;
+        min-width: 0;
+    }
+
+    .nav-dropdown-menu a {
+        padding: 0.4rem 0.6rem;
+    }
+
+    .lang-switcher {
+        margin-left: 0;
+        margin-top: var(--space-md);
+    }
+
+    .nav-inner {
+        padding: 0 var(--space-md);
+    }
+
+    /* ---- Hero ---- */
+    .hero {
+        padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+    }
+
+    .hero h1 {
+        font-size: var(--text-2xl);
+    }
+
+    /* ---- Sections ---- */
+    .section {
+        padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .container,
+    .container-narrow,
+    .container-wide {
+        padding: 0 var(--space-lg);
+    }
+
+    /* ---- Grids ---- */
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    /* ---- Page header ---- */
+    .page-header {
+        padding: var(--space-xl) var(--space-lg);
+    }
+
+    .page-header h1 {
+        font-size: var(--text-2xl);
+    }
+
+    /* ---- Typography ---- */
+    h1 { font-size: var(--text-2xl); }
+    h2 { font-size: var(--text-xl); }
+
+    /* ---- Code blocks ---- */
+    .code-block {
+        padding: var(--space-md);
+        font-size: var(--text-xs);
+    }
+
+    /* ---- Pipeline ---- */
+    .pipeline-step-box {
+        font-size: var(--text-xs);
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+
+/* ==========================================================================
+   SMALL MOBILE (≤ 480px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+    .hero {
+        padding: var(--space-xl) var(--space-md) var(--space-lg);
+    }
+
+    .hero h1 {
+        font-size: var(--text-xl);
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-sm);
+    }
+
+    .hero-actions .btn {
+        justify-content: center;
+    }
+
+    .section {
+        padding: var(--space-xl) var(--space-md);
+    }
+
+    .container,
+    .container-narrow,
+    .container-wide {
+        padding: 0 var(--space-md);
+    }
+
+    .section-header p {
+        font-size: var(--text-base);
+    }
+}
+

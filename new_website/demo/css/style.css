@@ -1,0 +1,12 @@
+/*
+ * style.css — Single-import convenience file
+ * (index.html loads individual modules directly, but you can
+ *  use this single file if you prefer one <link> tag.)
+ */
+@import url('base.css');
+@import url('layout.css');
+@import url('forms.css');
+@import url('sections.css');
+@import url('status.css');
+@import url('files.css');
+@import url('modal.css');

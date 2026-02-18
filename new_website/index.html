@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NormCode: A simple language for building complex AI agent workflows. Describe what you want in plain language, compile it, run it.">
+    <meta property="og:title" content="NormCode — The Language for AI Agent Workflows">
+    <meta property="og:description" content="Build multi-step AI agent workflows in a language anyone can read. Describe it. Structure it. Run it.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.psylensai.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="canonical" href="https://www.psylensai.com/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Shared CSS (order matters) -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <title>NormCode — The Language for AI Agent Workflows</title>
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- Nav + Footer injected by nav.js -->
+
+    <main id="main">
+
+        <!-- ============================================================
+             SECTION 1: HERO
+             Lead with the LANGUAGE — what it is, why it matters
+             ============================================================ -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="badge badge-accent" data-i18n="hero.badge">Open Source · Research-Backed</span>
+                <h1 data-i18n="hero.title">A simple language for complex AI agents</h1>
+                <p class="subtitle" data-i18n="hero.subtitle">NormCode lets you describe multi-step AI workflows in plain, structured syntax — then compile and run them. No framework boilerplate. Just say what you want each step to do.</p>
+
+                <div class="hero-actions">
+                    <a href="assets/downloads/NormCodeCanvasSetup-1.0.7-alpha.exe" class="btn btn-primary btn-lg" download title="Windows Alpha ~34 MB">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span data-i18n="hero.downloadBtn">Download Canvas</span>
+                        <span class="download-size">(Windows Alpha)</span>
+                    </a>
+                    <a href="https://github.com/lys5588/NormCode-Psylens" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        <span data-i18n="hero.githubBtn">GitHub</span>
+                    </a>
+                    <a href="https://arxiv.org/abs/2512.10563" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                        <span data-i18n="hero.paperBtn">Paper</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 2: THE PAIN
+             Why building AI agents today is painful
+             ============================================================ -->
+        <section class="section fade-in">
+            <div class="container-narrow">
+                <div class="section-header">
+                    <h2 data-i18n="pain.title">AI agents are powerful — but building them is a mess</h2>
+                    <p data-i18n="pain.subtitle">Today you stitch together Python scripts, prompt templates, and framework boilerplate. When step 12 breaks, you trace through logs, guess at context, and pray.</p>
+                </div>
+                <p style="text-align: center; max-width: 650px; margin: 0 auto;" data-i18n="pain.description">
+                    There's no clear way to describe what an AI agent should do step-by-step, what data each step can see, or how to debug it when things go wrong. You need a language designed for this.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 3: THE LANGUAGE
+             Show the syntax — "just describe what you want"
+             ============================================================ -->
+        <section class="section section-alt fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-i18n="language.title">Just describe what you want</h2>
+                    <p data-i18n="language.subtitle">Write your AI workflow in NormCode. Indentation defines data flow. Each step says what it does and what it receives — in plain language.</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); align-items: start; max-width: 900px; margin: 0 auto;" class="solution-grid">
+                    <!-- Code example -->
+                    <div>
+                        <div class="code-label" data-i18n="language.codeLabel">Document Analysis Agent</div>
+                        <div class="code-block">
+<code><span class="keyword">&lt;-</span> executive summary
+    <span class="keyword">&lt;=</span> <span class="function">generate summary from flagged items</span>
+    <span class="keyword">&lt;-</span> discrepancy flags
+        <span class="keyword">&lt;=</span> <span class="function">check for mismatches</span>
+        <span class="keyword">&lt;-</span> extracted figures
+            <span class="keyword">&lt;=</span> <span class="function">extract financial data</span>
+            <span class="keyword">&lt;-</span> <span class="string">raw document</span>
+        <span class="keyword">&lt;-</span> <span class="string">database results</span></code>
+                        </div>
+                    </div>
+
+                    <!-- Explanation -->
+                    <div>
+                        <h3 data-i18n="language.readTitle">That's the whole agent</h3>
+                        <p data-i18n="language.readDesc">No framework code. No prompt chains. Just a clear description of what to do and what data to pass. The compiler handles the rest.</p>
+                        <div class="info-box">
+                            <p data-i18n-html="language.dataFlow">
+                                <strong>Indentation = data flow.</strong><br>
+                                <code class="inline-code">extract financial data</code> sees only <code class="inline-code">raw document</code>.<br>
+                                <code class="inline-code">check for mismatches</code> sees <code class="inline-code">extracted figures</code> + <code class="inline-code">database results</code>.<br>
+                                <code class="inline-code">generate summary</code> sees only <code class="inline-code">discrepancy flags</code>.
+                            </p>
+                        </div>
+                        <p style="font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-md);" data-i18n="language.isolation">Each step only sees what you explicitly pass. No hidden context leaking between steps — that's data isolation by design.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 4: FROM IDEA TO AGENT
+             3-step simplification of the pipeline
+             ============================================================ -->
+        <section class="section fade-in">
+            <div class="container-narrow">
+                <div class="section-header">
+                    <h2 data-i18n="pipeline.title">From idea to running agent</h2>
+                    <p data-i18n="pipeline.subtitle">Start with what you want in plain language. NormCode's compiler progressively refines it into an executable plan.</p>
+                </div>
+
+                <div class="pipeline">
+                    <div class="pipeline-step">
+                        <div class="pipeline-step-box" data-i18n="pipeline.step1">Describe your workflow</div>
+                        <div class="pipeline-note" data-i18n="pipeline.note1">Write what you want in NormCode — plain language with structure</div>
+                    </div>
+                    <div class="pipeline-arrow"></div>
+                    <div class="pipeline-step">
+                        <div class="pipeline-step-box phase" data-i18n="pipeline.step2">Compiler refines it</div>
+                        <div class="pipeline-note" data-i18n="pipeline.note2">4 phases: derive order → formalize → add context → resolve resources</div>
+                    </div>
+                    <div class="pipeline-arrow"></div>
+                    <div class="pipeline-step">
+                        <div class="pipeline-step-box final" data-i18n="pipeline.step3">Agent executes</div>
+                        <div class="pipeline-note" data-i18n="pipeline.note3">Orchestrator runs each step, with checkpoints you can inspect or resume</div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: var(--space-xl);">
+                    <p data-i18n-html="pipeline.benefit"><strong>You stay in control.</strong> Review the plan at any stage. Pause a running workflow. Fork from any checkpoint. The compiler transforms your intent into structure — it never changes your meaning.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 5: DEMO VIDEO
+             Poster image + click to play (NOT autoplay)
+             ============================================================ -->
+        <section class="section section-alt fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-i18n="video.title">See it in action</h2>
+                    <p data-i18n="video.subtitle">NormCode Canvas — a visual editor for designing, debugging, and running AI agent workflows.</p>
+                </div>
+
+                <div class="video-container" data-src="assets/videos/normcode_canvas_demo_combined.mp4" style="aspect-ratio: 2560 / 1176;">
+                    <div class="video-poster">
+                        <div class="video-play-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                        <span data-i18n="video.clickToPlay">Click to play demo</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 6: WHY A LANGUAGE
+             6 feature cards — reframed as builder benefits
+             ============================================================ -->
+        <section id="features" class="section fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-i18n="features.title">Why a language — not another framework</h2>
+                    <p data-i18n="features.subtitle">Frameworks give you building blocks. A language gives you a way to think. NormCode is designed from the ground up for AI agent workflows.</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <!-- Readable -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                        </div>
+                        <h3 data-i18n="features.readable.title">Human-Readable</h3>
+                        <p data-i18n="features.readable.text">Anyone can read a NormCode plan — not just the developer who wrote it. Share workflows with non-technical teammates.</p>
+                    </div>
+
+                    <!-- Data Isolation -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </div>
+                        <h3 data-i18n="features.isolation.title">Clean Data Flow</h3>
+                        <p data-i18n="features.isolation.text">Each step only sees what you pass it. No context pollution, no mystery inputs. Debug any step by checking what it received.</p>
+                    </div>
+
+                    <!-- AI-Derivable -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.57-3.25 3.92L12 22"></path><path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.57 3.25 3.92"></path><line x1="4" y1="13" x2="20" y2="13"></line></svg>
+                        </div>
+                        <h3 data-i18n="features.derivable.title">AI Can Write It Too</h3>
+                        <p data-i18n="features.derivable.text">Tell an LLM what you need — it generates the NormCode plan. The compiler validates and structures it automatically.</p>
+                    </div>
+
+                    <!-- Visual Editor -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                        </div>
+                        <h3 data-i18n="features.debugger.title">Visual Editor & Debugger</h3>
+                        <p data-i18n="features.debugger.text">Canvas App shows your workflow as a graph. Set breakpoints, watch data flow in real time, and edit steps visually.</p>
+                    </div>
+
+                    <!-- Efficient -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        </div>
+                        <h3 data-i18n="features.efficiency.title">Pay Only for Thinking</h3>
+                        <p data-i18n="features.efficiency.text">Only reasoning steps use LLM tokens. Data routing, filtering, and looping are free. A 20-step agent might only call an LLM 8 times.</p>
+                    </div>
+
+                    <!-- Resumable -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        </div>
+                        <h3 data-i18n="features.resumable.title">Pause, Resume, Fork</h3>
+                        <p data-i18n="features.resumable.text">Every step is checkpointed. Pause a running agent, resume it tomorrow, or fork from any point to try a different path.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 7: BUILT FOR
+             Who it's for — reframed as positive use cases
+             ============================================================ -->
+        <section class="section section-alt fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-i18n="builtFor.title">Built for</h2>
+                    <p data-i18n="builtFor.subtitle">Anyone building AI agents that need to be reliable, understandable, and maintainable.</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3 data-i18n="builtFor.builders.title">AI Agent Builders</h3>
+                        <p data-i18n="builtFor.builders.text">Replace tangled prompt chains with clean, structured plans. Build agents faster, debug them easier.</p>
+                    </div>
+                    <div class="card">
+                        <h3 data-i18n="builtFor.teams.title">Teams & Organizations</h3>
+                        <p data-i18n="builtFor.teams.text">Workflows anyone can read and review. Share AI processes across teams without tribal knowledge.</p>
+                    </div>
+                    <div class="card">
+                        <h3 data-i18n="builtFor.regulated.title">Regulated Industries</h3>
+                        <p data-i18n="builtFor.regulated.text">Finance, legal, healthcare — where you need to prove what each step saw and decided. Full auditability built in.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 8: GET STARTED CTA
+             ============================================================ -->
+        <section class="section section-dark fade-in">
+            <div class="container-narrow" style="text-align: center;">
+                <h2 data-i18n="cta.title">Start building</h2>
+                <p style="margin-bottom: var(--space-xl);" data-i18n="cta.subtitle">Download the visual editor, explore the docs, or try the interactive demo.</p>
+
+                <div class="hero-actions" style="margin-bottom: var(--space-2xl);">
+                    <a href="assets/downloads/NormCodeCanvasSetup-1.0.7-alpha.exe" class="btn btn-primary btn-lg" download>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span data-i18n="cta.download">Download Canvas</span>
+                    </a>
+                    <a href="docs/index.html" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: white; background: transparent;">
+                        <span data-i18n="cta.docs">Read the Docs</span>
+                    </a>
+                    <a href="demo/index.html" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: white; background: transparent;">
+                        <span data-i18n="cta.demo">Try Demo</span>
+                    </a>
+                    <a href="assets/downloads/democh_20260120_134822.normcode-portable.zip" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: white; background: transparent;" download>
+                        <span data-i18n="cta.example">Example Project</span>
+                    </a>
+                </div>
+
+                <!-- Credibility strip -->
+                <p style="font-size: var(--text-xs); opacity: 0.5; margin-bottom: var(--space-md);" data-i18n="cta.teamFrom">Our team comes from</p>
+                <div class="logo-strip">
+                    <div class="logo-strip-item" data-i18n-title="schools.oxford">
+                        <img src="assets/images/school_logo/Oxford-University-Circlet.svg.png" alt="Oxford" loading="lazy">
+                    </div>
+                    <div class="logo-strip-item" data-i18n-title="schools.ucl">
+                        <img src="assets/images/school_logo/University_College_London_logo.svg.png" alt="UCL" loading="lazy">
+                    </div>
+                    <div class="logo-strip-item" data-i18n-title="schools.szu">
+                        <img src="assets/images/school_logo/150px-Shenzhen_University_Logo.svg_-5.png" alt="SZU" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Shared JS (order matters: i18n → nav → main) -->
+    <script src="js/i18n.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Page-specific translations -->
+    <script>
+        i18n.init({
+            en: {
+                nav: {
+                    brandText: 'Psylens.AI',
+                    features: 'Features',
+                    home: 'Home',
+                    docs: 'Documentation',
+                    overview: 'Overview',
+                    syntax: 'Syntax Reference',
+                    execution: 'Execution Model',
+                    compilation: 'Compilation',
+                    examples: 'Examples',
+                    demo: 'Demo',
+                    about: 'About'
+                },
+                hero: {
+                    badge: 'Open Source · Research-Backed',
+                    title: 'A simple language for complex AI agents',
+                    subtitle: 'NormCode lets you describe multi-step AI workflows in plain, structured syntax — then compile and run them. No framework boilerplate. Just say what you want each step to do.',
+                    downloadBtn: 'Download Canvas',
+                    githubBtn: 'GitHub',
+                    paperBtn: 'Paper'
+                },
+                pain: {
+                    title: 'AI agents are powerful — but building them is a mess',
+                    subtitle: 'Today you stitch together Python scripts, prompt templates, and framework boilerplate. When step 12 breaks, you trace through logs, guess at context, and pray.',
+                    description: 'There\'s no clear way to describe what an AI agent should do step-by-step, what data each step can see, or how to debug it when things go wrong. You need a language designed for this.'
+                },
+                language: {
+                    title: 'Just describe what you want',
+                    subtitle: 'Write your AI workflow in NormCode. Indentation defines data flow. Each step says what it does and what it receives — in plain language.',
+                    codeLabel: 'Document Analysis Agent',
+                    readTitle: 'That\'s the whole agent',
+                    readDesc: 'No framework code. No prompt chains. Just a clear description of what to do and what data to pass. The compiler handles the rest.',
+                    dataFlow: '<strong>Indentation = data flow.</strong><br><code class="inline-code">extract financial data</code> sees only <code class="inline-code">raw document</code>.<br><code class="inline-code">check for mismatches</code> sees <code class="inline-code">extracted figures</code> + <code class="inline-code">database results</code>.<br><code class="inline-code">generate summary</code> sees only <code class="inline-code">discrepancy flags</code>.',
+                    isolation: 'Each step only sees what you explicitly pass. No hidden context leaking between steps — that\'s data isolation by design.'
+                },
+                pipeline: {
+                    title: 'From idea to running agent',
+                    subtitle: 'Start with what you want in plain language. NormCode\'s compiler progressively refines it into an executable plan.',
+                    step1: 'Describe your workflow',
+                    note1: 'Write what you want in NormCode — plain language with structure',
+                    step2: 'Compiler refines it',
+                    note2: '4 phases: derive order → formalize → add context → resolve resources',
+                    step3: 'Agent executes',
+                    note3: 'Orchestrator runs each step, with checkpoints you can inspect or resume',
+                    benefit: '<strong>You stay in control.</strong> Review the plan at any stage. Pause a running workflow. Fork from any checkpoint. The compiler transforms your intent into structure — it never changes your meaning.'
+                },
+                video: {
+                    title: 'See it in action',
+                    subtitle: 'NormCode Canvas — a visual editor for designing, debugging, and running AI agent workflows.',
+                    clickToPlay: 'Click to play demo'
+                },
+                features: {
+                    title: 'Why a language — not another framework',
+                    subtitle: 'Frameworks give you building blocks. A language gives you a way to think. NormCode is designed from the ground up for AI agent workflows.',
+                    readable: { title: 'Human-Readable', text: 'Anyone can read a NormCode plan — not just the developer who wrote it. Share workflows with non-technical teammates.' },
+                    isolation: { title: 'Clean Data Flow', text: 'Each step only sees what you pass it. No context pollution, no mystery inputs. Debug any step by checking what it received.' },
+                    derivable: { title: 'AI Can Write It Too', text: 'Tell an LLM what you need — it generates the NormCode plan. The compiler validates and structures it automatically.' },
+                    debugger: { title: 'Visual Editor & Debugger', text: 'Canvas App shows your workflow as a graph. Set breakpoints, watch data flow in real time, and edit steps visually.' },
+                    efficiency: { title: 'Pay Only for Thinking', text: 'Only reasoning steps use LLM tokens. Data routing, filtering, and looping are free. A 20-step agent might only call an LLM 8 times.' },
+                    resumable: { title: 'Pause, Resume, Fork', text: 'Every step is checkpointed. Pause a running agent, resume it tomorrow, or fork from any point to try a different path.' }
+                },
+                builtFor: {
+                    title: 'Built for',
+                    subtitle: 'Anyone building AI agents that need to be reliable, understandable, and maintainable.',
+                    builders: { title: 'AI Agent Builders', text: 'Replace tangled prompt chains with clean, structured plans. Build agents faster, debug them easier.' },
+                    teams: { title: 'Teams & Organizations', text: 'Workflows anyone can read and review. Share AI processes across teams without tribal knowledge.' },
+                    regulated: { title: 'Regulated Industries', text: 'Finance, legal, healthcare — where you need to prove what each step saw and decided. Full auditability built in.' }
+                },
+                cta: {
+                    title: 'Start building',
+                    subtitle: 'Download the visual editor, explore the docs, or try the interactive demo.',
+                    download: 'Download Canvas',
+                    docs: 'Read the Docs',
+                    demo: 'Try Demo',
+                    example: 'Example Project',
+                    teamFrom: 'Our team comes from'
+                },
+                schools: {
+                    oxford: 'University of Oxford',
+                    ucl: 'University College London',
+                    szu: 'Shenzhen University'
+                },
+                footer: {
+                    tagline: 'The Language for AI Agent Workflows',
+                    paper: 'Research Paper',
+                    contact: 'Contact',
+                    office: 'TIMETABLE GBA Youth Innovation Base, Nansha, Guangzhou'
+                }
+            },
+            zh: {
+                nav: {
+                    brandText: '心镜智',
+                    features: '核心功能',
+                    home: '首页',
+                    docs: '文档',
+                    overview: '概述',
+                    syntax: '语法参考',
+                    execution: '执行模型',
+                    compilation: '编译流程',
+                    examples: '示例',
+                    demo: '演示',
+                    about: '关于'
+                },
+                hero: {
+                    badge: '开源 · 学术支撑',
+                    title: '一种简单的语言，构建复杂的AI智能体',
+                    subtitle: 'NormCode让您用简洁、结构化的语法描述多步骤AI工作流——然后编译并运行。无需框架模板代码，只需说出每个步骤要做什么。',
+                    downloadBtn: '下载 Canvas',
+                    githubBtn: 'GitHub',
+                    paperBtn: '论文'
+                },
+                pain: {
+                    title: 'AI智能体很强大——但构建过程一团糟',
+                    subtitle: '今天你需要拼凑Python脚本、提示模板和框架模板代码。当第12步出错时，你只能翻日志、猜上下文、碰运气。',
+                    description: '目前没有一种清晰的方式来描述AI智能体应该逐步做什么、每个步骤能看到什么数据、或者出问题时如何调试。你需要一种专为此设计的语言。'
+                },
+                language: {
+                    title: '只需描述你想要什么',
+                    subtitle: '用NormCode编写你的AI工作流。缩进定义数据流。每个步骤用自然语言说明它做什么、接收什么。',
+                    codeLabel: '文档分析智能体',
+                    readTitle: '这就是整个智能体',
+                    readDesc: '没有框架代码。没有提示链。只需清晰描述做什么、传什么数据。编译器会处理其余的一切。',
+                    dataFlow: '<strong>缩进 = 数据流。</strong><br><code class="inline-code">提取财务数据</code> 只能看到 <code class="inline-code">原始文档</code>。<br><code class="inline-code">检查不匹配</code> 看到 <code class="inline-code">提取的数据</code> + <code class="inline-code">数据库结果</code>。<br><code class="inline-code">生成摘要</code> 只能看到 <code class="inline-code">差异标记</code>。',
+                    isolation: '每个步骤只能看到你明确传递的数据。步骤之间没有隐藏的上下文泄漏——这就是设计层面的数据隔离。'
+                },
+                pipeline: {
+                    title: '从想法到运行的智能体',
+                    subtitle: '从自然语言开始描述你想要什么。NormCode的编译器会逐步将其优化为可执行的计划。',
+                    step1: '描述你的工作流',
+                    note1: '用NormCode编写你想要的——带结构的自然语言',
+                    step2: '编译器优化',
+                    note2: '4个阶段：推导顺序 → 形式化 → 添加上下文 → 解析资源',
+                    step3: '智能体执行',
+                    note3: '编排器逐步运行，你可以检查或恢复任何检查点',
+                    benefit: '<strong>你始终掌控全局。</strong>在任何阶段审查计划。暂停运行中的工作流。从任何检查点分叉。编译器将你的意图转化为结构——它永远不会改变你的意思。'
+                },
+                video: {
+                    title: '实际演示',
+                    subtitle: 'NormCode Canvas——用于设计、调试和运行AI智能体工作流的可视化编辑器。',
+                    clickToPlay: '点击播放演示'
+                },
+                features: {
+                    title: '为什么是一种语言——而不是又一个框架',
+                    subtitle: '框架给你积木。语言给你一种思维方式。NormCode从零开始专为AI智能体工作流设计。',
+                    readable: { title: '人类可读', text: '任何人都能读懂NormCode计划——不只是写它的开发者。与非技术队友共享工作流。' },
+                    isolation: { title: '清晰的数据流', text: '每个步骤只能看到你传给它的数据。没有上下文污染，没有神秘输入。检查任何步骤收到了什么即可调试。' },
+                    derivable: { title: 'AI也能编写', text: '告诉LLM你需要什么——它生成NormCode计划。编译器自动验证和结构化。' },
+                    debugger: { title: '可视化编辑器和调试器', text: 'Canvas App将你的工作流显示为图形。设置断点，实时观察数据流，可视化编辑步骤。' },
+                    efficiency: { title: '只为思考付费', text: '只有推理步骤使用LLM token。数据路由、筛选和循环都是免费的。20步智能体可能只调用LLM 8次。' },
+                    resumable: { title: '暂停、恢复、分叉', text: '每个步骤都有检查点。暂停运行中的智能体，明天恢复，或从任何点分叉尝试不同路径。' }
+                },
+                builtFor: {
+                    title: '适用场景',
+                    subtitle: '适合所有需要可靠、可理解、可维护的AI智能体的构建者。',
+                    builders: { title: 'AI智能体开发者', text: '用清晰、结构化的计划替代混乱的提示链。更快构建智能体，更容易调试。' },
+                    teams: { title: '团队与组织', text: '任何人都能阅读和审查的工作流。跨团队共享AI流程，无需部落知识。' },
+                    regulated: { title: '受监管行业', text: '金融、法律、医疗——需要证明每个步骤看到了什么、决定了什么。内置完整的可审计性。' }
+                },
+                cta: {
+                    title: '开始构建',
+                    subtitle: '下载可视化编辑器，浏览文档，或尝试交互式演示。',
+                    download: '下载 Canvas',
+                    docs: '阅读文档',
+                    demo: '尝试演示',
+                    example: '示例项目',
+                    teamFrom: '我们的团队来自'
+                },
+                schools: {
+                    oxford: '牛津大学',
+                    ucl: '伦敦大学学院',
+                    szu: '深圳大学'
+                },
+                footer: {
+                    tagline: 'AI智能体工作流语言',
+                    paper: '研究论文',
+                    contact: '联系我们',
+                    office: '广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

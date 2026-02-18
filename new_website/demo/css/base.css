@@ -1,0 +1,67 @@
+/* base.css — Reset, CSS Variables, Body, Utilities */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --bg:      #f5f7fa;
+    --surface: #ffffff;
+    --border:  #e1e8ed;
+    --primary: #1da1f2;
+    --success: #17bf63;
+    --warning: #ffad1f;
+    --danger:  #e74c3c;
+    --text:    #14171a;
+    --muted:   #657786;
+    --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 20px;
+    padding-top: 70px;
+}
+
+/* Utilities */
+.muted        { color: var(--muted); }
+.btn-block    { width: 100%; }
+.btn-auto     { width: auto; }
+.mb-8         { margin-bottom: 8px; }
+
+.placeholder {
+    color: var(--muted);
+    text-align: center;
+    padding: 16px;
+    font-size: 0.85rem;
+}
+
+.placeholder--spaced { padding: 20px; }
+.placeholder--spaced > div { margin-bottom: 8px; }
+
+.section-label          { font-size: 0.85rem; font-weight: 500; margin-bottom: 8px; }
+.section-label--success { color: var(--success); }
+.label-hint             { font-weight: normal; color: var(--muted); }
+
+.inputs-status { font-size: 0.7rem; color: var(--muted); }
+.ref-count     { color: var(--muted); font-size: 0.75rem; }
+.run-id        { font-size: 0.75rem; color: var(--muted); }
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.5; }
+}
+
+@keyframes pulse-loop {
+    0%   { opacity: 0.5; }
+    50%  { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+@keyframes progress-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.7; filter: brightness(1.2); }
+}
+

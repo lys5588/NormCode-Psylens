@@ -1,0 +1,145 @@
+/* ==========================================================================
+   Documentation — Page-specific styles for docs/ pages
+   Extends the shared component library
+   ========================================================================== */
+
+/* Docs layout with sidebar */
+main.docs-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: var(--space-2xl);
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+    align-items: start;
+}
+
+/* Sidebar */
+.docs-sidebar {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-xl));
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: var(--space-md);
+}
+
+.docs-sidebar h4 {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-sm);
+}
+
+.docs-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.docs-sidebar li {
+    margin-bottom: var(--space-xs);
+}
+
+.docs-sidebar a {
+    display: block;
+    padding: 0.4rem 0.6rem;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.1s ease;
+}
+
+.docs-sidebar a:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.docs-sidebar a.active {
+    background: var(--accent);
+    color: white;
+}
+
+/* Docs content area */
+.docs-content {
+    min-width: 0;
+}
+
+.docs-content section {
+    margin-bottom: var(--space-2xl);
+}
+
+.docs-content h2 {
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+}
+
+.docs-content h3 {
+    margin-top: var(--space-lg);
+}
+
+/* Prev/Next navigation */
+.docs-nav-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border);
+}
+
+.docs-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: border-color var(--transition-fast);
+    min-width: 0;
+    flex: 1;
+}
+
+.docs-nav-link:hover {
+    border-color: var(--accent);
+}
+
+.docs-nav-link.next {
+    text-align: right;
+}
+
+.docs-nav-link-label {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.docs-nav-link-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* Responsive docs */
+@media (max-width: 900px) {
+    main.docs-layout {
+        grid-template-columns: 1fr;
+    }
+    .docs-sidebar {
+        position: static;
+        margin-bottom: var(--space-xl);
+    }
+}
+
+@media (max-width: 768px) {
+    main.docs-layout {
+        padding: var(--space-xl) var(--space-lg);
+    }
+}
+

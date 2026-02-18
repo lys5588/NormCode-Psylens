@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NormCode PPT Client - AI-powered presentation generation tool">
+    <meta name="theme-color" content="#1da1f2">
+    <meta property="og:title" content="PsylensAI | PPT Client">
+    <meta property="og:description" content="AI-powered presentation generation with real-time progress tracking">
+    <meta property="og:type" content="website">
+    <title>PsylensAI | PPT Client</title>
+    <link rel="icon" type="image/png" href="../Psylensai_log_raw.png">
+
+    <!-- Shared site navigation -->
+    <link rel="stylesheet" href="../nav.css">
+    <!-- CSS Modules -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/status.css">
+    <link rel="stylesheet" href="css/files.css">
+    <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+    <!-- Navigation loaded by load-nav.js -->
+
+    <!-- 3-panel layout -->
+    <div class="container">
+        <!-- Left Panel — Configuration -->
+        <div class="panel">
+            <h2 class="panel-title">⚙️ 配置</h2>
+            <div class="panel-content">
+                <div class="server-config">
+                    <input type="text" id="serverUrl" value="http://115.191.31.222:8081" placeholder="服务器地址">
+                    <button class="btn btn-outline btn-sm" onclick="connect()">连接</button>
+                </div>
+
+                <div class="form-group">
+                    <label>计划方案</label>
+                    <select id="planSelect" disabled>
+                        <option value="">-- 请先连接服务器 --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>LLM 模型</label>
+                    <select id="llmModel">
+                        <option value="qwen-plus">Qwen Plus</option>
+                        <option value="qwen-turbo">Qwen Turbo</option>
+                    </select>
+                </div>
+
+                <!-- Basic Inputs -->
+                <div class="section open">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <span>📝 基本输入 <span id="inputsStatus" class="inputs-status"></span></span>
+                        <span class="section-toggle">▶</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label>主题 *</label>
+                            <input type="text" id="topic" value="机器学习基础" onchange="markInputsModified()">
+                        </div>
+                        <div class="form-group">
+                            <label>目标受众</label>
+                            <input type="text" id="audience" value="技术初学者" onchange="markInputsModified()">
+                        </div>
+                        <div class="form-group">
+                            <label>期望长度</label>
+                            <input type="text" id="length" value="包括标题和问答在内的6张幻灯片" onchange="markInputsModified()">
+                        </div>
+                        <div class="section-actions">
+                            <button class="btn btn-primary btn-sm" id="saveInputsBtn" onclick="saveInputsToBackend()">
+                                ✓ 确定保存输入
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content References -->
+                <div class="section open" id="contentSection">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <span>📄 内容参考 <span id="contentCount" class="ref-count"></span></span>
+                        <span class="section-toggle">▶</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="uploaded-files" id="contentFiles"></div>
+                        <div class="file-upload-area"
+                             ondrop="handleDrop(event, 'content')"
+                             ondragover="handleDragOver(event)"
+                             ondragleave="handleDragLeave(event)"
+                             onclick="document.getElementById('contentInput').click()">
+                            <input type="file" id="contentInput" multiple hidden onchange="handleFiles(event, 'content')">
+                            ➕ 添加内容文件<br>
+                            <small class="muted">.md, .txt, .json</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template References -->
+                <div class="section open" id="templateSection">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <span>🖼️ 幻灯片模板 <span id="templateCount" class="ref-count"></span></span>
+                        <span class="section-toggle">▶</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="uploaded-files" id="templateFiles"></div>
+                        <div class="file-upload-area"
+                             ondrop="handleDrop(event, 'template')"
+                             ondragover="handleDragOver(event)"
+                             ondragleave="handleDragLeave(event)"
+                             onclick="document.getElementById('templateInput').click()">
+                            <input type="file" id="templateInput" multiple hidden onchange="handleFiles(event, 'template')">
+                            ➕ 添加HTML模板<br>
+                            <small class="muted">.html</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Style Guide References -->
+                <div class="section open" id="styleSection">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <span>🎨 样式指南 <span id="styleCount" class="ref-count"></span></span>
+                        <span class="section-toggle">▶</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="uploaded-files" id="styleFiles"></div>
+                        <div class="file-upload-area"
+                             ondrop="handleDrop(event, 'style')"
+                             ondragover="handleDragOver(event)"
+                             ondragleave="handleDragLeave(event)"
+                             onclick="document.getElementById('styleInput').click()">
+                            <input type="file" id="styleInput" multiple hidden onchange="handleFiles(event, 'style')">
+                            ➕ 添加样式指南<br>
+                            <small class="muted">.css, .md, .txt</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <button class="btn btn-outline btn-block" onclick="previewInputs()">👁️ 预览输入</button>
+                    <button class="btn btn-primary" id="startBtn" onclick="startRun()" disabled>🚀 开始生成</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Panel — Execution -->
+        <div class="panel">
+            <h2 class="panel-title">📊 执行状态</h2>
+            <div class="panel-content">
+                <div class="status-bar">
+                    <span class="status-dot" id="statusDot"></span>
+                    <span class="status-text" id="statusText">未连接</span>
+                    <span class="run-id" id="runId"></span>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">0 / 0 次推理</div>
+                </div>
+
+                <div class="log-section">
+                    <h3 class="section-label">📋 事件日志</h3>
+                    <div class="events-log" id="eventsLog">
+                        <div class="placeholder">事件将在这里显示</div>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <h3 class="section-label section-label--success">
+                        📦 最终输出 <span class="label-hint">(productions/output/)</span>
+                    </h3>
+                    <div class="files-grid" id="finalOutputs">
+                        <div class="placeholder">最终演示文稿文件将在这里显示</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <span>🔧 中间文件</span>
+                        <span class="section-toggle">▶</span>
+                    </div>
+                    <div class="section-content section-content--compact">
+                        <div class="files-grid files-grid--scroll" id="intermediateFiles">
+                            <div class="placeholder">中间文件（分析、大纲、幻灯片...）</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel — File Browser -->
+        <div class="panel">
+            <h2 class="panel-title">📁 文件浏览器</h2>
+            <div class="panel-content">
+                <div class="inspector-tree" id="fileTree">
+                    <div class="placeholder placeholder--spaced">
+                        <div>📂 工作空间文件</div>
+                        <small>保存输入或启动运行后，文件将显示在这里</small>
+                    </div>
+                </div>
+                <div class="panel-footer--compact">
+                    <button class="btn btn-outline btn-sm btn-block" onclick="refreshInspector()">🔄 刷新</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal" onclick="if(event.target===this)closePreview()">
+        <div class="modal-content modal-content--wide">
+            <div class="modal-header">
+                <span>📋 输入预览（交互式）</span>
+                <button class="btn btn-sm btn-outline" onclick="closePreview()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="previewJson"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="copyPreview()">📋 复制完整JSON</button>
+                <button class="btn btn-primary btn-auto" onclick="closePreview(); startRun();">🚀 使用此输入运行</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Preview Modal -->
+    <div id="filePreviewModal" class="modal" onclick="if(event.target===this)closeFilePreview()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="filePreviewTitle">📄 文件预览</span>
+                <div>
+                    <button class="btn btn-sm btn-outline" onclick="togglePreviewMode()">🖼️ 渲染视图</button>
+                    <button class="btn btn-sm btn-outline" onclick="closeFilePreview()">✕</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="filePreviewContent" class="file-preview-container"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="copyFilePreview()">📋 复制内容</button>
+                <button class="btn btn-outline" onclick="closeFilePreview()">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Modules -->
+    <script src="js/state.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/files.js"></script>
+    <script src="js/server.js"></script>
+    <script src="js/inputs.js"></script>
+    <script src="js/run.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/outputs.js"></script>
+    <script src="js/preview.js"></script>
+    <script src="js/init.js"></script>
+
+    <!-- Shared navigation -->
+    <script src="../load-nav.js"></script>
+    <script>
+        const translations = {
+            en: {
+                nav: {
+                    companyName: 'Psylens.AI',
+                    brandText: 'PsylensAI | PPT Client',
+                    home: 'Home',
+                    features: 'Features',
+                    docs: 'Documentation',
+                    overview: 'Overview',
+                    syntax: 'Syntax Reference',
+                    execution: 'Execution Model',
+                    compilation: 'Compilation',
+                    examples: 'Examples',
+                    demo: 'Demo',
+                    team: 'Team'
+                },
+                page: {
+                    title: 'PsylensAI | PPT Client'
+                }
+            },
+            zh: {
+                nav: {
+                    companyName: 'Psylens.AI',
+                    brandText: 'PsylensAI 心镜智 | PPT 演示生成',
+                    home: '首页',
+                    features: '功能',
+                    docs: '文档',
+                    overview: '概述',
+                    syntax: '语法参考',
+                    execution: '执行模型',
+                    compilation: '编译流程',
+                    examples: '示例',
+                    demo: '演示',
+                    team: '团队'
+                },
+                page: {
+                    title: 'PsylensAI 心镜智 | PPT 演示生成'
+                }
+            }
+        };
+
+        const currentLang = localStorage.getItem('lang') || 'en';
+
+        window.setLanguage = function(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                let value = translations[lang];
+                for (const part of key.split('.')) {
+                    value = value?.[part];
+                }
+                if (value) el.textContent = value;
+            });
+            // Update page title
+            const titleVal = translations[lang]?.page?.title;
+            if (titleVal) document.title = titleVal;
+        };
+
+        setLanguage(currentLang);
+    </script>
+</body>
+</html>

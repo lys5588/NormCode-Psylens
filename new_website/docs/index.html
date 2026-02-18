@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NormCode Documentation — How NormCode works: data isolation, compilation pipeline, and structured AI planning.">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/docs.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <title>Overview — NormCode Documentation</title>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="page-header">
+        <h1 data-i18n="page.title">How NormCode Works</h1>
+        <p data-i18n="page.subtitle">A language for structured AI plans that enforce data isolation by design.</p>
+    </header>
+
+    <main id="main" class="docs-layout">
+        <!-- Sidebar -->
+        <aside class="docs-sidebar">
+            <h4 data-i18n="sidebar.title">Documentation</h4>
+            <ul>
+                <li><a href="index.html" class="active" data-i18n="nav.overview">Overview</a></li>
+                <li><a href="syntax.html" data-i18n="nav.syntax">Syntax Reference</a></li>
+                <li><a href="execution.html" data-i18n="nav.execution">Execution Model</a></li>
+                <li><a href="compilation.html" data-i18n="nav.compilation">Compilation</a></li>
+                <li><a href="examples.html" data-i18n="nav.examples">Examples</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content -->
+        <div class="docs-content">
+            <section>
+                <h2 data-i18n="section.overview">What Problem Does It Solve?</h2>
+                <p data-i18n="section.overviewDesc">When you chain multiple LLM calls together, context pollution causes failures. By step 4, the model has 50 pages of documents, raw database results, and extraction metadata all swimming in context. It hallucinates because it's drowning in noise.</p>
+                <div class="info-box">
+                    <p data-i18n-html="section.solution"><strong>The NormCode solution:</strong> Each step is a sealed room. It only sees what you explicitly pass in. No hidden context, no accidental leakage. When something goes wrong, you can see exactly what that step received.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-i18n="section.example">Example: Document Analysis Pipeline</h2>
+                <p data-i18n="section.exampleDesc">NormCode uses indentation to show data dependencies. Each step only receives what is explicitly passed to it.</p>
+                <div class="code-block">
+<code><span class="keyword">&lt;-</span> executive summary
+    <span class="keyword">&lt;=</span> <span class="function">generate summary from flagged items</span>
+    <span class="keyword">&lt;-</span> discrepancy flags
+        <span class="keyword">&lt;=</span> <span class="function">check for mismatches</span>
+        <span class="keyword">&lt;-</span> extracted figures
+            <span class="keyword">&lt;=</span> <span class="function">extract financial data</span>
+            <span class="keyword">&lt;-</span> <span class="string">raw document</span>
+        <span class="keyword">&lt;-</span> <span class="string">database results</span></code>
+                </div>
+                <div class="info-box">
+                    <p data-i18n-html="section.readingNote"><strong>Reading bottom-up:</strong> The extraction step sees only <code class="inline-code">raw document</code>. The mismatch check sees <code class="inline-code">extracted figures</code> + <code class="inline-code">database results</code>. The summary step sees only <code class="inline-code">discrepancy flags</code> — never the full document.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-i18n="section.stepsTitle">Semantic vs. Syntactic Steps</h2>
+                <p data-i18n-html="section.stepsDesc">NormCode distinguishes between two types of operations. Semantic steps <em>may</em> call an LLM, but many can be optimized to use scripts instead — syntactic steps are always free, instant, and deterministic.</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-i18n="tbl.type">Type</th>
+                                <th data-i18n="tbl.llm">LLM?</th>
+                                <th data-i18n="tbl.cost">Cost</th>
+                                <th data-i18n="tbl.determinism">Determinism</th>
+                                <th data-i18n="tbl.examples">Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong data-i18n="tbl.semantic">Semantic</strong></td>
+                                <td data-i18n="tbl.maybe">Maybe</td>
+                                <td data-i18n="tbl.tokens">Tokens or Free</td>
+                                <td data-i18n="tbl.varies">Varies</td>
+                                <td data-i18n="tbl.semanticEx">Reasoning, generating, analyzing</td>
+                            </tr>
+                            <tr>
+                                <td><strong data-i18n="tbl.syntactic">Syntactic</strong></td>
+                                <td data-i18n="tbl.no">No</td>
+                                <td data-i18n="tbl.free">Free</td>
+                                <td data-i18n="tbl.deterministic">100% Deterministic</td>
+                                <td data-i18n="tbl.syntacticEx">Collecting, selecting, routing, looping</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p data-i18n="section.costNote">A typical 20-step plan might only call an LLM 8 times. Syntactic operations are always free: grouping data, selecting values, controlling flow, and iterating.</p>
+            </section>
+
+            <section>
+                <h2 data-i18n="section.principlesTitle">Core Principles</h2>
+                <h3 data-i18n="principles.isolation">1. Data Isolation</h3>
+                <p data-i18n="principles.isolationDesc">Each step only sees what you explicitly pass to it. No hidden context, no context pollution.</p>
+                <h3 data-i18n="principles.auditability">2. Full Auditability</h3>
+                <p data-i18n="principles.auditabilityDesc">Inspect what each step saw and produced. Complete state tracking with SQLite checkpointing.</p>
+                <h3 data-i18n="principles.efficiency">3. Efficient Execution</h3>
+                <p data-i18n="principles.efficiencyDesc">Many steps are just data routing — no LLM needed. Dependency-driven scheduling.</p>
+                <h3 data-i18n="principles.semiFormal">4. Semi-Formal Balance</h3>
+                <p data-i18n="principles.semiFormalDesc">Structured enough for reliable execution, readable enough for human review.</p>
+                <h3 data-i18n="principles.progressive">5. Progressive Formalization</h3>
+                <p data-i18n="principles.progressiveDesc">Start with a rough draft, then incrementally refine. Each phase answers a specific question while preserving intent.</p>
+            </section>
+
+            <section>
+                <h2 data-i18n="section.learnMore">Dive Deeper</h2>
+                <div class="grid grid-2">
+                    <a href="syntax.html" class="card-link">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+                            <h3 data-i18n="cards.syntax.title">Syntax Reference</h3>
+                            <p data-i18n="cards.syntax.desc">The &lt;- and &lt;= markers, concept types, and operators.</p>
+                        </div>
+                    </a>
+                    <a href="execution.html" class="card-link">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></div>
+                            <h3 data-i18n="cards.execution.title">Execution Model</h3>
+                            <p data-i18n="cards.execution.desc">Dependency resolution, orchestration, and checkpointing.</p>
+                        </div>
+                    </a>
+                    <a href="compilation.html" class="card-link">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></div>
+                            <h3 data-i18n="cards.compilation.title">Compilation</h3>
+                            <p data-i18n="cards.compilation.desc">The 4-phase pipeline from natural language to executable plans.</p>
+                        </div>
+                    </a>
+                    <a href="examples.html" class="card-link">
+                        <div class="card">
+                            <div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+                            <h3 data-i18n="cards.examples.title">Examples</h3>
+                            <p data-i18n="cards.examples.desc">Real-world patterns: linear flows, loops, conditionals.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Prev / Next -->
+            <div class="docs-nav-footer">
+                <a href="../index.html" class="docs-nav-link">
+                    <span class="docs-nav-link-label">← Previous</span>
+                    <span class="docs-nav-link-title" data-i18n="docsNav.home">Home</span>
+                </a>
+                <a href="syntax.html" class="docs-nav-link next">
+                    <span class="docs-nav-link-label">Next →</span>
+                    <span class="docs-nav-link-title" data-i18n="docsNav.syntax">Syntax Reference</span>
+                </a>
+            </div>
+
+            <a href="../index.html" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span data-i18n="nav.backHome">Back to Home</span>
+            </a>
+        </div>
+    </main>
+
+    <script src="../js/i18n.js"></script>
+    <script src="../js/nav.js"></script>
+    <script src="../js/main.js"></script>
+
+    <script>
+        i18n.init({
+            en: {
+                nav: {
+                    brandText: 'Psylens.AI', home: 'Home', docs: 'Documentation',
+                    overview: 'Overview', syntax: 'Syntax Reference', execution: 'Execution Model',
+                    compilation: 'Compilation', examples: 'Examples', demo: 'Demo', about: 'About',
+                    backHome: 'Back to Home'
+                },
+                sidebar: { title: 'Documentation' },
+                page: { title: 'How NormCode Works', subtitle: 'A language for structured AI plans that enforce data isolation by design.' },
+                section: {
+                    overview: 'What Problem Does It Solve?',
+                    overviewDesc: 'When you chain multiple LLM calls together, context pollution causes failures. By step 4, the model has 50 pages of documents, raw database results, and extraction metadata all swimming in context. It hallucinates because it\'s drowning in noise.',
+                    solution: '<strong>The NormCode solution:</strong> Each step is a sealed room. It only sees what you explicitly pass in. No hidden context, no accidental leakage.',
+                    example: 'Example: Document Analysis Pipeline',
+                    exampleDesc: 'NormCode uses indentation to show data dependencies. Each step only receives what is explicitly passed to it.',
+                    readingNote: '<strong>Reading bottom-up:</strong> The extraction step sees only <code class="inline-code">raw document</code>. The mismatch check sees <code class="inline-code">extracted figures</code> + <code class="inline-code">database results</code>. The summary step sees only <code class="inline-code">discrepancy flags</code> — never the full document.',
+                    stepsTitle: 'Semantic vs. Syntactic Steps',
+                    stepsDesc: 'NormCode distinguishes between two types of operations. Semantic steps <em>may</em> call an LLM — syntactic steps are always free.',
+                    costNote: 'A typical 20-step plan might only call an LLM 8 times. Syntactic operations are always free.',
+                    principlesTitle: 'Core Principles',
+                    learnMore: 'Dive Deeper'
+                },
+                tbl: {
+                    type: 'Type', llm: 'LLM?', cost: 'Cost', determinism: 'Determinism', examples: 'Examples',
+                    semantic: 'Semantic', maybe: 'Maybe', tokens: 'Tokens or Free', varies: 'Varies',
+                    semanticEx: 'Reasoning, generating, analyzing',
+                    syntactic: 'Syntactic', no: 'No', free: 'Free', deterministic: '100% Deterministic',
+                    syntacticEx: 'Collecting, selecting, routing, looping'
+                },
+                principles: {
+                    isolation: '1. Data Isolation', isolationDesc: 'Each step only sees what you explicitly pass to it.',
+                    auditability: '2. Full Auditability', auditabilityDesc: 'Inspect what each step saw and produced. SQLite checkpointing.',
+                    efficiency: '3. Efficient Execution', efficiencyDesc: 'Many steps are just data routing — no LLM needed.',
+                    semiFormal: '4. Semi-Formal Balance', semiFormalDesc: 'Structured enough for reliable execution, readable enough for human review.',
+                    progressive: '5. Progressive Formalization', progressiveDesc: 'Start rough, refine incrementally. Each phase preserves intent.'
+                },
+                cards: {
+                    syntax: { title: 'Syntax Reference', desc: 'The <- and <= markers, concept types, and operators.' },
+                    execution: { title: 'Execution Model', desc: 'Dependency resolution, orchestration, and checkpointing.' },
+                    compilation: { title: 'Compilation', desc: 'The 4-phase pipeline from natural language to executable plans.' },
+                    examples: { title: 'Examples', desc: 'Real-world patterns: linear flows, loops, conditionals.' }
+                },
+                docsNav: { home: 'Home', syntax: 'Syntax Reference' },
+                footer: { tagline: 'Structured AI Planning That You Can Audit', paper: 'Research Paper', contact: 'Contact', office: 'TIMETABLE GBA Youth Innovation Base, Nansha, Guangzhou' }
+            },
+            zh: {
+                nav: {
+                    brandText: '心镜智', home: '首页', docs: '文档',
+                    overview: '概述', syntax: '语法参考', execution: '执行模型',
+                    compilation: '编译流程', examples: '示例', demo: '演示', about: '关于',
+                    backHome: '返回首页'
+                },
+                sidebar: { title: '文档' },
+                page: { title: 'NormCode 工作原理', subtitle: '一种通过设计强制数据隔离的结构化AI规划语言。' },
+                section: {
+                    overview: '它解决什么问题？',
+                    overviewDesc: '当您链接多个LLM调用时，上下文污染会导致失败。到第4步时，模型已经被噪音淹没了。',
+                    solution: '<strong>NormCode解决方案：</strong>每个步骤都是一个密封的房间。它只能看到您明确传递的内容。',
+                    example: '示例：文档分析流水线',
+                    exampleDesc: 'NormCode使用缩进来显示数据依赖关系。',
+                    readingNote: '<strong>自下而上阅读：</strong>提取步骤只能看到<code class="inline-code">原始文档</code>。不匹配检查看到<code class="inline-code">提取的数据</code> + <code class="inline-code">数据库结果</code>。摘要步骤只看到<code class="inline-code">差异标记</code>。',
+                    stepsTitle: '语义步骤 vs. 语法步骤',
+                    stepsDesc: 'NormCode区分两种操作类型。语义步骤<em>可能</em>调用LLM——语法步骤始终免费。',
+                    costNote: '一个典型的20步计划可能只调用LLM 8次。语法操作始终免费。',
+                    principlesTitle: '核心原则',
+                    learnMore: '深入了解'
+                },
+                tbl: {
+                    type: '类型', llm: '需要LLM？', cost: '成本', determinism: '确定性', examples: '示例',
+                    semantic: '语义', maybe: '可能', tokens: 'Token或免费', varies: '可变',
+                    semanticEx: '推理、生成、分析',
+                    syntactic: '语法', no: '否', free: '免费', deterministic: '100%确定性',
+                    syntacticEx: '收集、选择、路由、循环'
+                },
+                principles: {
+                    isolation: '1. 数据隔离', isolationDesc: '每个步骤只能看到您明确传递的内容。',
+                    auditability: '2. 完全可审计', auditabilityDesc: '检查每个步骤看到和产生的内容。SQLite检查点。',
+                    efficiency: '3. 高效执行', efficiencyDesc: '许多步骤只是数据路由——不需要LLM。',
+                    semiFormal: '4. 半形式化平衡', semiFormalDesc: '结构化程度足以可靠执行，可读性足以供人工审查。',
+                    progressive: '5. 渐进式形式化', progressiveDesc: '从粗略开始，逐步完善。每个阶段保留意图。'
+                },
+                cards: {
+                    syntax: { title: '语法参考', desc: '<- 和 <= 标记、概念类型和操作符。' },
+                    execution: { title: '执行模型', desc: '依赖解析、编排和检查点。' },
+                    compilation: { title: '编译流程', desc: '从自然语言到可执行计划的4阶段流水线。' },
+                    examples: { title: '示例', desc: '实际模式：线性流程、循环、条件。' }
+                },
+                docsNav: { home: '首页', syntax: '语法参考' },
+                footer: { tagline: '可审计的结构化AI规划', paper: '研究论文', contact: '联系我们', office: '广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地' }
+            }
+        });
+    </script>
+</body>
+</html>
+
