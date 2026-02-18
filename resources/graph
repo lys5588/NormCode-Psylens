@@ -1,0 +1,11 @@
+**Hero Visual — Code ↔ Graph split:**
+Below the CTAs, a side-by-side showing the core idea at a glance:
+- **Left:** A compact NormCode snippet (5 lines) in an editor frame
+- **Center:** → arrow
+- **Right:** Abstract graph/tree representation of the same snippet (SVG nodes + edges)
+- **Labels:** "You write this" / "It becomes this"
+
+> **DONE:** Created an inline SVG graph in `website_temp/index.html` hero section,
+> matching the Canvas app's visual style — hexagonal function nodes (purple),
+> rounded-rect value nodes (blue), smooth-step edges, status dots, ground/output
+> indicators, and imperative badges. Based on a 5-line NormCode snippet.

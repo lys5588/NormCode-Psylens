@@ -439,3 +439,708 @@ td strong {
     height: 16px;
 }
 
+
+/* ==========================================================================
+   PRODUCT FRAME (screenshot with window chrome)
+   ========================================================================== */
+
+.product-frame {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(100, 80, 180, 0.15);
+    border: 1px solid var(--border-dark);
+}
+
+.product-frame-bar {
+    background: #2d2d2d;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.product-frame-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.product-frame-dot:nth-child(1) { background: #ff5f57; }
+.product-frame-dot:nth-child(2) { background: #febc2e; }
+.product-frame-dot:nth-child(3) { background: #28c840; }
+
+.product-frame-title {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: var(--text-xs);
+    margin-left: var(--space-sm);
+    font-family: var(--font-mono);
+}
+
+.product-frame img {
+    width: 100%;
+    display: block;
+}
+
+
+/* ==========================================================================
+   CODE EDITOR (code block with macOS title bar + line numbers)
+   ========================================================================== */
+
+.code-editor {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 8px 30px rgba(100, 80, 180, 0.12);
+}
+
+.code-editor-bar {
+    background: #2d2d2d;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.code-editor-bar .product-frame-dot {
+    width: 10px;
+    height: 10px;
+}
+
+.code-editor-bar .filename {
+    margin-left: var(--space-sm);
+    font-family: var(--font-mono);
+}
+
+.code-editor pre {
+    background: var(--code-bg);
+    margin: 0;
+    padding: var(--space-lg);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: 1.8;
+    overflow-x: auto;
+    color: var(--code-text);
+}
+
+.code-editor .line-num {
+    color: rgba(255, 255, 255, 0.2);
+    user-select: none;
+    margin-right: 1.5em;
+    display: inline-block;
+    text-align: right;
+    width: 2em;
+}
+
+/* NormCode syntax highlighting (inside code-editor) */
+.code-editor .nc-kw  { color: #f97316; }  /* operators:  :<:  */
+.code-editor .nc-dep { color: #94a3b8; }  /* dependency: <= <- */
+.code-editor .nc-fn  { color: #c084fc; }  /* function marker :: */
+.code-editor .nc-in  { color: #34d399; }  /* input marker :> */
+.code-editor .nc-ann { color: #6b7280; }  /* annotations (file): */
+
+/* Reset inline-code styles for <code> inside code-editor
+   (prevents base.css code:not([class]) from adding light bg/border) */
+.code-editor code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    font-size: inherit;
+    color: inherit;
+}
+
+/* Generic syntax-highlight classes (used by tutorial section) */
+.code-editor .keyword  { color: var(--code-keyword); }
+.code-editor .string   { color: var(--code-string); }
+.code-editor .function { color: var(--code-function); }
+.code-editor .variable { color: var(--code-variable); }
+.code-editor .comment  { color: var(--code-comment); }
+
+
+/* ==========================================================================
+   INSTRUCTION PANEL (natural-language instruction card)
+   ========================================================================== */
+
+.instruction-panel {
+    width: 100%;
+    background: white;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(100, 80, 180, 0.08);
+}
+
+.instruction-panel-bar {
+    background: #f8f7fc;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+}
+
+.instruction-panel-bar .label {
+    font-family: var(--font-mono);
+    font-weight: 500;
+}
+
+.instruction-panel-body {
+    padding: 16px 18px;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+
+/* ==========================================================================
+   GRAPH PANEL (white-background graph visualization)
+   ========================================================================== */
+
+.hero-graph-panel {
+    width: 100%;
+    background: white;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(100, 80, 180, 0.08);
+}
+
+.hero-graph-panel svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+.status-running {
+    animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+
+/* ==========================================================================
+   SPLIT SECTION (two-column text + visual)
+   ========================================================================== */
+
+.split-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+}
+
+.split-section.reverse {
+    direction: rtl;
+}
+
+.split-section.reverse > * {
+    direction: ltr;
+}
+
+.split-section.ratio-40-60 {
+    grid-template-columns: 2fr 3fr;
+}
+
+
+/* ==========================================================================
+   TIMELINE (horizontal lifecycle steps)
+   ========================================================================== */
+
+.timeline {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0 var(--space-sm);
+}
+
+.timeline-step-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    margin: 0 auto var(--space-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-step::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+}
+
+.timeline-step:first-child::before {
+    left: 50%;
+}
+
+.timeline-step:last-child::before {
+    right: 50%;
+    left: 0;
+}
+
+.timeline-step h4 {
+    font-size: var(--text-sm);
+    margin-bottom: 4px;
+}
+
+.timeline-step p {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   CARD GLOW (highlighted card for primary CTA)
+   ========================================================================== */
+
+.card-glow {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.18);
+}
+
+.card-glow:hover {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 30px rgba(167, 139, 250, 0.28);
+}
+
+
+/* ==========================================================================
+   COMPARISON GRID (The Gap section)
+   ========================================================================== */
+
+.comparison-grid .card {
+    border-top: 3px solid var(--border);
+    text-align: center;
+}
+
+.comparison-grid .card:nth-child(1) {
+    border-top-color: #ef4444;
+}
+
+.comparison-grid .card:nth-child(2) {
+    border-top-color: #f59e0b;
+}
+
+.comparison-grid .card:nth-child(3) {
+    border-top-color: #6366f1;
+}
+
+.comparison-grid .card .verdict {
+    font-weight: 600;
+    margin-top: var(--space-md);
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+
+/* ==========================================================================
+   DARK SECTION CARDS (cards on dark background)
+   ========================================================================== */
+
+.section-dark .card {
+    background: var(--bg-dark-surface);
+    border-color: var(--border-dark);
+}
+
+.section-dark .card:hover {
+    background: var(--bg-dark-surface-hover);
+    border-color: var(--accent-purple);
+    box-shadow: var(--shadow-sm);
+}
+
+.section-dark .card h3 {
+    color: var(--text-inverse);
+}
+
+.section-dark .card p {
+    color: var(--text-inverse-muted);
+}
+
+.section-dark .card-icon {
+    background: rgba(167, 139, 250, 0.15);
+}
+
+.section-dark .card-link {
+    color: var(--text-inverse);
+}
+
+.section-dark .card-link:hover {
+    color: var(--accent);
+}
+
+
+/* ==========================================================================
+   EVIDENCE BADGES (credibility strip)
+   ========================================================================== */
+
+.evidence-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-bottom: var(--space-xl);
+}
+
+.evidence-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.4rem 0.85rem;
+    border-radius: 99px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.evidence-badge:hover {
+    background: rgba(130, 120, 255, 0.12);
+    color: var(--accent);
+}
+
+.evidence-badge svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   SYNTAX TABLE (compact table for symbol reference)
+   ========================================================================== */
+
+.syntax-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.syntax-table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.syntax-table tr:last-child td {
+    border-bottom: none;
+}
+
+.syntax-table .symbol {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--code-keyword);
+    font-size: var(--text-lg);
+    width: 50px;
+    text-align: center;
+}
+
+.syntax-table .meaning {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.syntax-table .analogy {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+
+/* ==========================================================================
+   TUTORIAL — Annotated code section with side pointers
+   ========================================================================== */
+
+/* 3-column grid: annotations | code | annotations */
+.tut {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 0;                            /* gap handled by connector width */
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: stretch;              /* side columns match code height */
+}
+
+/* Side columns — relative container for absolutely-positioned notes */
+.tut-side {
+    position: relative;
+    min-height: 0;
+}
+
+.tut-left  { text-align: right; }
+.tut-right { text-align: left; }
+
+/* Individual annotation card — absolutely positioned by JS */
+.tut-note {
+    position: absolute;
+    right: 0;                          /* default for left column */
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius);
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    width: 200px;
+    transform: translateY(-50%);       /* center on the --line-y */
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+    z-index: 1;
+}
+
+/* Right column: notes attach to left edge */
+.tut-right .tut-note {
+    right: auto;
+    left: 0;
+}
+
+.tut-note:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* ---- Connector lines (note edge → code edge) ---- */
+
+/* Left notes: line goes from right edge of note to right edge of column */
+.tut-left .tut-note::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;                        /* start at note right edge */
+    width: calc(100vw);                /* extend past column */
+    max-width: 32px;                   /* capped by column gap */
+    height: 2px;
+    background: var(--border-strong);
+    pointer-events: none;
+}
+
+/* Right notes: line goes from left edge of note to left edge of column */
+.tut-right .tut-note::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;                       /* start at note left edge */
+    width: calc(100vw);
+    max-width: 32px;
+    height: 2px;
+    background: var(--border-strong);
+    pointer-events: none;
+}
+
+/* ---- Connector dots (circle at code-side end) ---- */
+.tut-left .tut-note::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -32px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.tut-right .tut-note::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -32px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Color the connector dots by note type */
+.tut-note--data::before   { background: var(--code-variable); }
+.tut-note--action::before  { background: var(--code-function); }
+.tut-note--loop::before    { background: var(--code-string); }
+.tut-note--scope::after    { background: var(--accent); }
+.tut-note--flow::after     { background: var(--accent-purple); }
+
+/* Symbol badge inside note */
+.tut-note-sym {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    padding: 2px 8px;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--space-xs);
+    line-height: 1;
+}
+
+/* Icon (for right-side structural notes) */
+.tut-note-icon {
+    display: inline-block;
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-xs);
+    line-height: 1;
+}
+
+/* Color-code each symbol type */
+.tut-note--data .tut-note-sym {
+    color: var(--code-variable);
+    background: rgba(156, 220, 254, 0.12);
+}
+.tut-note--data  { border-left: 3px solid var(--code-variable); }
+
+.tut-note--action .tut-note-sym {
+    color: var(--code-function);
+    background: rgba(220, 220, 170, 0.12);
+}
+.tut-note--action { border-left: 3px solid var(--code-function); }
+
+.tut-note--loop .tut-note-sym {
+    color: var(--code-string);
+    background: rgba(206, 145, 120, 0.12);
+}
+.tut-note--loop { border-left: 3px solid var(--code-string); }
+
+.tut-note--scope { border-left: 3px solid var(--accent); }
+.tut-note--scope .tut-note-icon { color: var(--accent); }
+
+.tut-note--flow  { border-left: 3px solid var(--accent-purple); }
+.tut-note--flow .tut-note-icon  { color: var(--accent-purple); }
+
+/* Right-side notes: flip accent border to right */
+.tut-right .tut-note {
+    border-left: 1px solid var(--border);
+}
+.tut-right .tut-note--scope { border-right: 3px solid var(--accent); }
+.tut-right .tut-note--flow  { border-right: 3px solid var(--accent-purple); }
+
+/* Note text */
+.tut-note-label {
+    display: block;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.tut-note-hint {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    line-height: var(--leading-normal);
+}
+
+/* Central code column — add horizontal gap space */
+.tut-code {
+    min-width: 0;   /* prevent grid blowout from <pre> */
+    padding: 0 32px; /* space for connector lines */
+}
+
+.tut-code .code-editor pre {
+    font-size: 0.82rem;
+    line-height: 2;  /* extra line-height so pointers can align */
+}
+
+/* Footnote below the tutorial */
+.tut-footnote {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-top: var(--space-lg);
+}
+
+
+/* ==========================================================================
+   CTA CARD LIST (list of links inside a card)
+   ========================================================================== */
+
+.cta-card-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-md) 0 0;
+}
+
+.cta-card-list li {
+    margin-bottom: var(--space-sm);
+}
+
+.cta-card-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.cta-card-list a:hover {
+    color: var(--accent-hover);
+}
+
+.cta-card-list a::before {
+    content: '→';
+    font-size: var(--text-xs);
+}
+
+.section-dark .cta-card-list a {
+    color: var(--accent);
+}
+
+.section-dark .cta-card-list a:hover {
+    color: #6db8ff;
+}
+
+
+/* ==========================================================================
+   PUNCHLINE TEXT (centered highlight text)
+   ========================================================================== */
+
+.punchline {
+    text-align: center;
+    max-width: 700px;
+    margin: var(--space-2xl) auto 0;
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: var(--leading-relaxed);
+}
+
+
+/* ==========================================================================
+   ASPIRATION QUOTE
+   ========================================================================== */
+
+.aspiration-quote {
+    text-align: center;
+    max-width: 700px;
+    margin: var(--space-2xl) auto 0;
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: var(--leading-normal);
+}

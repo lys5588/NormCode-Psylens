@@ -1,0 +1,76 @@
+<!-- SECTION 3: THE LANGUAGE — Tutorial-style annotated code -->
+<section class="section section-alt fade-in">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-i18n="language.title">三个符号。自然语言。这就是全部语法。</h2>
+        </div>
+
+        <!-- Tutorial: annotated code with pointers -->
+        <div class="tut">
+            <!-- Left annotations -->
+            <div class="tut-side tut-left">
+                <div class="tut-note tut-note--data" data-tut-line="1">
+                    <span class="tut-note-sym">&lt;-</span>
+                    <span class="tut-note-label" data-i18n="language.sym1meaning">这是内容</span>
+                    <span class="tut-note-hint" data-i18n="language.sym1hint">数据、文档、结果——流经工作流的名词</span>
+                </div>
+                <div class="tut-note tut-note--action" data-tut-line="2">
+                    <span class="tut-note-sym">&lt;=</span>
+                    <span class="tut-note-label" data-i18n="language.sym2meaning">这是动作</span>
+                    <span class="tut-note-hint" data-i18n="language.sym2hint">AI执行的操作——提取、检查、生成</span>
+                </div>
+                <div class="tut-note tut-note--loop" data-tut-line="8">
+                    <span class="tut-note-sym">&lt;*</span>
+                    <span class="tut-note-label" data-i18n="language.sym3meaning">循环 / 时序状态</span>
+                    <span class="tut-note-hint" data-i18n="language.sym3hint">重复、等待、条件分支</span>
+                </div>
+            </div>
+
+            <!-- Central: Code editor -->
+            <div class="tut-code">
+                <div class="code-editor">
+                    <div class="code-editor-bar">
+                        <span class="product-frame-dot"></span>
+                        <span class="product-frame-dot"></span>
+                        <span class="product-frame-dot"></span>
+                        <span class="filename" data-i18n="language.filename">文档分析.ncds</span>
+                    </div>
+                    <pre><code data-i18n-html="language.codeExample"><span class="line-num">1</span><span class="keyword">&lt;-</span> <span class="variable">执行摘要</span>
+<span class="line-num">2</span>    <span class="keyword">&lt;=</span> <span class="function">根据标记项生成摘要</span>
+<span class="line-num">3</span>    <span class="keyword">&lt;-</span> <span class="variable">差异标记</span>
+<span class="line-num">4</span>        <span class="keyword">&lt;=</span> <span class="function">检查不匹配项</span>
+<span class="line-num">5</span>        <span class="keyword">&lt;-</span> <span class="variable">提取的数据</span>
+<span class="line-num">6</span>            <span class="keyword">&lt;=</span> <span class="function">提取财务数据</span>
+<span class="line-num">7</span>            <span class="keyword">&lt;-</span> <span class="string">原始文档</span>
+<span class="line-num">8</span>        <span class="keyword">&lt;-</span> <span class="string">数据库结果</span></code></pre>
+                </div>
+            </div>
+
+            <!-- Right annotations -->
+            <div class="tut-side tut-right">
+                <div class="tut-note tut-note--scope" data-tut-line="3">
+                    <span class="tut-note-icon">⤡</span>
+                    <span class="tut-note-label" data-i18n="language.indentLabel">缩进 = 作用域</span>
+                    <span class="tut-note-hint" data-i18n="language.indentHint">每个步骤只能看到其缩进内的数据。没有全局上下文，步骤间没有数据泄漏。</span>
+                </div>
+                <div class="tut-note tut-note--flow" data-tut-line="6">
+                    <span class="tut-note-icon">↑</span>
+                    <span class="tut-note-label" data-i18n="language.readLabel">从内到外，从上到下</span>
+                    <span class="tut-note-hint" data-i18n="language.readHint">最深缩进先执行，再向外层推进。同一层级内从上到下执行。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Natural language note -->
+        <p class="tut-footnote" data-i18n="language.everything">其他所有内容都用自然语言编写。</p>
+
+        <!-- "Aha" explanation -->
+        <div class="info-box" style="max-width: 750px; margin: var(--space-xl) auto 0;">
+            <p data-i18n-html="language.aha">
+                这就是一个完整的AI智能体工作计划。<strong>7行诺码。</strong>从内到外、从上到下执行：从文档中提取数据 → 检查不匹配 → 汇总标记。<br><br>
+                <strong>缩进 = 每个步骤能看到什么。</strong>提取步骤只能看到原始文档。不匹配检查看到提取的数据 + 数据库结果——仅此而已。没有全局上下文。步骤之间没有数据泄漏。
+            </p>
+        </div>
+    </div>
+</section>
+

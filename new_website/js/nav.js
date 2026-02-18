@@ -106,7 +106,6 @@
                 <p>广州心镜智科技工作室 © 2025</p>
                 <div class="footer-links">
                     <a href="https://arxiv.org/abs/2512.10563" target="_blank" rel="noopener noreferrer" data-i18n="footer.paper">Research Paper</a>
-                    <a href="https://github.com/lys5588/NormCode-Psylens" target="_blank" rel="noopener noreferrer">GitHub</a>
                     <a href="mailto:xin.guan@psylensai.com" data-i18n="footer.contact">Contact</a>
                 </div>
                 <p style="margin-top: var(--space-md); font-size: var(--text-xs); opacity: 0.7;">

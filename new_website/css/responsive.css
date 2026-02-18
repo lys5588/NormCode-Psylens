@@ -4,6 +4,39 @@
 
 
 /* ==========================================================================
+   LARGE TABLET (≤ 1024px)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .hero-dark h1 {
+        font-size: var(--text-3xl);
+    }
+
+    .hero-dark {
+        padding: var(--space-4xl) var(--space-xl) var(--space-2xl);
+    }
+
+    .hero-visual {
+        max-width: 95%;
+    }
+
+    .hero-visual-split {
+        grid-template-columns: 1fr 24px 1.2fr 24px 1.5fr;
+    }
+
+    .hero-visual-code .code-editor pre {
+        font-size: 0.7rem;
+        padding: 10px 12px;
+    }
+
+    .instruction-panel-body {
+        font-size: 0.8rem;
+        padding: 12px 14px;
+    }
+}
+
+
+/* ==========================================================================
    TABLET & BELOW (≤ 900px)
    ========================================================================== */
 
@@ -103,6 +136,26 @@
         font-size: var(--text-2xl);
     }
 
+    .hero-dark h1 {
+        font-size: var(--text-2xl);
+    }
+
+    .hero-dark {
+        padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+    }
+
+    /* ---- Hero visual ---- */
+    .hero-visual-split {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .hero-visual-arrow {
+        transform: rotate(90deg);
+        font-size: 1.25rem;
+        padding: 0;
+    }
+
     /* ---- Sections ---- */
     .section {
         padding: var(--space-2xl) var(--space-lg);
@@ -119,6 +172,89 @@
     .grid-3,
     .grid-4 {
         grid-template-columns: 1fr;
+    }
+
+    /* ---- Split section ---- */
+    .split-section,
+    .split-section.ratio-40-60 {
+        grid-template-columns: 1fr;
+    }
+
+    /* ---- Tutorial annotated code ---- */
+    .tut {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    .tut-side {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+    }
+    .tut-left, .tut-right {
+        text-align: left;
+    }
+    .tut-note {
+        position: static !important;
+        transform: none !important;
+        width: auto;
+        flex: 1 1 140px;
+    }
+    .tut-code {
+        padding: 0;
+    }
+    /* Hide connector lines & dots on mobile */
+    .tut-left .tut-note::after,
+    .tut-left .tut-note::before,
+    .tut-right .tut-note::before,
+    .tut-right .tut-note::after {
+        display: none;
+    }
+    /* Reorder: left annotations first, then code, then right annotations */
+    .tut-left  { order: 1; }
+    .tut-code  { order: 2; }
+    .tut-right { order: 3; }
+    /* Left-side notes keep left border on mobile */
+    .tut-right .tut-note { border-left-width: 3px; border-right: 1px solid var(--border); }
+    .tut-right .tut-note--scope { border-left-color: var(--accent); }
+    .tut-right .tut-note--flow  { border-left-color: var(--accent-purple); }
+
+    /* ---- Timeline ---- */
+    .timeline {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: var(--space-xl);
+    }
+
+    .timeline-step {
+        text-align: left;
+        display: flex;
+        gap: var(--space-md);
+        align-items: flex-start;
+        padding: 0 0 var(--space-lg) 0;
+    }
+
+    .timeline-step-num {
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    .timeline-step::before {
+        top: 40px;
+        bottom: 0;
+        left: 20px;
+        width: 2px;
+        height: auto;
+        right: auto;
+    }
+
+    .timeline-step:first-child::before {
+        left: 20px;
+    }
+
+    .timeline-step:last-child::before {
+        display: none;
     }
 
     /* ---- Page header ---- */
@@ -140,10 +276,30 @@
         font-size: var(--text-xs);
     }
 
+    .code-editor pre {
+        padding: var(--space-md);
+        font-size: var(--text-xs);
+    }
+
     /* ---- Pipeline ---- */
     .pipeline-step-box {
         font-size: var(--text-xs);
         padding: 0.5rem 0.75rem;
+    }
+
+    /* ---- Solution grid (section 3 original) ---- */
+    .solution-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ---- Evidence strip ---- */
+    .evidence-strip {
+        gap: var(--space-sm);
+    }
+
+    .evidence-badge {
+        font-size: var(--text-xs);
+        padding: 0.3rem 0.65rem;
     }
 }
 
@@ -159,6 +315,10 @@
     }
 
     .hero h1 {
+        font-size: var(--text-xl);
+    }
+
+    .hero-dark h1 {
         font-size: var(--text-xl);
     }
 
@@ -184,6 +344,26 @@
 
     .section-header p {
         font-size: var(--text-base);
+    }
+
+    .timeline {
+        padding-left: var(--space-md);
+    }
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
 

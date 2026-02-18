@@ -1,0 +1,150 @@
+<!-- SECTION 1: HERO (Dark) — Category-defining: WHAT this is -->
+<section class="hero hero-dark">
+    <div class="hero-content">
+        <h1 data-i18n="hero.title">The working language for AI agents</h1>
+        <p class="subtitle" data-i18n="hero.subtitle">NormCode lets you break down and constrain AI agent behavior — step by step, in readable, structured syntax. Build agent workflows that are truly your own.</p>
+
+        <div class="hero-actions">
+            <a href="assets/downloads/NormCodeCanvasSetup-1.0.7-alpha.exe" class="btn btn-primary btn-lg" download title="Windows Alpha ~34 MB">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span data-i18n="hero.downloadBtn">Download Canvas</span>
+                <span class="download-size">(Windows Alpha)</span>
+            </a>
+            <a href="https://arxiv.org/abs/2512.10563" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span data-i18n="hero.paperBtn">Paper</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero visual: instruction → ncds → graph -->
+    <div class="hero-visual">
+        <div class="hero-visual-split">
+            <!-- Left: Natural-language instruction -->
+            <div class="hero-visual-col hero-visual-instruction">
+                <div class="hero-visual-label" data-i18n="hero.youSay">You say this</div>
+                <div class="instruction-panel">
+                    <div class="instruction-panel-bar">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        <span class="label" data-i18n="hero.instructionLabel">Instruction</span>
+                    </div>
+                    <div id="hero-instruction-text" class="instruction-panel-body">Read the uploaded file and create a report. Then summarize the findings using the report and a style guide.</div>
+                </div>
+            </div>
+
+            <!-- Arrow 1 -->
+            <div class="hero-visual-arrow">→</div>
+
+            <!-- Center: NormCode ncds -->
+            <div class="hero-visual-col hero-visual-code">
+                <div class="hero-visual-label" data-i18n="hero.itCompiles">It compiles to</div>
+                <div class="code-editor">
+                    <div class="code-editor-bar">
+                        <span class="product-frame-dot"></span>
+                        <span class="product-frame-dot"></span>
+                        <span class="product-frame-dot"></span>
+                        <span id="hero-code-filename" class="filename">summary.ncds</span>
+                    </div>
+                    <pre id="hero-code-pre"><span class="nc-kw">:&lt;:</span> summary
+    <span class="nc-dep">&lt;=</span> <span class="nc-fn">::</span> summarize the findings
+    <span class="nc-dep">&lt;-</span> report
+        <span class="nc-dep">&lt;=</span> <span class="nc-in">:&gt;</span><span class="nc-ann">(file):</span> read the uploaded file
+    <span class="nc-dep">&lt;-</span> style guide</pre>
+                </div>
+            </div>
+
+            <!-- Arrow 2 -->
+            <div class="hero-visual-arrow">→</div>
+
+            <!-- Right: Graph Visualization -->
+            <div class="hero-visual-col hero-visual-graph">
+                <div class="hero-visual-label" data-i18n="hero.itBecomes">It runs step by step</div>
+                <div class="hero-graph-panel">
+                    <svg viewBox="0 0 660 210" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background dot pattern -->
+                        <defs>
+                            <pattern id="hero-dots" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                                <circle cx="8" cy="8" r="0.8" fill="#e2e8f0"/>
+                            </pattern>
+                        </defs>
+                        <rect width="660" height="210" fill="white"/>
+                        <rect width="660" height="210" fill="url(#hero-dots)"/>
+
+                        <!-- Edges -->
+                        <path d="M165,58 L200,58" fill="none" stroke="#7b68ee" stroke-width="2" opacity="0.7"/>
+                        <path d="M280,58 H299 Q307,58 307,66 V93 Q307,101 315,101 H335" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.7"/>
+                        <path d="M282,158 H300 Q308,158 308,150 V109 Q308,101 316,101 H335" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.7"/>
+                        <path d="M503,101 L555,101" fill="none" stroke="#7b68ee" stroke-width="2" opacity="0.7"/>
+
+                        <!-- Connection handles -->
+                        <circle cx="165" cy="58" r="3" fill="#c084fc"/>
+                        <circle cx="200" cy="58" r="3" fill="#94a3b8"/>
+                        <circle cx="280" cy="58" r="3" fill="#94a3b8"/>
+                        <circle cx="282" cy="158" r="3" fill="#94a3b8"/>
+                        <circle cx="335" cy="101" r="3" fill="#c084fc"/>
+                        <circle cx="503" cy="101" r="3" fill="#c084fc"/>
+                        <circle cx="555" cy="101" r="3" fill="#94a3b8"/>
+
+                        <!-- Node 1: "read the uploaded file" — Function (purple hexagon) -->
+                        <polygon points="18,35 157,35 165,58 157,81 18,81 10,58"
+                                 fill="#faf5ff" stroke="#c084fc" stroke-width="2"/>
+                        <text id="graph-action1" x="87" y="56" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="10" fill="#581c87" font-weight="500">read the uploaded file</text>
+                        <rect x="57" y="63" width="60" height="13" rx="3" fill="#e9d5ff"/>
+                        <text x="87" y="73" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="8" fill="#6b21a8">imperative</text>
+                        <circle cx="159" cy="33" r="5" fill="#22c55e" stroke="white" stroke-width="1.5"/>
+
+                        <!-- Node 2: "report" — Value (blue rect, ground) -->
+                        <rect x="200" y="42" width="80" height="32" rx="7"
+                              fill="#eff6ff" stroke="#60a5fa" stroke-width="3"/>
+                        <text id="graph-data1" x="240" y="62" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#1e3a8a">report</text>
+                        <rect x="222" y="77" width="36" height="12" rx="2" fill="#475569"/>
+                        <text x="240" y="86" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="7" fill="white">ground</text>
+                        <circle cx="276" cy="40" r="5" fill="#22c55e" stroke="white" stroke-width="1.5"/>
+
+                        <!-- Node 3: "style guide" — Value (blue rect, ground) -->
+                        <rect x="198" y="142" width="84" height="32" rx="7"
+                              fill="#eff6ff" stroke="#60a5fa" stroke-width="3"/>
+                        <text id="graph-data2" x="240" y="162" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#1e3a8a">style guide</text>
+                        <rect x="222" y="177" width="36" height="12" rx="2" fill="#475569"/>
+                        <text x="240" y="186" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="7" fill="white">ground</text>
+                        <circle cx="278" cy="140" r="5" fill="#9ca3af" stroke="white" stroke-width="1.5"/>
+
+                        <!-- Node 4: "summarize the findings" — Function (purple hexagon) -->
+                        <polygon points="343,78 495,78 503,101 495,124 343,124 335,101"
+                                 fill="#faf5ff" stroke="#c084fc" stroke-width="2"/>
+                        <text id="graph-action2" x="419" y="99" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="10" fill="#581c87" font-weight="500">summarize the findings</text>
+                        <rect x="389" y="107" width="60" height="13" rx="3" fill="#e9d5ff"/>
+                        <text x="419" y="117" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="8" fill="#6b21a8">imperative</text>
+                        <circle cx="497" cy="76" r="5" fill="#3b82f6" stroke="white" stroke-width="1.5" class="status-running"/>
+
+                        <!-- Node 5: "summary" — Value (blue rect, output with red ring) -->
+                        <rect x="553" y="83" width="89" height="36" rx="9"
+                              fill="none" stroke="#f87171" stroke-width="2"/>
+                        <rect x="555" y="85" width="85" height="32" rx="7"
+                              fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+                        <text id="graph-output" x="597" y="105" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#1e3a8a">summary</text>
+                        <rect x="580" y="72" width="35" height="12" rx="2" fill="#ef4444"/>
+                        <text x="597" y="81" text-anchor="middle" font-family="'IBM Plex Sans', sans-serif" font-size="7" fill="white">output</text>
+                        <circle cx="636" cy="83" r="5" fill="#9ca3af" stroke="white" stroke-width="1.5"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- Example rotation indicators -->
+        <div class="hero-visual-dots">
+            <button class="hero-dot active" data-idx="0" aria-label="Example 1"></button>
+            <button class="hero-dot" data-idx="1" aria-label="Example 2"></button>
+            <button class="hero-dot" data-idx="2" aria-label="Example 3"></button>
+        </div>
+    </div>
+</section>
+

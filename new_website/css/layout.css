@@ -275,6 +275,180 @@
     flex-wrap: wrap;
 }
 
+/* ---- Hero Dark Variant ---- */
+
+.hero-dark {
+    background: linear-gradient(135deg, var(--hero-gradient-start) 0%, var(--hero-gradient-mid) 45%, var(--hero-gradient-end) 100%);
+    border-bottom: 1px solid var(--border-dark);
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-6xl) var(--space-xl) var(--space-3xl);
+}
+
+.hero-dark::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 40%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--hero-glow) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-dark::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--hero-glow-blue) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-dark h1 {
+    color: var(--text-inverse);
+    font-size: var(--text-5xl);
+}
+
+.hero-dark .subtitle {
+    color: var(--text-inverse-muted);
+}
+
+.hero-dark .badge-accent {
+    background: rgba(167, 139, 250, 0.18);
+    color: #7c3aed;
+}
+
+.hero-dark .btn-secondary {
+    border-color: var(--border-dark);
+    color: var(--text-inverse);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.hero-dark .btn-secondary:hover {
+    border-color: var(--accent-purple);
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--text-inverse);
+}
+
+/* Hero visual: instruction → ncds → graph */
+.hero-visual {
+    max-width: 1060px;
+    margin: var(--space-2xl) auto 0;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-visual-split {
+    display: grid;
+    grid-template-columns: 2fr 30px 2.5fr 30px 3fr;
+    align-items: center;
+}
+
+.hero-visual-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-visual-code {
+    width: 100%;
+}
+
+.hero-visual-code .code-editor {
+    font-size: var(--text-xs);
+    text-align: left;
+}
+
+.hero-visual-code .code-editor pre {
+    font-size: 0.78rem;
+    line-height: 1.75;
+    padding: 12px 16px;
+}
+
+.hero-visual-instruction {
+    width: 100%;
+}
+
+.hero-visual-instruction .instruction-panel {
+    text-align: left;
+}
+
+.hero-visual-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    padding-top: 1.2rem;
+    user-select: none;
+}
+
+.hero-visual-graph {
+    width: 100%;
+}
+
+.hero-visual-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    text-align: center;
+}
+
+/* Hero example rotation transition */
+.hero-visual-split {
+    transition: opacity 0.45s ease;
+}
+
+.hero-visual-split.transitioning {
+    opacity: 0;
+}
+
+/* Hero example dot indicators */
+.hero-visual-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: var(--space-lg);
+}
+
+.hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-purple);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-dot:hover {
+    transform: scale(1.3);
+    background: rgba(167, 139, 250, 0.3);
+}
+
+.hero-dot.active {
+    background: var(--accent-purple);
+    transform: scale(1.25);
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.4);
+}
+
+
+/* ==========================================================================
+   SECTION COMPACT (less padding — for credibility)
+   ========================================================================== */
+
+.section-compact {
+    padding: var(--space-2xl) var(--space-xl);
+}
+
 
 /* ==========================================================================
    SECTIONS
@@ -393,7 +567,7 @@
 }
 
 .video-poster span {
-    color: var(--text-inverse);
+    color: rgba(255, 255, 255, 0.9);
     font-size: var(--text-sm);
     font-weight: 500;
 }
@@ -481,6 +655,7 @@
     text-align: center;
     color: var(--text-inverse-muted);
     font-size: var(--text-sm);
+    border-top: 1px solid var(--border-dark);
 }
 
 .site-footer p {

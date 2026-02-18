@@ -20,7 +20,7 @@ const i18n = (function () {
     'use strict';
 
     let _translations = {};
-    let _currentLang = localStorage.getItem('lang') || 'en';
+    let _currentLang = localStorage.getItem('lang') || 'zh';
 
     /**
      * Resolve a dot-notation key against a translation object
@@ -102,8 +102,32 @@ const i18n = (function () {
      */
     function init(translations) {
         _translations = translations || {};
-        _currentLang = localStorage.getItem('lang') || 'en';
+        _currentLang = localStorage.getItem('lang') || 'zh';
         document.documentElement.lang = _currentLang;
+        applyTranslations(_currentLang);
+    }
+
+    /**
+     * Deep-merge source into target (mutates target)
+     */
+    function deepMerge(target, source) {
+        for (const key of Object.keys(source)) {
+            if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+                if (!target[key]) target[key] = {};
+                deepMerge(target[key], source[key]);
+            } else {
+                target[key] = source[key];
+            }
+        }
+        return target;
+    }
+
+    /**
+     * Extend existing translations and re-apply
+     * @param {Object} extra - { en: {...}, zh: {...} }
+     */
+    function extend(extra) {
+        deepMerge(_translations, extra || {});
         applyTranslations(_currentLang);
     }
 
@@ -117,6 +141,6 @@ const i18n = (function () {
     // Expose globally for nav.js language switcher
     window.setLanguage = setLanguage;
 
-    return { init, setLanguage, getLang, resolve };
+    return { init, extend, setLanguage, getLang, resolve };
 })();
 

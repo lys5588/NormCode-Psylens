@@ -64,7 +64,7 @@
         <span class="keyword">&lt;-</span> <span class="string">database results</span></code>
                 </div>
                 <div class="info-box">
-                    <p data-i18n-html="section.readingNote"><strong>Reading bottom-up:</strong> The extraction step sees only <code class="inline-code">raw document</code>. The mismatch check sees <code class="inline-code">extracted figures</code> + <code class="inline-code">database results</code>. The summary step sees only <code class="inline-code">discrepancy flags</code> — never the full document.</p>
+                    <p data-i18n-html="section.readingNote"><strong>Executes inside-out, top-to-bottom:</strong> The extraction step sees only <code class="inline-code">raw document</code>. The mismatch check sees <code class="inline-code">extracted figures</code> + <code class="inline-code">database results</code>. The summary step sees only <code class="inline-code">discrepancy flags</code> — never the full document.</p>
                 </div>
             </section>
 
@@ -191,7 +191,7 @@
                     solution: '<strong>The NormCode solution:</strong> Each step is a sealed room. It only sees what you explicitly pass in. No hidden context, no accidental leakage.',
                     example: 'Example: Document Analysis Pipeline',
                     exampleDesc: 'NormCode uses indentation to show data dependencies. Each step only receives what is explicitly passed to it.',
-                    readingNote: '<strong>Reading bottom-up:</strong> The extraction step sees only <code class="inline-code">raw document</code>. The mismatch check sees <code class="inline-code">extracted figures</code> + <code class="inline-code">database results</code>. The summary step sees only <code class="inline-code">discrepancy flags</code> — never the full document.',
+                    readingNote: '<strong>Executes inside-out, top-to-bottom:</strong> The extraction step sees only <code class="inline-code">raw document</code>. The mismatch check sees <code class="inline-code">extracted figures</code> + <code class="inline-code">database results</code>. The summary step sees only <code class="inline-code">discrepancy flags</code> — never the full document.',
                     stepsTitle: 'Semantic vs. Syntactic Steps',
                     stepsDesc: 'NormCode distinguishes between two types of operations. Semantic steps <em>may</em> call an LLM — syntactic steps are always free.',
                     costNote: 'A typical 20-step plan might only call an LLM 8 times. Syntactic operations are always free.',
