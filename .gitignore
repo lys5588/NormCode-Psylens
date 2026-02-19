@@ -4,6 +4,7 @@ local_phil/
 editor_app/data/
 editor_app/editor_app_data/
 c_contracts/
+website_temp/
 
 
 # Python
