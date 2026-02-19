@@ -411,24 +411,10 @@
     <script src="../js/i18n.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/docs-common.js"></script>
     <script>
-        const translations = {
+        initDocsPage({
             en: {
-                nav: {
-                    companyName: 'Psylens.AI',
-                    brandText: 'Psylens.AI',
-                    home: 'Home',
-                    docs: 'Documentation',
-                    overview: 'Overview',
-                    syntax: 'Syntax Reference',
-                    execution: 'Execution Model',
-                    compilation: 'Compilation',
-                    examples: 'Examples',
-                    demo: 'Demo',
-                    team: 'Team',
-                    about: 'About',
-                    backDocs: 'Back to Documentation'
-                },
                 page: {
                     title: 'Execution Model',
                     subtitle: 'How NormCode plans run at runtime—from compilation to completion.'
@@ -564,35 +550,19 @@
                     examples: 'Previous: Examples',
                     examplesDesc: 'Real-world patterns and complete code samples.'
                 },
+                next: {
+                    compilation: 'Next: Compilation',
+                    compilationDesc: 'The 4-phase pipeline from draft to executable.',
+                    examplesDesc: 'Real-world patterns and complete code samples.'
+                },
                 code: {
                     pipeline: '<span class="string">Instruction</span> (natural language) or <span class="string">.ncds</span> (draft)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="string">Derivation</span> → .ncds<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="string">Formalization</span> (Grammar check → .ncd)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="string">Post-Formalization</span> (Context + resource demand)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="string">Activation</span> (Resolve resources → JSON repos)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="keyword">&nbsp;&nbsp;Orchestrator Executes</span>',
                     dependency: '<span class="comment">/: Step 3 - Runs last (needs both inputs)</span><br>&lt;- result<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;= calculate<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/: Step 1a - Can run immediately</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;- input A<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;= process A<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;- raw A<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/: Step 1b - Can run in parallel with 1a</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;- input B<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;= process B<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;- raw B',
                     orchestrator: '<span class="keyword">FOR EACH CYCLE:</span><br>&nbsp;&nbsp;1. <span class="function">CHECK</span>&nbsp;&nbsp;&nbsp;→ Scan waitlist for ready inferences<br>&nbsp;&nbsp;2. <span class="function">EXECUTE</span> → Run ready inferences (via AgentFrames)<br>&nbsp;&nbsp;3. <span class="function">UPDATE</span>&nbsp;&nbsp;→ Mark completed, store results<br>&nbsp;&nbsp;4. <span class="function">REPEAT</span>&nbsp;&nbsp;→ Until all inferences complete',
                     flowIndex: '<span class="string">1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Root concept (output)</span><br>├── <span class="string">1.1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Function concept</span><br>├── <span class="string">1.2</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># First value input</span><br>├── <span class="string">1.3</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Second value input</span><br>│&nbsp;&nbsp;&nbsp;├── <span class="string">1.3.1</span>&nbsp;&nbsp;<span class="comment"># Sub-inference function</span><br>│&nbsp;&nbsp;&nbsp;├── <span class="string">1.3.2</span>&nbsp;&nbsp;<span class="comment"># Sub-inference value</span>'
                 },
-                footer: {
-                    paper: 'Paper',
-                    tagline: 'Structured AI Planning That You Can Audit',
-                    contact: 'Contact',
-                    office: 'TIMETABLE GBA Youth Innovation Base, Nansha, Guangzhou'
-                }
             },
             zh: {
-                nav: {
-                    companyName: '心镜智',
-                    brandText: '心镜智',
-                    home: '首页',
-                    docs: '文档',
-                    overview: '概述',
-                    syntax: '语法参考',
-                    execution: '执行模型',
-                    compilation: '编译流程',
-                    examples: '示例',
-                    demo: '演示',
-                    team: '团队',
-                    about: '关于',
-                    backDocs: '返回文档'
-                },
                 page: {
                     title: '执行模型',
                     subtitle: 'NormCode计划如何在运行时执行——从编译到完成。'
@@ -728,30 +698,19 @@
                     examples: '上一步：示例',
                     examplesDesc: '真实世界的模式和完整代码示例。'
                 },
+                next: {
+                    compilation: '下一步：编译流程',
+                    compilationDesc: '从草稿到可执行文件的4阶段流水线。',
+                    examplesDesc: '真实世界的模式和完整代码示例。'
+                },
                 code: {
                     pipeline: '<span class="string">指令</span>（自然语言）或 <span class="string">.ncds</span>（草稿）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="string">推导</span> → .ncds<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="string">形式化</span>（语法检查 → .ncd）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="string">后形式化</span>（上下文 + 资源需求）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="string">激活</span>（解析资源 → JSON存储库）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br><span class="keyword">&nbsp;&nbsp;编排器执行</span>',
                     dependency: '<span class="comment">/: 步骤3 - 最后运行（需要两个输入）</span><br>&lt;- 结果<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;= 计算<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/: 步骤1a - 可以立即运行</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;- 输入A<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;= 处理A<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;- 原始A<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/: 步骤1b - 可以与1a并行运行</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;- 输入B<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;= 处理B<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;- 原始B',
                     orchestrator: '<span class="keyword">每个周期：</span><br>&nbsp;&nbsp;1. <span class="function">检查</span>&nbsp;&nbsp;&nbsp;→ 扫描等待列表中就绪的推理<br>&nbsp;&nbsp;2. <span class="function">执行</span>&nbsp;&nbsp;&nbsp;→ 运行就绪的推理（通过AgentFrames）<br>&nbsp;&nbsp;3. <span class="function">更新</span>&nbsp;&nbsp;&nbsp;→ 标记完成，存储结果<br>&nbsp;&nbsp;4. <span class="function">重复</span>&nbsp;&nbsp;&nbsp;→ 直到所有推理完成',
                     flowIndex: '<span class="string">1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># 根概念（输出）</span><br>├── <span class="string">1.1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># 功能概念</span><br>├── <span class="string">1.2</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># 第一个值输入</span><br>├── <span class="string">1.3</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># 第二个值输入</span><br>│&nbsp;&nbsp;&nbsp;├── <span class="string">1.3.1</span>&nbsp;&nbsp;<span class="comment"># 子推理功能</span><br>│&nbsp;&nbsp;&nbsp;├── <span class="string">1.3.2</span>&nbsp;&nbsp;<span class="comment"># 子推理值</span>'
                 },
-                footer: {
-                    paper: '论文',
-                    tagline: '可审计的结构化AI规划',
-                    contact: '联系我们',
-                    office: '广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地'
-                }
             }
-        };
-
-        i18n.init(translations);
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                setLanguage(btn.getAttribute('data-lang'));
-            });
         });
-
-        // Mobile menu is handled by load-nav.js
     </script>
 </body>
 </html>

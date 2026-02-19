@@ -511,24 +511,10 @@
     <script src="../js/i18n.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/docs-common.js"></script>
     <script>
-        const translations = {
+        initDocsPage({
             en: {
-                nav: {
-                    companyName: 'Psylens.AI',
-                    brandText: 'Psylens.AI',
-                    home: 'Home',
-                    docs: 'Documentation',
-                    overview: 'Overview',
-                    syntax: 'Syntax Reference',
-                    execution: 'Execution Model',
-                    compilation: 'Compilation',
-                    examples: 'Examples',
-                    demo: 'Demo',
-                    team: 'Team',
-                    about: 'About',
-                    backDocs: 'Back to Documentation'
-                },
                 page: {
                     title: 'Compilation Pipeline',
                     subtitle: 'How natural language transforms into executable AI plans through progressive formalization.'
@@ -687,29 +673,8 @@
                     syntax: 'Next: Syntax Reference',
                     syntaxDesc: 'Learn the markers, concept types, and operators.'
                 },
-                footer: {
-                    paper: 'Paper',
-                    tagline: 'Structured AI Planning That You Can Audit',
-                    contact: 'Contact',
-                    office: 'TIMETABLE GBA Youth Innovation Base, Nansha, Guangzhou'
-                }
             },
             zh: {
-                nav: {
-                    companyName: '心镜智',
-                    brandText: '心镜智',
-                    home: '首页',
-                    docs: '文档',
-                    overview: '概述',
-                    syntax: '语法参考',
-                    execution: '执行模型',
-                    compilation: '编译流程',
-                    examples: '示例',
-                    demo: '演示',
-                    team: '团队',
-                    about: '关于',
-                    backDocs: '返回文档'
-                },
                 page: {
                     title: '编译流程',
                     subtitle: '自然语言如何通过渐进式形式化转换为可执行的AI计划。'
@@ -868,24 +833,8 @@
                     syntax: '下一步：语法参考',
                     syntaxDesc: '学习标记、概念类型和操作符。'
                 },
-                footer: {
-                    paper: '论文',
-                    tagline: '可审计的结构化AI规划',
-                    contact: '联系我们',
-                    office: '广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地'
-                }
             }
-        };
-
-        i18n.init(translations);
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                setLanguage(btn.getAttribute('data-lang'));
-            });
         });
-
-        // Mobile menu is handled by load-nav.js
     </script>
 </body>
 </html>

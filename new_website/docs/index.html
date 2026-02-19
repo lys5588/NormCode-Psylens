@@ -54,7 +54,7 @@
                 <h2 data-i18n="section.example">Example: Document Analysis Pipeline</h2>
                 <p data-i18n="section.exampleDesc">NormCode uses indentation to show data dependencies. Each step only receives what is explicitly passed to it.</p>
                 <div class="code-block">
-<code><span class="keyword">&lt;-</span> executive summary
+<code data-i18n-html="section.codeExample"><span class="keyword">&lt;-</span> executive summary
     <span class="keyword">&lt;=</span> <span class="function">generate summary from flagged items</span>
     <span class="keyword">&lt;-</span> discrepancy flags
         <span class="keyword">&lt;=</span> <span class="function">check for mismatches</span>
@@ -173,17 +173,11 @@
     <script src="../js/i18n.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/docs-common.js"></script>
 
     <script>
-        i18n.init({
+        initDocsPage({
             en: {
-                nav: {
-                    brandText: 'Psylens.AI', home: 'Home', docs: 'Documentation',
-                    overview: 'Overview', syntax: 'Syntax Reference', execution: 'Execution Model',
-                    compilation: 'Compilation', examples: 'Examples', demo: 'Demo', about: 'About',
-                    backHome: 'Back to Home'
-                },
-                sidebar: { title: 'Documentation' },
                 page: { title: 'How NormCode Works', subtitle: 'A language for structured AI plans that enforce data isolation by design.' },
                 section: {
                     overview: 'What Problem Does It Solve?',
@@ -191,6 +185,7 @@
                     solution: '<strong>The NormCode solution:</strong> Each step is a sealed room. It only sees what you explicitly pass in. No hidden context, no accidental leakage.',
                     example: 'Example: Document Analysis Pipeline',
                     exampleDesc: 'NormCode uses indentation to show data dependencies. Each step only receives what is explicitly passed to it.',
+                    codeExample: '<span class="keyword">&lt;-</span> executive summary\n    <span class="keyword">&lt;=</span> <span class="function">generate summary from flagged items</span>\n    <span class="keyword">&lt;-</span> discrepancy flags\n        <span class="keyword">&lt;=</span> <span class="function">check for mismatches</span>\n        <span class="keyword">&lt;-</span> extracted figures\n            <span class="keyword">&lt;=</span> <span class="function">extract financial data</span>\n            <span class="keyword">&lt;-</span> <span class="string">raw document</span>\n        <span class="keyword">&lt;-</span> <span class="string">database results</span>',
                     readingNote: '<strong>Executes inside-out, top-to-bottom:</strong> The extraction step sees only <code class="inline-code">raw document</code>. The mismatch check sees <code class="inline-code">extracted figures</code> + <code class="inline-code">database results</code>. The summary step sees only <code class="inline-code">discrepancy flags</code> — never the full document.',
                     stepsTitle: 'Semantic vs. Syntactic Steps',
                     stepsDesc: 'NormCode distinguishes between two types of operations. Semantic steps <em>may</em> call an LLM — syntactic steps are always free.',
@@ -218,17 +213,9 @@
                     compilation: { title: 'Compilation', desc: 'The 4-phase pipeline from natural language to executable plans.' },
                     examples: { title: 'Examples', desc: 'Real-world patterns: linear flows, loops, conditionals.' }
                 },
-                docsNav: { home: 'Home', syntax: 'Syntax Reference' },
-                footer: { tagline: 'Structured AI Planning That You Can Audit', paper: 'Research Paper', contact: 'Contact', office: 'TIMETABLE GBA Youth Innovation Base, Nansha, Guangzhou' }
+                docsNav: { home: 'Home', syntax: 'Syntax Reference' }
             },
             zh: {
-                nav: {
-                    brandText: '心镜智', home: '首页', docs: '文档',
-                    overview: '概述', syntax: '语法参考', execution: '执行模型',
-                    compilation: '编译流程', examples: '示例', demo: '演示', about: '关于',
-                    backHome: '返回首页'
-                },
-                sidebar: { title: '文档' },
                 page: { title: 'NormCode 工作原理', subtitle: '一种通过设计强制数据隔离的结构化AI规划语言。' },
                 section: {
                     overview: '它解决什么问题？',
@@ -236,7 +223,8 @@
                     solution: '<strong>NormCode解决方案：</strong>每个步骤都是一个密封的房间。它只能看到您明确传递的内容。',
                     example: '示例：文档分析流水线',
                     exampleDesc: 'NormCode使用缩进来显示数据依赖关系。',
-                    readingNote: '<strong>自下而上阅读：</strong>提取步骤只能看到<code class="inline-code">原始文档</code>。不匹配检查看到<code class="inline-code">提取的数据</code> + <code class="inline-code">数据库结果</code>。摘要步骤只看到<code class="inline-code">差异标记</code>。',
+                    codeExample: '<span class="keyword">&lt;-</span> 执行摘要\n    <span class="keyword">&lt;=</span> <span class="function">根据标记项生成摘要</span>\n    <span class="keyword">&lt;-</span> 差异标记\n        <span class="keyword">&lt;=</span> <span class="function">检查不匹配项</span>\n        <span class="keyword">&lt;-</span> 提取的数据\n            <span class="keyword">&lt;=</span> <span class="function">提取财务数据</span>\n            <span class="keyword">&lt;-</span> <span class="string">原始文档</span>\n        <span class="keyword">&lt;-</span> <span class="string">数据库结果</span>',
+                    readingNote: '<strong>从内到外，从上到下执行：</strong>提取步骤只能看到<code class="inline-code">原始文档</code>。不匹配检查看到<code class="inline-code">提取的数据</code> + <code class="inline-code">数据库结果</code>。摘要步骤只看到<code class="inline-code">差异标记</code>。',
                     stepsTitle: '语义步骤 vs. 语法步骤',
                     stepsDesc: 'NormCode区分两种操作类型。语义步骤<em>可能</em>调用LLM——语法步骤始终免费。',
                     costNote: '一个典型的20步计划可能只调用LLM 8次。语法操作始终免费。',
@@ -263,8 +251,7 @@
                     compilation: { title: '编译流程', desc: '从自然语言到可执行计划的4阶段流水线。' },
                     examples: { title: '示例', desc: '实际模式：线性流程、循环、条件。' }
                 },
-                docsNav: { home: '首页', syntax: '语法参考' },
-                footer: { tagline: '可审计的结构化AI规划', paper: '研究论文', contact: '联系我们', office: '广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地' }
+                docsNav: { home: '首页', syntax: '语法参考' }
             }
         });
     </script>
