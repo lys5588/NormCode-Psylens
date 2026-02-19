@@ -283,6 +283,46 @@ td strong {
 .info-box.success { border-left-color: var(--success); }
 .info-box.error   { border-left-color: var(--error); }
 
+.info-box.info-box--subtle {
+    position: relative;
+    border-left-color: var(--text-muted);
+    background: var(--bg-alt);
+    --connector-left: 120px;            /* JS overrides with exact position */
+}
+/* Dashed connector line going up from info box to flow-index column */
+.info-box.info-box--subtle::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: var(--connector-left);
+    width: 0;
+    height: 24px;
+    border-left: 1.5px dashed var(--text-muted);
+    opacity: 0.35;
+}
+/* Arrow head at top of connector */
+.info-box.info-box--subtle::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 22px);
+    left: calc(var(--connector-left) - 4px);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 6px solid var(--text-muted);
+    opacity: 0.35;
+}
+.info-box--subtle p {
+    font-size: var(--text-sm);
+}
+.info-box--subtle code {
+    font-size: 0.85em;
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+
 
 /* ==========================================================================
    BADGES
@@ -525,12 +565,12 @@ td strong {
 }
 
 .code-editor .line-num {
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.35);
     user-select: none;
-    margin-right: 1.5em;
+    margin-right: 1em;
     display: inline-block;
     text-align: right;
-    width: 2em;
+    min-width: 4.5em;
 }
 
 /* NormCode syntax highlighting (inside code-editor) */
@@ -910,8 +950,10 @@ td strong {
     border: 1px solid var(--border);
     width: 200px;
     transform: translateY(-50%);       /* center on the --line-y */
-    transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast),
+                transform var(--transition-fast), opacity var(--transition-fast);
     z-index: 1;
+    cursor: default;
 }
 
 /* Right column: notes attach to left edge */
@@ -922,6 +964,33 @@ td strong {
 
 .tut-note:hover {
     box-shadow: var(--shadow-md);
+}
+
+/* ---- Hover interaction: active / dimmed states ---- */
+.tut-note.tut-active {
+    z-index: 10;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-50%) scale(1.06);
+    border-color: var(--border-strong);
+}
+
+.tut-note.tut-dimmed {
+    opacity: 0.3;
+}
+
+/* Code line highlight overlay (inserted by JS inside <pre>) */
+.code-line-hl {
+    position: absolute;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 0;
+}
+.code-line-hl.visible {
+    opacity: 1;
 }
 
 /* ---- Connector lines (note edge → code edge) ---- */
@@ -1001,9 +1070,13 @@ td strong {
 /* Icon (for right-side structural notes) */
 .tut-note-icon {
     display: inline-block;
-    font-size: var(--text-xl);
     margin-bottom: var(--space-xs);
     line-height: 1;
+}
+.tut-note-icon svg {
+    width: 22px;
+    height: 22px;
+    display: block;
 }
 
 /* Color-code each symbol type */

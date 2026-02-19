@@ -9,11 +9,19 @@
     <meta property="og:description" content="AI-powered presentation generation with real-time progress tracking">
     <meta property="og:type" content="website">
     <title>PsylensAI | PPT Client</title>
-    <link rel="icon" type="image/png" href="../Psylensai_log_raw.png">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
 
-    <!-- Shared site navigation -->
-    <link rel="stylesheet" href="../nav.css">
-    <!-- CSS Modules -->
+    <!-- Shared site fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Shared site CSS (for navigation bar + footer) -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <!-- Demo-specific CSS Modules -->
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/forms.css">
@@ -26,7 +34,7 @@
     <!-- Navigation loaded by load-nav.js -->
 
     <!-- 3-panel layout -->
-    <div class="container">
+    <div class="demo-container">
         <!-- Left Panel — Configuration -->
         <div class="panel">
             <h2 class="panel-title">⚙️ 配置</h2>
@@ -259,67 +267,38 @@
     <script src="js/preview.js"></script>
     <script src="js/init.js"></script>
 
-    <!-- Shared navigation -->
-    <script src="../load-nav.js"></script>
+    <!-- Shared navigation (i18n + nav) -->
+    <script src="../js/i18n.js"></script>
+    <script src="../js/nav.js"></script>
     <script>
-        const translations = {
+        i18n.init({
             en: {
                 nav: {
-                    companyName: 'Psylens.AI',
-                    brandText: 'PsylensAI | PPT Client',
-                    home: 'Home',
-                    features: 'Features',
-                    docs: 'Documentation',
-                    overview: 'Overview',
-                    syntax: 'Syntax Reference',
-                    execution: 'Execution Model',
-                    compilation: 'Compilation',
-                    examples: 'Examples',
-                    demo: 'Demo',
-                    team: 'Team'
+                    brandText: 'Psylens.AI', home: 'Home', docs: 'Documentation',
+                    overview: 'Overview', syntax: 'Syntax Reference', execution: 'Execution Model',
+                    compilation: 'Compilation', examples: 'Examples', demo: 'Demo', about: 'About',
+                    features: 'Features'
                 },
-                page: {
-                    title: 'PsylensAI | PPT Client'
+                footer: {
+                    tagline: 'Structured AI Planning That You Can Audit',
+                    paper: 'Research Paper', contact: 'Contact',
+                    office: 'TIMETABLE GBA Youth Innovation Base, Nansha, Guangzhou'
                 }
             },
             zh: {
                 nav: {
-                    companyName: 'Psylens.AI',
-                    brandText: 'PsylensAI 心镜智 | PPT 演示生成',
-                    home: '首页',
-                    features: '功能',
-                    docs: '文档',
-                    overview: '概述',
-                    syntax: '语法参考',
-                    execution: '执行模型',
-                    compilation: '编译流程',
-                    examples: '示例',
-                    demo: '演示',
-                    team: '团队'
+                    brandText: '心镜智', home: '首页', docs: '文档',
+                    overview: '概述', syntax: '语法参考', execution: '执行模型',
+                    compilation: '编译流程', examples: '示例', demo: '演示', about: '关于',
+                    features: '功能'
                 },
-                page: {
-                    title: 'PsylensAI 心镜智 | PPT 演示生成'
+                footer: {
+                    tagline: '可审计的结构化AI规划',
+                    paper: '研究论文', contact: '联系我们',
+                    office: '广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地'
                 }
             }
-        };
-
-        const currentLang = localStorage.getItem('lang') || 'en';
-
-        window.setLanguage = function(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                let value = translations[lang];
-                for (const part of key.split('.')) {
-                    value = value?.[part];
-                }
-                if (value) el.textContent = value;
-            });
-            // Update page title
-            const titleVal = translations[lang]?.page?.title;
-            if (titleVal) document.title = titleVal;
-        };
-
-        setLanguage(currentLang);
+        });
     </script>
 </body>
 </html>

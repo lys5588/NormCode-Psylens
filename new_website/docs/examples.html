@@ -26,12 +26,21 @@
     </header>
 
     <!-- Main Content -->
-    <main>
-        <div class="breadcrumb">
-            <a href="index.html" data-i18n="nav.docs">Documentation</a>
-            <span>›</span>
-            <span data-i18n="page.title">Examples</span>
-        </div>
+    <main id="main" class="docs-layout">
+        <!-- Sidebar -->
+        <aside class="docs-sidebar">
+            <h4 data-i18n="sidebar.title">Documentation</h4>
+            <ul>
+                <li><a href="index.html" data-i18n="nav.overview">Overview</a></li>
+                <li><a href="syntax.html" data-i18n="nav.syntax">Syntax Reference</a></li>
+                <li><a href="execution.html" data-i18n="nav.execution">Execution Model</a></li>
+                <li><a href="compilation.html" data-i18n="nav.compilation">Compilation</a></li>
+                <li><a href="examples.html" class="active" data-i18n="nav.examples">Examples</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content -->
+        <div class="docs-content">
 
         <!-- Quick Jump -->
         <section>
@@ -385,10 +394,8 @@
             </svg>
             <span data-i18n="nav.backDocs">Back to Documentation</span>
         </a>
+        </div>
     </main>
-
-    <!-- Footer -->
-    <!-- Footer injected by nav.js -->
 
     <script src="../js/i18n.js"></script>
     <script src="../js/nav.js"></script>

@@ -19,7 +19,6 @@
         'sections/see-it.html',
         'sections/properties.html',
         'sections/who.html',
-        'sections/credibility.html',
         'sections/get-started.html'
     ];
 

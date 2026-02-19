@@ -112,13 +112,6 @@ i18n.init({
             },
             aspiration: 'Anyone who wants to understand, modify, and own what their AI agents do.'
         },
-        credibility: {
-            title: 'Not a pitch. Working software.',
-            paper: 'Research paper',
-            canvas: 'Working Canvas editor',
-            demo: 'Working demo',
-            teamFrom: 'Our team comes from'
-        },
         getStarted: {
             title: 'Start here',
             see: {
@@ -140,11 +133,6 @@ i18n.init({
                 link2: 'Open an example project',
                 link3: 'Read the docs'
             }
-        },
-        schools: {
-            oxford: 'University of Oxford',
-            ucl: 'University College London',
-            szu: 'Shenzhen University'
         },
         footer: {
             tagline: 'The Working Language for AI Agents',
@@ -259,13 +247,6 @@ i18n.init({
             },
             aspiration: '任何想要理解、修改并拥有其AI智能体行为的人。'
         },
-        credibility: {
-            title: '不是推销。是可用的软件。',
-            paper: '研究论文',
-            canvas: '可用的Canvas编辑器',
-            demo: '可用的演示',
-            teamFrom: '我们的团队来自'
-        },
         getStarted: {
             title: '从这里开始',
             see: {
@@ -287,11 +268,6 @@ i18n.init({
                 link2: '打开示例项目',
                 link3: '阅读文档'
             }
-        },
-        schools: {
-            oxford: '牛津大学',
-            ucl: '伦敦大学学院',
-            szu: '深圳大学'
         },
         footer: {
             tagline: 'AI智能体的工作语言',

@@ -21,7 +21,7 @@ body {
     color: var(--text);
     min-height: 100vh;
     padding: 20px;
-    padding-top: 70px;
+    padding-top: calc(var(--nav-height, 56px) + 16px);
 }
 
 /* Utilities */

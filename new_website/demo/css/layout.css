@@ -1,12 +1,12 @@
 /* layout.css — Container, Panels, Grid */
 
-.container {
+.demo-container {
     max-width: 1400px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 380px 1fr 320px;
     gap: 16px;
-    height: calc(100vh - 90px);
+    height: calc(100vh - var(--nav-height, 56px) - 36px);
 }
 
 .panel {
@@ -46,7 +46,7 @@
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .container {
+    .demo-container {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
     }
@@ -54,8 +54,8 @@
 }
 
 @media (max-width: 768px) {
-    body { padding: 10px; }
-    .container {
+    body { padding: 10px; padding-top: calc(var(--nav-height, 56px) + 10px); }
+    .demo-container {
         grid-template-columns: 1fr;
         height: auto;
     }
