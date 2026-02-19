@@ -1,33 +1,150 @@
-<!-- SECTION 8: WHO IT'S FOR — Today / Tomorrow / Aspiration -->
+<!-- SECTION 8: WHO IT'S FOR — Role-Based Ecosystem -->
 <section class="section section-alt fade-in">
     <div class="container">
         <div class="section-header">
-            <h2 data-i18n="who.title">Built for anyone who wants to control — not just use — AI agents</h2>
+            <h2 data-i18n="who.title">One ecosystem. Every role covered.</h2>
+            <p data-i18n="who.subtitle">Six products, three roles — each built for the people who need it most.</p>
         </div>
 
-        <div class="grid grid-2" style="max-width: 800px; margin: 0 auto;">
-            <!-- Today -->
-            <div class="card">
-                <h3 data-i18n="who.today.title">Today</h3>
-                <ul>
-                    <li data-i18n="who.today.item1">AI engineers wanting cleaner pipelines</li>
-                    <li data-i18n="who.today.item2">Research teams needing reproducibility</li>
-                    <li data-i18n="who.today.item3">Technical founders wanting portable agent logic</li>
-                </ul>
-            </div>
+        <!-- Role Tabs -->
+        <div class="role-tabs" role="tablist">
+            <button class="role-tab role-tab--active" data-tab="designer" role="tab" aria-selected="true">
+                <div class="role-tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                </div>
+                <span class="role-tab-name" data-i18n="who.designer.tab">Agent Designer</span>
+                <span class="role-tab-hint" data-i18n="who.designer.hint">Engineers & Developers</span>
+            </button>
+            <button class="role-tab" data-tab="operator" role="tab" aria-selected="false">
+                <div class="role-tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </div>
+                <span class="role-tab-name" data-i18n="who.operator.tab">Product Operator</span>
+                <span class="role-tab-hint" data-i18n="who.operator.hint">Managers & Ops Teams</span>
+            </button>
+            <button class="role-tab" data-tab="enduser" role="tab" aria-selected="false">
+                <div class="role-tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <span class="role-tab-name" data-i18n="who.enduser.tab">End User</span>
+                <span class="role-tab-hint" data-i18n="who.enduser.hint">Domain Experts & Consumers</span>
+            </button>
+        </div>
 
-            <!-- Tomorrow -->
-            <div class="card">
-                <h3 data-i18n="who.tomorrow.title">Tomorrow</h3>
-                <ul>
-                    <li data-i18n="who.tomorrow.item1">Product managers reviewing agent behavior</li>
-                    <li data-i18n="who.tomorrow.item2">Teams sharing workflows like SQL queries</li>
-                    <li data-i18n="who.tomorrow.item3">Regulated industries proving compliance</li>
-                </ul>
+        <!-- Panel: Agent Designer -->
+        <div class="role-panel role-panel--active" data-panel="designer" role="tabpanel">
+            <div class="role-panel-intro">
+                <h3 data-i18n="who.designer.title">Build the intelligence</h3>
+                <p data-i18n="who.designer.desc">Design agent workflows in NormCode, compile them into executable plans, and deploy autonomous AI agents.</p>
+            </div>
+            <div class="role-products">
+                <div class="role-product">
+                    <div class="role-product-icon role-product-icon--blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                    </div>
+                    <h4 data-i18n="who.language.name">Language</h4>
+                    <p data-i18n="who.designer.lang_desc">Define the workflow framework using structured, readable syntax.</p>
+                </div>
+
+                <div class="role-product-arrow">
+                    <svg width="40" height="20" viewBox="0 0 40 20">
+                        <line x1="0" y1="10" x2="30" y2="10" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+                        <polygon points="30,6 40,10 30,14" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <div class="role-product">
+                    <div class="role-product-icon role-product-icon--blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                    </div>
+                    <h4 data-i18n="who.compiler.name">Compiler</h4>
+                    <p data-i18n="who.designer.comp_desc">Turn plans into executable workflows through 4 compilation phases.</p>
+                </div>
+
+                <div class="role-product-arrow">
+                    <svg width="40" height="20" viewBox="0 0 40 20">
+                        <line x1="0" y1="10" x2="30" y2="10" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+                        <polygon points="30,6 40,10 30,14" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <div class="role-product">
+                    <div class="role-product-icon role-product-icon--blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h4 data-i18n="who.agent.name">Agent</h4>
+                    <p data-i18n="who.designer.agent_desc">The execution unit — runs the compiled workflow step by step.</p>
+                </div>
             </div>
         </div>
 
-        <p class="aspiration-quote" data-i18n="who.aspiration">Anyone who wants to understand, modify, and own what their AI agents do.</p>
+        <!-- Panel: Product Operator -->
+        <div class="role-panel" data-panel="operator" role="tabpanel">
+            <div class="role-panel-intro">
+                <h3 data-i18n="who.operator.title">Manage & maintain</h3>
+                <p data-i18n="who.operator.desc">Inspect every step, debug with full audit trails, manage versions, and keep the shared workspace running.</p>
+            </div>
+            <div class="role-products">
+                <div class="role-product">
+                    <div class="role-product-icon role-product-icon--purple">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>
+                        </svg>
+                    </div>
+                    <h4 data-i18n="who.canvas.name">Canvas</h4>
+                    <p data-i18n="who.operator.canvas_desc">Visual debugging, step-by-step inspection, and complete audit trails.</p>
+                </div>
+
+                <div class="role-product-arrow role-product-arrow--bidir">
+                    <svg width="40" height="20" viewBox="0 0 40 20">
+                        <polygon points="0,10 8,6 8,14" fill="currentColor"/>
+                        <line x1="8" y1="10" x2="32" y2="10" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+                        <polygon points="32,6 40,10 32,14" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <div class="role-product">
+                    <div class="role-product-icon role-product-icon--purple">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+                        </svg>
+                    </div>
+                    <h4 data-i18n="who.server.name">Server</h4>
+                    <p data-i18n="who.operator.server_desc">Version control, shared workspace, and team collaboration hub.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel: End User -->
+        <div class="role-panel" data-panel="enduser" role="tabpanel">
+            <div class="role-panel-intro">
+                <h3 data-i18n="who.enduser.title">Use the result</h3>
+                <p data-i18n="who.enduser.desc">Interact with AI agents through purpose-built interfaces — no technical knowledge required.</p>
+            </div>
+            <div class="role-products role-products--single">
+                <div class="role-product role-product--featured">
+                    <div class="role-product-icon role-product-icon--green">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+                        </svg>
+                    </div>
+                    <h4 data-i18n="who.clients.name">Clients</h4>
+                    <p data-i18n="who.enduser.clients_desc">Purpose-built interfaces for each scenario — chat, forms, dashboards, whatever the workflow needs.</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
-

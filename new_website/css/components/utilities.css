@@ -1,0 +1,45 @@
+/* ==========================================================================
+   ANIMATIONS (scroll-triggered)
+   ========================================================================== */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* ==========================================================================
+   BACK LINK
+   ========================================================================== */
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--text-sm);
+    margin-top: var(--space-xl);
+    transition: color var(--transition-fast);
+}
+
+.back-link:hover {
+    color: var(--accent-hover);
+}
+
+.back-link svg {
+    width: 16px;
+    height: 16px;
+}
+

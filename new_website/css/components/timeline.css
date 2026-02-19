@@ -1,0 +1,67 @@
+/* ==========================================================================
+   TIMELINE (horizontal lifecycle steps)
+   ========================================================================== */
+
+.timeline {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0 var(--space-sm);
+}
+
+.timeline-step-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    margin: 0 auto var(--space-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-step::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+}
+
+.timeline-step:first-child::before {
+    left: 50%;
+}
+
+.timeline-step:last-child::before {
+    right: 50%;
+    left: 0;
+}
+
+.timeline-step h4 {
+    font-size: var(--text-sm);
+    margin-bottom: 4px;
+}
+
+.timeline-step p {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+

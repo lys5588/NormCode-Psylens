@@ -8,7 +8,7 @@
 i18n.extend({
     en: {
         language: {
-            title: 'Three symbols. Plain language. That\'s the whole syntax.',
+            title: 'Three symbols + natural language.',
 
             /* ── Left annotations: the 3 symbols ── */
             sym1meaning: 'This is content',
@@ -55,7 +55,7 @@ i18n.extend({
     },
     zh: {
         language: {
-            title: '三个符号。自然语言。这就是全部语法。',
+            title: '三个符号 + 自然语言。',
 
             /* ── 左侧标注：3个符号 ── */
             sym1meaning: '这是内容',

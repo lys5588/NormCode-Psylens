@@ -1,0 +1,78 @@
+/* ==========================================================================
+   INFO BOXES (callouts)
+   ========================================================================== */
+
+.info-box {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    margin: var(--space-lg) 0;
+}
+
+.info-box p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.info-box.warning { border-left-color: var(--warning); }
+.info-box.success { border-left-color: var(--success); }
+.info-box.error   { border-left-color: var(--error); }
+
+.info-box.info-box--subtle {
+    position: relative;
+    border-left-color: var(--text-muted);
+    background: var(--bg-alt);
+    --connector-left: 120px;            /* JS overrides with exact position */
+    cursor: default;
+    transition: border-left-color 0.2s ease, box-shadow 0.2s ease;
+}
+/* Dashed connector line going up from info box to flow-index column */
+.info-box.info-box--subtle::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: var(--connector-left);
+    width: 0;
+    height: 24px;
+    border-left: 1.5px dashed var(--text-muted);
+    opacity: 0.35;
+}
+/* Arrow head at top of connector */
+.info-box.info-box--subtle::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 22px);
+    left: calc(var(--connector-left) - 4px);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 6px solid var(--text-muted);
+    opacity: 0.35;
+}
+.info-box--subtle p {
+    font-size: var(--text-sm);
+}
+.info-box--subtle code {
+    font-size: 0.85em;
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+/* Hover interaction for info-box — highlight flow indices */
+.info-box.info-box--subtle:hover,
+.info-box.info-box--subtle.info-box--active {
+    border-left-color: var(--text-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.info-box.info-box--subtle:hover::before,
+.info-box.info-box--subtle.info-box--active::before {
+    opacity: 0.7;
+}
+.info-box.info-box--subtle:hover::after,
+.info-box.info-box--subtle.info-box--active::after {
+    opacity: 0.7;
+}
+

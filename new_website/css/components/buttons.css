@@ -1,0 +1,122 @@
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+/* Primary button */
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: white;
+}
+
+/* Secondary / outline button */
+.btn-secondary {
+    background: var(--bg-white);
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+.btn-secondary:hover {
+    border-color: var(--border-strong);
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+}
+
+/* Ghost button (no border) */
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: transparent;
+}
+
+.btn-ghost:hover {
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+}
+
+/* Button sizes */
+.btn-lg {
+    padding: 0.85rem 1.75rem;
+    font-size: var(--text-base);
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: var(--text-xs);
+}
+
+/* Button icon */
+.btn-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.btn .download-size {
+    font-size: var(--text-xs);
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+/* Download button states */
+.btn-primary.downloading {
+    background: linear-gradient(90deg, var(--accent-hover) 0%, var(--accent) 50%, var(--accent-hover) 100%);
+    background-size: 200% 100%;
+    animation: btn-shimmer 1.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.btn-primary.download-started {
+    background: var(--success);
+    border-color: var(--success);
+    pointer-events: none;
+}
+
+@keyframes btn-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Ripple (click feedback) */
+.btn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: btn-ripple 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes btn-ripple {
+    to { transform: scale(4); opacity: 0; }
+}
+

@@ -1,0 +1,236 @@
+/* ==========================================================================
+   ROLE TABS (Who it's for — tabbed ecosystem by role)
+   ========================================================================== */
+
+/* ---- Tab bar ---- */
+.role-tabs {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.role-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-lg) var(--space-md);
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    font-family: var(--font-sans);
+}
+
+.role-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 40px;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    background: var(--accent);
+    transition: transform var(--transition-base);
+}
+
+.role-tab:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-sm);
+}
+
+.role-tab--active {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(77, 163, 255, 0.12);
+    background: linear-gradient(180deg, rgba(77, 163, 255, 0.03) 0%, var(--bg-white) 100%);
+}
+
+.role-tab--active::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.role-tab-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-subtle);
+    color: var(--text-muted);
+    transition: all var(--transition-fast);
+}
+
+.role-tab--active .role-tab-icon {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.role-tab-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.role-tab-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.role-tab-hint {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    line-height: 1.3;
+}
+
+/* ---- Panels ---- */
+.role-panel {
+    display: none;
+    animation: rolePanelIn 0.35s ease;
+}
+
+.role-panel--active {
+    display: block;
+}
+
+@keyframes rolePanelIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Panel intro text */
+.role-panel-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
+}
+
+.role-panel-intro h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+.role-panel-intro p {
+    color: var(--text-muted);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    margin: 0;
+}
+
+/* ---- Product cards row ---- */
+.role-products {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.role-products--single {
+    justify-content: center;
+}
+
+.role-product {
+    flex: 1;
+    text-align: center;
+    padding: var(--space-lg) var(--space-md);
+    max-width: 240px;
+    border-radius: var(--border-radius-lg);
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.role-product:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.role-product--featured {
+    max-width: 340px;
+    padding: var(--space-xl) var(--space-lg);
+}
+
+/* Product icon */
+.role-product-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto var(--space-md);
+}
+
+.role-product-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.role-product-icon--blue {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.role-product-icon--purple {
+    background: var(--accent-purple-soft);
+    color: var(--accent-purple);
+}
+
+.role-product-icon--green {
+    background: rgba(34, 197, 94, 0.08);
+    color: var(--success);
+}
+
+/* Product text */
+.role-product h4 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+.role-product p {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-normal);
+    margin: 0;
+}
+
+/* Product hover accent per panel color */
+[data-panel="designer"] .role-product:hover  { border-color: var(--accent); }
+[data-panel="operator"] .role-product:hover  { border-color: var(--accent-purple); }
+[data-panel="enduser"] .role-product:hover   { border-color: var(--success); }
+
+/* ---- Arrows between product cards ---- */
+.role-product-arrow {
+    color: var(--border-strong);
+    flex-shrink: 0;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-sm);
+    opacity: 0.6;
+}
+
+.role-product-arrow svg {
+    display: block;
+}
+

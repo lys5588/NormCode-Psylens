@@ -1,0 +1,159 @@
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+
+.card {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-sm);
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-md);
+    color: var(--accent);
+}
+
+.card-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--accent);
+    stroke-width: 2;
+    fill: none;
+}
+
+.card h3 {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-sm);
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    margin-bottom: 0;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+
+/* ==========================================================================
+   CARD GLOW (highlighted card for primary CTA)
+   ========================================================================== */
+
+.card-glow {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.18);
+}
+
+.card-glow:hover {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 30px rgba(167, 139, 250, 0.28);
+}
+
+
+/* ==========================================================================
+   COMPARISON GRID (The Gap section)
+   ========================================================================== */
+
+.comparison-grid .card {
+    border-top: 3px solid var(--border);
+    text-align: center;
+}
+
+.comparison-grid .card:nth-child(1) {
+    border-top-color: #ef4444;
+}
+
+.comparison-grid .card:nth-child(2) {
+    border-top-color: #f59e0b;
+}
+
+.comparison-grid .card:nth-child(3) {
+    border-top-color: #6366f1;
+}
+
+.comparison-grid .card .verdict {
+    font-weight: 600;
+    margin-top: var(--space-md);
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* Brand logos row inside comparison cards */
+.brand-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.brand-logos img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 8px;
+    opacity: 0.7;
+    filter: grayscale(30%);
+    transition: opacity var(--transition-fast), filter var(--transition-fast);
+}
+
+.card:hover .brand-logos img {
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+
+/* ==========================================================================
+   DARK SECTION CARDS (cards on dark background)
+   ========================================================================== */
+
+.section-dark .card {
+    background: var(--bg-dark-surface);
+    border-color: var(--border-dark);
+}
+
+.section-dark .card:hover {
+    background: var(--bg-dark-surface-hover);
+    border-color: var(--accent-purple);
+    box-shadow: var(--shadow-sm);
+}
+
+.section-dark .card h3 {
+    color: var(--text-inverse);
+}
+
+.section-dark .card p {
+    color: var(--text-inverse-muted);
+}
+
+.section-dark .card-icon {
+    background: rgba(167, 139, 250, 0.15);
+}
+
+.section-dark .card-link {
+    color: var(--text-inverse);
+}
+
+.section-dark .card-link:hover {
+    color: var(--accent);
+}
+

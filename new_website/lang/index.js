@@ -35,20 +35,20 @@ i18n.init({
             title: 'Understand what your AI agent actually does',
             raw: {
                 title: 'Raw AI Models',
-                text: 'Claude, GPT, etc. Hope it behaves as you expect. Debug by asking follow-up questions — endlessly.',
-                verdict: 'You hope it works.'
+                text: 'Claude, GPT, etc. Each model is trained on specific ways of working. You learn its patterns, its quirks, its prompt style.',
+                verdict: 'You adapt to how it works.'
             },
             frameworks: {
-                title: 'Agent Frameworks',
+                title: 'Agent Code Frameworks',
                 text: 'LangChain, LlamaIndex, CrewAI. Python code — only the dev can read it. Only the dev can change it.',
-                verdict: 'You hire someone to maintain it.'
+                verdict: 'You need coding expertise to maintain it.'
             },
             nocode: {
-                title: 'Workflow Orchestration',
+                title: 'Workflow Orchestration UI',
                 text: 'Dify, Coze, etc. Drag-and-drop locked UIs. Requires carefully crafting workflows for each specific use case.',
                 verdict: 'Not suited for complex scenarios.'
             },
-            punchline: 'NormCode constrains what your agents do — through plans that combine minimal formalization with natural language. Anyone can read them. Any machine can run them. AI can generate them. Scale, combine, reuse.'
+            punchline: 'NormCode gives you control — through plans that combine minimal formalization with natural language. No coding required. Easily read and run. AI can generate them. Scale, combine, reuse.'
         },
         // language: → loaded from lang/language-section.js
         whyLang: {
@@ -68,13 +68,13 @@ i18n.init({
             }
         },
         lifecycle: {
-            title: 'Describe → Review → Run → Inspect → Modify → Share',
+            title: 'Describe → Compile → Review → Run → Modify → Deploy',
             step1: { title: 'Describe', text: 'Write the plan — or have AI generate it from a description' },
-            step2: { title: 'Review', text: 'Read every step before it runs. A manager can approve it.' },
-            step3: { title: 'Run', text: 'The compiler transforms it. The orchestrator runs each step.' },
-            step4: { title: 'Inspect', text: 'Every input/output recorded. Debug any step by checking what it received.' },
+            step2: { title: 'Compile', text: 'The compiler transforms it into an executable workflow.' },
+            step3: { title: 'Review', text: 'Read every step before it runs. A manager can approve it.' },
+            step4: { title: 'Run', text: 'The orchestrator runs each step. Every input/output is recorded.' },
             step5: { title: 'Modify', text: 'Change one step without breaking others. Fork from any checkpoint.' },
-            step6: { title: 'Share', text: 'The file is yours. Git it, publish it, hand it to a colleague.' }
+            step6: { title: 'Deploy', text: 'Ship it. The file is yours — git it, publish it, hand it to a colleague.' }
         },
         seeIt: {
             title: 'From plan to output — watch a real agent run',
@@ -97,20 +97,38 @@ i18n.init({
             compilation: { title: 'Progressive Compilation', text: '4 phases from description to execution. Inspect every stage.' }
         },
         who: {
-            title: 'Built for anyone who wants to control — not just use — AI agents',
-            today: {
-                title: 'Today',
-                item1: 'AI engineers wanting cleaner pipelines',
-                item2: 'Research teams needing reproducibility',
-                item3: 'Technical founders wanting portable agent logic'
+            title: 'One ecosystem. Every role covered.',
+            subtitle: 'Six products, three roles — each built for the people who need it most.',
+            designer: {
+                tab: 'Agent Designer',
+                hint: 'Engineers & Developers',
+                title: 'Build the intelligence',
+                desc: 'Design agent workflows in NormCode, compile them into executable plans, and deploy autonomous AI agents.',
+                lang_desc: 'Define the workflow framework using structured, readable syntax.',
+                comp_desc: 'Turn plans into executable workflows through 4 compilation phases.',
+                agent_desc: 'The execution unit — runs the compiled workflow step by step.'
             },
-            tomorrow: {
-                title: 'Tomorrow',
-                item1: 'Product managers reviewing agent behavior',
-                item2: 'Teams sharing workflows like SQL queries',
-                item3: 'Regulated industries proving compliance'
+            operator: {
+                tab: 'Product Operator',
+                hint: 'Managers & Ops Teams',
+                title: 'Manage & maintain',
+                desc: 'Inspect every step, debug with full audit trails, manage versions, and keep the shared workspace running.',
+                canvas_desc: 'Visual debugging, step-by-step inspection, and complete audit trails.',
+                server_desc: 'Version control, shared workspace, and team collaboration hub.'
             },
-            aspiration: 'Anyone who wants to understand, modify, and own what their AI agents do.'
+            enduser: {
+                tab: 'End User',
+                hint: 'Domain Experts & Consumers',
+                title: 'Use the result',
+                desc: 'Interact with AI agents through purpose-built interfaces — no technical knowledge required.',
+                clients_desc: 'Purpose-built interfaces for each scenario — chat, forms, dashboards, whatever the workflow needs.'
+            },
+            language: { name: 'Language' },
+            compiler: { name: 'Compiler' },
+            agent:    { name: 'Agent' },
+            canvas:   { name: 'Canvas' },
+            server:   { name: 'Server' },
+            clients:  { name: 'Clients' }
         },
         getStarted: {
             title: 'Start here',
@@ -169,21 +187,21 @@ i18n.init({
         gap: {
             title: '读懂你的AI智能体实际在做什么',
             raw: {
-                title: '原生AI智能体模型',
-                text: 'Claude、千问等。期待它的工作方式符合你的预期，在不断的追问中调试。',
-                verdict: '你只能期望它能工作。'
+                title: '原生AI模型',
+                text: 'Claude、千问等。每个模型都有特定的工作方式。你去学习它的模式、它的习惯、它的提示风格。',
+                verdict: '你适应它的工作方式。'
             },
             frameworks: {
-                title: '智能体框架',
+                title: '智能体代码框架',
                 text: 'LangChain、LlamaIndex、CrewAI。Python代码——只有开发者能读懂。只有开发者能修改。',
-                verdict: '你得雇人来维护它。'
+                verdict: '你需要编程专业知识来维护它。'
             },
             nocode: {
-                title: '工作流编排',
+                title: '工作流编排界面',
                 text: 'Dify、Coze等。拖拽锁定的界面。需要为特定的工作方式仔细打造工作流。',
                 verdict: '不适合复杂场景。'
             },
-            punchline: 'NormCode（诺码）能以计划直接约束智能体做什么，以最少形式化与自然语言结合，用任何人都能读懂、任何机器都能运行，AI可直接生成，并可以扩展、组合、复用。'
+            punchline: 'NormCode（诺码）让你掌控——通过将最少形式化与自然语言结合的计划。无需编程。易读易运行，AI可直接生成。可扩展、可组合、可复用。'
         },
         // language: → loaded from lang/language-section.js
         whyLang: {
@@ -203,13 +221,13 @@ i18n.init({
             }
         },
         lifecycle: {
-            title: '描述 → 审查 → 运行 → 检查 → 修改 → 分享',
+            title: '描述 → 编译 → 审查 → 运行 → 修改 → 部署',
             step1: { title: '描述', text: '编写计划——或让AI从描述中生成它' },
-            step2: { title: '审查', text: '在运行前阅读每个步骤。经理可以批准它。' },
-            step3: { title: '运行', text: '编译器转换它。编排器运行每个步骤。' },
-            step4: { title: '检查', text: '每个输入/输出都有记录。检查任何步骤收到了什么来调试。' },
+            step2: { title: '编译', text: '编译器将其转换为可执行工作流。' },
+            step3: { title: '审查', text: '在运行前阅读每个步骤。经理可以批准它。' },
+            step4: { title: '运行', text: '编排器运行每个步骤。每个输入/输出都有记录。' },
             step5: { title: '修改', text: '修改一个步骤而不破坏其他步骤。从任何检查点分叉。' },
-            step6: { title: '分享', text: '文件是你的。Git它、发布它、交给同事。' }
+            step6: { title: '部署', text: '上线发布。文件是你的——Git它、发布它、交给同事。' }
         },
         seeIt: {
             title: '从计划到输出——观看真实智能体运行',
@@ -232,20 +250,38 @@ i18n.init({
             compilation: { title: '渐进编译', text: '从描述到执行的4个阶段。检查每个阶段。' }
         },
         who: {
-            title: '为所有想要掌控——而不仅仅是使用——AI智能体的人而构建',
-            today: {
-                title: '现在',
-                item1: '想要更清晰管道的AI工程师',
-                item2: '需要可重复性的研究团队',
-                item3: '想要可移植智能体逻辑的技术创始人'
+            title: '一个生态，覆盖每个角色。',
+            subtitle: '六大产品，三种角色——各为最需要它的人而生。',
+            designer: {
+                tab: '智能体设计者',
+                hint: '工程师与开发者',
+                title: '构建智能',
+                desc: '用NormCode设计智能体工作流，编译为可执行计划，部署自主AI智能体。',
+                lang_desc: '用结构化、可读的语法定义工作流框架。',
+                comp_desc: '通过4个编译阶段将计划转化为可执行工作流。',
+                agent_desc: '执行单元——逐步运行编译后的工作流。'
             },
-            tomorrow: {
-                title: '未来',
-                item1: '审查智能体行为的产品经理',
-                item2: '像分享SQL查询一样分享工作流的团队',
-                item3: '证明合规性的受监管行业'
+            operator: {
+                tab: '产品运维者',
+                hint: '管理者与运维团队',
+                title: '管理与维护',
+                desc: '检查每个步骤，通过完整审计跟踪调试，管理版本，维护共享工作空间。',
+                canvas_desc: '可视化调试、逐步检查、完整的审计跟踪。',
+                server_desc: '版本控制、共享工作空间和团队协作中心。'
             },
-            aspiration: '任何想要理解、修改并拥有其AI智能体行为的人。'
+            enduser: {
+                tab: '终端用户',
+                hint: '领域专家与使用者',
+                title: '使用成果',
+                desc: '通过专用界面与AI智能体交互——无需技术知识。',
+                clients_desc: '为每个场景定制的交互界面——对话、表单、仪表板，满足工作流所需。'
+            },
+            language: { name: '诺码语言' },
+            compiler: { name: '编译器' },
+            agent:    { name: '流程代理' },
+            canvas:   { name: '画布' },
+            server:   { name: '服务器' },
+            clients:  { name: '客户端' }
         },
         getStarted: {
             title: '从这里开始',

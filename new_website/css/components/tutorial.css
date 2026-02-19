@@ -1,0 +1,222 @@
+/* ==========================================================================
+   TUTORIAL — Annotated code section with side pointers
+   ========================================================================== */
+
+/* 3-column grid: annotations | code | annotations */
+.tut {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 0 var(--space-sm);            /* subtle column gap for breathing room */
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch;              /* side columns match code height */
+}
+
+/* Side columns — relative container for absolutely-positioned notes */
+.tut-side {
+    position: relative;
+    min-height: 0;
+}
+
+.tut-left  { text-align: right; }
+.tut-right { text-align: left; }
+
+/* Individual annotation card — absolutely positioned by JS */
+.tut-note {
+    position: absolute;
+    right: 0;                          /* default for left column */
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--border-radius);
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    width: 220px;
+    transform: translateY(-50%);       /* center on the --line-y */
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast),
+                transform var(--transition-fast), opacity var(--transition-fast);
+    z-index: 1;
+    cursor: default;
+}
+
+/* Right column: notes attach to left edge */
+.tut-right .tut-note {
+    right: auto;
+    left: 0;
+}
+
+.tut-note:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* ---- Hover interaction: active / dimmed states ---- */
+.tut-note.tut-active {
+    z-index: 10;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-50%) scale(1.06);
+    border-color: var(--border-strong);
+}
+
+.tut-note.tut-dimmed {
+    opacity: 0.3;
+}
+
+/* Code line highlight overlay (inserted by JS inside <pre>) */
+.code-line-hl {
+    position: absolute;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 0;
+}
+.code-line-hl.visible {
+    opacity: 1;
+}
+
+/* ---- Connector lines (note edge → code edge) ---- */
+
+/* Left notes: line goes from right edge of note to right edge of column */
+.tut-left .tut-note::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;                        /* start at note right edge */
+    width: calc(100vw);                /* extend past column */
+    max-width: 32px;                   /* capped by column gap */
+    height: 2px;
+    background: var(--border-strong);
+    pointer-events: none;
+}
+
+/* Right notes: line goes from left edge of note to left edge of column */
+.tut-right .tut-note::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;                       /* start at note left edge */
+    width: calc(100vw);
+    max-width: 32px;
+    height: 2px;
+    background: var(--border-strong);
+    pointer-events: none;
+}
+
+/* ---- Connector dots (circle at code-side end) ---- */
+.tut-left .tut-note::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -32px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.tut-right .tut-note::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -32px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Color the connector dots by note type */
+.tut-note--data::before   { background: var(--code-variable); }
+.tut-note--action::before  { background: var(--code-function); }
+.tut-note--loop::before    { background: var(--code-string); }
+.tut-note--scope::after    { background: var(--accent); }
+.tut-note--flow::after     { background: var(--accent-purple); }
+
+/* Symbol badge inside note */
+.tut-note-sym {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    padding: 2px 8px;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--space-xs);
+    line-height: 1;
+}
+
+/* Icon (for right-side structural notes) */
+.tut-note-icon {
+    display: inline-block;
+    margin-bottom: var(--space-xs);
+    line-height: 1;
+}
+.tut-note-icon svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+/* Color-code each symbol type */
+.tut-note--data .tut-note-sym {
+    color: var(--code-variable);
+    background: rgba(156, 220, 254, 0.12);
+}
+.tut-note--data  { border-left: 3px solid var(--code-variable); }
+
+.tut-note--action .tut-note-sym {
+    color: var(--code-function);
+    background: rgba(220, 220, 170, 0.12);
+}
+.tut-note--action { border-left: 3px solid var(--code-function); }
+
+.tut-note--loop .tut-note-sym {
+    color: var(--code-string);
+    background: rgba(206, 145, 120, 0.12);
+}
+.tut-note--loop { border-left: 3px solid var(--code-string); }
+
+.tut-note--scope { border-left: 3px solid var(--accent); }
+.tut-note--scope .tut-note-icon { color: var(--accent); }
+
+.tut-note--flow  { border-left: 3px solid var(--accent-purple); }
+.tut-note--flow .tut-note-icon  { color: var(--accent-purple); }
+
+/* Right-side notes: flip accent border to right */
+.tut-right .tut-note {
+    border-left: 1px solid var(--border);
+}
+.tut-right .tut-note--scope { border-right: 3px solid var(--accent); }
+.tut-right .tut-note--flow  { border-right: 3px solid var(--accent-purple); }
+
+/* Note text */
+.tut-note-label {
+    display: block;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.tut-note-hint {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    line-height: var(--leading-normal);
+}
+
+/* Central code column — add horizontal gap space */
+.tut-code {
+    min-width: 0;   /* prevent grid blowout from <pre> */
+    padding: 0 36px; /* space for connector lines */
+}
+
+.tut-code .code-editor pre {
+    font-size: 0.84rem;
+    line-height: 2.2;  /* extra line-height so pointers can align */
+    padding: var(--space-lg) var(--space-xl);
+}
+

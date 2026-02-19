@@ -1,0 +1,84 @@
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    font-size: var(--text-sm);
+}
+
+th, td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background: var(--bg-subtle);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+td strong {
+    font-weight: 600;
+}
+
+
+/* ==========================================================================
+   SYNTAX TABLE (compact table for symbol reference)
+   ========================================================================== */
+
+.syntax-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.syntax-table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.syntax-table tr:last-child td {
+    border-bottom: none;
+}
+
+.syntax-table .symbol {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--code-keyword);
+    font-size: var(--text-lg);
+    width: 50px;
+    text-align: center;
+}
+
+.syntax-table .meaning {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.syntax-table .analogy {
+    color: var(--text-muted);
+    font-style: italic;
+}
+

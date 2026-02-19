@@ -17,8 +17,8 @@
         'sections/why-language.html',
         'sections/lifecycle.html',
         'sections/see-it.html',
-        'sections/properties.html',
         'sections/who.html',
+        'sections/properties.html',
         'sections/get-started.html'
     ];
 

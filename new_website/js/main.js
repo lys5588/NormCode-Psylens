@@ -113,12 +113,47 @@
         });
     }
 
+    // ---- Role tabs (Who It's For section) ----
+
+    function initRoleTabs() {
+        var tabs = document.querySelectorAll('.role-tab');
+        var panels = document.querySelectorAll('.role-panel');
+
+        if (!tabs.length) return;
+
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                var target = this.getAttribute('data-tab');
+
+                // Deactivate all tabs
+                tabs.forEach(function (t) {
+                    t.classList.remove('role-tab--active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+
+                // Activate clicked tab
+                this.classList.add('role-tab--active');
+                this.setAttribute('aria-selected', 'true');
+
+                // Switch panels
+                panels.forEach(function (p) {
+                    if (p.getAttribute('data-panel') === target) {
+                        p.classList.add('role-panel--active');
+                    } else {
+                        p.classList.remove('role-panel--active');
+                    }
+                });
+            });
+        });
+    }
+
     // ---- Initialize everything ----
 
     function init() {
         initScrollAnimations();
         initVideoPlayers();
         initDownloadButtons();
+        initRoleTabs();
     }
 
     // Run when DOM is ready

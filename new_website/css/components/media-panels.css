@@ -1,0 +1,143 @@
+/* ==========================================================================
+   LOGO STRIP (for school logos / partner logos)
+   ========================================================================== */
+
+.logo-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+}
+
+.logo-strip-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    opacity: 0.6;
+    filter: grayscale(40%);
+    transition: all var(--transition-base);
+}
+
+.logo-strip-item:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.logo-strip-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+
+/* ==========================================================================
+   PRODUCT FRAME (screenshot with window chrome)
+   ========================================================================== */
+
+.product-frame {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(100, 80, 180, 0.15);
+    border: 1px solid var(--border-dark);
+}
+
+.product-frame-bar {
+    background: #2d2d2d;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.product-frame-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.product-frame-dot:nth-child(1) { background: #ff5f57; }
+.product-frame-dot:nth-child(2) { background: #febc2e; }
+.product-frame-dot:nth-child(3) { background: #28c840; }
+
+.product-frame-title {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: var(--text-xs);
+    margin-left: var(--space-sm);
+    font-family: var(--font-mono);
+}
+
+.product-frame img {
+    width: 100%;
+    display: block;
+}
+
+
+/* ==========================================================================
+   INSTRUCTION PANEL (natural-language instruction card)
+   ========================================================================== */
+
+.instruction-panel {
+    width: 100%;
+    background: white;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(100, 80, 180, 0.08);
+}
+
+.instruction-panel-bar {
+    background: #f8f7fc;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+}
+
+.instruction-panel-bar .label {
+    font-family: var(--font-mono);
+    font-weight: 500;
+}
+
+.instruction-panel-body {
+    padding: 16px 18px;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+
+/* ==========================================================================
+   GRAPH PANEL (white-background graph visualization)
+   ========================================================================== */
+
+.hero-graph-panel {
+    width: 100%;
+    background: white;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(100, 80, 180, 0.08);
+}
+
+.hero-graph-panel svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+.status-running {
+    animation: pulse-dot 1.5s ease-in-out infinite;
+}
+

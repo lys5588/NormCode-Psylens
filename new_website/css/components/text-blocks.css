@@ -1,0 +1,71 @@
+/* ==========================================================================
+   CTA CARD LIST (list of links inside a card)
+   ========================================================================== */
+
+.cta-card-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-md) 0 0;
+}
+
+.cta-card-list li {
+    margin-bottom: var(--space-sm);
+}
+
+.cta-card-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.cta-card-list a:hover {
+    color: var(--accent-hover);
+}
+
+.cta-card-list a::before {
+    content: '→';
+    font-size: var(--text-xs);
+}
+
+.section-dark .cta-card-list a {
+    color: var(--accent);
+}
+
+.section-dark .cta-card-list a:hover {
+    color: #6db8ff;
+}
+
+
+/* ==========================================================================
+   PUNCHLINE TEXT (centered highlight text)
+   ========================================================================== */
+
+.punchline {
+    text-align: center;
+    max-width: 700px;
+    margin: var(--space-2xl) auto 0;
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: var(--leading-relaxed);
+}
+
+
+/* ==========================================================================
+   ASPIRATION QUOTE
+   ========================================================================== */
+
+.aspiration-quote {
+    text-align: center;
+    max-width: 700px;
+    margin: var(--space-2xl) auto 0;
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: var(--leading-normal);
+}
+
