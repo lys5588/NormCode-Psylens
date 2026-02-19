@@ -144,11 +144,55 @@
     }
 
     // ================================================================
+    // Info-box hover — highlight all flow-index numbers in code
+    // ================================================================
+
+    function setupInfoBoxHover() {
+        var tut = document.querySelector('.tut');
+        if (!tut) return;
+
+        var infoBox = document.querySelector('.info-box--subtle');
+        if (!infoBox) return;
+
+        var lineNums = tut.querySelectorAll('.tut-code .line-num');
+        var allNotes = tut.querySelectorAll('.tut-note[data-tut-line]');
+        if (!lineNums.length) return;
+
+        infoBox.addEventListener('mouseenter', function () {
+            // Highlight every flow-index number
+            lineNums.forEach(function (ln) {
+                ln.classList.add('line-num--active');
+            });
+
+            // Dim other annotation notes
+            allNotes.forEach(function (note) {
+                note.classList.add('tut-dimmed');
+            });
+
+            // Mark info-box itself as active
+            infoBox.classList.add('info-box--active');
+        });
+
+        infoBox.addEventListener('mouseleave', function () {
+            lineNums.forEach(function (ln) {
+                ln.classList.remove('line-num--active');
+            });
+
+            allNotes.forEach(function (note) {
+                note.classList.remove('tut-dimmed');
+            });
+
+            infoBox.classList.remove('info-box--active');
+        });
+    }
+
+    // ================================================================
     // Flow-index connector — arrow from info box to line-num column
     // ================================================================
 
     function positionFlowConnector() {
-        var lineNum = document.querySelector('.tut-code .line-num');
+        var lineNums = document.querySelectorAll('.tut-code .line-num');
+        var lineNum = lineNums.length >= 3 ? lineNums[2] : lineNums[0]; // target "1.1.1"
         var infoBox = document.querySelector('.info-box--subtle');
         if (!lineNum || !infoBox) return;
 
@@ -163,6 +207,7 @@
     // Run after a short delay (DOM + fonts need to settle)
     setTimeout(alignNotes, 200);
     setTimeout(setupHover, 250);
+    setTimeout(setupInfoBoxHover, 260);
     setTimeout(positionFlowConnector, 300);
     // Also try again a bit later in case fonts loaded slowly
     setTimeout(alignNotes, 600);
