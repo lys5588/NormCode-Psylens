@@ -3,7 +3,7 @@
 // ============================================================================
 
 // ===== Global State =====
-let serverUrl = 'http://localhost:8080';
+let serverUrl = sessionStorage.getItem('normcode_server_url') || '';
 let currentPlanId = null;
 let currentRunId = null;
 let currentUserId = null;

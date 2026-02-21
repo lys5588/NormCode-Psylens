@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Select a NormCode plan to run.">
+    <meta name="theme-color" content="#4DA3FF">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <title>Select Plan — PsylensAI</title>
+
+    <!-- Shared site fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Shared site CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <!-- Shared gateway + plans styles -->
+    <link rel="stylesheet" href="css/gateway.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <main id="main">
+        <div class="gateway-wrapper">
+            <div class="plans-container">
+                <div class="plans-header">
+                    <h1 data-i18n="plans.title">Select a Plan</h1>
+                    <p class="gateway-subtext" data-i18n="plans.subtitle">
+                        Choose a workflow to run on the connected server.
+                    </p>
+                    <div class="plans-server-info">
+                        <span class="server-dot"></span>
+                        <span id="serverLabel" class="server-label"></span>
+                    </div>
+                </div>
+
+                <div id="plansGrid" class="plans-grid">
+                    <div class="plans-loading">
+                        <span class="spinner-lg"></span>
+                        <p data-i18n="plans.loading">Loading plans...</p>
+                    </div>
+                </div>
+
+                <div id="plansStatus" class="gateway-status"></div>
+
+                <div class="plans-footer">
+                    <button class="btn-back" onclick="window.location.href='index.html'" data-i18n="plans.back">
+                        &larr; Change Server
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Shared navigation (i18n + nav) -->
+    <script src="../js/i18n.js"></script>
+    <script src="../js/nav.js"></script>
+
+    <script>
+        // ---- i18n translations ----
+        i18n.init({
+            en: {
+                nav: {
+                    brandText: 'Psylens.AI', home: 'Home', docs: 'Documentation',
+                    overview: 'Overview', syntax: 'Syntax Reference', execution: 'Execution Model',
+                    compilation: 'Compilation', examples: 'Examples', demo: 'Demo', about: 'About',
+                    features: 'Features'
+                },
+                footer: {
+                    tagline: 'Structured AI Planning That You Can Audit',
+                    paper: 'Research Paper', contact: 'Contact',
+                    office: 'TIMETABLE GBA Youth Innovation Base, Nansha, Guangzhou'
+                },
+                plans: {
+                    title: 'Select a Plan',
+                    subtitle: 'Choose a workflow to run on the connected server.',
+                    loading: 'Loading available plans...',
+                    back: '\u2190 Change Server',
+                    errorLoad: 'Failed to load plans. Please try again.',
+                    errorEmpty: 'No plans available on this server.'
+                }
+            },
+            zh: {
+                nav: {
+                    brandText: '心镜智', home: '首页', docs: '文档',
+                    overview: '概述', syntax: '语法参考', execution: '执行模型',
+                    compilation: '编译流程', examples: '示例', demo: '演示', about: '关于',
+                    features: '功能'
+                },
+                footer: {
+                    tagline: '可审计的结构化AI规划',
+                    paper: '研究论文', contact: '联系我们',
+                    office: '广州市南沙区黄阁镇海滨路创享湾4栋TIMETABLE粤港澳青创基地'
+                },
+                plans: {
+                    title: '选择计划',
+                    subtitle: '选择要在已连接服务器上运行的工作流。',
+                    loading: '正在加载可用计划...',
+                    back: '\u2190 更换服务器',
+                    errorLoad: '加载计划失败，请重试。',
+                    errorEmpty: '此服务器上没有可用的计划。'
+                }
+            }
+        });
+
+        // ---- Plan selection logic ----
+
+        const SESSION_KEY_URL = 'normcode_server_url';
+
+        // Guard: redirect to gateway if no server URL stored
+        const serverUrl = sessionStorage.getItem(SESSION_KEY_URL);
+        if (!serverUrl) {
+            window.location.replace('index.html');
+        }
+
+        // Show connected server
+        document.getElementById('serverLabel').textContent = serverUrl;
+
+        // Bilingual messages
+        function getMsg(key) {
+            const lang = i18n.getLang();
+            const msgs = {
+                en: { errorLoad: 'Failed to load plans. Please try again.', errorEmpty: 'No plans available on this server.' },
+                zh: { errorLoad: '加载计划失败，请重试。', errorEmpty: '此服务器上没有可用的计划。' }
+            };
+            return (msgs[lang] || msgs.en)[key] || key;
+        }
+
+        // SVG icon templates (Feather-style, 24x24 viewBox)
+        const PLAN_ICONS = {
+            // Presentation / slides
+            ppt: `<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><polygon points="8 8 8 14 14 11 8 8"></polygon></svg>`,
+            // Report / document writing
+            report: `<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
+            // Code generation
+            code: `<svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><line x1="14" y1="4" x2="10" y2="20"></line></svg>`,
+            // Documentation
+            doc: `<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><line x1="8" y1="7" x2="16" y2="7"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>`,
+            // Testing
+            test: `<svg viewBox="0 0 24 24"><path d="M9 2v6l-2 8h10l-2-8V2"></path><line x1="8" y1="2" x2="16" y2="2"></line><path d="M7 16c0 2.8 2.2 5 5 5s5-2.2 5-5"></path><circle cx="10" cy="13" r="0.5"></circle><circle cx="14" cy="11" r="0.5"></circle></svg>`,
+            // Chat / conversation
+            chat: `<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><line x1="8" y1="8" x2="16" y2="8"></line><line x1="8" y1="12" x2="13" y2="12"></line></svg>`,
+            // Analysis / data
+            analysis: `<svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line><line x1="3" y1="20" x2="21" y2="20"></line></svg>`,
+            // Default / generic workflow
+            default: `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>`
+        };
+
+        // Plan icon mapping — assign SVG icons based on plan name/id patterns
+        function getPlanIcon(plan) {
+            const name = (plan.name || plan.id || '').toLowerCase();
+            if (name.includes('ppt') || name.includes('演示') || name.includes('presentation') || name.includes('slide')) return PLAN_ICONS.ppt;
+            if (name.includes('report') || name.includes('报告')) return PLAN_ICONS.report;
+            if (name.includes('code') || name.includes('代码') || name.includes('编程')) return PLAN_ICONS.code;
+            if (name.includes('doc') || name.includes('文档') || name.includes('wiki')) return PLAN_ICONS.doc;
+            if (name.includes('test') || name.includes('测试')) return PLAN_ICONS.test;
+            if (name.includes('chat') || name.includes('对话') || name.includes('会话')) return PLAN_ICONS.chat;
+            if (name.includes('analy') || name.includes('分析') || name.includes('data') || name.includes('数据')) return PLAN_ICONS.analysis;
+            return PLAN_ICONS.default;
+        }
+
+        // Check if a plan is the PPT plan (the only one currently available)
+        function isPptPlan(plan) {
+            const name = (plan.name || '').toLowerCase();
+            const id = (plan.id || '').toLowerCase();
+            return name === 'ppt生成' || name.includes('ppt') || id.includes('ppt');
+        }
+
+        function selectPlan(planId) {
+            sessionStorage.setItem('normcode_plan_id', planId);
+            window.location.href = 'client.html';
+        }
+
+        // Fetch and render plans
+        async function loadPlans() {
+            const grid = document.getElementById('plansGrid');
+            const status = document.getElementById('plansStatus');
+            const lang = i18n.getLang();
+            const comingSoon = lang === 'zh' ? '即将推出' : 'Coming Soon';
+
+            try {
+                const resp = await fetch(serverUrl + '/api/plans');
+                if (!resp.ok) throw new Error('Failed to fetch plans');
+                const plans = await resp.json();
+
+                if (!plans || plans.length === 0) {
+                    grid.innerHTML = '';
+                    status.textContent = getMsg('errorEmpty');
+                    status.className = 'gateway-status status-error';
+                    return;
+                }
+
+                // Store plans for the client page
+                sessionStorage.setItem('normcode_plans', JSON.stringify(plans));
+
+                // Sort: PPT plan first, then the rest
+                const sorted = [...plans].sort((a, b) => isPptPlan(b) - isPptPlan(a));
+
+                grid.innerHTML = sorted.map(plan => {
+                    const available = isPptPlan(plan);
+                    if (available) {
+                        return `<button class="plan-card" onclick="selectPlan('${plan.id}')">
+                            <span class="plan-card-icon">${getPlanIcon(plan)}</span>
+                            <span class="plan-card-name">${escapeHtml(plan.name || plan.id)}</span>
+                            <span class="plan-card-id">${escapeHtml(plan.id)}</span>
+                        </button>`;
+                    } else {
+                        return `<div class="plan-card plan-card--disabled">
+                            <span class="plan-card-badge">${comingSoon}</span>
+                            <span class="plan-card-icon">${getPlanIcon(plan)}</span>
+                            <span class="plan-card-name">${escapeHtml(plan.name || plan.id)}</span>
+                            <span class="plan-card-id">${escapeHtml(plan.id)}</span>
+                        </div>`;
+                    }
+                }).join('');
+
+            } catch (e) {
+                grid.innerHTML = '';
+                status.textContent = getMsg('errorLoad');
+                status.className = 'gateway-status status-error';
+            }
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // Load on page ready
+        loadPlans();
+    </script>
+</body>
+</html>

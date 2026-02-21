@@ -81,7 +81,7 @@ textarea { min-height: 60px; resize: vertical; }
 #saveInputsBtn:active   { transform: scale(0.98); }
 #saveInputsBtn:disabled { opacity: 0.7; cursor: wait; }
 
-/* Server Config */
+/* Server Config (legacy, kept for reference) */
 .server-config {
     display: flex;
     gap: 6px;
@@ -89,4 +89,54 @@ textarea { min-height: 60px; resize: vertical; }
 }
 
 .server-config input { flex: 1; }
+
+/* Session info bar — compact display of server + plan */
+.session-info {
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.session-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    font-size: 0.8rem;
+}
+
+.session-row + .session-row {
+    border-top: 1px solid var(--border);
+}
+
+.session-label {
+    color: var(--muted);
+    flex-shrink: 0;
+    min-width: 40px;
+}
+
+.session-value {
+    flex: 1;
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.session-change {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+
+.session-change:hover {
+    background: rgba(29, 161, 242, 0.08);
+}
 

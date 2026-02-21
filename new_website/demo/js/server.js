@@ -5,6 +5,11 @@
 async function connect(auto) {
     serverUrl = document.getElementById('serverUrl').value.trim();
 
+    // Keep sessionStorage in sync when user reconnects with a different URL
+    if (serverUrl) {
+        sessionStorage.setItem('normcode_server_url', serverUrl);
+    }
+
     // Mixed content: HTTPS page cannot fetch from HTTP server
     if (window.location.protocol === 'https:' && serverUrl.startsWith('http://')) {
         statusDot.className = 'status-dot error';
@@ -19,8 +24,19 @@ async function connect(auto) {
         const health = await fetch(`${serverUrl}/health`);
         if (!health.ok) throw new Error('服务器无响应');
 
-        const plansResp = await fetch(`${serverUrl}/api/plans`);
-        const plans = await plansResp.json();
+        // Use pre-fetched plans from gateway if available, otherwise fetch fresh
+        const cachedPlans = sessionStorage.getItem('normcode_plans');
+        const cachedPlanId = sessionStorage.getItem('normcode_plan_id');
+        let plans;
+
+        if (cachedPlans && auto) {
+            plans = JSON.parse(cachedPlans);
+            // Clear cache after first use so manual reconnects fetch fresh
+            sessionStorage.removeItem('normcode_plans');
+        } else {
+            const plansResp = await fetch(`${serverUrl}/api/plans`);
+            plans = await plansResp.json();
+        }
 
         planSelect.innerHTML = '';
         plans.forEach(p => {
@@ -31,8 +47,13 @@ async function connect(auto) {
         });
 
         if (plans.length > 0) {
-            const pptPlan = plans.find(p => p.name === 'ppt生成' || p.id.includes('ppt'));
-            currentPlanId = pptPlan ? pptPlan.id : plans[0].id;
+            if (cachedPlanId && auto) {
+                currentPlanId = cachedPlanId;
+                sessionStorage.removeItem('normcode_plan_id');
+            } else {
+                const pptPlan = plans.find(p => p.name === 'ppt生成' || p.id.includes('ppt'));
+                currentPlanId = pptPlan ? pptPlan.id : plans[0].id;
+            }
             planSelect.value = currentPlanId;
             planSelect.disabled = false;
             await loadPlanDefaults(currentPlanId);
