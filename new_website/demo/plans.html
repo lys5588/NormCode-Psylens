@@ -83,7 +83,9 @@
                     loading: 'Loading available plans...',
                     back: '\u2190 Change Server',
                     errorLoad: 'Failed to load plans. Please try again.',
-                    errorEmpty: 'No plans available on this server.'
+                    errorEmpty: 'No plans available on this server.',
+                    clientSinglePage: 'Single-Page',
+                    clientPageFlows: 'Page-Flows'
                 }
             },
             zh: {
@@ -104,7 +106,9 @@
                     loading: '正在加载可用计划...',
                     back: '\u2190 更换服务器',
                     errorLoad: '加载计划失败，请重试。',
-                    errorEmpty: '此服务器上没有可用的计划。'
+                    errorEmpty: '此服务器上没有可用的计划。',
+                    clientSinglePage: '单页面',
+                    clientPageFlows: '页面流'
                 }
             }
         });
@@ -172,9 +176,32 @@
             return ALLOWED_PLAN_IDS.some(id => plan.id.includes(id));
         }
 
+        // Track which card has its picker open
+        let activePickerPlanId = null;
+
         function selectPlan(planId) {
+            const card = document.querySelector(`.plan-card-flip[data-plan-id="${planId}"]`);
+
+            // First click: flip to show client options
+            if (activePickerPlanId !== planId) {
+                // Unflip any previously flipped card
+                if (activePickerPlanId) {
+                    const prev = document.querySelector(`.plan-card-flip[data-plan-id="${activePickerPlanId}"]`);
+                    if (prev) prev.classList.remove('flipped');
+                }
+                activePickerPlanId = planId;
+                if (card) card.classList.add('flipped');
+                return;
+            }
+
+            // Second click on the card body: launch default
+            launchClient(planId, 'single-page');
+        }
+
+        function launchClient(planId, clientType) {
             sessionStorage.setItem('normcode_plan_id', planId);
-            window.location.href = 'client.html';
+            sessionStorage.setItem('normcode_client_type', clientType);
+            window.location.href = clientType === 'page-flows' ? 'page-flows.html' : 'client.html';
         }
 
         // Fetch and render plans
@@ -183,6 +210,8 @@
             const status = document.getElementById('plansStatus');
             const lang = i18n.getLang();
             const comingSoon = lang === 'zh' ? '即将推出' : 'Coming Soon';
+            const singlePageLabel = lang === 'zh' ? '单页面' : 'Single-Page';
+            const pageFlowsLabel = lang === 'zh' ? '页面流' : 'Page-Flows';
 
             try {
                 const resp = await fetch(serverUrl + '/api/plans');
@@ -205,11 +234,20 @@
                 grid.innerHTML = sorted.map(plan => {
                     const available = isPlanAvailable(plan);
                     if (available) {
-                        return `<button class="plan-card" onclick="selectPlan('${plan.id}')">
-                            <span class="plan-card-icon">${getPlanIcon(plan)}</span>
-                            <span class="plan-card-name">${escapeHtml(plan.name || plan.id)}</span>
-                            <span class="plan-card-id">${escapeHtml(plan.id)}</span>
-                        </button>`;
+                        return `<div class="plan-card-flip" data-plan-id="${plan.id}" onclick="selectPlan('${plan.id}')">
+                            <div class="plan-card-inner">
+                                <div class="plan-card plan-card-front">
+                                    <span class="plan-card-icon">${getPlanIcon(plan)}</span>
+                                    <span class="plan-card-name">${escapeHtml(plan.name || plan.id)}</span>
+                                    <span class="plan-card-id">${escapeHtml(plan.id)}</span>
+                                </div>
+                                <div class="plan-card plan-card-back" onclick="event.stopPropagation()">
+                                    <span class="plan-card-back-label">${escapeHtml(plan.name || plan.id)}</span>
+                                    <button class="plan-client-option" onclick="launchClient('${plan.id}','single-page')">${singlePageLabel}</button>
+                                    <button class="plan-client-option" onclick="launchClient('${plan.id}','page-flows')">${pageFlowsLabel}</button>
+                                </div>
+                            </div>
+                        </div>`;
                     } else {
                         return `<div class="plan-card plan-card--disabled">
                             <span class="plan-card-badge">${comingSoon}</span>
@@ -232,6 +270,15 @@
             div.textContent = str;
             return div.innerHTML;
         }
+
+        // Unflip when clicking outside a card
+        document.addEventListener('click', (e) => {
+            if (activePickerPlanId && !e.target.closest('.plan-card-flip')) {
+                const prev = document.querySelector(`.plan-card-flip[data-plan-id="${activePickerPlanId}"]`);
+                if (prev) prev.classList.remove('flipped');
+                activePickerPlanId = null;
+            }
+        });
 
         // Load on page ready
         loadPlans();

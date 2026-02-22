@@ -301,22 +301,23 @@
     background: var(--bg-white);
     border: 1px solid var(--border);
     border-radius: var(--border-radius-lg);
-    cursor: pointer;
-    transition: all var(--transition-fast);
     text-align: center;
     font-family: var(--font-sans);
     box-shadow: var(--shadow-sm);
 }
 
-.plan-card:hover {
+/* Hover/active only on standalone cards (disabled) — flip cards handle hover on wrapper */
+.plan-card--disabled:hover {
     border-color: var(--accent-border);
     box-shadow: var(--shadow-md);
+}
+
+.plan-card-flip:hover {
     transform: translateY(-2px);
 }
 
-.plan-card:active {
+.plan-card-flip:active {
     transform: translateY(0);
-    box-shadow: var(--shadow-sm);
 }
 
 .plan-card-icon {
@@ -382,6 +383,63 @@
     background: var(--bg-subtle);
     border: 1px solid var(--border);
     border-radius: 999px;
+}
+
+/* ---- Flip card wrapper ---- */
+.plan-card-flip {
+    perspective: 600px;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.plan-card-inner {
+    position: relative;
+    transition: transform 0.45s ease;
+    transform-style: preserve-3d;
+}
+
+.plan-card-flip.flipped .plan-card-inner {
+    transform: rotateY(180deg);
+}
+
+.plan-card-front,
+.plan-card-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.plan-card-back {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg);
+    justify-content: center;
+}
+
+.plan-card-back-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.plan-client-option {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: var(--text-sm);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.plan-client-option:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
 }
 
 /* Loading state */
