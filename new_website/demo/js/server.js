@@ -10,10 +10,11 @@ async function connect(auto) {
         sessionStorage.setItem('normcode_server_url', serverUrl);
     }
 
-    // Mixed content: HTTPS page cannot fetch from HTTP server
-    if (window.location.protocol === 'https:' && serverUrl.startsWith('http://')) {
+    // Mixed content: HTTPS page cannot fetch from remote HTTP server (localhost is exempt)
+    const isLocalhost = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/|$)/.test(serverUrl);
+    if (window.location.protocol === 'https:' && serverUrl.startsWith('http://') && !isLocalhost) {
         statusDot.className = 'status-dot error';
-        statusText.textContent = 'HTTPS 页面无法连接 HTTP 服务器 (混合内容限制)';
+        statusText.textContent = 'HTTPS 页面无法连接远程 HTTP 服务器，请使用 HTTPS 或 localhost';
         startBtn.disabled = true;
         return;
     }

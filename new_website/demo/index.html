@@ -70,7 +70,7 @@
                 </div>
 
                 <div id="gatewayWarning" class="gateway-warning" data-i18n="gateway.mixedContent">
-                    This site uses HTTPS. Your server must also use HTTPS, or mixed content will be blocked by the browser.
+                    This site uses HTTPS. Your server must use HTTPS unless it is running on localhost.
                 </div>
 
                 <button id="gatewayConnectBtn" class="gateway-btn" onclick="gatewayConnect()">
@@ -113,7 +113,7 @@
                     labelToken: 'Access Token',
                     connect: 'Connect',
                     hint: "Don't have credentials? Contact your NormCode administrator.",
-                    mixedContent: 'This site uses HTTPS. Your server must also use HTTPS, or mixed content will be blocked by the browser.'
+                    mixedContent: 'This site uses HTTPS. Your server must use HTTPS unless it is running on localhost.'
                 }
             },
             zh: {
@@ -135,7 +135,7 @@
                     labelToken: '访问令牌',
                     connect: '连接',
                     hint: '没有凭证？请联系您的 NormCode 管理员。',
-                    mixedContent: '此站点使用 HTTPS。您的服务器也必须使用 HTTPS，否则浏览器将阻止混合内容请求。'
+                    mixedContent: '此站点使用 HTTPS。除 localhost 外，服务器也必须使用 HTTPS。'
                 }
             }
         });
@@ -153,7 +153,7 @@
                     errorEmptyUrl: 'Please enter a server address.',
                     errorEmptyToken: 'Please enter an access token.',
                     errorUnreachable: 'Server is unreachable. Please check the address and try again.',
-                    errorMixed: 'HTTPS page cannot connect to HTTP server (mixed content restriction).',
+                    errorMixed: 'HTTPS page cannot connect to remote HTTP server. Use HTTPS or localhost.',
                     errorInvalidToken: 'Invalid access token. Please check with your administrator.',
                     success: 'Authenticated. Redirecting...'
                 },
@@ -161,7 +161,7 @@
                     errorEmptyUrl: '请输入服务器地址。',
                     errorEmptyToken: '请输入访问令牌。',
                     errorUnreachable: '服务器无法访问。请检查地址后重试。',
-                    errorMixed: 'HTTPS 页面无法连接 HTTP 服务器（混合内容限制）。',
+                    errorMixed: 'HTTPS 页面无法连接远程 HTTP 服务器。请使用 HTTPS 或 localhost。',
                     errorInvalidToken: '访问令牌无效，请联系管理员确认。',
                     success: '认证成功，正在跳转...'
                 }
@@ -241,8 +241,9 @@
             // Remove trailing slash
             url = url.replace(/\/+$/, '');
 
-            // Mixed content check
-            if (window.location.protocol === 'https:' && url.startsWith('http://')) {
+            // Mixed content check (localhost/127.0.0.1 are exempt — browsers treat them as secure contexts)
+            const isLocalhost = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/|$)/.test(url);
+            if (window.location.protocol === 'https:' && url.startsWith('http://') && !isLocalhost) {
                 status.textContent = getMsg('errorMixed');
                 status.className = 'gateway-status status-error';
                 urlInput.classList.add('input-error');
