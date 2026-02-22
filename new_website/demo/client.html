@@ -66,6 +66,20 @@
                     </div>
                 </div>
 
+                <!-- Tool Diagnostics -->
+                <div class="section" id="toolsSection">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <span>🔧 工具状态 <span id="toolsStatus" class="tools-status"></span></span>
+                        <span class="section-toggle">▶</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="tools-grid" id="toolsGrid">
+                            <div class="placeholder" style="font-size:0.8rem">连接后自动检测...</div>
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="runToolDiagnostics()" style="margin-top:6px;width:100%">🔄 重新检测</button>
+                    </div>
+                </div>
+
                 <!-- Basic Inputs -->
                 <div class="section open">
                     <div class="section-header" onclick="toggleSection(this)">
@@ -267,6 +281,7 @@
     <script src="js/ui.js"></script>
     <script src="js/files.js"></script>
     <script src="js/server.js"></script>
+    <script src="js/tools.js"></script>
     <script src="js/inputs.js"></script>
     <script src="js/run.js"></script>
     <script src="js/events.js"></script>

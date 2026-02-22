@@ -165,11 +165,11 @@
             return PLAN_ICONS.default;
         }
 
-        // Check if a plan is the PPT plan (the only one currently available)
-        function isPptPlan(plan) {
-            const name = (plan.name || '').toLowerCase();
-            const id = (plan.id || '').toLowerCase();
-            return name === 'ppt生成' || name.includes('ppt') || id.includes('ppt');
+        // Allowlist of plan IDs currently available for use
+        const ALLOWED_PLAN_IDS = ['cc407e98'];
+
+        function isPlanAvailable(plan) {
+            return ALLOWED_PLAN_IDS.some(id => plan.id.includes(id));
         }
 
         function selectPlan(planId) {
@@ -199,11 +199,11 @@
                 // Store plans for the client page
                 sessionStorage.setItem('normcode_plans', JSON.stringify(plans));
 
-                // Sort: PPT plan first, then the rest
-                const sorted = [...plans].sort((a, b) => isPptPlan(b) - isPptPlan(a));
+                // Sort: available plans first, then the rest
+                const sorted = [...plans].sort((a, b) => isPlanAvailable(b) - isPlanAvailable(a));
 
                 grid.innerHTML = sorted.map(plan => {
-                    const available = isPptPlan(plan);
+                    const available = isPlanAvailable(plan);
                     if (available) {
                         return `<button class="plan-card" onclick="selectPlan('${plan.id}')">
                             <span class="plan-card-icon">${getPlanIcon(plan)}</span>

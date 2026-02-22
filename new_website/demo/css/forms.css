@@ -175,3 +175,41 @@ textarea { min-height: 60px; resize: vertical; }
     font-weight: 500;
 }
 
+/* Tool diagnostics */
+.tools-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tool-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 0.8rem;
+}
+
+.tool-icon { flex-shrink: 0; font-size: 0.85rem; }
+.tool-name { flex: 1; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; }
+
+.tool-result {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    border-radius: 3px;
+}
+
+.tool-ok { color: var(--success); }
+.tool-fail { color: var(--danger); }
+.tool-testing { color: var(--muted); font-style: italic; }
+
+.tools-status {
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+}
+
+.tools-pass { color: var(--success); }
+.tools-warn { color: var(--warning); }

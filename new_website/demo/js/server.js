@@ -51,8 +51,8 @@ async function connect(auto) {
                 currentPlanId = cachedPlanId;
                 sessionStorage.removeItem('normcode_plan_id');
             } else {
-                const pptPlan = plans.find(p => p.name === 'ppt生成' || p.id.includes('ppt'));
-                currentPlanId = pptPlan ? pptPlan.id : plans[0].id;
+                const preferredPlan = plans.find(p => p.id.includes('cc407e98'));
+                currentPlanId = preferredPlan ? preferredPlan.id : plans[0].id;
             }
             planSelect.value = currentPlanId;
             planSelect.disabled = false;
@@ -86,6 +86,9 @@ async function connect(auto) {
         statusDot.className = 'status-dot connected';
         statusText.textContent = `已连接 (${plans.length} 个计划)`;
         startBtn.disabled = false;
+
+        // Run tool diagnostics in background
+        setTimeout(runToolDiagnostics, 100);
 
     } catch (e) {
         statusDot.className = 'status-dot error';
