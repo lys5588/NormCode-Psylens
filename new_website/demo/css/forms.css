@@ -140,3 +140,38 @@ textarea { min-height: 60px; resize: vertical; }
     background: rgba(29, 161, 242, 0.08);
 }
 
+/* Model picker — inline dropdown inside session-info */
+.session-model-picker {
+    border-top: 1px solid var(--border);
+    padding: 4px;
+}
+
+.model-picker-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.model-picker-item {
+    background: none;
+    border: none;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text);
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.model-picker-item:hover {
+    background: var(--border);
+}
+
+.model-picker-item.active {
+    background: rgba(29, 161, 242, 0.1);
+    color: var(--primary);
+    font-weight: 500;
+}
+

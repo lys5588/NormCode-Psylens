@@ -71,6 +71,16 @@ async function connect(auto) {
                 opt.textContent = m.name || m.id;
                 llmSelect.appendChild(opt);
             });
+
+            // Auto-select: prefer qwen-plus, else first non-Demo model
+            const preferred = models.find(m => m.id === 'qwen-plus');
+            const nonDemo = models.find(m => !(m.name || m.id).toLowerCase().includes('demo'));
+            const selected = preferred || nonDemo || models[0];
+            if (selected) {
+                llmSelect.value = selected.id;
+                const sessionModelEl = document.getElementById('sessionModel');
+                if (sessionModelEl) sessionModelEl.textContent = selected.name || selected.id;
+            }
         } catch (e) {}
 
         statusDot.className = 'status-dot connected';

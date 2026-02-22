@@ -42,6 +42,7 @@
                 <!-- Hidden elements used by JS modules -->
                 <input type="hidden" id="serverUrl" value="">
                 <select id="planSelect" hidden></select>
+                <select id="llmModel" hidden></select>
 
                 <!-- Compact session info -->
                 <div class="session-info">
@@ -55,14 +56,14 @@
                         <span class="session-value" id="sessionPlan">—</span>
                         <a href="plans.html" class="session-change" title="更换计划">更换</a>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label>LLM 模型</label>
-                    <select id="llmModel">
-                        <option value="qwen-plus">Qwen Plus</option>
-                        <option value="qwen-turbo">Qwen Turbo</option>
-                    </select>
+                    <div class="session-row">
+                        <span class="session-label">模型</span>
+                        <span class="session-value" id="sessionModel">—</span>
+                        <a href="javascript:void(0)" class="session-change" onclick="toggleModelPicker()" title="更换模型">更换</a>
+                    </div>
+                    <div class="session-model-picker" id="modelPicker" hidden>
+                        <div class="model-picker-list" id="modelPickerList"></div>
+                    </div>
                 </div>
 
                 <!-- Basic Inputs -->
