@@ -46,8 +46,18 @@
                         '{期望长度}': { data: [[length || '6张幻灯片']], axes: ['_none_axis'] },
                     }
                 };
-                if (contentRefs.length > 0) payload.ground_inputs['[内容参考元数据]'] = { data: [contentRefs], axes: ['内容参考'] };
-                if (allStyleRefs.length > 0) payload.ground_inputs['[样式参考元数据]'] = { data: [allStyleRefs], axes: ['样式参考'] };
+                // Always include file ref keys — even when empty — so they
+                // override the plan's default inputs.json on the server side.
+                payload.ground_inputs['[内容参考元数据]'] = { data: [contentRefs], axes: ['内容参考'] };
+                payload.ground_inputs['[样式参考元数据]'] = { data: [allStyleRefs], axes: ['样式参考'] };
+
+                // Build and upload inputs.json to userbench before execution
+                const inputsPayload = { ...payload.ground_inputs };
+                await fetch(`${serverUrl}/api/userbenches/${userId}/files/inputs.json`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(inputsPayload, null, 2)
+                });
 
                 launchBtn.textContent = t('starting');
 
@@ -66,7 +76,7 @@
                 const runId = data.run_id;
 
                 // Move to step 4
-                goTo(4);
+                goTo(6);
                 currentRunId = runId;
                 currentUserId = userId;
                 document.getElementById('pfRunStatus').textContent = t('runStarted') + `${runId.substring(0, 8)}...`;
@@ -259,14 +269,11 @@
             if (finals.length > 0) {
                 finalEl.innerHTML = `<div class="pf-section-label">${t('finalOutputs')}</div>` +
                     finals.map(f => `
-                        <div class="pf-file-card final">
+                        <div class="pf-file-card final" onclick="pfPreviewOutput('${f.path}','${escapeHtml(f.name)}')">
                             <span class="pf-fc-icon">${icon(f.name)}</span>
                             <span class="pf-fc-name">${escapeHtml(f.name)}</span>
                             <span class="pf-fc-size">${size(f.size || 0)}</span>
-                            <div class="pf-fc-actions">
-                                <button class="pf-fc-btn" onclick="pfPreviewOutput('${f.path}','${escapeHtml(f.name)}')" title="${t('preview')}">&#128065;</button>
-                                <button class="pf-fc-btn" onclick="pfDownload('${f.path}','${escapeHtml(f.name)}')" title="${t('download')}">&#11015;</button>
-                            </div>
+                            <button class="pf-fc-btn" onclick="event.stopPropagation();pfDownload('${f.path}','${escapeHtml(f.name)}')" title="${t('download')}">&#11015;</button>
                         </div>
                     `).join('');
             } else {
@@ -276,13 +283,10 @@
             if (intermediates.length > 0) {
                 interEl.innerHTML = `<div class="pf-section-label">${t('intermediateFiles')}</div>` +
                     intermediates.map(f => `
-                        <div class="pf-file-card">
+                        <div class="pf-file-card" onclick="pfPreviewOutput('${f.path}','${escapeHtml(f.name)}')">
                             <span class="pf-fc-icon">${icon(f.name)}</span>
                             <span class="pf-fc-name">${escapeHtml(f.name)}</span>
                             <span class="pf-fc-size">${size(f.size || 0)}</span>
-                            <div class="pf-fc-actions">
-                                <button class="pf-fc-btn" onclick="pfPreviewOutput('${f.path}','${escapeHtml(f.name)}')" title="${t('preview')}">&#128065;</button>
-                            </div>
                         </div>
                     `).join('');
             } else {

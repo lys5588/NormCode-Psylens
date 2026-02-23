@@ -524,9 +524,23 @@ async def execute_run(run_state: RunState, llm_override: Optional[str], max_cycl
             plan_dir=run_state.config.project_dir,
         )
         
-        # Attach userbench to file system tool for output isolation
+        # Write ground_inputs as inputs.json to the userbench so it reflects
+        # the actual values used for this run (not the plan defaults)
+        if run_state.ground_inputs:
+            inputs_path = userbench.root / "inputs.json"
+            try:
+                with open(inputs_path, "w", encoding="utf-8") as f:
+                    json.dump(run_state.ground_inputs, f, indent=2, ensure_ascii=False)
+                logging.info(f"Run {run_state.run_id}: Written ground_inputs to userbench inputs.json")
+            except Exception as e:
+                logging.warning(f"Run {run_state.run_id}: Failed to write inputs.json to bench: {e}")
+        
+        # Repoint file system to userbench — the bench already contains
+        # plan provisions (copied with skip_existing) plus user-uploaded files,
+        # so all path resolution should happen against it, not the plan dir.
         if hasattr(body, 'file_system') and body.file_system:
-            body.file_system.set_workspace(userbench)  # Method name kept for compatibility
+            body.file_system.base_dir = str(userbench.root)
+            body.file_system.set_workspace(userbench)
             
             # Subscribe to file events and broadcast them
             async def on_file_event(event):

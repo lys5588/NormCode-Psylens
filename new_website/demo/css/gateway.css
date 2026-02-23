@@ -436,10 +436,33 @@
     transition: all var(--transition-fast);
 }
 
+.plan-client-option--default {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.plan-recommended-tag {
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.25);
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
 .plan-client-option:hover {
     background: var(--accent);
     color: white;
     border-color: var(--accent);
+}
+
+.plan-client-option--default:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
 }
 
 /* Loading state */

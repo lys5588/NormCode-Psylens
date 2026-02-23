@@ -210,8 +210,8 @@ class UserBench:
             src_provisions = plan_dir / "provision"
         
         if src_provisions.exists():
-            copied_count += self._copy_directory(src_provisions, self.provisions_dir)
-            logger.info(f"Copied provisions/ to bench")
+            copied_count += self._copy_directory(src_provisions, self.provisions_dir, skip_existing=True)
+            logger.info(f"Copied provisions/ to bench (skipping existing user files)")
         
         # 2. Copy or create productions/ structure
         src_productions = plan_dir / "productions"
@@ -221,12 +221,15 @@ class UserBench:
                 if item.is_dir():
                     (self.productions_dir / item.name).mkdir(exist_ok=True)
         
-        # 3. Copy inputs.json
+        # 3. Copy inputs.json (only if not already present from client upload)
         inputs_file = plan_dir / "inputs.json"
-        if inputs_file.exists():
-            shutil.copy2(inputs_file, self.root / "inputs.json")
+        dest_inputs = self.root / "inputs.json"
+        if inputs_file.exists() and not dest_inputs.exists():
+            shutil.copy2(inputs_file, dest_inputs)
             copied_count += 1
             logger.info(f"Copied inputs.json to bench")
+        elif dest_inputs.exists():
+            logger.info(f"Skipping inputs.json copy — user version already present")
         
         # 4. Copy .ncd and .ncds files (NormCode plan definitions)
         for pattern in ["*.ncd", "*.ncds", "*.pf.ncd"]:
@@ -268,9 +271,13 @@ class UserBench:
         logger.info(f"UserBench initialized with {copied_count} files from plan")
         self.metadata["copied_files_count"] = copied_count
     
-    def _copy_directory(self, src: Path, dst: Path, exclude_patterns: List[str] = None) -> int:
+    def _copy_directory(self, src: Path, dst: Path, exclude_patterns: List[str] = None, skip_existing: bool = False) -> int:
         """
         Recursively copy a directory, excluding certain patterns.
+        
+        Args:
+            skip_existing: If True, don't overwrite files already in the destination
+                           (preserves user-uploaded files over plan defaults).
         
         Returns:
             Number of files copied
@@ -298,8 +305,10 @@ class UserBench:
             dst_item = dst / item.name
             
             if item.is_dir():
-                copied += self._copy_directory(item, dst_item, exclude_patterns)
+                copied += self._copy_directory(item, dst_item, exclude_patterns, skip_existing)
             else:
+                if skip_existing and dst_item.exists():
+                    continue
                 shutil.copy2(item, dst_item)
                 copied += 1
         

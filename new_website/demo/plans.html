@@ -195,7 +195,7 @@
             }
 
             // Second click on the card body: launch default
-            launchClient(planId, 'single-page');
+            launchClient(planId, 'page-flows');
         }
 
         function launchClient(planId, clientType) {
@@ -211,7 +211,8 @@
             const lang = i18n.getLang();
             const comingSoon = lang === 'zh' ? '即将推出' : 'Coming Soon';
             const singlePageLabel = lang === 'zh' ? '单页面' : 'Single-Page';
-            const pageFlowsLabel = lang === 'zh' ? '页面流' : 'Page-Flows';
+            const recommendedTag = `<span class="plan-recommended-tag">${lang === 'zh' ? '推荐' : 'Recommended'}</span>`;
+            const pageFlowsLabel = (lang === 'zh' ? '页面流' : 'Page-Flows') + ' ' + recommendedTag;
 
             try {
                 const resp = await fetch(serverUrl + '/api/plans');
@@ -243,8 +244,8 @@
                                 </div>
                                 <div class="plan-card plan-card-back" onclick="event.stopPropagation()">
                                     <span class="plan-card-back-label">${escapeHtml(plan.name || plan.id)}</span>
+                                    <button class="plan-client-option plan-client-option--default" onclick="launchClient('${plan.id}','page-flows')">${pageFlowsLabel}</button>
                                     <button class="plan-client-option" onclick="launchClient('${plan.id}','single-page')">${singlePageLabel}</button>
-                                    <button class="plan-client-option" onclick="launchClient('${plan.id}','page-flows')">${pageFlowsLabel}</button>
                                 </div>
                             </div>
                         </div>`;

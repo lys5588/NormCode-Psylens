@@ -1,6 +1,6 @@
 /**
  * Page-Flows Core Application Module
- * Navigation, Server Connection, Model Picker, Tool Diagnostics, Load Defaults
+ * Navigation, Server Connection, Model Picker, Load Defaults
  */
 
         function escapeHtml(str) {
@@ -10,9 +10,8 @@
         }
 
         function goTo(n) {
-            // Can't skip ahead of current furthest step unless connected
             if (n > 0 && !connected) return;
-            if (n === 4 && step !== 3) return; // step 4 only via launch
+            if (n === 6 && step !== 5) return; // step 6 only via launch
 
             step = n;
             steps.forEach(s => s.classList.remove('active'));
@@ -25,10 +24,10 @@
             dots[step].classList.add('active');
 
             btnBack.disabled = false;
-            btnNext.style.display = step >= 3 ? 'none' : '';
+            btnNext.style.display = step >= 5 ? 'none' : '';
             btnNext.disabled = step === 0 && !connected;
 
-            if (step === 3) buildReview();
+            if (step === 5) buildReview();
         }
 
         function nextStep() {
@@ -36,7 +35,7 @@
                 const topic = document.getElementById('pfTopic').value.trim();
                 if (!topic) { document.getElementById('pfTopic').focus(); return; }
             }
-            if (step < 4) goTo(step + 1);
+            if (step < 6) goTo(step + 1);
         }
 
         function prevStep() {
@@ -90,8 +89,8 @@
                 connected = true;
                 btnNext.disabled = false;
 
-                // Run tool diagnostics (non-blocking)
-                pfRunToolTests();
+                // Test LLM and filesystem (non-blocking)
+                testCriticalTools();
 
             } catch (e) {
                 connDot.className = 'pf-status-dot error';
@@ -126,6 +125,7 @@
             document.getElementById('pfModel').textContent = model.name || model.id;
             document.getElementById('pfModelDropdown').classList.remove('open');
             buildModelDropdown();
+            if (connected) testCriticalTools();
         }
 
         // Close dropdown when clicking outside
@@ -136,88 +136,40 @@
             }
         });
 
-        // ---- Tool diagnostics ----
-        const PF_TOOL_TESTS = {
-            llm:                { endpoint: 'llm/test',        payload: () => ({ model: selectedModel || 'demo', prompt: 'Say hello.', max_tokens: 50 }) },
-            python_interpreter: { endpoint: 'python/test',     payload: () => ({ code: 'result = 2 + 2' }) },
-            file_system:        { endpoint: 'filesystem/test', payload: () => ({ operation: 'list', path: '.' }) },
-            gim:                { endpoint: 'gim/test',        payload: () => ({ prompt: 'A blue square', mock_mode: true }) },
-        };
+        // ---- Critical tool checks (LLM + filesystem) ----
+        async function testCriticalTools() {
+            const tests = [
+                { id: 'Llm',  endpoint: 'llm/test',        payload: { model: selectedModel || 'demo', prompt: 'Say hello.', max_tokens: 50 } },
+                { id: 'Fs',   endpoint: 'filesystem/test', payload: { operation: 'list', path: '.' } },
+                { id: 'Py',   endpoint: 'python/test',     payload: { code: 'result = 2 + 2' } },
+            ];
 
-        async function pfRunToolTests() {
-            const section = document.getElementById('pfToolsSection');
-            const grid = document.getElementById('pfToolsGrid');
-            const badge = document.getElementById('pfToolsBadge');
+            for (const test of tests) {
+                const row = document.getElementById(`pf${test.id}Row`);
+                const dot = document.getElementById(`pf${test.id}Dot`);
+                const status = document.getElementById(`pf${test.id}Status`);
+                row.style.display = '';
+                dot.className = 'pf-status-dot';
+                status.textContent = t('testing');
 
-            section.style.display = '';
-            grid.innerHTML = '';
-            badge.textContent = '';
-            badge.className = 'pf-tools-badge';
-
-            try {
-                const resp = await fetch(`${serverUrl}/api/tools`);
-                const data = await resp.json();
-                const tools = data.tools || [];
-
-                let passCount = 0;
-                let totalTestable = 0;
-
-                // Render rows
-                for (const tool of tools) {
-                    const row = document.createElement('div');
-                    row.className = 'pf-tool-row';
-                    const icon = tool.available ? '&#10003;' : '&#10007;';
-                    const statusText = tool.available ? t('toolAvail') : t('toolUnavail');
-                    const statusClass = tool.available ? 'ok' : 'fail';
-                    row.innerHTML = `
-                        <span class="pf-tool-icon">${icon}</span>
-                        <span class="pf-tool-name">${escapeHtml(tool.name)}</span>
-                        <span class="pf-tool-result ${statusClass}" id="pfToolResult-${tool.id}">${statusText}</span>
-                    `;
-                    grid.appendChild(row);
-                    if (tool.available && tool.testable) totalTestable++;
-                }
-
-                // Auto-test available testable tools
-                for (const tool of tools) {
-                    if (!tool.available || !tool.testable) continue;
-                    const testDef = PF_TOOL_TESTS[tool.id];
-                    if (!testDef) continue;
-
-                    const resultEl = document.getElementById(`pfToolResult-${tool.id}`);
-                    if (!resultEl) continue;
-                    resultEl.textContent = t('toolTesting');
-                    resultEl.className = 'pf-tool-result testing';
-
-                    try {
-                        const r = await fetch(`${serverUrl}/api/tools/${testDef.endpoint}`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(testDef.payload())
-                        });
-                        const result = await r.json();
-                        if (result.status === 'success') {
-                            resultEl.textContent = `${t('toolPass')} (${result.duration_ms}ms)`;
-                            resultEl.className = 'pf-tool-result ok';
-                            passCount++;
-                        } else {
-                            resultEl.textContent = `${t('toolFail')}: ${result.error || ''}`;
-                            resultEl.className = 'pf-tool-result fail';
-                        }
-                    } catch (err) {
-                        resultEl.textContent = t('toolFail');
-                        resultEl.className = 'pf-tool-result fail';
+                try {
+                    const r = await fetch(`${serverUrl}/api/tools/${test.endpoint}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(test.payload)
+                    });
+                    const result = await r.json();
+                    if (result.status === 'success') {
+                        dot.className = 'pf-status-dot connected';
+                        status.textContent = `${t('testPass')} (${result.duration_ms}ms)`;
+                    } else {
+                        dot.className = 'pf-status-dot error';
+                        status.textContent = t('testFail');
                     }
+                } catch {
+                    dot.className = 'pf-status-dot error';
+                    status.textContent = t('testFail');
                 }
-
-                // Badge
-                badge.textContent = `${passCount}/${totalTestable}`;
-                badge.className = 'pf-tools-badge ' + (passCount === totalTestable ? 'pass' : 'warn');
-
-            } catch (e) {
-                grid.innerHTML = `<div style="font-size:11px;color:var(--error)">${t('toolFail')}</div>`;
-                badge.textContent = '!';
-                badge.className = 'pf-tools-badge fail';
             }
         }
 
@@ -229,21 +181,11 @@
                 const fileResponse = await resp.json();
                 const defaults = JSON.parse(fileResponse.content);
 
-                if (defaults['{演示主题}']?.data?.[0]?.[0])
-                    document.getElementById('pfTopic').value = defaults['{演示主题}'].data[0][0];
-                if (defaults['{目标受众}']?.data?.[0]?.[0])
-                    document.getElementById('pfAudience').value = defaults['{目标受众}'].data[0][0];
-                if (defaults['{期望长度}']?.data?.[0]?.[0])
-                    document.getElementById('pfLength').value = defaults['{期望长度}'].data[0][0];
+                // Basic inputs and content files intentionally left empty —
+                // the user fills these in fresh each session.  Only style/template
+                // defaults are loaded from the plan's inputs.json.
 
-                // Load default content refs
-                if (defaults['[内容参考元数据]']?.data?.[0]) {
-                    defaults['[内容参考元数据]'].data[0].forEach(ref => {
-                        pfContent.push({ name: ref.name, path: ref.path, type: ref.type, isDefault: true });
-                    });
-                    renderFileList('content');
-                }
-                // Load default style refs
+                // Load default style refs (templates + style guides)
                 if (defaults['[样式参考元数据]']?.data?.[0]) {
                     defaults['[样式参考元数据]'].data[0].forEach(ref => {
                         const isTemplate = ref.type === 'html_template';

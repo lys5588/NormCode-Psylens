@@ -31,4 +31,4 @@ let currentUserId = '';
 let pfEvtSource = null;
 let pfLoop = { current: 0, iteration: 0, completed: 0, total: 0 };
 let pfTimelineMap = {};  // flow_index -> DOM element
-let _previewState = { name: '', content: '', rendered: true };
+let _previewState = { name: '', content: '', rendered: true, mode: 'text' };
