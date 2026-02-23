@@ -1,0 +1,56 @@
+[Unit]
+Description=NormCode Deployment Server
+Documentation=https://github.com/your-org/normcode
+After=network.target nginx.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+
+# Working directory - adjust to your installation path
+WorkingDirectory=/home/ubuntu/apps/normcode/normcode-server
+
+# Environment variables
+Environment="NORMCODE_HOST=0.0.0.0"
+Environment="NORMCODE_PORT=8080"
+Environment="NORMCODE_PLANS_DIR=/home/ubuntu/apps/normcode/normcode-server/data/plans"
+Environment="NORMCODE_RUNS_DIR=/home/ubuntu/apps/normcode/normcode-server/data/runs"
+Environment="NORMCODE_LOG_LEVEL=INFO"
+
+# Use virtual environment if it exists, otherwise system python
+# Use watchdog mode for automatic crash recovery
+# The watchdog manages the server subprocess and restarts on crash
+ExecStart=/bin/bash -c '\
+    if [ -d "venv" ]; then \
+        source venv/bin/activate; \
+    fi; \
+    exec python3 launch.py --watchdog --host ${NORMCODE_HOST} --port ${NORMCODE_PORT}'
+
+# Restart policy
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+# Graceful shutdown
+TimeoutStopSec=30
+KillMode=mixed
+KillSignal=SIGINT
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/ubuntu/apps/normcode/normcode-server/data
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=normcode
+
+[Install]
+WantedBy=multi-user.target
+

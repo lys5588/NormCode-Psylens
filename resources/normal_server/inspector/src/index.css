@@ -1,0 +1,12 @@
+@tailwind components;
+@tailwind utilities;
+
+#reactInspector button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NormCode Server</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230d1117' width='100' height='100' rx='20'/><rect fill='%2358a6ff' x='15' y='55' width='15' height='30' rx='3'/><rect fill='%233fb950' x='42' y='35' width='15' height='50' rx='3'/><rect fill='%23a371f7' x='69' y='20' width='15' height='65' rx='3'/></svg>">
+    <link rel="stylesheet" href="/static/css/server.css">
+    <link rel="stylesheet" href="/static/dist/run-inspector.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="app-header">
+                <h1><span class="logo">📊</span> NormCode Server</h1>
+            </div>
+            
+            <!-- Stats -->
+            <div class="sidebar-section">
+                <div class="section-header">
+                    Statistics
+                    <span class="status-indicator">
+                        <span class="status-dot" id="statusDot"></span>
+                        <span id="statusText">Connecting</span>
+                    </span>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="statRuns">0</div>
+                        <div class="stat-label">Runs</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="statPlans">0</div>
+                        <div class="stat-label">Plans</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Plans -->
+            <div class="sidebar-section" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+                <div class="section-header">
+                    Plans
+                    <button class="action-btn" onclick="fetchPlans()">↻</button>
+                </div>
+                <div class="section-content" id="plansList" style="flex: 1;">
+                    <div class="empty-state">Loading...</div>
+                </div>
+            </div>
+            
+            <!-- Pending Inputs -->
+            <div class="sidebar-section" id="inputsSection" style="display: none;">
+                <div class="section-header">
+                    <span>⏳ Pending Inputs</span>
+                    <span class="badge badge-pending" id="inputsCount">0</span>
+                </div>
+                <div class="section-content inputs-list" id="inputsList">
+                    <!-- Pending inputs will appear here -->
+                </div>
+            </div>
+            
+            <!-- Run controls -->
+            <div class="run-controls">
+                <div class="run-controls-header" onclick="toggleRunControls()">
+                    <span>Run Controls</span>
+                    <span class="collapse-icon" id="runControlsIcon">▼</span>
+                </div>
+                <div class="run-controls-content" id="runControlsContent">
+                    <div class="form-group">
+                        <label>User ID</label>
+                        <input type="text" id="userIdInput" value="default" placeholder="Enter user ID">
+                    </div>
+                    <div class="form-group">
+                        <label>LLM Model</label>
+                        <select id="llmSelect">
+                            <option value="demo">demo (mock)</option>
+                            <option value="qwen-plus" selected>qwen-plus</option>
+                            <option value="qwen-turbo-latest">qwen-turbo</option>
+                            <option value="deepseek-r1-distill-qwen-1.5b">deepseek-r1</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group form-half">
+                            <label>Run Mode <span class="help-tip" title="Slow: one inference per cycle (better for debugging). Fast: all ready inferences per cycle (faster execution).">?</span></label>
+                            <select id="runModeSelect">
+                                <option value="slow" selected>🐢 Slow</option>
+                                <option value="fast">⚡ Fast</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-half">
+                            <label>Max Cycles <span class="help-tip" title="Maximum number of execution cycles before stopping. Prevents infinite loops.">?</span></label>
+                            <input type="number" id="maxCyclesInput" value="200" min="1" max="10000" placeholder="200">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" id="runBtn" disabled onclick="startRun()">▶ Run Selected</button>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" onclick="showDeployModal()">+ Deploy</button>
+                        <button class="btn btn-danger" id="removeBtn" disabled onclick="removePlan()">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main content -->
+        <main class="main">
+            <div class="tabs">
+                <div class="tab active" data-tab="runs">Runs</div>
+                <div class="tab" data-tab="files">Files</div>
+                <div class="tab" data-tab="tools">Tools</div>
+                <div class="tab" data-tab="inspect">Inspect</div>
+                <div class="tab" data-tab="events">Events</div>
+            </div>
+            
+            <!-- Runs Tab -->
+            <div class="tab-panel active" id="runsPanel">
+                <div class="content-header">
+                    <h2>Run History</h2>
+                    <div>
+                        <button class="action-btn" onclick="fetchRuns()">↻ Refresh</button>
+                        <button class="action-btn danger" onclick="clearAllRuns()">Clear All</button>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <table class="data-table runs-table">
+                        <thead>
+                            <tr>
+                                <th>Run</th>
+                                <th>Plan</th>
+                                <th>Status</th>
+                                <th>Progress</th>
+                                <th>Started</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="runsTable">
+                            <tr><td colspan="6" class="empty-state">No runs</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Files Tab (UserBench Browser) -->
+            <div class="tab-panel" id="filesPanel">
+                <div class="content-header">
+                    <h2>
+                        <span id="filesTitle">UserBench Files</span>
+                        <span id="filesRunId" class="text-dim" style="font-size: 0.8rem; margin-left: 10px;"></span>
+                    </h2>
+                    <div>
+                        <button class="action-btn" onclick="refreshUserBenchFiles()">↻ Refresh</button>
+                    </div>
+                </div>
+                <div class="content-body" style="display: flex; gap: 0; padding: 0;">
+                    <!-- Files sidebar (categories) -->
+                    <div class="files-sidebar">
+                        <div class="files-nav">
+                            <button class="files-nav-item active" data-category="all" onclick="showFilesCategory('all')">
+                                <span class="nav-icon">📁</span> All Files
+                            </button>
+                            <button class="files-nav-item" data-category="productions" onclick="showFilesCategory('productions')">
+                                <span class="nav-icon">📦</span> Productions
+                                <span class="file-count" id="productionsCount">0</span>
+                            </button>
+                            <button class="files-nav-item" data-category="provisions" onclick="showFilesCategory('provisions')">
+                                <span class="nav-icon">📋</span> Provisions
+                                <span class="file-count" id="provisionsCount">0</span>
+                            </button>
+                            <button class="files-nav-item" data-category="root" onclick="showFilesCategory('root')">
+                                <span class="nav-icon">📄</span> Plan Files
+                                <span class="file-count" id="rootCount">0</span>
+                            </button>
+                            <button class="files-nav-item" data-category="logs" onclick="showFilesCategory('logs')">
+                                <span class="nav-icon">📝</span> Logs
+                                <span class="file-count" id="logsCount">0</span>
+                            </button>
+                        </div>
+                        
+                        <!-- UserBench selector -->
+                        <div class="userbench-selector">
+                            <label>UserBench</label>
+                            <select id="userbenchSelect" onchange="selectUserBench(this.value)">
+                                <option value="">Select a run...</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Files content -->
+                    <div class="files-content" id="filesContent">
+                        <div class="files-placeholder" id="filesPlaceholder">
+                            <div class="empty-state">
+                                <div style="font-size: 3rem; margin-bottom: 16px;">📂</div>
+                                <div style="font-size: 1.1rem; margin-bottom: 8px;">No UserBench Selected</div>
+                                <div style="color: var(--text-dim);">Select a run from the dropdown or click "Files" on a run from the Runs tab.</div>
+                            </div>
+                        </div>
+                        
+                        <!-- File tree view -->
+                        <div class="files-tree hidden" id="filesTree">
+                            <div class="file-tree-header">
+                                <span id="currentCategory">All Files</span>
+                                <span class="file-path" id="currentPath">/</span>
+                            </div>
+                            <div class="file-list" id="fileList">
+                                <!-- Files will be rendered here -->
+                            </div>
+                        </div>
+                        
+                        <!-- File preview -->
+                        <div class="file-preview hidden" id="filePreview">
+                            <div class="preview-header">
+                                <span class="preview-filename" id="previewFilename">file.txt</span>
+                                <div class="preview-actions">
+                                    <button class="action-btn" onclick="downloadFile()">⬇ Download</button>
+                                    <button class="action-btn" onclick="closePreview()">✕</button>
+                                </div>
+                            </div>
+                            <div class="preview-content" id="previewContent">
+                                <!-- Content will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- File events stream -->
+                <div class="file-events-bar" id="fileEventsBar">
+                    <span class="events-label">📡 Live Updates</span>
+                    <span class="event-status" id="fileEventStatus">Disconnected</span>
+                    <div class="recent-events" id="recentFileEvents"></div>
+                </div>
+            </div>
+            
+            <!-- Tools Tab (React-powered Tools View) -->
+            <div class="tab-panel" id="toolsPanel">
+                <div id="reactTools" style="height: 100%; min-height: 0; overflow: auto;"></div>
+            </div>
+            
+            <!-- Inspect Tab (React-powered DB Inspector) -->
+            <div class="tab-panel" id="inspectPanel">
+                <div id="reactInspector" style="height: 100%; min-height: 0;">
+                    <div class="empty-state" id="inspectorPlaceholder" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">🔍</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 8px;">No Run Selected</div>
+                        <div style="color: var(--text-dim);">Click "Inspect" on a run from the Runs tab to view its database details.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Events Tab -->
+            <div class="tab-panel" id="eventsPanel">
+                <div class="content-header">
+                    <h2>Event Stream</h2>
+                    <div>
+                        <span id="eventCount" class="text-dim">0 events</span>
+                        <button class="action-btn" onclick="clearEvents()">Clear</button>
+                    </div>
+                </div>
+                <div class="content-body" style="padding: 0;">
+                    <div class="events-list" id="eventsList"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Deploy Modal -->
+    <div class="modal-overlay hidden" id="deployModal" style="display: none;">
+        <div class="modal" style="width: 550px;">
+            <div class="modal-header">
+                <h3>Deploy Plan</h3>
+                <button class="action-btn" onclick="hideDeployModal()">✕</button>
+            </div>
+            <div class="modal-body" style="padding: 0;">
+                <!-- Deploy Tabs -->
+                <div class="deploy-tabs">
+                    <div class="deploy-tab active" data-deploy-tab="upload" onclick="switchDeployTab('upload')">📦 Upload Zip</div>
+                    <div class="deploy-tab" data-deploy-tab="path" onclick="switchDeployTab('path')">📁 Local Path</div>
+                </div>
+                
+                <!-- Upload Tab -->
+                <div class="deploy-panel active" id="uploadPanel">
+                    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                        <div class="upload-icon">📤</div>
+                        <div class="upload-text">Drop plan zip file here</div>
+                        <div class="upload-hint">or click to browse</div>
+                        <input type="file" id="fileInput" accept=".zip" style="display: none;" onchange="handleFileSelect(event)">
+                    </div>
+                    <div class="upload-status hidden" id="uploadStatus">
+                        <div class="upload-file-name" id="uploadFileName"></div>
+                        <div class="upload-progress">
+                            <div class="upload-progress-bar" id="uploadProgressBar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Local Path Tab -->
+                <div class="deploy-panel" id="pathPanel">
+                    <div class="form-group" style="padding: 20px;">
+                        <label>Server-side Directory Path</label>
+                        <input type="text" id="deployPath" placeholder="C:\\path\\to\\plan or /path/to/plan">
+                        <p class="text-dim" style="font-size: 0.75rem; margin-top: 8px;">
+                            Enter the full path to a NormCode plan directory on the server.
+                            The directory should contain concept_repo.json, inference_repo.json, 
+                            or a manifest.json file.
+                        </p>
+                    </div>
+                    <div class="form-group" style="padding: 0 20px 20px;">
+                        <label>Plan ID (optional)</label>
+                        <input type="text" id="deployPlanId" placeholder="custom-plan-id (defaults to directory name)">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideDeployModal()">Cancel</button>
+                <button class="btn btn-primary" id="deployBtn" onclick="deployPlan()">Deploy</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Result Viewer Modal -->
+    <div class="modal-overlay" id="resultModal" style="display: none;">
+        <div class="modal result-modal">
+            <div class="modal-header">
+                <h3>📊 Run Result</h3>
+                <button class="close-btn" onclick="hideResultModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="result-meta" id="resultMeta">
+                    <!-- Run metadata -->
+                </div>
+                <div class="result-concepts" id="resultConcepts">
+                    <!-- Final concepts -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="exportResult()">📥 Export JSON</button>
+                <button class="btn btn-secondary" onclick="copyResult()">📋 Copy</button>
+                <button class="btn btn-primary" onclick="hideResultModal()">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Input Response Modal -->
+    <div class="modal-overlay" id="inputModal" style="display: none;">
+        <div class="modal input-modal">
+            <div class="modal-header">
+                <h3>📝 <span id="inputModalTitle">User Input Required</span></h3>
+                <button class="close-btn" onclick="hideInputModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-prompt" id="inputPrompt">
+                    <!-- Prompt text -->
+                </div>
+                
+                <!-- Simple Text Input -->
+                <div class="input-field" id="textInputField">
+                    <textarea id="textInputValue" rows="4" placeholder="Enter your response..."></textarea>
+                </div>
+                
+                <!-- Confirm Input -->
+                <div class="input-field hidden" id="confirmInputField">
+                    <div class="confirm-buttons">
+                        <button class="btn btn-primary" onclick="submitConfirm(true)">✓ Yes</button>
+                        <button class="btn btn-secondary" onclick="submitConfirm(false)">✗ No</button>
+                    </div>
+                </div>
+                
+                <!-- Select Input -->
+                <div class="input-field hidden" id="selectInputField">
+                    <div class="select-options" id="selectOptions">
+                        <!-- Options will be rendered here -->
+                    </div>
+                </div>
+                
+                <div class="input-meta">
+                    <span class="text-dim">Run: <span id="inputRunId">-</span></span>
+                    <span class="text-dim">Request: <span id="inputRequestId">-</span></span>
+                </div>
+            </div>
+            <div class="modal-footer" id="inputModalFooter">
+                <button class="btn btn-danger" onclick="cancelInput()">Cancel</button>
+                <button class="btn btn-primary" id="submitInputBtn" onclick="submitTextInput()">Submit</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/dist/run-inspector.js"></script>
+    <script src="/static/js/tools-panel.js"></script>
+
+    <!-- Server UI (modular) -->
+    <script src="/static/js/utils.js"></script>
+    <script src="/static/js/plans.js"></script>
+    <script src="/static/js/deploy.js"></script>
+    <script src="/static/js/runs.js"></script>
+    <script src="/static/js/events.js"></script>
+    <script src="/static/js/files.js"></script>
+    <script src="/static/js/inputs.js"></script>
+    <script src="/static/js/init.js"></script>
+</body>
+</html>
+

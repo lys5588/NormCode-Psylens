@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPT 生成器 | NormCode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --border: #2a2a3a;
+            --text-primary: #f0f0f5;
+            --text-secondary: #8888a0;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.3);
+            --success: #22c55e;
+            --error: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* Progress */
+        .progress-container {
+            display: none;
+        }
+
+        .progress-container.active {
+            display: block;
+        }
+
+        .progress-bar-wrapper {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #8b5cf6);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Events Log */
+        .events-log {
+            max-height: 300px;
+            overflow-y: auto;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+        }
+
+        .event {
+            padding: 4px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .event:last-child {
+            border-bottom: none;
+        }
+
+        .event-time {
+            color: var(--text-secondary);
+            margin-right: 8px;
+        }
+
+        .event-type {
+            font-weight: 500;
+        }
+
+        .event-type.started { color: var(--warning); }
+        .event-type.completed { color: var(--success); }
+        .event-type.failed { color: var(--error); }
+
+        /* Results */
+        .results-container {
+            display: none;
+        }
+
+        .results-container.active {
+            display: block;
+        }
+
+        .file-list {
+            list-style: none;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+
+        .file-name {
+            font-weight: 500;
+        }
+
+        .file-type {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .status-badge.pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .status-badge.running {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent);
+        }
+
+        .status-badge.completed {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .status-badge.failed {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+        }
+
+        /* Connection Status */
+        .connection-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--error);
+        }
+
+        .status-dot.connected {
+            background: var(--success);
+            box-shadow: 0 0 8px var(--success);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 20px 16px; }
+            .card { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="connection-status">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="connectionText">检查连接...</span>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>✨ PPT 生成器</h1>
+            <p class="subtitle">基于 NormCode 的智能演示文稿生成</p>
+        </header>
+
+        <!-- Configuration Card -->
+        <div class="card" id="configCard">
+            <h2 class="card-title">配置</h2>
+            
+            <div class="form-group">
+                <label for="topic">演示主题 *</label>
+                <input type="text" id="topic" placeholder="例如：人工智能基础入门" value="人工智能基础入门">
+            </div>
+
+            <div class="form-group">
+                <label for="audience">目标受众</label>
+                <input type="text" id="audience" placeholder="例如：技术初学者" value="技术初学者">
+            </div>
+
+            <div class="form-group">
+                <label for="length">幻灯片数量</label>
+                <input type="text" id="length" placeholder="例如：包括标题和问答在内的8张幻灯片" value="包括标题和问答在内的8张幻灯片">
+            </div>
+
+            <div class="form-group">
+                <label for="llm">AI 模型</label>
+                <select id="llm">
+                    <option value="qwen-plus">Qwen Plus (推荐)</option>
+                    <option value="qwen-turbo">Qwen Turbo (快速)</option>
+                    <option value="gpt-4o">GPT-4o</option>
+                    <option value="gpt-4o-mini">GPT-4o Mini</option>
+                </select>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" id="startBtn" onclick="startGeneration()">
+                    🚀 开始生成
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress Card -->
+        <div class="card progress-container" id="progressCard">
+            <h2 class="card-title">生成进度</h2>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <span class="status-badge running" id="statusBadge">
+                    <span class="loading">⟳</span> 运行中
+                </span>
+                <span id="runId" style="font-size: 0.85rem; color: var(--text-secondary);"></span>
+            </div>
+
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="progress-info">
+                <span id="progressText">0/0 推理</span>
+                <span id="currentInference">准备中...</span>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <label>事件日志</label>
+                <div class="events-log" id="eventsLog"></div>
+            </div>
+
+            <div class="btn-group" style="margin-top: 16px;">
+                <button class="btn btn-secondary" id="stopBtn" onclick="stopGeneration()">
+                    ⏹ 停止
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Card -->
+        <div class="card results-container" id="resultsCard">
+            <h2 class="card-title">生成结果</h2>
+            
+            <ul class="file-list" id="fileList"></ul>
+
+            <div class="btn-group" style="margin-top: 16px;">
+                <button class="btn btn-primary" onclick="openHTML()">
+                    🌐 查看网页版
+                </button>
+                <button class="btn btn-secondary" onclick="downloadPPTX()">
+                    📥 下载 PPTX
+                </button>
+                <button class="btn btn-secondary" onclick="resetForm()">
+                    🔄 新建
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentRunId = null;
+        let currentUserId = null;
+        let eventSource = null;
+        let outputFiles = [];
+
+        // Elements
+        const configCard = document.getElementById('configCard');
+        const progressCard = document.getElementById('progressCard');
+        const resultsCard = document.getElementById('resultsCard');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const currentInference = document.getElementById('currentInference');
+        const eventsLog = document.getElementById('eventsLog');
+        const statusBadge = document.getElementById('statusBadge');
+        const statusDot = document.getElementById('statusDot');
+        const connectionText = document.getElementById('connectionText');
+        const startBtn = document.getElementById('startBtn');
+        const runIdEl = document.getElementById('runId');
+        const fileList = document.getElementById('fileList');
+
+        // Check server connection
+        async function checkConnection() {
+            try {
+                const resp = await fetch('/health');
+                if (resp.ok) {
+                    statusDot.classList.add('connected');
+                    connectionText.textContent = '已连接';
+                    startBtn.disabled = false;
+                    return true;
+                }
+            } catch (e) {}
+            
+            statusDot.classList.remove('connected');
+            connectionText.textContent = '未连接';
+            startBtn.disabled = true;
+            return false;
+        }
+
+        // Start generation
+        async function startGeneration() {
+            const topic = document.getElementById('topic').value.trim();
+            const audience = document.getElementById('audience').value.trim();
+            const length = document.getElementById('length').value.trim();
+            const llm = document.getElementById('llm').value;
+
+            if (!topic) {
+                alert('请输入演示主题');
+                return;
+            }
+
+            currentUserId = `ppt_web_${Date.now()}`;
+
+            const payload = {
+                plan_id: 'ppt生成',
+                llm_model: llm,
+                user_id: currentUserId,
+                ground_inputs: {
+                    '{演示主题}': { data: [[topic]], axes: ['_none_axis'] },
+                    '{目标受众}': { data: [[audience || '通用受众']], axes: ['_none_axis'] },
+                    '{期望长度}': { data: [[length || '6张幻灯片']], axes: ['_none_axis'] },
+                }
+            };
+
+            try {
+                startBtn.disabled = true;
+                startBtn.innerHTML = '⟳ 启动中...';
+
+                const resp = await fetch('/api/runs', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!resp.ok) {
+                    const err = await resp.json();
+                    throw new Error(err.detail || '启动失败');
+                }
+
+                const data = await resp.json();
+                currentRunId = data.run_id;
+                runIdEl.textContent = `ID: ${currentRunId.substring(0, 8)}...`;
+
+                // Show progress card
+                configCard.style.display = 'none';
+                progressCard.classList.add('active');
+                eventsLog.innerHTML = '';
+
+                // Start event stream
+                startEventStream();
+
+            } catch (e) {
+                alert('启动失败: ' + e.message);
+                startBtn.disabled = false;
+                startBtn.innerHTML = '🚀 开始生成';
+            }
+        }
+
+        // Start SSE event stream
+        function startEventStream() {
+            if (eventSource) {
+                eventSource.close();
+            }
+
+            eventSource = new EventSource(`/api/runs/${currentRunId}/stream`);
+
+            eventSource.onmessage = (e) => {
+                try {
+                    const data = JSON.parse(e.data);
+                    handleEvent(e.type || data.event, data);
+                } catch {}
+            };
+
+            eventSource.addEventListener('inference:started', (e) => {
+                const data = JSON.parse(e.data);
+                handleEvent('inference:started', data);
+            });
+
+            eventSource.addEventListener('inference:completed', (e) => {
+                const data = JSON.parse(e.data);
+                handleEvent('inference:completed', data);
+            });
+
+            eventSource.addEventListener('run:completed', (e) => {
+                const data = JSON.parse(e.data);
+                handleEvent('run:completed', data);
+            });
+
+            eventSource.addEventListener('run:failed', (e) => {
+                const data = JSON.parse(e.data);
+                handleEvent('run:failed', data);
+            });
+
+            eventSource.addEventListener('progress', (e) => {
+                const data = JSON.parse(e.data);
+                handleEvent('progress', data);
+            });
+
+            eventSource.onerror = () => {
+                // Will auto-reconnect or poll status
+                setTimeout(pollStatus, 2000);
+            };
+        }
+
+        // Handle events
+        function handleEvent(type, data) {
+            const time = new Date().toLocaleTimeString();
+            
+            if (type === 'inference:started') {
+                const name = data.concept_name || '推理';
+                currentInference.textContent = name.substring(0, 30);
+                logEvent(time, 'started', `开始: ${name.substring(0, 40)}`);
+            }
+            else if (type === 'inference:completed') {
+                const idx = data.flow_index || '';
+                const dur = (data.duration || 0).toFixed(1);
+                logEvent(time, 'completed', `完成: ${idx} (${dur}s)`);
+            }
+            else if (type === 'progress') {
+                updateProgress(data.completed || 0, data.total || 0);
+            }
+            else if (type === 'run:completed') {
+                onRunCompleted();
+            }
+            else if (type === 'run:failed') {
+                onRunFailed(data.error || '未知错误');
+            }
+        }
+
+        function logEvent(time, type, message) {
+            const div = document.createElement('div');
+            div.className = 'event';
+            div.innerHTML = `
+                <span class="event-time">${time}</span>
+                <span class="event-type ${type}">${message}</span>
+            `;
+            eventsLog.appendChild(div);
+            eventsLog.scrollTop = eventsLog.scrollHeight;
+        }
+
+        function updateProgress(completed, total) {
+            const pct = total > 0 ? (completed / total * 100) : 0;
+            progressBar.style.width = `${pct}%`;
+            progressText.textContent = `${completed}/${total} 推理`;
+        }
+
+        // Poll status as fallback
+        async function pollStatus() {
+            if (!currentRunId) return;
+
+            try {
+                const resp = await fetch(`/api/runs/${currentRunId}`);
+                const data = await resp.json();
+
+                if (data.progress) {
+                    updateProgress(
+                        data.progress.completed_count || 0,
+                        data.progress.total_count || 0
+                    );
+                }
+
+                if (data.status === 'completed') {
+                    onRunCompleted();
+                } else if (data.status === 'failed') {
+                    onRunFailed(data.error || '未知错误');
+                } else if (data.status === 'running') {
+                    setTimeout(pollStatus, 2000);
+                }
+            } catch (e) {
+                setTimeout(pollStatus, 3000);
+            }
+        }
+
+        // Stop generation
+        async function stopGeneration() {
+            if (!currentRunId) return;
+
+            try {
+                await fetch(`/api/runs/${currentRunId}/stop`, { method: 'POST' });
+                if (eventSource) eventSource.close();
+                statusBadge.className = 'status-badge failed';
+                statusBadge.innerHTML = '⏹ 已停止';
+            } catch (e) {
+                console.error('Stop error:', e);
+            }
+        }
+
+        // Run completed
+        async function onRunCompleted() {
+            if (eventSource) eventSource.close();
+
+            statusBadge.className = 'status-badge completed';
+            statusBadge.innerHTML = '✓ 完成';
+            currentInference.textContent = '全部完成!';
+
+            // Get output files
+            try {
+                const resp = await fetch(`/api/userbenches/${currentUserId}/files?category=productions&recursive=true`);
+                outputFiles = await resp.json();
+                
+                // Show results
+                showResults();
+            } catch (e) {
+                console.error('Failed to get outputs:', e);
+            }
+        }
+
+        // Run failed
+        function onRunFailed(error) {
+            if (eventSource) eventSource.close();
+
+            statusBadge.className = 'status-badge failed';
+            statusBadge.innerHTML = '✗ 失败';
+            currentInference.textContent = error;
+            logEvent(new Date().toLocaleTimeString(), 'failed', error);
+        }
+
+        // Show results
+        function showResults() {
+            progressCard.classList.remove('active');
+            resultsCard.classList.add('active');
+
+            // Build file list
+            fileList.innerHTML = '';
+            
+            const outputDir = outputFiles.filter(f => f.path.includes('output/') && !f.is_dir);
+            
+            for (const file of outputDir) {
+                const ext = file.name.split('.').pop().toLowerCase();
+                const icons = {
+                    'html': '🌐',
+                    'pptx': '📊',
+                    'json': '📋',
+                    'pdf': '📄'
+                };
+                const icon = icons[ext] || '📁';
+                
+                const li = document.createElement('li');
+                li.className = 'file-item';
+                li.innerHTML = `
+                    <div class="file-info">
+                        <div class="file-icon">${icon}</div>
+                        <div>
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-type">${ext.toUpperCase()}</div>
+                        </div>
+                    </div>
+                    <a href="${file.url || `/api/userbenches/${currentUserId}/files/productions/${file.path}`}" 
+                       class="btn btn-secondary" target="_blank">
+                        查看
+                    </a>
+                `;
+                fileList.appendChild(li);
+            }
+
+            if (outputDir.length === 0) {
+                fileList.innerHTML = '<li style="color: var(--text-secondary); padding: 20px; text-align: center;">暂无输出文件</li>';
+            }
+        }
+
+        // Open HTML presentation
+        function openHTML() {
+            const htmlFile = outputFiles.find(f => f.name.endsWith('.html') && f.path.includes('output/'));
+            if (htmlFile) {
+                window.open(`/api/userbenches/${currentUserId}/files/productions/${htmlFile.path}`, '_blank');
+            } else {
+                alert('未找到 HTML 文件');
+            }
+        }
+
+        // Download PPTX
+        function downloadPPTX() {
+            const pptxFile = outputFiles.find(f => f.name.endsWith('.pptx'));
+            if (pptxFile) {
+                window.open(`/api/userbenches/${currentUserId}/files/productions/${pptxFile.path}`, '_blank');
+            } else {
+                alert('未找到 PPTX 文件');
+            }
+        }
+
+        // Reset form
+        function resetForm() {
+            currentRunId = null;
+            currentUserId = null;
+            outputFiles = [];
+            
+            resultsCard.classList.remove('active');
+            progressCard.classList.remove('active');
+            configCard.style.display = 'block';
+            
+            startBtn.disabled = false;
+            startBtn.innerHTML = '🚀 开始生成';
+            progressBar.style.width = '0%';
+            progressText.textContent = '0/0 推理';
+            currentInference.textContent = '准备中...';
+            statusBadge.className = 'status-badge running';
+            statusBadge.innerHTML = '<span class="loading">⟳</span> 运行中';
+        }
+
+        // Initialize
+        checkConnection();
+        setInterval(checkConnection, 30000);
+    </script>
+</body>
+</html>
+

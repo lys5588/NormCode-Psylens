@@ -1,0 +1,43 @@
+# NormCode Server Log Rotation Configuration
+#
+# Installation:
+#   sudo cp logrotate-normcode /etc/logrotate.d/normcode
+#
+# Test:
+#   sudo logrotate -d /etc/logrotate.d/normcode    # dry-run
+#   sudo logrotate -f /etc/logrotate.d/normcode    # force rotate
+
+# Application data logs (run execution logs)
+/home/ubuntu/apps/normcode/normcode-server/data/runs/*/logs/*.log {
+    daily
+    missingok
+    rotate 14
+    compress
+    delaycompress
+    notifempty
+    create 0644 ubuntu ubuntu
+    sharedscripts
+    maxsize 50M
+}
+
+# Nginx access/error logs for NormCode
+/var/log/nginx/normcode_access.log
+/var/log/nginx/normcode_error.log {
+    daily
+    missingok
+    rotate 30
+    compress
+    delaycompress
+    notifempty
+    create 0640 www-data adm
+    sharedscripts
+    postrotate
+        [ -f /var/run/nginx.pid ] && kill -USR1 $(cat /var/run/nginx.pid)
+    endscript
+}
+
+# Systemd journal for normcode is handled by journald, but you can
+# limit its size in /etc/systemd/journald.conf:
+#   SystemMaxUse=500M
+#   MaxRetentionSec=30day
+
