@@ -13,11 +13,10 @@
     // ---- Path helpers ----
 
     function getBasePath() {
-        const path = window.location.pathname;
-        if (path.includes('/docs/') || path.includes('/demo/')) {
-            return '../';
-        }
-        return '';
+        // Count directory depth and return the right number of '../'
+        const dir = window.location.pathname.replace(/\/[^/]*$/, ''); // strip filename
+        const depth = dir.split('/').filter(Boolean).length;           // count segments
+        return depth > 0 ? '../'.repeat(depth) : '';
     }
 
     function isHomePage() {

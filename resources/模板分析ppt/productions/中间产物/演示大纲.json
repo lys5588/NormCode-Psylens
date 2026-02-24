@@ -1,0 +1,80 @@
+{
+  "title": "序言智理科技：构建AI推理的可审计中间层",
+  "subtitle": "让大模型决策透明、可控、可验证",
+  "total_slides": 6,
+  "sections": [
+    {
+      "slide_type": "title",
+      "topic": "开场",
+      "content_hints": {
+        "main_title": "序言智理科技：构建AI推理的可审计中间层",
+        "subtitle": "让大模型决策透明、可控、可验证"
+      }
+    },
+    {
+      "slide_type": "content",
+      "topic": "问题与市场机遇",
+      "key_points_hint": "当前AI在高合规场景的信任危机与百亿级市场缺口",
+      "content_hints": {
+        "page_title": "为什么需要可审计推理？",
+        "blocks": [
+          "❌ 黑箱困境：金融、法律等关键领域面临AI决策不可解释、不可追溯、不可复现的合规风险",
+          "📈 市场窗口：大湾区AI治理政策加速落地，金融科技与法律科技市场规模超800亿元（据IDC 2024）",
+          "🔍 痛点具象：传统LLM对话=‘自动驾驶无行车记录仪’——NormCode即AI推理的‘飞行记录仪+交通管制系统’"
+        ]
+      }
+    },
+    {
+      "slide_type": "content",
+      "topic": "核心解决方案",
+      "key_points_hint": "NormCode框架三大技术支柱",
+      "content_hints": {
+        "page_title": "NormCode：可审计推理中间层",
+        "blocks": [
+          "🔹 结构化推理：将复杂AI决策拆解为可检查、可验证的多步骤逻辑流程",
+          "🔹 上下文隔离：显式分离任务指令、知识依据与推理约束，杜绝信息污染",
+          "🔹 全链路记录：完整捕获输入、中间状态、决策依据与输出，支持回溯与审计"
+        ]
+      }
+    },
+    {
+      "slide_type": "content",
+      "topic": "团队实力",
+      "key_points_hint": "跨学科、国际化、学术与工程并重的顶尖研发团队",
+      "content_hints": {
+        "page_title": "值得信赖的创始团队",
+        "blocks": [
+          "🌍 国际视野：成员来自牛津、剑桥、CMU、UCL、UCSD、中科院、深圳大学等10+顶尖机构",
+          "🔬 学术积淀：创始人及核心成员在NeurIPS、COLING、EMNLP发表AI治理与可解释推理论文20+篇",
+          "⚙️ 工程落地：兼具AI安全评估、大模型系统工程与政企合规项目交付经验"
+        ]
+      }
+    },
+    {
+      "slide_type": "content",
+      "topic": "商业模式",
+      "key_points_hint": "面向B端/政企的模块化集成方案，零模型替换",
+      "content_hints": {
+        "page_title": "清晰可持续的商业路径",
+        "blocks": [
+          "📦 模块化交付：开发者SDK（嵌入式）、IDE（可视化调试）、企业定制服务（合规适配）",
+          "⚡ 零模型替换：无缝集成现有大模型系统，72小时内完成POC验证",
+          "🎯 客户聚焦：优先切入金融风控、法律合规、国企智能决策三大高价值场景"
+        ]
+      }
+    },
+    {
+      "slide_type": "summary",
+      "topic": "愿景与行动号召",
+      "key_points_hint": "共建新一代AI基础设施，抢占治理赛道先机",
+      "content_hints": {
+        "page_title": "携手序言智理，共塑可信AI未来",
+        "summary_points": [
+          "📧 contact@xuyanzhili.tech | www.xuyanzhili.tech",
+          "🚀 诚邀联合开展大湾区金融合规试点，共享AI治理基础设施红利"
+        ]
+      }
+    }
+  ],
+  "narrative_flow": "开场 → 问题与市场机遇 → 核心解决方案 → 团队实力 → 商业模式 → 愿景与行动号召"
+}

@@ -1,0 +1,44 @@
+{
+  "index": 1,
+  "page_intent": "要点列表页",
+  "narrative_structure": "主从关系",
+  "best_for": [
+    "核心观点阐述",
+    "项目介绍",
+    "会议纪要",
+    "关键信息罗列"
+  ],
+  "substitutable_elements": [
+    {
+      "shape_index": 1,
+      "role": "页面标题",
+      "intent": "定义页面主题",
+      "content_type": "短语",
+      "constraints": {
+        "max_chars": 20,
+        "style_hint": "简洁有力"
+      },
+      "current_text": "幻灯片标题"
+    },
+    {
+      "shape_index": 2,
+      "role": "正文内容",
+      "intent": "详细阐述四个关键要点",
+      "belongs_to_block": 2,
+      "content_type": "段落/列表",
+      "constraints": {
+        "max_chars": 300,
+        "style_hint": "条理清晰，分点陈述"
+      },
+      "current_text": "要点一：核心内容描述\n要点二：支持性论述\n要点三：关键数据或案例\n要点四：总结性陈述"
+    }
+  ],
+  "fixed_elements": [
+    {
+      "shape_index": 0,
+      "type": "shape",
+      "reason": "页眉背景 - 设计元素，提供视觉层次"
+    }
+  ],
+  "usage_notes": "适合文字量适中的内容展示。顶部标题定义主题，下方列出4个关键要点。背景矩形保持不变，用户只需替换标题和正文文本。"
+}

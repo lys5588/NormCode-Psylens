@@ -1,0 +1,60 @@
+{
+  "index": 5,
+  "page_intent": "互动收尾页",
+  "narrative_structure": "主从关系（一个核心意图逐层展开）",
+  "best_for": [
+    "问答环节开场页",
+    "培训/汇报结尾的互动邀请页",
+    "客户沟通后的联络承接页",
+    "需要收集反馈或建立后续联系的场景"
+  ],
+  "substitutable_elements": [
+    {
+      "shape_index": 2,
+      "role": "页面标题",
+      "intent": "明确本页核心功能与场景定位",
+      "content_type": "短语",
+      "constraints": {
+        "max_chars": 15,
+        "style_hint": "简洁明确，体现互动性质"
+      },
+      "current_text": "问题与讨论"
+    },
+    {
+      "shape_index": 3,
+      "role": "参与引导",
+      "intent": "软化语气、降低心理门槛，鼓励观众主动参与",
+      "content_type": "句子",
+      "constraints": {
+        "max_chars": 30,
+        "style_hint": "亲切友好，具行动导向"
+      },
+      "current_text": "欢迎提出您的问题和想法"
+    },
+    {
+      "shape_index": 4,
+      "role": "行动出口",
+      "intent": "提供具体、可操作的后续联络方式，完成闭环",
+      "content_type": "短句",
+      "constraints": {
+        "max_chars": 40,
+        "style_hint": "包含联系方式类型和具体信息"
+      },
+      "current_text": "联系方式: email@example.com"
+    }
+  ],
+  "fixed_elements": [
+    {
+      "shape_index": 0,
+      "type": "shape",
+      "reason": "full_bleed_background - 模板视觉基础，非内容元素"
+    },
+    {
+      "shape_index": 1,
+      "type": "text",
+      "text": "❓",
+      "reason": "视觉钩子 - 设计性符号，用于触发注意力，非用户内容载体"
+    }
+  ],
+  "usage_notes": "该页本质是‘服务型页面’，四个文本元素构成完整用户动线：从感知（❓）到认知（问题与讨论）到意愿（欢迎提出...）到行动（联系方式）。用户只需替换三个文本块（标题、引导语、联系方式），背景和视觉符号保持原样以确保设计一致性。适合放在内容演示末尾，或作为独立问答环节的启动页。"
+}

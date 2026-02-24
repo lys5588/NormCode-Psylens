@@ -1,0 +1,48 @@
+{
+  "topic_depth": "high_level",
+  "audience_level": "intermediate",
+  "tone": "persuasive",
+  "key_themes": [
+    "主题1：核心价值主张——将AI黑箱转化为可审计、可追溯的透明推理链路",
+    "主题2：技术优势——NormCode框架的结构化推理与模块化集成能力",
+    "主题3：团队实力——顶尖高校背景与跨学科（AI+法律/伦理）研发能力",
+    "主题4：商业落地——聚焦金融、法律等高合规领域的B端服务"
+  ],
+  "content_priorities": {
+    "must_include": [
+      "当前大模型应用的痛点（不可控、不可解释）",
+      "NormCode解决方案的核心价值（可审计、可复现）",
+      "目标市场与商业场景（金融合规、法律审查）",
+      "核心团队背景与学术成就"
+    ],
+    "optional": [
+      "具体的推理算法实现细节",
+      "详细的竞品技术对比",
+      "具体的财务预测数据"
+    ]
+  },
+  "style_recommendations": {
+    "bullet_style": "action_verbs",
+    "data_usage": "moderate",
+    "visual_emphasis": "high"
+  },
+  "terminology_guidance": {
+    "define_terms": [
+      "NormCode 规范化推理框架",
+      "Agent 工作流中间层",
+      "显式上下文隔离"
+    ],
+    "assume_known": [
+      "AI",
+      "大模型 (LLM)",
+      "SDK",
+      "B端"
+    ]
+  },
+  "narrative_arc": {
+    "opening": "问题引入：当前大模型在关键业务场景中面临的'黑箱'与'不可控'挑战",
+    "body": "解决方案：NormCode如何通过结构化推理实现透明可控，以及顶尖团队如何保障落地",
+    "closing": "愿景呼吁：构建透明、可信的AI未来，邀请共同参与高合规领域的智能化升级"
+  },
+  "notes": "针对投资人受众，重点突出技术如何解决实际商业痛点（如合规风险），以及团队的高学历背景带来的技术壁垒。避免陷入过多的代码级技术细节，使用流程图或对比图展示'黑箱'到'白盒'的转变。"
+}

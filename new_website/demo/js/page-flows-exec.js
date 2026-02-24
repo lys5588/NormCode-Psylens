@@ -150,14 +150,21 @@
                 if (!pfTimelineMap[idx]) addTimelineItem(idx, idx, 'skipped', '');
                 else updateTimelineItem(idx, 'skipped', '');
             }
-            else if (type === 'inference:pending' || type === 'inference:restarted' || type === 'loop:progress') {
+            else if (type === 'inference:pending' || type === 'loop:progress') {
                 const idx = data.flow_index || '';
                 const iter = data.iteration || (pfLoop.iteration + 1);
                 pfLoop.current = idx;
                 pfLoop.iteration = iter;
                 updateTimelineMeta(idx, `${t('loopIter')} ${iter}`);
             }
-            else if (type === 'inference:in_progress' || type === 'inference:retry') {
+            else if (type === 'inference:restarted' || type === 'inference:retry') {
+                const idx     = data.flow_index || '';
+                const attempt = data.attempt || data.retry_count || '';
+                const meta    = attempt ? `#${attempt}` : '';
+                if (!pfTimelineMap[idx]) addTimelineItem(idx, idx, 'retry', meta);
+                else updateTimelineItem(idx, 'retry', meta);
+            }
+            else if (type === 'inference:in_progress') {
                 const idx = data.flow_index || '';
                 if (!pfTimelineMap[idx]) addTimelineItem(idx, idx, 'running', '');
             }
@@ -204,7 +211,7 @@
         // ---- Timeline helpers ----
         function addTimelineItem(id, name, status, meta) {
             const timeline = document.getElementById('pfTimeline');
-            const icons = { running: '&#9654;', done: '&#10003;', failed: '&#10007;', skipped: '&#8709;' };
+            const icons = { running: '&#9654;', done: '&#10003;', failed: '&#10007;', skipped: '&#8709;', retry: '&#8635;' };
             const div = document.createElement('div');
             div.className = `pf-tl-item ${status}`;
             div.dataset.id = id;
@@ -221,7 +228,7 @@
         function updateTimelineItem(id, status, meta) {
             const div = pfTimelineMap[id];
             if (!div) return;
-            const icons = { running: '&#9654;', done: '&#10003;', failed: '&#10007;', skipped: '&#8709;' };
+            const icons = { running: '&#9654;', done: '&#10003;', failed: '&#10007;', skipped: '&#8709;', retry: '&#8635;' };
             div.className = `pf-tl-item ${status}`;
             div.querySelector('.pf-tl-icon').innerHTML = icons[status] || '';
             if (meta !== undefined) div.querySelector('.pf-tl-meta').textContent = meta;

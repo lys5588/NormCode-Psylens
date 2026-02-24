@@ -1,0 +1,19 @@
+{
+  "id": "c1cc3210",
+  "name": "\u6a21\u677f\u751f\u6210ppt_v1",
+  "description": null,
+  "created_at": "2026-02-03T15:58:39.193021",
+  "updated_at": "2026-02-07T21:45:50.021712",
+  "repositories": {
+    "concepts": "repos\\concept_repo.json",
+    "inferences": "repos\\inference_repo.json",
+    "inputs": "inputs.json"
+  },
+  "execution": {
+    "max_cycles": 400,
+    "db_path": "orchestration.db",
+    "agent_config": null
+  },
+  "breakpoints": [],
+  "ui_preferences": {}
+}

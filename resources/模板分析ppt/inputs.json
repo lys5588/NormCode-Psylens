@@ -1,0 +1,88 @@
+{
+  "_comment": "模板分析PPT生成器的输入 (v2 - 自动大纲生成)",
+  "_flow": "内容分析 → 自动生成大纲 → 模板匹配 → 内容生成 → 演示文稿填充",
+  "_note": "输入目录和输出目录使用相对路径，由 file_tool 解析",
+  "_description": "该工作流会：1)加载内容/风格参考 2)分析演示需求 3)提取模板页面内容 4)分析每页结构和意图 5)自动生成演示大纲（无需输入意向大纲）6)生成模板计划 7)生成对齐大纲 8)生成页面内容（草稿+充实）9)填充到演示文稿",
+  
+  "{输入目录}": {
+    "_description": "输入文件的基础目录（相对路径）",
+    "_type": "literal<$% str>",
+    "_note": "模板、内容参考、风格参考的相对路径都基于此目录，由 file_tool 解析为绝对路径",
+    "data": [["provisions/inputs"]],
+    "axes": ["_none_axis"]
+  },
+  
+  "{输出目录}": {
+    "_description": "输出文件目录（相对路径）",
+    "_type": "literal<$% str>",
+    "_note": "所有生成的文件（中间产物、页面分析、幻灯片、最终演示文稿）都保存在此目录下，由 file_tool 解析为绝对路径",
+    "data": [["productions"]],
+    "axes": ["_none_axis"]
+  },
+  
+  "{模板相对路径}": {
+    "_description": "PPT模板文件的相对路径（相对于输入目录）",
+    "_type": "literal<$% str>",
+    "_note": "模板PPTX中的每一页幻灯片都会被分析，系统会识别每页的用途和可替换元素",
+    "_available_templates": ["模板/教育学术讨论.pptx", "模板/默认演示模板.pptx"],
+    "data": [["模板/默认演示模板.pptx"]],
+    "axes": ["_none_axis"]
+  },
+
+  "{演示主题}": {
+    "_description": "演示文稿的核心主题",
+    "_type": "literal<$% str>",
+    "_note": "这是自动生成大纲的核心输入，描述演示文稿要讲述的主题",
+    "_example": "序言智理科技公司介绍",
+    "data": [["序言智理科技公司介绍"]],
+    "axes": ["_none_axis"]
+  },
+  
+  "{目标受众}": {
+    "_description": "演示文稿的目标受众",
+    "_type": "literal<$% str>",
+    "_note": "影响内容深度、专业程度和语言风格",
+    "_example": "潜在投资人和合作伙伴",
+    "data": [["潜在投资人和合作伙伴"]],
+    "axes": ["_none_axis"]
+  },
+  
+  "{期望长度}": {
+    "_description": "幻灯片数量或时长",
+    "_type": "literal<$% str>",
+    "_note": "指导自动生成大纲时的幻灯片数量规划",
+    "_example": "6张幻灯片",
+    "data": [["6张幻灯片"]],
+    "axes": ["_none_axis"]
+  },
+
+  "[内容参考元数据]": {
+    "_description": "提供内容信息的领域/主题材料的元数据",
+    "_type": "list[dict]",
+    "_note": "相对路径（相对于输入目录），用于为页面内容提供真实素材",
+    "_format": {"name": "材料名称", "path": "相对路径", "type": "类型"},
+    "_available_content": [
+      {"name": "公司介绍", "path": "内容/公司介绍.md", "type": "company_info"}
+    ],
+    "data": [[
+      {"name": "公司介绍", "path": "内容/公司介绍.md", "type": "company_info"}
+    ]],
+    "axes": ["内容参考"]
+  },
+  
+  "[风格参考元数据]": {
+    "_description": "写作风格和受众适应指南的元数据",
+    "_type": "list[dict]",
+    "_note": "相对路径（相对于输入目录），用于指导LLM生成内容的风格和调整受众适应策略",
+    "_format": {"name": "指南名称", "path": "相对路径", "type": "类型", "for": "用途"},
+    "_available_styles": [
+      {"name": "内容风格指南", "path": "风格/内容风格指南.md", "type": "guide", "for": "内容写作风格"},
+      {"name": "受众适应指南", "path": "风格/受众适应指南.md", "type": "guide", "for": "受众适应策略"}
+    ],
+    "data": [[
+      {"name": "内容风格指南", "path": "风格/内容风格指南.md", "type": "guide", "for": "内容写作风格"},
+      {"name": "受众适应指南", "path": "风格/受众适应指南.md", "type": "guide", "for": "受众适应策略"}
+    ]],
+    "axes": ["风格参考"]
+  }
+}

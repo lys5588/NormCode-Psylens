@@ -1,0 +1,2576 @@
+[
+  {
+    "id": "c-",
+    "concept_name": "{模板概览}",
+    "type": "{}",
+    "flow_indices": [
+      "1"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": true,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, final_presentation_path: str, overview_path: str)",
+    "natural_name": "模板概览"
+  },
+  {
+    "id": "fc-ppt",
+    "concept_name": "::(完成模板分析，自动生成演示大纲，输出最终PPT)",
+    "type": "({})",
+    "flow_indices": [
+      "1.1"
+    ],
+    "description": "完成模板分析，自动生成演示大纲，输出最终PPT",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{prompt_location}f9d(provisions/prompts/完成报告.md)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "完成模板分析，自动生成演示大纲，输出最终PPT"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{模板路径}",
+    "type": "{}",
+    "flow_indices": [
+      "1.10",
+      "1.17.2",
+      "1.29.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "模板路径"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(组合完整模板路径)",
+    "type": "({})",
+    "flow_indices": [
+      "1.10.1"
+    ],
+    "description": "组合完整模板路径",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}004(provisions/scripts/组合路径.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "组合完整模板路径"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{输入目录}",
+    "type": "{}",
+    "flow_indices": [
+      "1.10.2",
+      "1.11.1.2.3",
+      "1.13.1.2.3",
+      "1.2"
+    ],
+    "description": null,
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "输入目录"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{模板相对路径}",
+    "type": "{}",
+    "flow_indices": [
+      "1.10.3",
+      "1.4"
+    ],
+    "description": null,
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "模板相对路径"
+  },
+  {
+    "id": "c-",
+    "concept_name": "[内容参考]",
+    "type": "[]",
+    "flow_indices": [
+      "1.11",
+      "1.12.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "内容参考",
+    "reference_axis_names": [
+      "内容参考"
+    ],
+    "reference_element_type": "dict(name: str, path: str, type: str, content: str)",
+    "natural_name": "内容参考"
+  },
+  {
+    "id": "fc-1",
+    "concept_name": "*. %>([内容参考元数据]) %<({加载的内容}) %:({当前内容元数据}) %@(1)",
+    "type": "({})",
+    "flow_indices": [
+      "1.11.1"
+    ],
+    "description": "*. %>([内容参考元数据]) %<({加载的内容}) %:({当前内容元数据}) %@(1)",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "*. %>([内容参考元数据]) %<({加载的内容}) %:({当前内容元数据}) %@(1)"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "$. %>({加载的内容})",
+    "type": "({})",
+    "flow_indices": [
+      "1.11.1.1"
+    ],
+    "description": "$. %>({加载的内容})",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$. %>({加载的内容})"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{加载的内容}",
+    "type": "{}",
+    "flow_indices": [
+      "1.11.1.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(name: str, path: str, type: str, content: str)",
+    "natural_name": "加载的内容"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(从文件路径加载内容)",
+    "type": "({})",
+    "flow_indices": [
+      "1.11.1.2.1"
+    ],
+    "description": "从文件路径加载内容",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}b28(provisions/scripts/加载参考内容.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "从文件路径加载内容"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{当前内容元数据}",
+    "type": "{}",
+    "flow_indices": [
+      "1.11.1.2.2",
+      "1.11.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "内容参考",
+    "reference_axis_names": [
+      "内容参考"
+    ],
+    "reference_element_type": "dict",
+    "natural_name": "当前内容元数据"
+  },
+  {
+    "id": "c-",
+    "concept_name": "[内容参考元数据]",
+    "type": "[]",
+    "flow_indices": [
+      "1.11.2",
+      "1.8"
+    ],
+    "description": null,
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "内容参考",
+    "reference_axis_names": [
+      "内容参考"
+    ],
+    "reference_element_type": "dict(name: str, path: str, type: str)",
+    "natural_name": "内容参考元数据"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{所有内容参考}",
+    "type": "{}",
+    "flow_indices": [
+      "1.12",
+      "1.15.5",
+      "1.23.6",
+      "1.27.5",
+      "1.31.1.6.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "list[dict]",
+    "natural_name": "所有内容参考"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "&[#] %>([内容参考]) %-[[内容参考]]",
+    "type": "({})",
+    "flow_indices": [
+      "1.12.1"
+    ],
+    "description": "&[#] %>([内容参考]) %-[[内容参考]]",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "&[#] %>([内容参考]) %-[[内容参考]]"
+  },
+  {
+    "id": "c-",
+    "concept_name": "[风格参考]",
+    "type": "[]",
+    "flow_indices": [
+      "1.13",
+      "1.14.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "风格参考",
+    "reference_axis_names": [
+      "风格参考"
+    ],
+    "reference_element_type": "dict(name: str, path: str, type: str, for: str, content: str)",
+    "natural_name": "风格参考"
+  },
+  {
+    "id": "fc-1",
+    "concept_name": "*. %>([风格参考元数据]) %<({加载的风格}) %:({当前风格元数据}) %@(1)",
+    "type": "({})",
+    "flow_indices": [
+      "1.13.1"
+    ],
+    "description": "*. %>([风格参考元数据]) %<({加载的风格}) %:({当前风格元数据}) %@(1)",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "*. %>([风格参考元数据]) %<({加载的风格}) %:({当前风格元数据}) %@(1)"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "$. %>({加载的风格})",
+    "type": "({})",
+    "flow_indices": [
+      "1.13.1.1"
+    ],
+    "description": "$. %>({加载的风格})",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$. %>({加载的风格})"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{加载的风格}",
+    "type": "{}",
+    "flow_indices": [
+      "1.13.1.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(name: str, path: str, type: str, for: str, content: str)",
+    "natural_name": "加载的风格"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(从文件路径加载风格)",
+    "type": "({})",
+    "flow_indices": [
+      "1.13.1.2.1"
+    ],
+    "description": "从文件路径加载风格",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}7be(provisions/scripts/加载参考内容.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "从文件路径加载风格"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{当前风格元数据}",
+    "type": "{}",
+    "flow_indices": [
+      "1.13.1.2.2",
+      "1.13.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "风格参考",
+    "reference_axis_names": [
+      "风格参考"
+    ],
+    "reference_element_type": "dict",
+    "natural_name": "当前风格元数据"
+  },
+  {
+    "id": "c-",
+    "concept_name": "[风格参考元数据]",
+    "type": "[]",
+    "flow_indices": [
+      "1.13.2",
+      "1.9"
+    ],
+    "description": null,
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "风格参考",
+    "reference_axis_names": [
+      "风格参考"
+    ],
+    "reference_element_type": "dict(name: str, path: str, type: str, for: str)",
+    "natural_name": "风格参考元数据"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{所有风格参考}",
+    "type": "{}",
+    "flow_indices": [
+      "1.14",
+      "1.15.6",
+      "1.31.1.6.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "list[dict]",
+    "natural_name": "所有风格参考"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "&[#] %>([风格参考]) %-[[风格参考]]",
+    "type": "({})",
+    "flow_indices": [
+      "1.14.1"
+    ],
+    "description": "&[#] %>([风格参考]) %-[[风格参考]]",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "&[#] %>([风格参考]) %-[[风格参考]]"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{需求分析}",
+    "type": "{}",
+    "flow_indices": [
+      "1.15",
+      "1.16.2",
+      "1.23.5",
+      "1.25.4",
+      "1.27.6",
+      "1.35.5"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(topic_depth: str, audience_level: str, tone: str, key_themes: list, content_priorities: dict, style_recommendations: dict, notes: str)",
+    "natural_name": "需求分析"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(分析演示文稿需求：主题深度、受众水平、语调、关键主题)",
+    "type": "({})",
+    "flow_indices": [
+      "1.15.1"
+    ],
+    "description": "分析演示文稿需求：主题深度、受众水平、语调、关键主题",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{prompt_location}47a(provisions/prompts/分析演示需求.md)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "分析演示文稿需求：主题深度、受众水平、语调、关键主题"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{演示主题}",
+    "type": "{}",
+    "flow_indices": [
+      "1.15.2",
+      "1.23.2",
+      "1.5"
+    ],
+    "description": null,
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "演示主题"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{目标受众}",
+    "type": "{}",
+    "flow_indices": [
+      "1.15.3",
+      "1.23.3",
+      "1.6"
+    ],
+    "description": null,
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "目标受众"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{期望长度}",
+    "type": "{}",
+    "flow_indices": [
+      "1.15.4",
+      "1.23.4",
+      "1.7"
+    ],
+    "description": null,
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "期望长度"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{已保存的需求分析}",
+    "type": "{}",
+    "flow_indices": [
+      "1.16"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, path: str)",
+    "natural_name": "已保存的需求分析"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(将需求分析保存到输出目录)",
+    "type": "({})",
+    "flow_indices": [
+      "1.16.1"
+    ],
+    "description": "将需求分析保存到输出目录",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}744(provisions/scripts/保存JSON.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将需求分析保存到输出目录"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{输出目录}",
+    "type": "{}",
+    "flow_indices": [
+      "1.16.3",
+      "1.18.3",
+      "1.20.1.6.3",
+      "1.22.3",
+      "1.24.3",
+      "1.26.3",
+      "1.28.3",
+      "1.29.4.2",
+      "1.3",
+      "1.31.1.2.2",
+      "1.31.1.8.3",
+      "1.33.4.2",
+      "1.34.3.2"
+    ],
+    "description": null,
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "输出目录"
+  },
+  {
+    "id": "c-json",
+    "concept_name": "{相对路径：中间产物/需求分析.json}",
+    "type": "{}",
+    "flow_indices": [
+      "1.16.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "相对路径：中间产物/需求分析.json"
+  },
+  {
+    "id": "fc-json",
+    "concept_name": "$% %>([%(\"中间产物/需求分析.json\")])",
+    "type": "({})",
+    "flow_indices": [
+      "1.16.4.1"
+    ],
+    "description": "$% %>([%(\"中间产物/需求分析.json\")])",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$% %>([%(\"中间产物/需求分析.json\")])"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{模板原始数据}",
+    "type": "{}",
+    "flow_indices": [
+      "1.17",
+      "1.18.2",
+      "1.19.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, template_path: str, template_info: dict, pages: list)",
+    "natural_name": "模板原始数据"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(提取模板所有页面内容)",
+    "type": "({})",
+    "flow_indices": [
+      "1.17.1"
+    ],
+    "description": "提取模板所有页面内容",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}511(provisions/scripts/提取模板内容.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "提取模板所有页面内容"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{已保存的模板原始数据}",
+    "type": "{}",
+    "flow_indices": [
+      "1.18"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, path: str)",
+    "natural_name": "已保存的模板原始数据"
+  },
+  {
+    "id": "fc-json",
+    "concept_name": "::(将模板原始数据保存为JSON)",
+    "type": "({})",
+    "flow_indices": [
+      "1.18.1"
+    ],
+    "description": "将模板原始数据保存为JSON",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}a51(provisions/scripts/保存JSON.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将模板原始数据保存为JSON"
+  },
+  {
+    "id": "c-json",
+    "concept_name": "{相对路径：模板原始数据.json}",
+    "type": "{}",
+    "flow_indices": [
+      "1.18.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "相对路径：模板原始数据.json"
+  },
+  {
+    "id": "fc-json",
+    "concept_name": "$% %>([%(\"中间产物/模板原始数据.json\")])",
+    "type": "({})",
+    "flow_indices": [
+      "1.18.4.1"
+    ],
+    "description": "$% %>([%(\"中间产物/模板原始数据.json\")])",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$% %>([%(\"中间产物/模板原始数据.json\")])"
+  },
+  {
+    "id": "c-",
+    "concept_name": "[页面列表]",
+    "type": "[]",
+    "flow_indices": [
+      "1.19",
+      "1.20.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "页面",
+    "reference_axis_names": [
+      "页面"
+    ],
+    "reference_element_type": "dict(index: int, layout_name: str, shapes: list, stats: dict)",
+    "natural_name": "页面列表"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(从模板原始数据中提取页面列表)",
+    "type": "({})",
+    "flow_indices": [
+      "1.19.1"
+    ],
+    "description": "从模板原始数据中提取页面列表",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}450(provisions/scripts/提取页面列表.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "从模板原始数据中提取页面列表"
+  },
+  {
+    "id": "c-",
+    "concept_name": "[所有单页总结]",
+    "type": "[]",
+    "flow_indices": [
+      "1.20",
+      "1.21.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "页面",
+    "reference_axis_names": [
+      "页面"
+    ],
+    "reference_element_type": "dict(index: int, page_type: str, purpose: str, text_slots_count: int, suitable_for: list)",
+    "natural_name": "所有单页总结"
+  },
+  {
+    "id": "fc-1",
+    "concept_name": "*. %>([页面列表]) %<({单页总结}) %:({当前页面}) %@(1)",
+    "type": "({})",
+    "flow_indices": [
+      "1.20.1"
+    ],
+    "description": "*. %>([页面列表]) %<({单页总结}) %:({当前页面}) %@(1)",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "*. %>([页面列表]) %<({单页总结}) %:({当前页面}) %@(1)"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "$. %>({单页总结})",
+    "type": "({})",
+    "flow_indices": [
+      "1.20.1.1"
+    ],
+    "description": "$. %>({单页总结})",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$. %>({单页总结})"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{结构特征}",
+    "type": "{}",
+    "flow_indices": [
+      "1.20.1.2",
+      "1.20.1.3.3",
+      "1.20.1.4.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(page_index: int, text_count: int, has_numbering: bool, layout_hint: str)",
+    "natural_name": "结构特征"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(识别页面的基础结构特征)",
+    "type": "({})",
+    "flow_indices": [
+      "1.20.1.2.1"
+    ],
+    "description": "识别页面的基础结构特征",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}9c4(provisions/scripts/提取结构特征.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "识别页面的基础结构特征"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{当前页面}",
+    "type": "{}",
+    "flow_indices": [
+      "1.20.1.2.2",
+      "1.20.1.3.2",
+      "1.20.1.4.2",
+      "1.20.1.6.4.2",
+      "1.20.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "页面",
+    "reference_axis_names": [
+      "页面"
+    ],
+    "reference_element_type": "dict",
+    "natural_name": "当前页面"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{页面意图}",
+    "type": "{}",
+    "flow_indices": [
+      "1.20.1.3",
+      "1.20.1.4.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(page_intent: dict, best_for: list, content_blocks: list, standalone_elements: list)",
+    "natural_name": "页面意图"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(理解这一页想表达什么)",
+    "type": "({})",
+    "flow_indices": [
+      "1.20.1.3.1"
+    ],
+    "description": "理解这一页想表达什么",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{prompt_location}3ab(provisions/prompts/理解页面意图.md)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "理解这一页想表达什么"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{页面分析}",
+    "type": "{}",
+    "flow_indices": [
+      "1.20.1.4",
+      "1.20.1.5.2",
+      "1.20.1.6.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(index: int, page_intent: str, substitutable_elements: list, fixed_elements: list, usage_notes: str)",
+    "natural_name": "页面分析"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(基于意图判断每个元素的可替换性)",
+    "type": "({})",
+    "flow_indices": [
+      "1.20.1.4.1"
+    ],
+    "description": "基于意图判断每个元素的可替换性",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{prompt_location}165(provisions/prompts/判断可替换性.md)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "基于意图判断每个元素的可替换性"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{单页总结}",
+    "type": "{}",
+    "flow_indices": [
+      "1.20.1.5"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(index: int, page_type: str, purpose: str, text_slots_count: int, suitable_for: list, usage_notes: str)",
+    "natural_name": "单页总结"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(从页面分析中提取简化总结)",
+    "type": "({})",
+    "flow_indices": [
+      "1.20.1.5.1"
+    ],
+    "description": "从页面分析中提取简化总结",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}9e6(provisions/scripts/提取单页总结.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "从页面分析中提取简化总结"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{已保存的页面分析}",
+    "type": "{}",
+    "flow_indices": [
+      "1.20.1.6"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, path: str)",
+    "natural_name": "已保存的页面分析"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(将页面分析保存到输出目录)",
+    "type": "({})",
+    "flow_indices": [
+      "1.20.1.6.1"
+    ],
+    "description": "将页面分析保存到输出目录",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}99c(provisions/scripts/保存JSON.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将页面分析保存到输出目录"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{页面分析相对路径}",
+    "type": "{}",
+    "flow_indices": [
+      "1.20.1.6.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "页面分析相对路径"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(构造当前页面的保存路径)",
+    "type": "({})",
+    "flow_indices": [
+      "1.20.1.6.4.1"
+    ],
+    "description": "构造当前页面的保存路径",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}374(provisions/scripts/构造页面分析路径.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "构造当前页面的保存路径"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{简化概览}",
+    "type": "{}",
+    "flow_indices": [
+      "1.21",
+      "1.22.2",
+      "1.23.7",
+      "1.25.3",
+      "1.27.4",
+      "1.35.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "list[dict]",
+    "natural_name": "简化概览"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "&[#] %>([所有单页总结]) %-[[页面]]",
+    "type": "({})",
+    "flow_indices": [
+      "1.21.1"
+    ],
+    "description": "&[#] %>([所有单页总结]) %-[[页面]]",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "&[#] %>([所有单页总结]) %-[[页面]]"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{已保存的简化概览}",
+    "type": "{}",
+    "flow_indices": [
+      "1.22"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, path: str)",
+    "natural_name": "已保存的简化概览"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(将简化概览保存到输出目录)",
+    "type": "({})",
+    "flow_indices": [
+      "1.22.1"
+    ],
+    "description": "将简化概览保存到输出目录",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}7ab(provisions/scripts/保存JSON.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将简化概览保存到输出目录"
+  },
+  {
+    "id": "c-json",
+    "concept_name": "{相对路径：简化概览.json}",
+    "type": "{}",
+    "flow_indices": [
+      "1.22.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "相对路径：简化概览.json"
+  },
+  {
+    "id": "fc-json",
+    "concept_name": "$% %>([%(\"中间产物/简化概览.json\")])",
+    "type": "({})",
+    "flow_indices": [
+      "1.22.4.1"
+    ],
+    "description": "$% %>([%(\"中间产物/简化概览.json\")])",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$% %>([%(\"中间产物/简化概览.json\")])"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{演示大纲}",
+    "type": "{}",
+    "flow_indices": [
+      "1.23",
+      "1.24.2",
+      "1.25.2",
+      "1.27.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(title: str, subtitle: str, total_slides: int, sections: list, narrative_flow: str)",
+    "natural_name": "演示大纲"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(基于分析结果自动生成演示大纲)",
+    "type": "({})",
+    "flow_indices": [
+      "1.23.1"
+    ],
+    "description": "基于分析结果自动生成演示大纲",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{prompt_location}297(provisions/prompts/生成演示大纲.md)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "基于分析结果自动生成演示大纲"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{已保存的演示大纲}",
+    "type": "{}",
+    "flow_indices": [
+      "1.24"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, path: str)",
+    "natural_name": "已保存的演示大纲"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(将演示大纲保存到输出目录)",
+    "type": "({})",
+    "flow_indices": [
+      "1.24.1"
+    ],
+    "description": "将演示大纲保存到输出目录",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}cdf(provisions/scripts/保存JSON.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将演示大纲保存到输出目录"
+  },
+  {
+    "id": "c-json",
+    "concept_name": "{相对路径：中间产物/演示大纲.json}",
+    "type": "{}",
+    "flow_indices": [
+      "1.24.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "相对路径：中间产物/演示大纲.json"
+  },
+  {
+    "id": "fc-json",
+    "concept_name": "$% %>([%(\"中间产物/演示大纲.json\")])",
+    "type": "({})",
+    "flow_indices": [
+      "1.24.4.1"
+    ],
+    "description": "$% %>([%(\"中间产物/演示大纲.json\")])",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$% %>([%(\"中间产物/演示大纲.json\")])"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{模板计划}",
+    "type": "{}",
+    "flow_indices": [
+      "1.25",
+      "1.26.2",
+      "1.27.3",
+      "1.29.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(plan: list[int], mapping: list[dict], summary: dict)",
+    "natural_name": "模板计划"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(根据演示大纲和简化概览生成模板计划)",
+    "type": "({})",
+    "flow_indices": [
+      "1.25.1"
+    ],
+    "description": "根据演示大纲和简化概览生成模板计划",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{prompt_location}912(provisions/prompts/生成模板计划.md)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "根据演示大纲和简化概览生成模板计划"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{已保存的模板计划}",
+    "type": "{}",
+    "flow_indices": [
+      "1.26"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, path: str)",
+    "natural_name": "已保存的模板计划"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(将模板计划保存到输出目录)",
+    "type": "({})",
+    "flow_indices": [
+      "1.26.1"
+    ],
+    "description": "将模板计划保存到输出目录",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}bbf(provisions/scripts/保存JSON.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将模板计划保存到输出目录"
+  },
+  {
+    "id": "c-json",
+    "concept_name": "{相对路径：中间产物/模板计划.json}",
+    "type": "{}",
+    "flow_indices": [
+      "1.26.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "相对路径：中间产物/模板计划.json"
+  },
+  {
+    "id": "fc-json",
+    "concept_name": "$% %>([%(\"中间产物/模板计划.json\")])",
+    "type": "({})",
+    "flow_indices": [
+      "1.26.4.1"
+    ],
+    "description": "$% %>([%(\"中间产物/模板计划.json\")])",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$% %>([%(\"中间产物/模板计划.json\")])"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{对齐大纲}",
+    "type": "{}",
+    "flow_indices": [
+      "1.27",
+      "1.28.2",
+      "1.30.2",
+      "1.35.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(total_slides: int, alignment_notes: str, sections: list[dict])",
+    "natural_name": "对齐大纲"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(将演示大纲与模板计划对齐，生成详细内容计划)",
+    "type": "({})",
+    "flow_indices": [
+      "1.27.1"
+    ],
+    "description": "将演示大纲与模板计划对齐，生成详细内容计划",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{prompt_location}fa2(provisions/prompts/生成对齐大纲.md)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将演示大纲与模板计划对齐，生成详细内容计划"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{已保存的对齐大纲}",
+    "type": "{}",
+    "flow_indices": [
+      "1.28"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, path: str)",
+    "natural_name": "已保存的对齐大纲"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(将对齐大纲保存到输出目录)",
+    "type": "({})",
+    "flow_indices": [
+      "1.28.1"
+    ],
+    "description": "将对齐大纲保存到输出目录",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}696(provisions/scripts/保存JSON.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将对齐大纲保存到输出目录"
+  },
+  {
+    "id": "c-json",
+    "concept_name": "{相对路径：中间产物/对齐大纲.json}",
+    "type": "{}",
+    "flow_indices": [
+      "1.28.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "相对路径：中间产物/对齐大纲.json"
+  },
+  {
+    "id": "fc-json",
+    "concept_name": "$% %>([%(\"中间产物/对齐大纲.json\")])",
+    "type": "({})",
+    "flow_indices": [
+      "1.28.4.1"
+    ],
+    "description": "$% %>([%(\"中间产物/对齐大纲.json\")])",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$% %>([%(\"中间产物/对齐大纲.json\")])"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{基础演示文稿}",
+    "type": "{}",
+    "flow_indices": [
+      "1.29",
+      "1.33.2.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, output_path: str, slides_count: int)",
+    "natural_name": "基础演示文稿"
+  },
+  {
+    "id": "fc-pptx",
+    "concept_name": "::(根据模板计划生成基础PPTX)",
+    "type": "({})",
+    "flow_indices": [
+      "1.29.1"
+    ],
+    "description": "根据模板计划生成基础PPTX",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}a1e(provisions/scripts/应用模板计划.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "根据模板计划生成基础PPTX"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{基础演示文稿输出路径}",
+    "type": "{}",
+    "flow_indices": [
+      "1.29.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "基础演示文稿输出路径"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(组合基础演示文稿输出路径)",
+    "type": "({})",
+    "flow_indices": [
+      "1.29.4.1"
+    ],
+    "description": "组合基础演示文稿输出路径",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}d7e(provisions/scripts/组合路径.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "组合基础演示文稿输出路径"
+  },
+  {
+    "id": "c-pptx",
+    "concept_name": "{相对路径：基础演示文稿.pptx}",
+    "type": "{}",
+    "flow_indices": [
+      "1.29.4.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "相对路径：基础演示文稿.pptx"
+  },
+  {
+    "id": "fc-pptx",
+    "concept_name": "$% %>([%(\"中间产物/基础演示文稿.pptx\")])",
+    "type": "({})",
+    "flow_indices": [
+      "1.29.4.3.1"
+    ],
+    "description": "$% %>([%(\"中间产物/基础演示文稿.pptx\")])",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$% %>([%(\"中间产物/基础演示文稿.pptx\")])"
+  },
+  {
+    "id": "c-",
+    "concept_name": "[大纲页面列表]",
+    "type": "[]",
+    "flow_indices": [
+      "1.30",
+      "1.31.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "大纲页面",
+    "reference_axis_names": [
+      "大纲页面"
+    ],
+    "reference_element_type": "dict(slide_index: int, template_page: int, page_type: str, content_plan: dict)",
+    "natural_name": "大纲页面列表"
+  },
+  {
+    "id": "fc-sections",
+    "concept_name": "::(从对齐大纲中提取 sections 列表)",
+    "type": "({})",
+    "flow_indices": [
+      "1.30.1"
+    ],
+    "description": "从对齐大纲中提取 sections 列表",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}ff6(provisions/scripts/提取大纲页面列表.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "从对齐大纲中提取 sections 列表"
+  },
+  {
+    "id": "c-",
+    "concept_name": "[所有页面内容]",
+    "type": "[]",
+    "flow_indices": [
+      "1.31",
+      "1.32.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "大纲页面",
+    "reference_axis_names": [
+      "大纲页面"
+    ],
+    "reference_element_type": "dict(slide_index: int, replacements: list)",
+    "natural_name": "所有页面内容"
+  },
+  {
+    "id": "fc-1",
+    "concept_name": "*. %>([大纲页面列表]) %<({映射页面文本内容}) %:({当前大纲页面}) %@(1)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1"
+    ],
+    "description": "*. %>([大纲页面列表]) %<({映射页面文本内容}) %:({当前大纲页面}) %@(1)",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "*. %>([大纲页面列表]) %<({映射页面文本内容}) %:({当前大纲页面}) %@(1)"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "$. %>({映射页面文本内容})",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.1"
+    ],
+    "description": "$. %>({映射页面文本内容})",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$. %>({映射页面文本内容})"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{此页分析}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.2",
+      "1.31.1.3.2",
+      "1.31.1.4.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(index: int, page_intent: str, substitutable_elements: list, fixed_elements: list)",
+    "natural_name": "此页分析"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(加载此页的详细页面分析)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.2.1"
+    ],
+    "description": "加载此页的详细页面分析",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}32e(provisions/scripts/加载页面分析.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "加载此页的详细页面分析"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{页面分析路径}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.2.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "页面分析路径"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(构造页面分析文件路径)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.2.3.1"
+    ],
+    "description": "构造页面分析文件路径",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}d7f(provisions/scripts/构造页面分析路径.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "构造页面分析文件路径"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{当前大纲页面}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.2.3.2",
+      "1.31.1.5.2",
+      "1.31.1.8.4.2",
+      "1.31.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "大纲页面",
+    "reference_axis_names": [
+      "大纲页面"
+    ],
+    "reference_element_type": "dict",
+    "natural_name": "当前大纲页面"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{分析简化版本}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.3",
+      "1.31.1.5.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(slots: list[dict])",
+    "natural_name": "分析简化版本"
+  },
+  {
+    "id": "fc-slot",
+    "concept_name": "::(将页面分析转换为简化的 slot 格式)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.3.1"
+    ],
+    "description": "将页面分析转换为简化的 slot 格式",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}0d4(provisions/scripts/简化页面分析.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将页面分析转换为简化的 slot 格式"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{可更改元素映射}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.4",
+      "1.31.1.7.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict",
+    "natural_name": "可更改元素映射"
+  },
+  {
+    "id": "fc-slot-shape-index",
+    "concept_name": "::(从页面分析提取 slot 到 shape_index 的映射)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.4.1"
+    ],
+    "description": "从页面分析提取 slot 到 shape_index 的映射",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}5d2(provisions/scripts/提取slot映射.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "从页面分析提取 slot 到 shape_index 的映射"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{页面内容草稿}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.5",
+      "1.31.1.6.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(slide_index: int, replacements: list[dict])",
+    "natural_name": "页面内容草稿"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(根据大纲和简化分析生成内容草稿)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.5.1"
+    ],
+    "description": "根据大纲和简化分析生成内容草稿",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{prompt_location}b39(provisions/prompts/生成页面内容草稿.md)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "根据大纲和简化分析生成内容草稿"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{页面文本内容}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.6",
+      "1.31.1.7.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(slide_index: int, replacements: list[dict])",
+    "natural_name": "页面文本内容"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(使用内容参考和风格参考纠正和充实草稿)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.6.1"
+    ],
+    "description": "使用内容参考和风格参考纠正和充实草稿",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{prompt_location}3f9(provisions/prompts/充实页面内容.md)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "使用内容参考和风格参考纠正和充实草稿"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{映射页面文本内容}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.7",
+      "1.31.1.8.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(slide_index: int, replacements: list[dict])",
+    "natural_name": "映射页面文本内容"
+  },
+  {
+    "id": "fc-slot-shape-index",
+    "concept_name": "::(将 slot 映射回 shape_index)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.7.1"
+    ],
+    "description": "将 slot 映射回 shape_index",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}50d(provisions/scripts/映射slot到shape.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将 slot 映射回 shape_index"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{已保存的页面内容}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.8"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, path: str)",
+    "natural_name": "已保存的页面内容"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(将页面内容保存到输出目录)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.8.1"
+    ],
+    "description": "将页面内容保存到输出目录",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}fc6(provisions/scripts/保存JSON.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将页面内容保存到输出目录"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{页面内容相对路径}",
+    "type": "{}",
+    "flow_indices": [
+      "1.31.1.8.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "页面内容相对路径"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(构造当前页面内容的保存路径)",
+    "type": "({})",
+    "flow_indices": [
+      "1.31.1.8.4.1"
+    ],
+    "description": "构造当前页面内容的保存路径",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}89e(provisions/scripts/构造页面内容路径.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "构造当前页面内容的保存路径"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{所有替换计划}",
+    "type": "{}",
+    "flow_indices": [
+      "1.32",
+      "1.33.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "list[dict]",
+    "natural_name": "所有替换计划"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "&[#] %>([所有页面内容]) %-[[大纲页面]]",
+    "type": "({})",
+    "flow_indices": [
+      "1.32.1"
+    ],
+    "description": "&[#] %>([所有页面内容]) %-[[大纲页面]]",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "&[#] %>([所有页面内容]) %-[[大纲页面]]"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{最终演示文稿}",
+    "type": "{}",
+    "flow_indices": [
+      "1.33",
+      "1.34.2.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, output_path: str, changes_made: int)",
+    "natural_name": "最终演示文稿"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(将所有内容填充到基础演示文稿)",
+    "type": "({})",
+    "flow_indices": [
+      "1.33.1"
+    ],
+    "description": "将所有内容填充到基础演示文稿",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}7a1(provisions/scripts/替换模板文本.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "将所有内容填充到基础演示文稿"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{基础演示文稿路径}",
+    "type": "{}",
+    "flow_indices": [
+      "1.33.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "基础演示文稿路径"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(从基础演示文稿结果中提取路径)",
+    "type": "({})",
+    "flow_indices": [
+      "1.33.2.1"
+    ],
+    "description": "从基础演示文稿结果中提取路径",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}d54(provisions/scripts/提取路径.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "从基础演示文稿结果中提取路径"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{最终演示文稿输出路径}",
+    "type": "{}",
+    "flow_indices": [
+      "1.33.4"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "最终演示文稿输出路径"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(组合最终演示文稿输出路径)",
+    "type": "({})",
+    "flow_indices": [
+      "1.33.4.1"
+    ],
+    "description": "组合最终演示文稿输出路径",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}839(provisions/scripts/组合路径.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "组合最终演示文稿输出路径"
+  },
+  {
+    "id": "c-pptx",
+    "concept_name": "{相对路径：最终演示文稿.pptx}",
+    "type": "{}",
+    "flow_indices": [
+      "1.33.4.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "相对路径：最终演示文稿.pptx"
+  },
+  {
+    "id": "fc-pptx",
+    "concept_name": "$% %>([%(\"输出/最终演示文稿.pptx\")])",
+    "type": "({})",
+    "flow_indices": [
+      "1.33.4.3.1",
+      "1.34.3.3.1"
+    ],
+    "description": "$% %>([%(\"输出/最终演示文稿.pptx\")])",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "$% %>([%(\"输出/最终演示文稿.pptx\")])"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{优化后的演示文稿}",
+    "type": "{}",
+    "flow_indices": [
+      "1.34",
+      "1.35.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict(status: str, output_path: str, adjustments_made: int, report: dict)",
+    "natural_name": "优化后的演示文稿"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(检测并修复文本溢出问题)",
+    "type": "({})",
+    "flow_indices": [
+      "1.34.1"
+    ],
+    "description": "检测并修复文本溢出问题",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}a2e(provisions/scripts/优化文本布局.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "检测并修复文本溢出问题"
+  },
+  {
+    "id": "c-2",
+    "concept_name": "{最终演示文稿路径2}",
+    "type": "{}",
+    "flow_indices": [
+      "1.34.2"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "最终演示文稿路径2"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(从最终演示文稿结果中提取路径)",
+    "type": "({})",
+    "flow_indices": [
+      "1.34.2.1"
+    ],
+    "description": "从最终演示文稿结果中提取路径",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}28e(provisions/scripts/提取路径.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "从最终演示文稿结果中提取路径"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{优化后输出路径}",
+    "type": "{}",
+    "flow_indices": [
+      "1.34.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "优化后输出路径"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "::(组合优化后输出路径)",
+    "type": "({})",
+    "flow_indices": [
+      "1.34.3.1"
+    ],
+    "description": "组合优化后输出路径",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{script_location}467(provisions/scripts/组合路径.py)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "paradigm",
+    "natural_name": "组合优化后输出路径"
+  },
+  {
+    "id": "c-pptx",
+    "concept_name": "{相对路径：优化后演示文稿.pptx}",
+    "type": "{}",
+    "flow_indices": [
+      "1.34.3.3"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "str",
+    "natural_name": "相对路径：优化后演示文稿.pptx"
+  },
+  {
+    "id": "c-",
+    "concept_name": "{模板概览输出}",
+    "type": "{}",
+    "flow_indices": [
+      "1.35"
+    ],
+    "description": null,
+    "is_ground_concept": false,
+    "is_final_concept": false,
+    "is_invariant": null,
+    "reference_data": null,
+    "axis_name": "_none_axis",
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "dict",
+    "natural_name": "模板概览输出"
+  },
+  {
+    "id": "fc-",
+    "concept_name": "&[{}] %>({优化后的演示文稿}, {简化概览}, {对齐大纲}, {需求分析})",
+    "type": "({})",
+    "flow_indices": [
+      "1.35.1"
+    ],
+    "description": "&[{}] %>({优化后的演示文稿}, {简化概览}, {对齐大纲}, {需求分析})",
+    "is_ground_concept": true,
+    "is_final_concept": false,
+    "reference_data": [
+      "%{dummy}(_)"
+    ],
+    "reference_axis_names": [
+      "_none_axis"
+    ],
+    "reference_element_type": "operator",
+    "natural_name": "&[{}] %>({优化后的演示文稿}, {简化概览}, {对齐大纲}, {需求分析})"
+  }
+]

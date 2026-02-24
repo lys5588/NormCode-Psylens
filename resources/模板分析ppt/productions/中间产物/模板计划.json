@@ -1,0 +1,87 @@
+{
+  "plan": [
+    0,
+    1,
+    4,
+    1,
+    2,
+    5
+  ],
+  "mapping": [
+    {
+      "position": 0,
+      "section_index": 0,
+      "section_topic": "开场",
+      "section_type": "title",
+      "template_page": 0,
+      "page_purpose": "标题页 - 用于演示开场",
+      "reason": "开场需要标题页，模板第0页是title类型，专用于演示开场，强调权威性与结构性，三行文本可填入主标题、副标题和署名",
+      "content_hint": "填入演示标题'序言智理科技：构建AI推理的可审计中间层'和副标题'让大模型决策透明、可控、可验证'"
+    },
+    {
+      "position": 1,
+      "section_index": 1,
+      "section_topic": "问题与市场机遇",
+      "section_type": "content",
+      "template_page": 1,
+      "page_purpose": "要点列表 - 核心观点提炼",
+      "reason": "section[1]包含3个核心要点（黑箱困境、市场窗口、痛点具象），模板第1页专为'核心观点提炼'设计，usage_notes明确支持四要点并列，语义标签结构清晰，text_slots_count=2可能为最小值，实际支持多要点",
+      "content_hint": "标题'为什么需要可审计推理？' + 三个要点：❌ 黑箱困境...、📈 市场窗口...、🔍 痛点具象..."
+    },
+    {
+      "position": 2,
+      "section_index": 2,
+      "section_topic": "核心解决方案",
+      "section_type": "content",
+      "template_page": 4,
+      "page_purpose": "要点并列展示页 - 解决方案的三大价值点",
+      "reason": "section[2]明确列出NormCode三大技术支柱（结构化推理、上下文隔离、全链路记录），模板第4页'suitable_for'直接包含'解决方案的三大价值点'，text_slots_count=5提供充足空间承载标题、3个块标题及底部行动呼吁，内容丰富度最优",
+      "content_hint": "标题'NormCode：可审计推理中间层' + 三个块：🔹 结构化推理...、🔹 上下文隔离...、🔹 全链路记录..."
+    },
+    {
+      "position": 3,
+      "section_index": 3,
+      "section_topic": "团队实力",
+      "section_type": "content",
+      "template_page": 1,
+      "page_purpose": "要点列表 - 核心观点提炼",
+      "reason": "section[3]包含3个团队要点（国际视野、学术积淀、工程落地），与section[1]同为要点罗列类型，模板第1页是当前最匹配的要点承载页，虽复用但内容类型一致且无更高slots页面可用，保证内容完整呈现",
+      "content_hint": "标题'值得信赖的创始团队' + 三个要点：🌍 国际视野...、🔬 学术积淀...、⚙️ 工程落地..."
+    },
+    {
+      "position": 4,
+      "section_index": 4,
+      "section_topic": "商业模式",
+      "section_type": "content",
+      "template_page": 2,
+      "page_purpose": "双栏对比 - 策略优劣评估",
+      "reason": "section[4]的商业模式可结构化重构为双维度：左栏'交付能力'（模块化交付、零模型替换）对应能力策略，右栏'客户聚焦'（金融风控、法律合规、国企智能决策）对应应用策略，符合模板第2页'suitable_for'中的'策略优劣评估'和'技术路线选择'，提升视觉多样性",
+      "content_hint": "标题'清晰可持续的商业路径' + 左栏标题'交付能力'含📦 模块化交付、⚡ 零模型替换；右栏标题'客户聚焦'含🎯 金融风控、🎯 法律合规、🎯 国企智能决策"
+    },
+    {
+      "position": 5,
+      "section_index": 5,
+      "section_topic": "愿景与行动号召",
+      "section_type": "summary",
+      "template_page": 5,
+      "page_purpose": "互动收尾页 - 客户沟通后的联络承接页",
+      "reason": "section[5]包含联系方式和合作邀请，模板第5页'suitable_for'明确包含'客户沟通后的联络承接页'和'需要收集反馈或建立后续联系的场景'，三文本槽位完美匹配标题、引导语和联系方式",
+      "content_hint": "标题'携手序言智理，共塑可信AI未来' + 引导语'诚邀联合开展大湾区金融合规试点，共享AI治理基础设施红利' + 联系方式'📧 contact@xuyanzhili.tech | www.xuyanzhili.tech'"
+    }
+  ],
+  "summary": {
+    "total_slides": 6,
+    "pages_used": [
+      0,
+      1,
+      4,
+      2,
+      5
+    ],
+    "pages_reused": [
+      1
+    ],
+    "variety_score": "中高 - 使用了5个不同的模板页面，仅在要点罗列类内容上复用1次",
+    "notes": "优先保障内容丰富度：section[2]选用高容量（5 slots）的要点并列页；通过重构section[4]为双栏策略维度提升多样性；所有选择均在有效索引0-5范围内，严格匹配大纲意图与模板能力"
+  }
+}

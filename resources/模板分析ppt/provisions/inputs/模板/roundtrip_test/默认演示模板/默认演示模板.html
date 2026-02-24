@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>默认演示模板.pptx</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .presentation-header {
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .presentation-header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .presentation-header .meta {
+            color: #8892b0;
+            font-size: 0.9rem;
+        }
+        .slide {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .slide:hover {
+            transform: translateY(-5px);
+        }
+        .slide-header {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .slide-number {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        .slide-layout {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .slide-content {
+            padding: 30px;
+            min-height: 400px;
+            position: relative;
+            aspect-ratio: 13.33299978127734/7.5;
+        }
+        .shape {
+            position: absolute;
+            overflow: hidden;
+        }
+        .shape-text {
+            padding: 10px;
+        }
+        .shape-text.title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1a1a2e;
+        }
+        .shape-text.subtitle {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .shape-text.body {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+        .shape-text ul {
+            list-style: disc;
+            margin-left: 25px;
+        }
+        .shape-text li {
+            margin: 8px 0;
+        }
+        .shape-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .slide-notes {
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 20px 25px;
+        }
+        .slide-notes h4 {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        .slide-notes p {
+            color: #495057;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .controls button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .controls button:hover {
+            background: #5a6fd6;
+            transform: scale(1.05);
+        }
+        .slide-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .slide-actions button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+        .slide-actions button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .slide-actions button.delete { background: rgba(255,77,77,0.5); }
+        .slide-actions button.delete:hover { background: rgba(255,77,77,0.7); }
+        .data-section {
+            background: #0d1117;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .data-section h3 {
+            color: #58a6ff;
+            margin-bottom: 15px;
+        }
+        .data-section pre {
+            background: #161b22;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: #c9d1d9;
+            font-size: 0.85rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        #json-data {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="presentation-header">
+            <h1>默认演示模板.pptx</h1>
+            <p class="meta">共 6 张幻灯片 | 尺寸: 13.3" × 7.5"</p>
+        </div>
+
+        <div id="slides-container">
+            
+    <div class="slide" data-index="0" data-original-index="0">
+        <div class="slide-header">
+            <span class="slide-number">幻灯片 1</span>
+            <span class="slide-layout">Blank</span>
+            <div class="slide-actions">
+                <button onclick="duplicateSlide()">复制</button>
+                <button class="delete" onclick="deleteSlide(this)">删除</button>
+            </div>
+        </div>
+        <div class="slide-content">
+            
+            <div class="shape shape-text body" style="left:7.5%;top:33.3%;width:85.0%;height:20.0%">
+                <p>演示文稿标题</p>
+            </div>
+            <div class="shape shape-text body" style="left:7.5%;top:56.0%;width:85.0%;height:10.7%">
+                <p>副标题文本</p>
+            </div>
+            <div class="shape shape-text body" style="left:7.5%;top:82.7%;width:85.0%;height:6.7%">
+                <p>演讲者姓名</p>
+            </div>
+            <div class="shape" style="left:0.0%;top:98.0%;width:100.0%;height:2.0%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+        </div>
+        
+    </div>
+    <div class="slide" data-index="1" data-original-index="1">
+        <div class="slide-header">
+            <span class="slide-number">幻灯片 2</span>
+            <span class="slide-layout">Blank</span>
+            <div class="slide-actions">
+                <button onclick="duplicateSlide()">复制</button>
+                <button class="delete" onclick="deleteSlide(this)">删除</button>
+            </div>
+        </div>
+        <div class="slide-content">
+            
+            <div class="shape" style="left:0.0%;top:0.0%;width:100.0%;height:16.0%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:3.8%;top:4.0%;width:92.5%;height:10.7%">
+                <p>幻灯片标题</p>
+            </div>
+            <div class="shape shape-text body" style="left:6.0%;top:21.3%;width:60.0%;height:66.7%">
+                <ul><li>要点一：核心内容描述</li><li>要点二：支持性论述</li><li>要点三：关键数据或案例</li><li>要点四：总结性陈述</li></ul>
+            </div>
+        </div>
+        
+    </div>
+    <div class="slide" data-index="2" data-original-index="2">
+        <div class="slide-header">
+            <span class="slide-number">幻灯片 3</span>
+            <span class="slide-layout">Blank</span>
+            <div class="slide-actions">
+                <button onclick="duplicateSlide()">复制</button>
+                <button class="delete" onclick="deleteSlide(this)">删除</button>
+            </div>
+        </div>
+        <div class="slide-content">
+            
+            <div class="shape" style="left:0.0%;top:0.0%;width:100.0%;height:16.0%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:3.8%;top:4.0%;width:92.5%;height:10.7%">
+                <p>对比分析</p>
+            </div>
+            <div class="shape shape-text body" style="left:6.0%;top:20.0%;width:41.3%;height:8.0%">
+                <p>方案A</p>
+            </div>
+            <div class="shape shape-text body" style="left:6.0%;top:29.3%;width:41.3%;height:60.0%">
+                <ul><li>▸ 优势一</li><li>▸ 优势二</li><li>▸ 优势三</li></ul>
+            </div>
+            <div class="shape shape-text body" style="left:52.5%;top:20.0%;width:41.3%;height:8.0%">
+                <p>方案B</p>
+            </div>
+            <div class="shape shape-text body" style="left:52.5%;top:29.3%;width:41.3%;height:60.0%">
+                <ul><li>▸ 特点一</li><li>▸ 特点二</li><li>▸ 特点三</li></ul>
+            </div>
+            <div class="shape" style="left:49.5%;top:20.0%;width:0.2%;height:69.3%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+        </div>
+        
+    </div>
+    <div class="slide" data-index="3" data-original-index="3">
+        <div class="slide-header">
+            <span class="slide-number">幻灯片 4</span>
+            <span class="slide-layout">Blank</span>
+            <div class="slide-actions">
+                <button onclick="duplicateSlide()">复制</button>
+                <button class="delete" onclick="deleteSlide(this)">删除</button>
+            </div>
+        </div>
+        <div class="slide-content">
+            
+            <div class="shape" style="left:0.0%;top:0.0%;width:100.0%;height:16.0%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:3.8%;top:4.0%;width:92.5%;height:10.7%">
+                <p>图表展示</p>
+            </div>
+            <div class="shape" style="left:7.5%;top:21.3%;width:85.0%;height:60.0%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:7.5%;top:42.7%;width:85.0%;height:13.3%">
+                <p>📊 图表/图片区域</p>
+            </div>
+            <div class="shape shape-text body" style="left:7.5%;top:84.0%;width:85.0%;height:6.7%">
+                <p>图片说明文字</p>
+            </div>
+        </div>
+        
+    </div>
+    <div class="slide" data-index="4" data-original-index="4">
+        <div class="slide-header">
+            <span class="slide-number">幻灯片 5</span>
+            <span class="slide-layout">Blank</span>
+            <div class="slide-actions">
+                <button onclick="duplicateSlide()">复制</button>
+                <button class="delete" onclick="deleteSlide(this)">删除</button>
+            </div>
+        </div>
+        <div class="slide-content">
+            
+            <div class="shape" style="left:0.0%;top:0.0%;width:100.0%;height:16.0%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:3.8%;top:4.0%;width:92.5%;height:10.7%">
+                <p>关键要点</p>
+            </div>
+            <div class="shape" style="left:6.0%;top:24.0%;width:3.8%;height:6.7%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:6.0%;top:25.1%;width:3.8%;height:5.3%">
+                <p>1</p>
+            </div>
+            <div class="shape shape-text body" style="left:11.3%;top:24.7%;width:78.8%;height:6.7%">
+                <p>核心发现一：重要结论</p>
+            </div>
+            <div class="shape" style="left:6.0%;top:40.0%;width:3.8%;height:6.7%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:6.0%;top:41.1%;width:3.8%;height:5.3%">
+                <p>2</p>
+            </div>
+            <div class="shape shape-text body" style="left:11.3%;top:40.7%;width:78.8%;height:6.7%">
+                <p>核心发现二：关键洞察</p>
+            </div>
+            <div class="shape" style="left:6.0%;top:56.0%;width:3.8%;height:6.7%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:6.0%;top:57.1%;width:3.8%;height:5.3%">
+                <p>3</p>
+            </div>
+            <div class="shape shape-text body" style="left:11.3%;top:56.7%;width:78.8%;height:6.7%">
+                <p>核心发现三：行动建议</p>
+            </div>
+            <div class="shape" style="left:6.0%;top:77.3%;width:88.0%;height:10.7%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:7.5%;top:79.3%;width:85.0%;height:6.7%">
+                <p>💡 下一步行动建议</p>
+            </div>
+        </div>
+        
+    </div>
+    <div class="slide" data-index="5" data-original-index="5">
+        <div class="slide-header">
+            <span class="slide-number">幻灯片 6</span>
+            <span class="slide-layout">Blank</span>
+            <div class="slide-actions">
+                <button onclick="duplicateSlide()">复制</button>
+                <button class="delete" onclick="deleteSlide(this)">删除</button>
+            </div>
+        </div>
+        <div class="slide-content">
+            
+            <div class="shape" style="left:0.0%;top:0.0%;width:100.0%;height:100.0%;background:rgba(200,200,200,0.1);border:1px dotted #bbb;">
+            </div>
+            <div class="shape shape-text body" style="left:0.0%;top:20.0%;width:100.0%;height:20.0%">
+                <p>❓</p>
+            </div>
+            <div class="shape shape-text body" style="left:0.0%;top:40.0%;width:100.0%;height:16.0%">
+                <p>问题与讨论</p>
+            </div>
+            <div class="shape shape-text body" style="left:0.0%;top:57.3%;width:100.0%;height:10.7%">
+                <p>欢迎提出您的问题和想法</p>
+            </div>
+            <div class="shape shape-text body" style="left:0.0%;top:77.3%;width:100.0%;height:8.0%">
+                <p>联系方式: email@example.com</p>
+            </div>
+        </div>
+        
+    </div>
+        </div>
+
+        <div class="data-section">
+            <h3>📋 结构化数据</h3>
+            <button onclick="toggleData()" style="margin-bottom:15px;background:#238636;color:white;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;">显示/隐藏 JSON</button>
+            <pre id="json-data">{
+  &quot;source&quot;: &quot;默认演示模板.pptx&quot;,
+  &quot;slide_width&quot;: 12191695,
+  &quot;slide_height&quot;: 6858000,
+  &quot;slide_width_inches&quot;: 13.33299978127734,
+  &quot;slide_height_inches&quot;: 7.5,
+  &quot;slides&quot;: [
+    {
+      &quot;index&quot;: 0,
+      &quot;shapes&quot;: [
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 914400,
+          &quot;top&quot;: 2286000,
+          &quot;width&quot;: 10362895,
+          &quot;height&quot;: 1371600,
+          &quot;name&quot;: &quot;TextBox 1&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;演示文稿标题&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;演示文稿标题&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;演示文稿标题&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 914400,
+          &quot;top&quot;: 3840480,
+          &quot;width&quot;: 10362895,
+          &quot;height&quot;: 731520,
+          &quot;name&quot;: &quot;TextBox 2&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;副标题文本&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;副标题文本&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;副标题文本&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 914400,
+          &quot;top&quot;: 5669280,
+          &quot;width&quot;: 10362895,
+          &quot;height&quot;: 457200,
+          &quot;name&quot;: &quot;TextBox 3&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;演讲者姓名&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;演讲者姓名&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;演讲者姓名&quot;
+        },
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 6720840,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 137160,
+          &quot;name&quot;: &quot;Rectangle 4&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;5\&quot; name=\&quot;Rectangle 4\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;0\&quot; y=\&quot;6720840\&quot;/&gt;&lt;a:ext cx=\&quot;12191695\&quot; cy=\&quot;137160\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;rect\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        }
+      ],
+      &quot;notes&quot;: &quot;&quot;,
+      &quot;layout_name&quot;: &quot;Blank&quot;
+    },
+    {
+      &quot;index&quot;: 1,
+      &quot;shapes&quot;: [
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 0,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 1097280,
+          &quot;name&quot;: &quot;Rectangle 1&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;2\&quot; name=\&quot;Rectangle 1\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;0\&quot; y=\&quot;0\&quot;/&gt;&lt;a:ext cx=\&quot;12191695\&quot; cy=\&quot;1097280\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;rect\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 457200,
+          &quot;top&quot;: 274320,
+          &quot;width&quot;: 11277295,
+          &quot;height&quot;: 731520,
+          &quot;name&quot;: &quot;TextBox 2&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;幻灯片标题&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;幻灯片标题&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;幻灯片标题&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 1463040,
+          &quot;width&quot;: 7315200,
+          &quot;height&quot;: 4572000,
+          &quot;name&quot;: &quot;TextBox 3&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;要点一：核心内容描述&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;要点一：核心内容描述&quot;
+                }
+              ]
+            },
+            {
+              &quot;text&quot;: &quot;要点二：支持性论述&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;要点二：支持性论述&quot;
+                }
+              ]
+            },
+            {
+              &quot;text&quot;: &quot;要点三：关键数据或案例&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;要点三：关键数据或案例&quot;
+                }
+              ]
+            },
+            {
+              &quot;text&quot;: &quot;要点四：总结性陈述&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;要点四：总结性陈述&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;要点一：核心内容描述\n要点二：支持性论述\n要点三：关键数据或案例\n要点四：总结性陈述&quot;
+        }
+      ],
+      &quot;notes&quot;: &quot;&quot;,
+      &quot;layout_name&quot;: &quot;Blank&quot;
+    },
+    {
+      &quot;index&quot;: 2,
+      &quot;shapes&quot;: [
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 0,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 1097280,
+          &quot;name&quot;: &quot;Rectangle 1&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;2\&quot; name=\&quot;Rectangle 1\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;0\&quot; y=\&quot;0\&quot;/&gt;&lt;a:ext cx=\&quot;12191695\&quot; cy=\&quot;1097280\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;rect\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 457200,
+          &quot;top&quot;: 274320,
+          &quot;width&quot;: 11277295,
+          &quot;height&quot;: 731520,
+          &quot;name&quot;: &quot;TextBox 2&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;对比分析&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;对比分析&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;对比分析&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 1371600,
+          &quot;width&quot;: 5029200,
+          &quot;height&quot;: 548640,
+          &quot;name&quot;: &quot;TextBox 3&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;方案A&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;方案A&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;方案A&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 2011680,
+          &quot;width&quot;: 5029200,
+          &quot;height&quot;: 4114800,
+          &quot;name&quot;: &quot;TextBox 4&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;▸ 优势一&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;▸ 优势一&quot;
+                }
+              ]
+            },
+            {
+              &quot;text&quot;: &quot;▸ 优势二&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;▸ 优势二&quot;
+                }
+              ]
+            },
+            {
+              &quot;text&quot;: &quot;▸ 优势三&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;▸ 优势三&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;▸ 优势一\n▸ 优势二\n▸ 优势三&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 6400800,
+          &quot;top&quot;: 1371600,
+          &quot;width&quot;: 5029200,
+          &quot;height&quot;: 548640,
+          &quot;name&quot;: &quot;TextBox 5&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;方案B&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;方案B&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;方案B&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 6400800,
+          &quot;top&quot;: 2011680,
+          &quot;width&quot;: 5029200,
+          &quot;height&quot;: 4114800,
+          &quot;name&quot;: &quot;TextBox 6&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;▸ 特点一&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;▸ 特点一&quot;
+                }
+              ]
+            },
+            {
+              &quot;text&quot;: &quot;▸ 特点二&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;▸ 特点二&quot;
+                }
+              ]
+            },
+            {
+              &quot;text&quot;: &quot;▸ 特点三&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;▸ 特点三&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;▸ 特点一\n▸ 特点二\n▸ 特点三&quot;
+        },
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 6035040,
+          &quot;top&quot;: 1371600,
+          &quot;width&quot;: 27432,
+          &quot;height&quot;: 4754880,
+          &quot;name&quot;: &quot;Rectangle 7&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;8\&quot; name=\&quot;Rectangle 7\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;6035040\&quot; y=\&quot;1371600\&quot;/&gt;&lt;a:ext cx=\&quot;27432\&quot; cy=\&quot;4754880\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;rect\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;E0E0E0\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        }
+      ],
+      &quot;notes&quot;: &quot;&quot;,
+      &quot;layout_name&quot;: &quot;Blank&quot;
+    },
+    {
+      &quot;index&quot;: 3,
+      &quot;shapes&quot;: [
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 0,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 1097280,
+          &quot;name&quot;: &quot;Rectangle 1&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;2\&quot; name=\&quot;Rectangle 1\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;0\&quot; y=\&quot;0\&quot;/&gt;&lt;a:ext cx=\&quot;12191695\&quot; cy=\&quot;1097280\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;rect\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 457200,
+          &quot;top&quot;: 274320,
+          &quot;width&quot;: 11277295,
+          &quot;height&quot;: 731520,
+          &quot;name&quot;: &quot;TextBox 2&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;图表展示&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;图表展示&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;图表展示&quot;
+        },
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 914400,
+          &quot;top&quot;: 1463040,
+          &quot;width&quot;: 10362895,
+          &quot;height&quot;: 4114800,
+          &quot;name&quot;: &quot;Rectangle 3&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;4\&quot; name=\&quot;Rectangle 3\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;914400\&quot; y=\&quot;1463040\&quot;/&gt;&lt;a:ext cx=\&quot;10362895\&quot; cy=\&quot;4114800\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;rect\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;F8F8F8\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;C8C8C8\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:prstDash val=\&quot;sysDash\&quot;/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 914400,
+          &quot;top&quot;: 2926080,
+          &quot;width&quot;: 10362895,
+          &quot;height&quot;: 914400,
+          &quot;name&quot;: &quot;TextBox 4&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;📊 图表/图片区域&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;📊 图表/图片区域&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;📊 图表/图片区域&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 914400,
+          &quot;top&quot;: 5760720,
+          &quot;width&quot;: 10362895,
+          &quot;height&quot;: 457200,
+          &quot;name&quot;: &quot;TextBox 5&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;图片说明文字&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;图片说明文字&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;图片说明文字&quot;
+        }
+      ],
+      &quot;notes&quot;: &quot;&quot;,
+      &quot;layout_name&quot;: &quot;Blank&quot;
+    },
+    {
+      &quot;index&quot;: 4,
+      &quot;shapes&quot;: [
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 0,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 1097280,
+          &quot;name&quot;: &quot;Rectangle 1&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;2\&quot; name=\&quot;Rectangle 1\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;0\&quot; y=\&quot;0\&quot;/&gt;&lt;a:ext cx=\&quot;12191695\&quot; cy=\&quot;1097280\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;rect\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 457200,
+          &quot;top&quot;: 274320,
+          &quot;width&quot;: 11277295,
+          &quot;height&quot;: 731520,
+          &quot;name&quot;: &quot;TextBox 2&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;关键要点&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;关键要点&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;关键要点&quot;
+        },
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 1645920,
+          &quot;width&quot;: 457200,
+          &quot;height&quot;: 457200,
+          &quot;name&quot;: &quot;Oval 3&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;4\&quot; name=\&quot;Oval 3\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;731520\&quot; y=\&quot;1645920\&quot;/&gt;&lt;a:ext cx=\&quot;457200\&quot; cy=\&quot;457200\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;ellipse\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 1719072,
+          &quot;width&quot;: 457200,
+          &quot;height&quot;: 365760,
+          &quot;name&quot;: &quot;TextBox 4&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;1&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;1&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;1&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 1371600,
+          &quot;top&quot;: 1691640,
+          &quot;width&quot;: 9601200,
+          &quot;height&quot;: 457200,
+          &quot;name&quot;: &quot;TextBox 5&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;核心发现一：重要结论&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;核心发现一：重要结论&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;核心发现一：重要结论&quot;
+        },
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 2743200,
+          &quot;width&quot;: 457200,
+          &quot;height&quot;: 457200,
+          &quot;name&quot;: &quot;Oval 6&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;7\&quot; name=\&quot;Oval 6\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;731520\&quot; y=\&quot;2743200\&quot;/&gt;&lt;a:ext cx=\&quot;457200\&quot; cy=\&quot;457200\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;ellipse\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 2816352,
+          &quot;width&quot;: 457200,
+          &quot;height&quot;: 365760,
+          &quot;name&quot;: &quot;TextBox 7&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;2&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;2&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;2&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 1371600,
+          &quot;top&quot;: 2788920,
+          &quot;width&quot;: 9601200,
+          &quot;height&quot;: 457200,
+          &quot;name&quot;: &quot;TextBox 8&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;核心发现二：关键洞察&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;核心发现二：关键洞察&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;核心发现二：关键洞察&quot;
+        },
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 3840480,
+          &quot;width&quot;: 457200,
+          &quot;height&quot;: 457200,
+          &quot;name&quot;: &quot;Oval 9&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;10\&quot; name=\&quot;Oval 9\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;731520\&quot; y=\&quot;3840480\&quot;/&gt;&lt;a:ext cx=\&quot;457200\&quot; cy=\&quot;457200\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;ellipse\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 3913632,
+          &quot;width&quot;: 457200,
+          &quot;height&quot;: 365760,
+          &quot;name&quot;: &quot;TextBox 10&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;3&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;3&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;3&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 1371600,
+          &quot;top&quot;: 3886200,
+          &quot;width&quot;: 9601200,
+          &quot;height&quot;: 457200,
+          &quot;name&quot;: &quot;TextBox 11&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;核心发现三：行动建议&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;核心发现三：行动建议&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;核心发现三：行动建议&quot;
+        },
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 731520,
+          &quot;top&quot;: 5303520,
+          &quot;width&quot;: 10728655,
+          &quot;height&quot;: 731520,
+          &quot;name&quot;: &quot;Rectangle 12&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;13\&quot; name=\&quot;Rectangle 12\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;731520\&quot; y=\&quot;5303520\&quot;/&gt;&lt;a:ext cx=\&quot;10728655\&quot; cy=\&quot;731520\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;rect\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;E8F4FD\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 914400,
+          &quot;top&quot;: 5440680,
+          &quot;width&quot;: 10362895,
+          &quot;height&quot;: 457200,
+          &quot;name&quot;: &quot;TextBox 13&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;💡 下一步行动建议&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;💡 下一步行动建议&quot;
+                }
+              ]
+            }
+          ],
+          &quot;full_text&quot;: &quot;💡 下一步行动建议&quot;
+        }
+      ],
+      &quot;notes&quot;: &quot;&quot;,
+      &quot;layout_name&quot;: &quot;Blank&quot;
+    },
+    {
+      &quot;index&quot;: 5,
+      &quot;shapes&quot;: [
+        {
+          &quot;type&quot;: &quot;AUTO_SHAPE&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 0,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 6858000,
+          &quot;name&quot;: &quot;Rectangle 1&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;&quot;,
+          &quot;raw_xml&quot;: &quot;&lt;p:sp xmlns:p=\&quot;http://schemas.openxmlformats.org/presentationml/2006/main\&quot; xmlns:a=\&quot;http://schemas.openxmlformats.org/drawingml/2006/main\&quot; xmlns:r=\&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships\&quot;&gt;&lt;p:nvSpPr&gt;&lt;p:cNvPr id=\&quot;2\&quot; name=\&quot;Rectangle 1\&quot;/&gt;&lt;p:cNvSpPr/&gt;&lt;p:nvPr/&gt;&lt;/p:nvSpPr&gt;&lt;p:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=\&quot;0\&quot; y=\&quot;0\&quot;/&gt;&lt;a:ext cx=\&quot;12191695\&quot; cy=\&quot;6858000\&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=\&quot;rect\&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;a:solidFill&gt;&lt;a:srgbClr val=\&quot;0078D4\&quot;/&gt;&lt;/a:solidFill&gt;&lt;a:ln&gt;&lt;a:noFill/&gt;&lt;/a:ln&gt;&lt;/p:spPr&gt;&lt;p:style&gt;&lt;a:lnRef idx=\&quot;1\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:lnRef&gt;&lt;a:fillRef idx=\&quot;3\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:fillRef&gt;&lt;a:effectRef idx=\&quot;2\&quot;&gt;&lt;a:schemeClr val=\&quot;accent1\&quot;/&gt;&lt;/a:effectRef&gt;&lt;a:fontRef idx=\&quot;minor\&quot;&gt;&lt;a:schemeClr val=\&quot;lt1\&quot;/&gt;&lt;/a:fontRef&gt;&lt;/p:style&gt;&lt;p:txBody&gt;&lt;a:bodyPr rtlCol=\&quot;0\&quot; anchor=\&quot;ctr\&quot;/&gt;&lt;a:lstStyle/&gt;&lt;a:p&gt;&lt;a:pPr algn=\&quot;ctr\&quot;/&gt;&lt;/a:p&gt;&lt;/p:txBody&gt;&lt;/p:sp&gt;&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 1371600,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 1371600,
+          &quot;name&quot;: &quot;TextBox 2&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;❓&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;❓&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;❓&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 2743200,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 1097280,
+          &quot;name&quot;: &quot;TextBox 3&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;问题与讨论&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;问题与讨论&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;问题与讨论&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 3931920,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 731520,
+          &quot;name&quot;: &quot;TextBox 4&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;欢迎提出您的问题和想法&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;欢迎提出您的问题和想法&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;欢迎提出您的问题和想法&quot;
+        },
+        {
+          &quot;type&quot;: &quot;TEXT_BOX&quot;,
+          &quot;left&quot;: 0,
+          &quot;top&quot;: 5303520,
+          &quot;width&quot;: 12191695,
+          &quot;height&quot;: 548640,
+          &quot;name&quot;: &quot;TextBox 5&quot;,
+          &quot;text_content&quot;: [
+            {
+              &quot;text&quot;: &quot;联系方式: email@example.com&quot;,
+              &quot;level&quot;: 0,
+              &quot;runs&quot;: [
+                {
+                  &quot;text&quot;: &quot;联系方式: email@example.com&quot;
+                }
+              ],
+              &quot;alignment&quot;: &quot;CENTER (2)&quot;
+            }
+          ],
+          &quot;full_text&quot;: &quot;联系方式: email@example.com&quot;
+        }
+      ],
+      &quot;notes&quot;: &quot;&quot;,
+      &quot;layout_name&quot;: &quot;Blank&quot;
+    }
+  ],
+  &quot;layouts&quot;: [
+    {
+      &quot;index&quot;: 0,
+      &quot;name&quot;: &quot;Title Slide&quot;
+    },
+    {
+      &quot;index&quot;: 1,
+      &quot;name&quot;: &quot;Title and Content&quot;
+    },
+    {
+      &quot;index&quot;: 2,
+      &quot;name&quot;: &quot;Section Header&quot;
+    },
+    {
+      &quot;index&quot;: 3,
+      &quot;name&quot;: &quot;Two Content&quot;
+    },
+    {
+      &quot;index&quot;: 4,
+      &quot;name&quot;: &quot;Comparison&quot;
+    },
+    {
+      &quot;index&quot;: 5,
+      &quot;name&quot;: &quot;Title Only&quot;
+    },
+    {
+      &quot;index&quot;: 6,
+      &quot;name&quot;: &quot;Blank&quot;
+    },
+    {
+      &quot;index&quot;: 7,
+      &quot;name&quot;: &quot;Content with Caption&quot;
+    },
+    {
+      &quot;index&quot;: 8,
+      &quot;name&quot;: &quot;Picture with Caption&quot;
+    },
+    {
+      &quot;index&quot;: 9,
+      &quot;name&quot;: &quot;Title and Vertical Text&quot;
+    },
+    {
+      &quot;index&quot;: 10,
+      &quot;name&quot;: &quot;Vertical Title and Text&quot;
+    }
+  ],
+  &quot;images&quot;: {}
+}</pre>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="duplicateSlide()">📋 复制选中</button>
+        <button onclick="moveUp()">⬆️ 上移</button>
+        <button onclick="moveDown()">⬇️ 下移</button>
+        <button onclick="exportOrder()">💾 导出顺序</button>
+    </div>
+
+    <script>
+        let selectedSlide = null;
+
+        document.querySelectorAll('.slide').forEach(slide => {
+            slide.addEventListener('click', function() {
+                document.querySelectorAll('.slide').forEach(s => s.style.outline = 'none');
+                this.style.outline = '3px solid #667eea';
+                selectedSlide = this;
+            });
+        });
+
+        function toggleData() {
+            const el = document.getElementById('json-data');
+            el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function duplicateSlide() {
+            if (!selectedSlide) { alert('请先选择一张幻灯片'); return; }
+            const clone = selectedSlide.cloneNode(true);
+            clone.style.outline = 'none';
+            selectedSlide.after(clone);
+            updateSlideNumbers();
+        }
+
+        function deleteSlide(btn) {
+            if (confirm('确定要删除这张幻灯片吗？')) {
+                btn.closest('.slide').remove();
+                updateSlideNumbers();
+            }
+        }
+
+        function moveUp() {
+            if (!selectedSlide || !selectedSlide.previousElementSibling) return;
+            selectedSlide.parentNode.insertBefore(selectedSlide, selectedSlide.previousElementSibling);
+            updateSlideNumbers();
+        }
+
+        function moveDown() {
+            if (!selectedSlide || !selectedSlide.nextElementSibling) return;
+            selectedSlide.parentNode.insertBefore(selectedSlide.nextElementSibling, selectedSlide);
+            updateSlideNumbers();
+        }
+
+        function updateSlideNumbers() {
+            document.querySelectorAll('.slide').forEach((slide, i) => {
+                slide.querySelector('.slide-number').textContent = '幻灯片 ' + (i + 1);
+                slide.dataset.index = i;
+            });
+        }
+
+        function exportOrder() {
+            const slides = document.querySelectorAll('.slide');
+            const order = Array.from(slides).map(s => parseInt(s.dataset.originalIndex || s.dataset.index));
+            const json = JSON.stringify({
+                "operation": "reorder",
+                "original_count": 6,
+                "new_order": order,
+                "new_count": slides.length
+            }, null, 2);
+
+            const blob = new Blob([json], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'slide_order.json';
+            a.click();
+        }
+    </script>
+</body>
+</html>

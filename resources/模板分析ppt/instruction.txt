@@ -1,0 +1,269 @@
+# PPT模板分析流程
+
+## 背景问题
+
+当前模板处理存在的问题：
+- 合并PPT时出错
+- 无法准确识别模板中的元素
+- 内容插入位置不准确
+
+根本原因：**对模板的理解不够充分**
+
+## 解决思路：先理解，再使用
+
+### 阶段一：提取（Extraction）
+
+**目标**：把模板的每一页完整提取出来，形成结构化数据
+
+**输入**：用户提供的 .pptx 模板文件
+
+**输出**：页面列表 `List[PageData]`
+
+```
+pages = [
+  {
+    "index": 0,
+    "layout_name": "Title Slide",
+    "shapes": [
+      {
+        "shape_id": 1,
+        "shape_type": "placeholder",
+        "placeholder_type": "TITLE",
+        "position": {"left": ..., "top": ..., "width": ..., "height": ...},
+        "text_content": "示例标题",
+        "font_info": {"name": "...", "size": ..., "bold": ...}
+      },
+      {
+        "shape_id": 2,
+        "shape_type": "picture",
+        "position": {...},
+        "is_placeholder": false
+      },
+      ...
+    ]
+  },
+  ...
+]
+```
+
+**提取内容**：
+- 每个 shape 的类型（placeholder/textbox/picture/shape/table/chart）
+- placeholder 的具体类型（TITLE/SUBTITLE/BODY/PICTURE 等）
+- 位置和尺寸信息
+- 文本内容（如有）
+- 样式信息（字体、颜色、大小）
+- 层级关系
+
+### 阶段二：分析（Analysis）- 逐页 Loop
+
+**目标**：用 LLM 理解每一页的语义和可操作性
+
+**输入**：单页的 PageData
+
+**输出**：单页分析报告 `PageAnalysis`
+
+```
+{
+  "index": 0,
+  "page_purpose": "标题页",
+  "description": "用于演示文稿的开场，包含主标题和副标题",
+  
+  "substitutable_elements": [
+    {
+      "shape_id": 1,
+      "role": "主标题",
+      "placeholder_type": "TITLE",
+      "description": "演示文稿的主标题文本",
+      "constraints": "建议不超过10个字"
+    },
+    {
+      "shape_id": 2,
+      "role": "副标题",
+      "placeholder_type": "SUBTITLE", 
+      "description": "副标题或作者/日期信息",
+      "constraints": "可选，1-2行"
+    }
+  ],
+  
+  "fixed_elements": [
+    {
+      "shape_id": 3,
+      "type": "picture",
+      "description": "公司Logo，不应替换"
+    },
+    {
+      "shape_id": 4,
+      "type": "shape",
+      "description": "装饰性图形元素"
+    }
+  ],
+  
+  "suitable_scenarios": ["开场", "章节标题", "结束页"],
+  
+  "content_mapping_hints": {
+    "主标题": "填入演示主题",
+    "副标题": "填入副标题或留空"
+  }
+}
+```
+
+**分析要点**：
+1. **可替换性判断**
+   - 可替换：占位符文本、示例内容、图片占位符
+   - 不可替换：装饰元素、logo、背景图案、固定样式元素
+
+2. **语义角色识别**
+   - 这个占位符是用来放什么的？（标题/要点/图片说明）
+   - 有什么约束？（字数限制/格式要求）
+
+3. **使用场景推断**
+   - 这一页适合用在什么场景？
+   - 适合放什么类型的内容？
+
+### 阶段三：整合概览（Overview）
+
+**目标**：汇总所有页面分析，生成模板全局概览
+
+**输入**：所有页面的 PageAnalysis 列表
+
+**输出**：模板概览 `TemplateOverview`
+
+```
+{
+  "template_name": "商务蓝模板",
+  "template_path": "path/to/template.pptx",
+  "total_layouts": 6,
+  "style_summary": "现代商务风格，蓝色主题，简洁布局",
+  
+  "layouts": [
+    {
+      "index": 0,
+      "name": "标题页",
+      "purpose": "开场/标题",
+      "substitutable_count": 2,
+      "suitable_for": ["开场", "章节标题"]
+    },
+    {
+      "index": 1,
+      "name": "内容页",
+      "purpose": "要点展示",
+      "substitutable_count": 3,
+      "suitable_for": ["要点", "列表", "正文内容"]
+    },
+    {
+      "index": 2,
+      "name": "两栏对比",
+      "purpose": "对比/并列展示",
+      "substitutable_count": 4,
+      "suitable_for": ["对比", "优缺点", "前后对比"]
+    },
+    ...
+  ],
+  
+  "usage_recommendations": {
+    "开场": [0],
+    "内容展示": [1, 2],
+    "图片展示": [3],
+    "总结": [4],
+    "问答": [5]
+  }
+}
+```
+
+### 阶段四：规划使用（Planning）
+
+**目标**：基于模板概览，规划如何生成演示文稿
+
+有了模板概览后，在生成演示文稿时：
+
+1. **大纲生成时**
+   - 参考 `layouts` 列表，知道有哪些布局可用
+   - 每张幻灯片指定使用哪个 layout index
+
+2. **内容生成时**
+   - 参考对应 layout 的 `substitutable_elements`
+   - 内容字段直接映射到 shape_id
+
+3. **渲染时**
+   - 直接通过 shape_id 定位元素
+   - 只修改 substitutable 的元素
+   - 保留 fixed 元素不动
+
+## 实现脚本清单
+
+1. `提取模板内容.py` - 阶段一：提取原始数据
+2. `分析单页内容.py` - 阶段二：LLM 分析单页（可循环调用）
+3. `整合模板概览.py` - 阶段三：汇总生成概览
+4. `[已有] 生成幻灯片内容.py` - 使用概览规划内容
+5. `[已有] 渲染幻灯片.py` - 基于分析结果精准渲染
+
+## 数据流
+
+```
+用户模板.pptx
+    │
+    ▼
+[提取模板内容.py]
+    │
+    ▼
+模板原始数据.json (List[PageData])
+    │
+    ▼ (for each page)
+[分析单页内容.py] ← LLM
+    │
+    ▼
+页面分析_01.json, 页面分析_02.json, ... (List[PageAnalysis])
+    │
+    ▼
+[整合模板概览.py]
+    │
+    ▼
+模板概览.json (TemplateOverview)
+    │
+    ▼
+用于后续的大纲生成、内容生成、渲染
+```
+
+## 关键原则
+
+1. **提取要完整**：宁可多提取，不要漏掉信息
+2. **分析要准确**：LLM 判断可替换性是核心
+3. **概览要实用**：最终概览要能直接指导使用
+4. **渲染要精准**：通过 shape_id 直接定位，避免猜测
+
+## 架构约束
+
+### 二进制文件的读写约束
+
+**约束**：PPTX 等二进制文件的读取和存储必须在同一个 step 中完成
+
+**原因**：
+- python-pptx 的 `Presentation` 对象持有文件句柄和内存状态
+- 二进制对象无法序列化传递给下一个 step
+- 中间状态无法持久化
+
+**影响**：
+
+```
+一般文本/JSON文件：
+  Step 1: 读取文件 → 输出内容
+  Step 2: 处理内容 → 输出结果
+  Step 3: 保存结果 → 写入文件
+  （可以分开，灵活组合）
+
+PPTX二进制文件：
+  Step 1: 读取PPTX + 提取信息 + 保存JSON → 必须一步完成
+  Step 2: 读取JSON + LLM分析 + 保存JSON → 可以分开
+  Step 3: 读取JSON + 读取PPTX + 修改 + 保存PPTX → 必须一步完成
+```
+
+**设计原则**：
+- 提取阶段：`读取PPTX → 提取 → 保存JSON` 一步完成
+- 分析阶段：纯 JSON 操作，可以自由拆分
+- 渲染阶段：`读取JSON + 读取PPTX → 修改 → 保存PPTX` 一步完成
+
+**脚本设计**：
+- `提取模板内容.py`：输入 PPTX 路径，输出 JSON 文件（读写一步）
+- `分析单页内容.py`：输入 JSON，输出 JSON（可拆分）
+- `渲染幻灯片.py`：输入 JSON + PPTX 路径，输出 PPTX 文件（读写一步）
+

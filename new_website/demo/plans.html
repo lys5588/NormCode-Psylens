@@ -170,38 +170,30 @@
         }
 
         // Allowlist of plan IDs currently available for use
-        const ALLOWED_PLAN_IDS = ['cc407e98'];
+        const ALLOWED_PLAN_IDS = ['cc407e98', 'c1cc3210'];
+
+        // Plans with a dedicated custom client — maps plan ID → page-flows URL
+        const CUSTOM_CLIENT_URLS = {
+            'cc407e98': 'ppt生成/page-flows.html',
+            'c1cc3210': 'ppt上传模板/page-flows.html'
+        };
 
         function isPlanAvailable(plan) {
             return ALLOWED_PLAN_IDS.some(id => plan.id.includes(id));
         }
 
-        // Track which card has its picker open
-        let activePickerPlanId = null;
-
         function selectPlan(planId) {
-            const card = document.querySelector(`.plan-card-flip[data-plan-id="${planId}"]`);
-
-            // First click: flip to show client options
-            if (activePickerPlanId !== planId) {
-                // Unflip any previously flipped card
-                if (activePickerPlanId) {
-                    const prev = document.querySelector(`.plan-card-flip[data-plan-id="${activePickerPlanId}"]`);
-                    if (prev) prev.classList.remove('flipped');
-                }
-                activePickerPlanId = planId;
-                if (card) card.classList.add('flipped');
-                return;
-            }
-
-            // Second click on the card body: launch default
             launchClient(planId, 'page-flows');
         }
 
         function launchClient(planId, clientType) {
             sessionStorage.setItem('normcode_plan_id', planId);
             sessionStorage.setItem('normcode_client_type', clientType);
-            window.location.href = clientType === 'page-flows' ? 'page-flows.html' : 'client.html';
+            if (clientType === 'page-flows' && CUSTOM_CLIENT_URLS[planId]) {
+                window.location.href = CUSTOM_CLIENT_URLS[planId];
+            } else {
+                window.location.href = clientType === 'page-flows' ? 'page-flows.html' : 'client.html';
+            }
         }
 
         // Fetch and render plans
@@ -210,9 +202,6 @@
             const status = document.getElementById('plansStatus');
             const lang = i18n.getLang();
             const comingSoon = lang === 'zh' ? '即将推出' : 'Coming Soon';
-            const singlePageLabel = lang === 'zh' ? '单页面' : 'Single-Page';
-            const recommendedTag = `<span class="plan-recommended-tag">${lang === 'zh' ? '推荐' : 'Recommended'}</span>`;
-            const pageFlowsLabel = (lang === 'zh' ? '页面流' : 'Page-Flows') + ' ' + recommendedTag;
 
             try {
                 const resp = await fetch(serverUrl + '/api/plans');
@@ -235,19 +224,10 @@
                 grid.innerHTML = sorted.map(plan => {
                     const available = isPlanAvailable(plan);
                     if (available) {
-                        return `<div class="plan-card-flip" data-plan-id="${plan.id}" onclick="selectPlan('${plan.id}')">
-                            <div class="plan-card-inner">
-                                <div class="plan-card plan-card-front">
-                                    <span class="plan-card-icon">${getPlanIcon(plan)}</span>
-                                    <span class="plan-card-name">${escapeHtml(plan.name || plan.id)}</span>
-                                    <span class="plan-card-id">${escapeHtml(plan.id)}</span>
-                                </div>
-                                <div class="plan-card plan-card-back" onclick="event.stopPropagation()">
-                                    <span class="plan-card-back-label">${escapeHtml(plan.name || plan.id)}</span>
-                                    <button class="plan-client-option plan-client-option--default" onclick="launchClient('${plan.id}','page-flows')">${pageFlowsLabel}</button>
-                                    <button class="plan-client-option" onclick="launchClient('${plan.id}','single-page')">${singlePageLabel}</button>
-                                </div>
-                            </div>
+                        return `<div class="plan-card" onclick="selectPlan('${plan.id}')">
+                            <span class="plan-card-icon">${getPlanIcon(plan)}</span>
+                            <span class="plan-card-name">${escapeHtml(plan.name || plan.id)}</span>
+                            <span class="plan-card-id">${escapeHtml(plan.id)}</span>
                         </div>`;
                     } else {
                         return `<div class="plan-card plan-card--disabled">
@@ -272,14 +252,6 @@
             return div.innerHTML;
         }
 
-        // Unflip when clicking outside a card
-        document.addEventListener('click', (e) => {
-            if (activePickerPlanId && !e.target.closest('.plan-card-flip')) {
-                const prev = document.querySelector(`.plan-card-flip[data-plan-id="${activePickerPlanId}"]`);
-                if (prev) prev.classList.remove('flipped');
-                activePickerPlanId = null;
-            }
-        });
 
         // Load on page ready
         loadPlans();

@@ -614,6 +614,7 @@
 .pf-tl-item.done .pf-tl-icon { color: var(--success); }
 .pf-tl-item.failed .pf-tl-icon { color: var(--error); }
 .pf-tl-item.skipped .pf-tl-icon { color: var(--text-muted); }
+.pf-tl-item.retry .pf-tl-icon { color: #e09800; }
 
 @keyframes pf-pulse {
     0%, 100% { opacity: 1; }
@@ -621,6 +622,15 @@
 }
 .pf-tl-item.running .pf-tl-icon {
     animation: pf-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pf-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.pf-tl-item.retry .pf-tl-icon {
+    animation: pf-spin 1.4s linear infinite;
+    display: inline-block;
 }
 
 /* Output files in step 4 */

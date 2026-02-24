@@ -1,0 +1,82 @@
+{
+  "index": 2,
+  "page_intent": "双栏对比页",
+  "narrative_structure": "对比关系",
+  "best_for": [
+    "方案对比",
+    "优劣势分析",
+    "竞品分析",
+    "AB测试结果展示",
+    "概念对比"
+  ],
+  "substitutable_elements": [
+    {
+      "shape_index": 1,
+      "role": "页面标题",
+      "intent": "概括整页的对比主题",
+      "content_type": "短语",
+      "constraints": {
+        "max_chars": 20,
+        "style_hint": "简洁有力"
+      },
+      "current_text": "对比分析"
+    },
+    {
+      "shape_index": 2,
+      "role": "Block1标题",
+      "intent": "左侧对比对象的核心名称",
+      "belongs_to_block": 1,
+      "content_type": "关键词/短语",
+      "constraints": {
+        "max_chars": 15
+      },
+      "current_text": "方案A"
+    },
+    {
+      "shape_index": 3,
+      "role": "Block1说明",
+      "intent": "左侧对比对象的详细内容或优势",
+      "belongs_to_block": 1,
+      "content_type": "列表/段落",
+      "constraints": {
+        "max_chars": 150
+      },
+      "current_text": "▸ 优势一\n▸ 优势二\n▸ 优势三"
+    },
+    {
+      "shape_index": 4,
+      "role": "Block2标题",
+      "intent": "右侧对比对象的核心名称",
+      "belongs_to_block": 2,
+      "content_type": "关键词/短语",
+      "constraints": {
+        "max_chars": 15
+      },
+      "current_text": "方案B"
+    },
+    {
+      "shape_index": 5,
+      "role": "Block2说明",
+      "intent": "右侧对比对象的详细内容或特点",
+      "belongs_to_block": 2,
+      "content_type": "列表/段落",
+      "constraints": {
+        "max_chars": 150
+      },
+      "current_text": "▸ 特点一\n▸ 特点二\n▸ 特点三"
+    }
+  ],
+  "fixed_elements": [
+    {
+      "shape_index": 0,
+      "type": "shape",
+      "reason": "装饰背景 - 顶部标题栏背景，属于设计元素"
+    },
+    {
+      "shape_index": 6,
+      "type": "shape",
+      "reason": "分割线 - 左右分栏的视觉分割线，属于结构设计元素"
+    }
+  ],
+  "usage_notes": "适合需要并排比较两个事物的场景。中间的分割线强化了对比的视觉感，左右两侧内容结构对称，便于观众快速捕捉差异。"
+}

@@ -1,0 +1,25 @@
+{
+  "slide_index": 1,
+  "replacements": [
+    {
+      "shape_index": 1,
+      "text": "NormCode：可审计推理框架"
+    },
+    {
+      "shape_index": 2,
+      "text": "破除黑箱：可检查、可追溯、可验证\n结构化推理：多步骤逻辑流程\n显式管控：上下文隔离与执行记录\n合规就绪：适配金融与法律场景"
+    }
+  ],
+  "_mapping_log": [
+    {
+      "input": "slot 1",
+      "output": "shape_index 1",
+      "text_preview": "NormCode：可审计推理框架"
+    },
+    {
+      "input": "slot 2",
+      "output": "shape_index 2",
+      "text_preview": "破除黑箱：可检查、可追溯、可验证\n结构化推理：多步骤逻辑流程..."
+    }
+  ]
+}

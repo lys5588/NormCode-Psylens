@@ -1,0 +1,34 @@
+{
+  "slide_index": 5,
+  "replacements": [
+    {
+      "shape_index": 2,
+      "text": "可审计"
+    },
+    {
+      "shape_index": 3,
+      "text": "加快湾区验证"
+    },
+    {
+      "shape_index": 4,
+      "text": "NormCode：价值理念可表达、可记录、可执行"
+    }
+  ],
+  "_mapping_log": [
+    {
+      "input": "slot 1",
+      "output": "shape_index 2",
+      "text_preview": "可审计"
+    },
+    {
+      "input": "slot 2",
+      "output": "shape_index 3",
+      "text_preview": "加快湾区验证"
+    },
+    {
+      "input": "slot 3",
+      "output": "shape_index 4",
+      "text_preview": "NormCode：价值理念可表达、可记录、可执行"
+    }
+  ]
+}

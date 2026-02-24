@@ -1,0 +1,54 @@
+{
+  "index": 0,
+  "page_intent": "标题页",
+  "narrative_structure": "层级关系",
+  "best_for": [
+    "演示文稿开场封面",
+    "章节分隔页",
+    "演讲者介绍页",
+    "主题展示页"
+  ],
+  "substitutable_elements": [
+    {
+      "shape_index": 0,
+      "role": "页面标题",
+      "intent": "展示演示文稿的核心主题",
+      "content_type": "短语",
+      "constraints": {
+        "max_chars": 30,
+        "style_hint": "简洁有力，居中显示"
+      },
+      "current_text": "演示文稿标题"
+    },
+    {
+      "shape_index": 1,
+      "role": "副标题",
+      "intent": "对主题进行补充说明或添加日期/地点",
+      "content_type": "句子",
+      "constraints": {
+        "max_chars": 50,
+        "style_hint": "简短说明"
+      },
+      "current_text": "副标题文本"
+    },
+    {
+      "shape_index": 2,
+      "role": "演讲者信息",
+      "intent": "展示演讲者姓名或职位",
+      "content_type": "姓名/短语",
+      "constraints": {
+        "max_chars": 20,
+        "style_hint": "简洁"
+      },
+      "current_text": "演讲者姓名"
+    }
+  ],
+  "fixed_elements": [
+    {
+      "shape_index": 3,
+      "type": "shape",
+      "reason": "底部装饰线条 - 设计元素，用于平衡页面视觉"
+    }
+  ],
+  "usage_notes": "这是一个标准的封面页模板，所有文本内容均可替换，底部装饰线条保持不变。建议保持文本的层级关系（主标题最大，副标题次之，演讲者最小）。"
+}

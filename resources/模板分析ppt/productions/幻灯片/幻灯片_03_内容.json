@@ -1,0 +1,52 @@
+{
+  "slide_index": 2,
+  "replacements": [
+    {
+      "shape_index": 1,
+      "text": "NormCode规范化推理框架"
+    },
+    {
+      "shape_index": 4,
+      "text": "拆解为结构化推理流程"
+    },
+    {
+      "shape_index": 7,
+      "text": "强制实施显式上下文隔离"
+    },
+    {
+      "shape_index": 10,
+      "text": "全程留存完整执行记录"
+    },
+    {
+      "shape_index": 12,
+      "text": "降低推理风险，提升透明度"
+    }
+  ],
+  "_mapping_log": [
+    {
+      "input": "slot 1",
+      "output": "shape_index 1",
+      "text_preview": "NormCode规范化推理框架"
+    },
+    {
+      "input": "slot 2",
+      "output": "shape_index 4",
+      "text_preview": "拆解为结构化推理流程"
+    },
+    {
+      "input": "slot 3",
+      "output": "shape_index 7",
+      "text_preview": "强制实施显式上下文隔离"
+    },
+    {
+      "input": "slot 4",
+      "output": "shape_index 10",
+      "text_preview": "全程留存完整执行记录"
+    },
+    {
+      "input": "slot 5",
+      "output": "shape_index 12",
+      "text_preview": "降低推理风险，提升透明度"
+    }
+  ]
+}

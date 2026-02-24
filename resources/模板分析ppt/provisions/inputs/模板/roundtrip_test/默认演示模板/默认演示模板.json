@@ -1,0 +1,889 @@
+{
+  "source": "默认演示模板.pptx",
+  "slide_width": 12191695,
+  "slide_height": 6858000,
+  "slide_width_inches": 13.33299978127734,
+  "slide_height_inches": 7.5,
+  "slides": [
+    {
+      "index": 0,
+      "shapes": [
+        {
+          "type": "TEXT_BOX",
+          "left": 914400,
+          "top": 2286000,
+          "width": 10362895,
+          "height": 1371600,
+          "name": "TextBox 1",
+          "text_content": [
+            {
+              "text": "演示文稿标题",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "演示文稿标题"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "演示文稿标题"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 914400,
+          "top": 3840480,
+          "width": 10362895,
+          "height": 731520,
+          "name": "TextBox 2",
+          "text_content": [
+            {
+              "text": "副标题文本",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "副标题文本"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "副标题文本"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 914400,
+          "top": 5669280,
+          "width": 10362895,
+          "height": 457200,
+          "name": "TextBox 3",
+          "text_content": [
+            {
+              "text": "演讲者姓名",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "演讲者姓名"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "演讲者姓名"
+        },
+        {
+          "type": "AUTO_SHAPE",
+          "left": 0,
+          "top": 6720840,
+          "width": 12191695,
+          "height": 137160,
+          "name": "Rectangle 4",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"5\" name=\"Rectangle 4\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"0\" y=\"6720840\"/><a:ext cx=\"12191695\" cy=\"137160\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        }
+      ],
+      "notes": "",
+      "layout_name": "Blank"
+    },
+    {
+      "index": 1,
+      "shapes": [
+        {
+          "type": "AUTO_SHAPE",
+          "left": 0,
+          "top": 0,
+          "width": 12191695,
+          "height": 1097280,
+          "name": "Rectangle 1",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"2\" name=\"Rectangle 1\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"0\" y=\"0\"/><a:ext cx=\"12191695\" cy=\"1097280\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 457200,
+          "top": 274320,
+          "width": 11277295,
+          "height": 731520,
+          "name": "TextBox 2",
+          "text_content": [
+            {
+              "text": "幻灯片标题",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "幻灯片标题"
+                }
+              ]
+            }
+          ],
+          "full_text": "幻灯片标题"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 731520,
+          "top": 1463040,
+          "width": 7315200,
+          "height": 4572000,
+          "name": "TextBox 3",
+          "text_content": [
+            {
+              "text": "要点一：核心内容描述",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "要点一：核心内容描述"
+                }
+              ]
+            },
+            {
+              "text": "要点二：支持性论述",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "要点二：支持性论述"
+                }
+              ]
+            },
+            {
+              "text": "要点三：关键数据或案例",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "要点三：关键数据或案例"
+                }
+              ]
+            },
+            {
+              "text": "要点四：总结性陈述",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "要点四：总结性陈述"
+                }
+              ]
+            }
+          ],
+          "full_text": "要点一：核心内容描述\n要点二：支持性论述\n要点三：关键数据或案例\n要点四：总结性陈述"
+        }
+      ],
+      "notes": "",
+      "layout_name": "Blank"
+    },
+    {
+      "index": 2,
+      "shapes": [
+        {
+          "type": "AUTO_SHAPE",
+          "left": 0,
+          "top": 0,
+          "width": 12191695,
+          "height": 1097280,
+          "name": "Rectangle 1",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"2\" name=\"Rectangle 1\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"0\" y=\"0\"/><a:ext cx=\"12191695\" cy=\"1097280\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 457200,
+          "top": 274320,
+          "width": 11277295,
+          "height": 731520,
+          "name": "TextBox 2",
+          "text_content": [
+            {
+              "text": "对比分析",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "对比分析"
+                }
+              ]
+            }
+          ],
+          "full_text": "对比分析"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 731520,
+          "top": 1371600,
+          "width": 5029200,
+          "height": 548640,
+          "name": "TextBox 3",
+          "text_content": [
+            {
+              "text": "方案A",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "方案A"
+                }
+              ]
+            }
+          ],
+          "full_text": "方案A"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 731520,
+          "top": 2011680,
+          "width": 5029200,
+          "height": 4114800,
+          "name": "TextBox 4",
+          "text_content": [
+            {
+              "text": "▸ 优势一",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "▸ 优势一"
+                }
+              ]
+            },
+            {
+              "text": "▸ 优势二",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "▸ 优势二"
+                }
+              ]
+            },
+            {
+              "text": "▸ 优势三",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "▸ 优势三"
+                }
+              ]
+            }
+          ],
+          "full_text": "▸ 优势一\n▸ 优势二\n▸ 优势三"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 6400800,
+          "top": 1371600,
+          "width": 5029200,
+          "height": 548640,
+          "name": "TextBox 5",
+          "text_content": [
+            {
+              "text": "方案B",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "方案B"
+                }
+              ]
+            }
+          ],
+          "full_text": "方案B"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 6400800,
+          "top": 2011680,
+          "width": 5029200,
+          "height": 4114800,
+          "name": "TextBox 6",
+          "text_content": [
+            {
+              "text": "▸ 特点一",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "▸ 特点一"
+                }
+              ]
+            },
+            {
+              "text": "▸ 特点二",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "▸ 特点二"
+                }
+              ]
+            },
+            {
+              "text": "▸ 特点三",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "▸ 特点三"
+                }
+              ]
+            }
+          ],
+          "full_text": "▸ 特点一\n▸ 特点二\n▸ 特点三"
+        },
+        {
+          "type": "AUTO_SHAPE",
+          "left": 6035040,
+          "top": 1371600,
+          "width": 27432,
+          "height": 4754880,
+          "name": "Rectangle 7",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"8\" name=\"Rectangle 7\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"6035040\" y=\"1371600\"/><a:ext cx=\"27432\" cy=\"4754880\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"E0E0E0\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        }
+      ],
+      "notes": "",
+      "layout_name": "Blank"
+    },
+    {
+      "index": 3,
+      "shapes": [
+        {
+          "type": "AUTO_SHAPE",
+          "left": 0,
+          "top": 0,
+          "width": 12191695,
+          "height": 1097280,
+          "name": "Rectangle 1",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"2\" name=\"Rectangle 1\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"0\" y=\"0\"/><a:ext cx=\"12191695\" cy=\"1097280\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 457200,
+          "top": 274320,
+          "width": 11277295,
+          "height": 731520,
+          "name": "TextBox 2",
+          "text_content": [
+            {
+              "text": "图表展示",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "图表展示"
+                }
+              ]
+            }
+          ],
+          "full_text": "图表展示"
+        },
+        {
+          "type": "AUTO_SHAPE",
+          "left": 914400,
+          "top": 1463040,
+          "width": 10362895,
+          "height": 4114800,
+          "name": "Rectangle 3",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"4\" name=\"Rectangle 3\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"914400\" y=\"1463040\"/><a:ext cx=\"10362895\" cy=\"4114800\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"F8F8F8\"/></a:solidFill><a:ln><a:solidFill><a:srgbClr val=\"C8C8C8\"/></a:solidFill><a:prstDash val=\"sysDash\"/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 914400,
+          "top": 2926080,
+          "width": 10362895,
+          "height": 914400,
+          "name": "TextBox 4",
+          "text_content": [
+            {
+              "text": "📊 图表/图片区域",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "📊 图表/图片区域"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "📊 图表/图片区域"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 914400,
+          "top": 5760720,
+          "width": 10362895,
+          "height": 457200,
+          "name": "TextBox 5",
+          "text_content": [
+            {
+              "text": "图片说明文字",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "图片说明文字"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "图片说明文字"
+        }
+      ],
+      "notes": "",
+      "layout_name": "Blank"
+    },
+    {
+      "index": 4,
+      "shapes": [
+        {
+          "type": "AUTO_SHAPE",
+          "left": 0,
+          "top": 0,
+          "width": 12191695,
+          "height": 1097280,
+          "name": "Rectangle 1",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"2\" name=\"Rectangle 1\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"0\" y=\"0\"/><a:ext cx=\"12191695\" cy=\"1097280\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 457200,
+          "top": 274320,
+          "width": 11277295,
+          "height": 731520,
+          "name": "TextBox 2",
+          "text_content": [
+            {
+              "text": "关键要点",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "关键要点"
+                }
+              ]
+            }
+          ],
+          "full_text": "关键要点"
+        },
+        {
+          "type": "AUTO_SHAPE",
+          "left": 731520,
+          "top": 1645920,
+          "width": 457200,
+          "height": 457200,
+          "name": "Oval 3",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"4\" name=\"Oval 3\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"731520\" y=\"1645920\"/><a:ext cx=\"457200\" cy=\"457200\"/></a:xfrm><a:prstGeom prst=\"ellipse\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 731520,
+          "top": 1719072,
+          "width": 457200,
+          "height": 365760,
+          "name": "TextBox 4",
+          "text_content": [
+            {
+              "text": "1",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "1"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "1"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 1371600,
+          "top": 1691640,
+          "width": 9601200,
+          "height": 457200,
+          "name": "TextBox 5",
+          "text_content": [
+            {
+              "text": "核心发现一：重要结论",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "核心发现一：重要结论"
+                }
+              ]
+            }
+          ],
+          "full_text": "核心发现一：重要结论"
+        },
+        {
+          "type": "AUTO_SHAPE",
+          "left": 731520,
+          "top": 2743200,
+          "width": 457200,
+          "height": 457200,
+          "name": "Oval 6",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"7\" name=\"Oval 6\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"731520\" y=\"2743200\"/><a:ext cx=\"457200\" cy=\"457200\"/></a:xfrm><a:prstGeom prst=\"ellipse\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 731520,
+          "top": 2816352,
+          "width": 457200,
+          "height": 365760,
+          "name": "TextBox 7",
+          "text_content": [
+            {
+              "text": "2",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "2"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "2"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 1371600,
+          "top": 2788920,
+          "width": 9601200,
+          "height": 457200,
+          "name": "TextBox 8",
+          "text_content": [
+            {
+              "text": "核心发现二：关键洞察",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "核心发现二：关键洞察"
+                }
+              ]
+            }
+          ],
+          "full_text": "核心发现二：关键洞察"
+        },
+        {
+          "type": "AUTO_SHAPE",
+          "left": 731520,
+          "top": 3840480,
+          "width": 457200,
+          "height": 457200,
+          "name": "Oval 9",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"10\" name=\"Oval 9\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"731520\" y=\"3840480\"/><a:ext cx=\"457200\" cy=\"457200\"/></a:xfrm><a:prstGeom prst=\"ellipse\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 731520,
+          "top": 3913632,
+          "width": 457200,
+          "height": 365760,
+          "name": "TextBox 10",
+          "text_content": [
+            {
+              "text": "3",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "3"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "3"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 1371600,
+          "top": 3886200,
+          "width": 9601200,
+          "height": 457200,
+          "name": "TextBox 11",
+          "text_content": [
+            {
+              "text": "核心发现三：行动建议",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "核心发现三：行动建议"
+                }
+              ]
+            }
+          ],
+          "full_text": "核心发现三：行动建议"
+        },
+        {
+          "type": "AUTO_SHAPE",
+          "left": 731520,
+          "top": 5303520,
+          "width": 10728655,
+          "height": 731520,
+          "name": "Rectangle 12",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"13\" name=\"Rectangle 12\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"731520\" y=\"5303520\"/><a:ext cx=\"10728655\" cy=\"731520\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"E8F4FD\"/></a:solidFill><a:ln><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 914400,
+          "top": 5440680,
+          "width": 10362895,
+          "height": 457200,
+          "name": "TextBox 13",
+          "text_content": [
+            {
+              "text": "💡 下一步行动建议",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "💡 下一步行动建议"
+                }
+              ]
+            }
+          ],
+          "full_text": "💡 下一步行动建议"
+        }
+      ],
+      "notes": "",
+      "layout_name": "Blank"
+    },
+    {
+      "index": 5,
+      "shapes": [
+        {
+          "type": "AUTO_SHAPE",
+          "left": 0,
+          "top": 0,
+          "width": 12191695,
+          "height": 6858000,
+          "name": "Rectangle 1",
+          "text_content": [
+            {
+              "text": "",
+              "level": 0,
+              "runs": [],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "",
+          "raw_xml": "<p:sp xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><p:nvSpPr><p:cNvPr id=\"2\" name=\"Rectangle 1\"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x=\"0\" y=\"0\"/><a:ext cx=\"12191695\" cy=\"6858000\"/></a:xfrm><a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom><a:solidFill><a:srgbClr val=\"0078D4\"/></a:solidFill><a:ln><a:noFill/></a:ln></p:spPr><p:style><a:lnRef idx=\"1\"><a:schemeClr val=\"accent1\"/></a:lnRef><a:fillRef idx=\"3\"><a:schemeClr val=\"accent1\"/></a:fillRef><a:effectRef idx=\"2\"><a:schemeClr val=\"accent1\"/></a:effectRef><a:fontRef idx=\"minor\"><a:schemeClr val=\"lt1\"/></a:fontRef></p:style><p:txBody><a:bodyPr rtlCol=\"0\" anchor=\"ctr\"/><a:lstStyle/><a:p><a:pPr algn=\"ctr\"/></a:p></p:txBody></p:sp>"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 0,
+          "top": 1371600,
+          "width": 12191695,
+          "height": 1371600,
+          "name": "TextBox 2",
+          "text_content": [
+            {
+              "text": "❓",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "❓"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "❓"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 0,
+          "top": 2743200,
+          "width": 12191695,
+          "height": 1097280,
+          "name": "TextBox 3",
+          "text_content": [
+            {
+              "text": "问题与讨论",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "问题与讨论"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "问题与讨论"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 0,
+          "top": 3931920,
+          "width": 12191695,
+          "height": 731520,
+          "name": "TextBox 4",
+          "text_content": [
+            {
+              "text": "欢迎提出您的问题和想法",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "欢迎提出您的问题和想法"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "欢迎提出您的问题和想法"
+        },
+        {
+          "type": "TEXT_BOX",
+          "left": 0,
+          "top": 5303520,
+          "width": 12191695,
+          "height": 548640,
+          "name": "TextBox 5",
+          "text_content": [
+            {
+              "text": "联系方式: email@example.com",
+              "level": 0,
+              "runs": [
+                {
+                  "text": "联系方式: email@example.com"
+                }
+              ],
+              "alignment": "CENTER (2)"
+            }
+          ],
+          "full_text": "联系方式: email@example.com"
+        }
+      ],
+      "notes": "",
+      "layout_name": "Blank"
+    }
+  ],
+  "layouts": [
+    {
+      "index": 0,
+      "name": "Title Slide"
+    },
+    {
+      "index": 1,
+      "name": "Title and Content"
+    },
+    {
+      "index": 2,
+      "name": "Section Header"
+    },
+    {
+      "index": 3,
+      "name": "Two Content"
+    },
+    {
+      "index": 4,
+      "name": "Comparison"
+    },
+    {
+      "index": 5,
+      "name": "Title Only"
+    },
+    {
+      "index": 6,
+      "name": "Blank"
+    },
+    {
+      "index": 7,
+      "name": "Content with Caption"
+    },
+    {
+      "index": 8,
+      "name": "Picture with Caption"
+    },
+    {
+      "index": 9,
+      "name": "Title and Vertical Text"
+    },
+    {
+      "index": 10,
+      "name": "Vertical Title and Text"
+    }
+  ],
+  "images": {}
+}

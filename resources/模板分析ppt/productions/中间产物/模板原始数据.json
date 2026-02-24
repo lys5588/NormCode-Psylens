@@ -1,0 +1,1161 @@
+{
+  "status": "success",
+  "template_path": "C:\\Users\\ProgU\\PycharmProjects\\normCode\\direct_infra_experiment\\tests\\模板分析ppt\\provisions\\inputs\\模板\\默认演示模板.pptx",
+  "template_info": {
+    "total_pages": 6,
+    "slide_width_cm": 33.87,
+    "slide_height_cm": 19.05,
+    "slide_width_emu": 12191695,
+    "slide_height_emu": 6858000
+  },
+  "pages": [
+    {
+      "index": 0,
+      "layout_name": "Blank",
+      "shapes": [
+        {
+          "shape_index": 0,
+          "element_type": "text",
+          "shape_id": 2,
+          "name": "TextBox 1",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.54,
+            "top_cm": 6.35,
+            "width_cm": 28.79,
+            "height_cm": 3.81,
+            "left_emu": 914400,
+            "top_emu": 2286000,
+            "width_emu": 10362895,
+            "height_emu": 1371600
+          },
+          "is_placeholder": false,
+          "text_content": "演示文稿标题",
+          "text_frame": {
+            "full_text": "演示文稿标题",
+            "paragraphs": [
+              {
+                "text": "演示文稿标题",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 1,
+          "element_type": "text",
+          "shape_id": 3,
+          "name": "TextBox 2",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.54,
+            "top_cm": 10.67,
+            "width_cm": 28.79,
+            "height_cm": 2.03,
+            "left_emu": 914400,
+            "top_emu": 3840480,
+            "width_emu": 10362895,
+            "height_emu": 731520
+          },
+          "is_placeholder": false,
+          "text_content": "副标题文本",
+          "text_frame": {
+            "full_text": "副标题文本",
+            "paragraphs": [
+              {
+                "text": "副标题文本",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 2,
+          "element_type": "text",
+          "shape_id": 4,
+          "name": "TextBox 3",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.54,
+            "top_cm": 15.75,
+            "width_cm": 28.79,
+            "height_cm": 1.27,
+            "left_emu": 914400,
+            "top_emu": 5669280,
+            "width_emu": 10362895,
+            "height_emu": 457200
+          },
+          "is_placeholder": false,
+          "text_content": "演讲者姓名",
+          "text_frame": {
+            "full_text": "演讲者姓名",
+            "paragraphs": [
+              {
+                "text": "演讲者姓名",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 3,
+          "element_type": "shape",
+          "shape_id": 5,
+          "name": "Rectangle 4",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 18.67,
+            "width_cm": 33.87,
+            "height_cm": 0.38,
+            "left_emu": 0,
+            "top_emu": 6720840,
+            "width_emu": 12191695,
+            "height_emu": 137160
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        }
+      ],
+      "stats": {
+        "total_shapes": 4,
+        "text_shapes": 3,
+        "picture_shapes": 0,
+        "placeholder_count": 0
+      }
+    },
+    {
+      "index": 1,
+      "layout_name": "Blank",
+      "shapes": [
+        {
+          "shape_index": 0,
+          "element_type": "shape",
+          "shape_id": 2,
+          "name": "Rectangle 1",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 0.0,
+            "width_cm": 33.87,
+            "height_cm": 3.05,
+            "left_emu": 0,
+            "top_emu": 0,
+            "width_emu": 12191695,
+            "height_emu": 1097280
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 1,
+          "element_type": "text",
+          "shape_id": 3,
+          "name": "TextBox 2",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 1.27,
+            "top_cm": 0.76,
+            "width_cm": 31.33,
+            "height_cm": 2.03,
+            "left_emu": 457200,
+            "top_emu": 274320,
+            "width_emu": 11277295,
+            "height_emu": 731520
+          },
+          "is_placeholder": false,
+          "text_content": "幻灯片标题",
+          "text_frame": {
+            "full_text": "幻灯片标题",
+            "paragraphs": [
+              {
+                "text": "幻灯片标题",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 2,
+          "element_type": "text",
+          "shape_id": 4,
+          "name": "TextBox 3",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 4.06,
+            "width_cm": 20.32,
+            "height_cm": 12.7,
+            "left_emu": 731520,
+            "top_emu": 1463040,
+            "width_emu": 7315200,
+            "height_emu": 4572000
+          },
+          "is_placeholder": false,
+          "text_content": "要点一：核心内容描述\n要点二：支持性论述\n要点三：关键数据或案例\n要点四：总结性陈述",
+          "text_frame": {
+            "full_text": "要点一：核心内容描述\n要点二：支持性论述\n要点三：关键数据或案例\n要点四：总结性陈述",
+            "paragraphs": [
+              {
+                "text": "要点一：核心内容描述",
+                "level": 0
+              },
+              {
+                "text": "要点二：支持性论述",
+                "level": 0
+              },
+              {
+                "text": "要点三：关键数据或案例",
+                "level": 0
+              },
+              {
+                "text": "要点四：总结性陈述",
+                "level": 0
+              }
+            ]
+          }
+        }
+      ],
+      "stats": {
+        "total_shapes": 3,
+        "text_shapes": 2,
+        "picture_shapes": 0,
+        "placeholder_count": 0
+      }
+    },
+    {
+      "index": 2,
+      "layout_name": "Blank",
+      "shapes": [
+        {
+          "shape_index": 0,
+          "element_type": "shape",
+          "shape_id": 2,
+          "name": "Rectangle 1",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 0.0,
+            "width_cm": 33.87,
+            "height_cm": 3.05,
+            "left_emu": 0,
+            "top_emu": 0,
+            "width_emu": 12191695,
+            "height_emu": 1097280
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 1,
+          "element_type": "text",
+          "shape_id": 3,
+          "name": "TextBox 2",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 1.27,
+            "top_cm": 0.76,
+            "width_cm": 31.33,
+            "height_cm": 2.03,
+            "left_emu": 457200,
+            "top_emu": 274320,
+            "width_emu": 11277295,
+            "height_emu": 731520
+          },
+          "is_placeholder": false,
+          "text_content": "对比分析",
+          "text_frame": {
+            "full_text": "对比分析",
+            "paragraphs": [
+              {
+                "text": "对比分析",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 2,
+          "element_type": "text",
+          "shape_id": 4,
+          "name": "TextBox 3",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 3.81,
+            "width_cm": 13.97,
+            "height_cm": 1.52,
+            "left_emu": 731520,
+            "top_emu": 1371600,
+            "width_emu": 5029200,
+            "height_emu": 548640
+          },
+          "is_placeholder": false,
+          "text_content": "方案A",
+          "text_frame": {
+            "full_text": "方案A",
+            "paragraphs": [
+              {
+                "text": "方案A",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 3,
+          "element_type": "text",
+          "shape_id": 5,
+          "name": "TextBox 4",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 5.59,
+            "width_cm": 13.97,
+            "height_cm": 11.43,
+            "left_emu": 731520,
+            "top_emu": 2011680,
+            "width_emu": 5029200,
+            "height_emu": 4114800
+          },
+          "is_placeholder": false,
+          "text_content": "▸ 优势一\n▸ 优势二\n▸ 优势三",
+          "text_frame": {
+            "full_text": "▸ 优势一\n▸ 优势二\n▸ 优势三",
+            "paragraphs": [
+              {
+                "text": "▸ 优势一",
+                "level": 0
+              },
+              {
+                "text": "▸ 优势二",
+                "level": 0
+              },
+              {
+                "text": "▸ 优势三",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 4,
+          "element_type": "text",
+          "shape_id": 6,
+          "name": "TextBox 5",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 17.78,
+            "top_cm": 3.81,
+            "width_cm": 13.97,
+            "height_cm": 1.52,
+            "left_emu": 6400800,
+            "top_emu": 1371600,
+            "width_emu": 5029200,
+            "height_emu": 548640
+          },
+          "is_placeholder": false,
+          "text_content": "方案B",
+          "text_frame": {
+            "full_text": "方案B",
+            "paragraphs": [
+              {
+                "text": "方案B",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 5,
+          "element_type": "text",
+          "shape_id": 7,
+          "name": "TextBox 6",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 17.78,
+            "top_cm": 5.59,
+            "width_cm": 13.97,
+            "height_cm": 11.43,
+            "left_emu": 6400800,
+            "top_emu": 2011680,
+            "width_emu": 5029200,
+            "height_emu": 4114800
+          },
+          "is_placeholder": false,
+          "text_content": "▸ 特点一\n▸ 特点二\n▸ 特点三",
+          "text_frame": {
+            "full_text": "▸ 特点一\n▸ 特点二\n▸ 特点三",
+            "paragraphs": [
+              {
+                "text": "▸ 特点一",
+                "level": 0
+              },
+              {
+                "text": "▸ 特点二",
+                "level": 0
+              },
+              {
+                "text": "▸ 特点三",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 6,
+          "element_type": "shape",
+          "shape_id": 8,
+          "name": "Rectangle 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 16.76,
+            "top_cm": 3.81,
+            "width_cm": 0.08,
+            "height_cm": 13.21,
+            "left_emu": 6035040,
+            "top_emu": 1371600,
+            "width_emu": 27432,
+            "height_emu": 4754880
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        }
+      ],
+      "stats": {
+        "total_shapes": 7,
+        "text_shapes": 5,
+        "picture_shapes": 0,
+        "placeholder_count": 0
+      }
+    },
+    {
+      "index": 3,
+      "layout_name": "Blank",
+      "shapes": [
+        {
+          "shape_index": 0,
+          "element_type": "shape",
+          "shape_id": 2,
+          "name": "Rectangle 1",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 0.0,
+            "width_cm": 33.87,
+            "height_cm": 3.05,
+            "left_emu": 0,
+            "top_emu": 0,
+            "width_emu": 12191695,
+            "height_emu": 1097280
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 1,
+          "element_type": "text",
+          "shape_id": 3,
+          "name": "TextBox 2",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 1.27,
+            "top_cm": 0.76,
+            "width_cm": 31.33,
+            "height_cm": 2.03,
+            "left_emu": 457200,
+            "top_emu": 274320,
+            "width_emu": 11277295,
+            "height_emu": 731520
+          },
+          "is_placeholder": false,
+          "text_content": "图表展示",
+          "text_frame": {
+            "full_text": "图表展示",
+            "paragraphs": [
+              {
+                "text": "图表展示",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 2,
+          "element_type": "shape",
+          "shape_id": 4,
+          "name": "Rectangle 3",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 2.54,
+            "top_cm": 4.06,
+            "width_cm": 28.79,
+            "height_cm": 11.43,
+            "left_emu": 914400,
+            "top_emu": 1463040,
+            "width_emu": 10362895,
+            "height_emu": 4114800
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 3,
+          "element_type": "text",
+          "shape_id": 5,
+          "name": "TextBox 4",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.54,
+            "top_cm": 8.13,
+            "width_cm": 28.79,
+            "height_cm": 2.54,
+            "left_emu": 914400,
+            "top_emu": 2926080,
+            "width_emu": 10362895,
+            "height_emu": 914400
+          },
+          "is_placeholder": false,
+          "text_content": "📊 图表/图片区域",
+          "text_frame": {
+            "full_text": "📊 图表/图片区域",
+            "paragraphs": [
+              {
+                "text": "📊 图表/图片区域",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 4,
+          "element_type": "text",
+          "shape_id": 6,
+          "name": "TextBox 5",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.54,
+            "top_cm": 16.0,
+            "width_cm": 28.79,
+            "height_cm": 1.27,
+            "left_emu": 914400,
+            "top_emu": 5760720,
+            "width_emu": 10362895,
+            "height_emu": 457200
+          },
+          "is_placeholder": false,
+          "text_content": "图片说明文字",
+          "text_frame": {
+            "full_text": "图片说明文字",
+            "paragraphs": [
+              {
+                "text": "图片说明文字",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        }
+      ],
+      "stats": {
+        "total_shapes": 5,
+        "text_shapes": 3,
+        "picture_shapes": 0,
+        "placeholder_count": 0
+      }
+    },
+    {
+      "index": 4,
+      "layout_name": "Blank",
+      "shapes": [
+        {
+          "shape_index": 0,
+          "element_type": "shape",
+          "shape_id": 2,
+          "name": "Rectangle 1",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 0.0,
+            "width_cm": 33.87,
+            "height_cm": 3.05,
+            "left_emu": 0,
+            "top_emu": 0,
+            "width_emu": 12191695,
+            "height_emu": 1097280
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 1,
+          "element_type": "text",
+          "shape_id": 3,
+          "name": "TextBox 2",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 1.27,
+            "top_cm": 0.76,
+            "width_cm": 31.33,
+            "height_cm": 2.03,
+            "left_emu": 457200,
+            "top_emu": 274320,
+            "width_emu": 11277295,
+            "height_emu": 731520
+          },
+          "is_placeholder": false,
+          "text_content": "关键要点",
+          "text_frame": {
+            "full_text": "关键要点",
+            "paragraphs": [
+              {
+                "text": "关键要点",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 2,
+          "element_type": "shape",
+          "shape_id": 4,
+          "name": "Oval 3",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 4.57,
+            "width_cm": 1.27,
+            "height_cm": 1.27,
+            "left_emu": 731520,
+            "top_emu": 1645920,
+            "width_emu": 457200,
+            "height_emu": 457200
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 3,
+          "element_type": "text",
+          "shape_id": 5,
+          "name": "TextBox 4",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 4.78,
+            "width_cm": 1.27,
+            "height_cm": 1.02,
+            "left_emu": 731520,
+            "top_emu": 1719072,
+            "width_emu": 457200,
+            "height_emu": 365760
+          },
+          "is_placeholder": false,
+          "text_content": "1",
+          "text_frame": {
+            "full_text": "1",
+            "paragraphs": [
+              {
+                "text": "1",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 4,
+          "element_type": "text",
+          "shape_id": 6,
+          "name": "TextBox 5",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 3.81,
+            "top_cm": 4.7,
+            "width_cm": 26.67,
+            "height_cm": 1.27,
+            "left_emu": 1371600,
+            "top_emu": 1691640,
+            "width_emu": 9601200,
+            "height_emu": 457200
+          },
+          "is_placeholder": false,
+          "text_content": "核心发现一：重要结论",
+          "text_frame": {
+            "full_text": "核心发现一：重要结论",
+            "paragraphs": [
+              {
+                "text": "核心发现一：重要结论",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 5,
+          "element_type": "shape",
+          "shape_id": 7,
+          "name": "Oval 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 7.62,
+            "width_cm": 1.27,
+            "height_cm": 1.27,
+            "left_emu": 731520,
+            "top_emu": 2743200,
+            "width_emu": 457200,
+            "height_emu": 457200
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 6,
+          "element_type": "text",
+          "shape_id": 8,
+          "name": "TextBox 7",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 7.82,
+            "width_cm": 1.27,
+            "height_cm": 1.02,
+            "left_emu": 731520,
+            "top_emu": 2816352,
+            "width_emu": 457200,
+            "height_emu": 365760
+          },
+          "is_placeholder": false,
+          "text_content": "2",
+          "text_frame": {
+            "full_text": "2",
+            "paragraphs": [
+              {
+                "text": "2",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 7,
+          "element_type": "text",
+          "shape_id": 9,
+          "name": "TextBox 8",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 3.81,
+            "top_cm": 7.75,
+            "width_cm": 26.67,
+            "height_cm": 1.27,
+            "left_emu": 1371600,
+            "top_emu": 2788920,
+            "width_emu": 9601200,
+            "height_emu": 457200
+          },
+          "is_placeholder": false,
+          "text_content": "核心发现二：关键洞察",
+          "text_frame": {
+            "full_text": "核心发现二：关键洞察",
+            "paragraphs": [
+              {
+                "text": "核心发现二：关键洞察",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 8,
+          "element_type": "shape",
+          "shape_id": 10,
+          "name": "Oval 9",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 10.67,
+            "width_cm": 1.27,
+            "height_cm": 1.27,
+            "left_emu": 731520,
+            "top_emu": 3840480,
+            "width_emu": 457200,
+            "height_emu": 457200
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 9,
+          "element_type": "text",
+          "shape_id": 11,
+          "name": "TextBox 10",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 10.87,
+            "width_cm": 1.27,
+            "height_cm": 1.02,
+            "left_emu": 731520,
+            "top_emu": 3913632,
+            "width_emu": 457200,
+            "height_emu": 365760
+          },
+          "is_placeholder": false,
+          "text_content": "3",
+          "text_frame": {
+            "full_text": "3",
+            "paragraphs": [
+              {
+                "text": "3",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 10,
+          "element_type": "text",
+          "shape_id": 12,
+          "name": "TextBox 11",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 3.81,
+            "top_cm": 10.79,
+            "width_cm": 26.67,
+            "height_cm": 1.27,
+            "left_emu": 1371600,
+            "top_emu": 3886200,
+            "width_emu": 9601200,
+            "height_emu": 457200
+          },
+          "is_placeholder": false,
+          "text_content": "核心发现三：行动建议",
+          "text_frame": {
+            "full_text": "核心发现三：行动建议",
+            "paragraphs": [
+              {
+                "text": "核心发现三：行动建议",
+                "level": 0
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 11,
+          "element_type": "shape",
+          "shape_id": 13,
+          "name": "Rectangle 12",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 2.03,
+            "top_cm": 14.73,
+            "width_cm": 29.8,
+            "height_cm": 2.03,
+            "left_emu": 731520,
+            "top_emu": 5303520,
+            "width_emu": 10728655,
+            "height_emu": 731520
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 12,
+          "element_type": "text",
+          "shape_id": 14,
+          "name": "TextBox 13",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 2.54,
+            "top_cm": 15.11,
+            "width_cm": 28.79,
+            "height_cm": 1.27,
+            "left_emu": 914400,
+            "top_emu": 5440680,
+            "width_emu": 10362895,
+            "height_emu": 457200
+          },
+          "is_placeholder": false,
+          "text_content": "💡 下一步行动建议",
+          "text_frame": {
+            "full_text": "💡 下一步行动建议",
+            "paragraphs": [
+              {
+                "text": "💡 下一步行动建议",
+                "level": 0
+              }
+            ]
+          }
+        }
+      ],
+      "stats": {
+        "total_shapes": 13,
+        "text_shapes": 8,
+        "picture_shapes": 0,
+        "placeholder_count": 0
+      }
+    },
+    {
+      "index": 5,
+      "layout_name": "Blank",
+      "shapes": [
+        {
+          "shape_index": 0,
+          "element_type": "shape",
+          "shape_id": 2,
+          "name": "Rectangle 1",
+          "shape_type": "AUTO_SHAPE (1)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 0.0,
+            "width_cm": 33.87,
+            "height_cm": 19.05,
+            "left_emu": 0,
+            "top_emu": 0,
+            "width_emu": 12191695,
+            "height_emu": 6858000
+          },
+          "is_placeholder": false,
+          "text_frame": {
+            "full_text": "",
+            "paragraphs": [
+              {
+                "text": "",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 1,
+          "element_type": "text",
+          "shape_id": 3,
+          "name": "TextBox 2",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 3.81,
+            "width_cm": 33.87,
+            "height_cm": 3.81,
+            "left_emu": 0,
+            "top_emu": 1371600,
+            "width_emu": 12191695,
+            "height_emu": 1371600
+          },
+          "is_placeholder": false,
+          "text_content": "❓",
+          "text_frame": {
+            "full_text": "❓",
+            "paragraphs": [
+              {
+                "text": "❓",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 2,
+          "element_type": "text",
+          "shape_id": 4,
+          "name": "TextBox 3",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 7.62,
+            "width_cm": 33.87,
+            "height_cm": 3.05,
+            "left_emu": 0,
+            "top_emu": 2743200,
+            "width_emu": 12191695,
+            "height_emu": 1097280
+          },
+          "is_placeholder": false,
+          "text_content": "问题与讨论",
+          "text_frame": {
+            "full_text": "问题与讨论",
+            "paragraphs": [
+              {
+                "text": "问题与讨论",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 3,
+          "element_type": "text",
+          "shape_id": 5,
+          "name": "TextBox 4",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 10.92,
+            "width_cm": 33.87,
+            "height_cm": 2.03,
+            "left_emu": 0,
+            "top_emu": 3931920,
+            "width_emu": 12191695,
+            "height_emu": 731520
+          },
+          "is_placeholder": false,
+          "text_content": "欢迎提出您的问题和想法",
+          "text_frame": {
+            "full_text": "欢迎提出您的问题和想法",
+            "paragraphs": [
+              {
+                "text": "欢迎提出您的问题和想法",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        },
+        {
+          "shape_index": 4,
+          "element_type": "text",
+          "shape_id": 6,
+          "name": "TextBox 5",
+          "shape_type": "TEXT_BOX (17)",
+          "position": {
+            "left_cm": 0.0,
+            "top_cm": 14.73,
+            "width_cm": 33.87,
+            "height_cm": 1.52,
+            "left_emu": 0,
+            "top_emu": 5303520,
+            "width_emu": 12191695,
+            "height_emu": 548640
+          },
+          "is_placeholder": false,
+          "text_content": "联系方式: email@example.com",
+          "text_frame": {
+            "full_text": "联系方式: email@example.com",
+            "paragraphs": [
+              {
+                "text": "联系方式: email@example.com",
+                "level": 0,
+                "alignment": "CENTER (2)"
+              }
+            ]
+          }
+        }
+      ],
+      "stats": {
+        "total_shapes": 5,
+        "text_shapes": 4,
+        "picture_shapes": 0,
+        "placeholder_count": 0
+      }
+    }
+  ]
+}

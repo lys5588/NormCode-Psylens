@@ -1,0 +1,14 @@
+# Python requirements for slice presentation generator
+# Install with: pip install -r python_requirements.txt
+
+# PowerPoint generation
+python-pptx>=0.6.21
+
+# XML processing (for ZIP-based PPTX merging)
+lxml>=4.9.0
+
+# PowerPoint COM automation (Windows only, for reliable PPTX merging)
+pywin32>=306; sys_platform == "win32"
+
+# Note: LibreOffice UNO (Linux) is not a pip package.
+# Install LibreOffice on Linux: apt-get install libreoffice

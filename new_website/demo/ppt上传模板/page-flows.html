@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NormCode Page-Flows Client — Step-by-step guided workflow">
+    <meta name="theme-color" content="#4DA3FF">
+    <link rel="icon" type="image/png" href="../../assets/images/logo.png">
+    <title>PPT 模板生成 — PsylensAI</title>
+
+    <!-- Shared site fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Shared site CSS (../../ = new_website/) -->
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+
+    <link rel="stylesheet" href="css/page-flows.css">
+
+    <!-- Document conversion libraries (PDF, DOCX, PPTX, XLSX) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+
+    <style>
+        /* ---- Prominent PPTX output card ---- */
+        .pf-pptx-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: 14px 16px;
+            border: 2px solid var(--success);
+            border-radius: var(--border-radius);
+            background: rgba(23,191,99,0.06);
+            margin-bottom: var(--space-sm);
+            cursor: pointer;
+            transition: background var(--transition-fast), border-color var(--transition-fast);
+        }
+        .pf-pptx-card:hover { background: rgba(23,191,99,0.12); border-color: var(--accent); }
+        .pf-pptx-icon { font-size: 28px; flex-shrink: 0; }
+        .pf-pptx-info { flex: 1; min-width: 0; }
+        .pf-pptx-name {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .pf-pptx-size { font-size: var(--text-xs); color: var(--text-muted); margin-top: 2px; }
+        .pf-pptx-dl {
+            flex-shrink: 0;
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: var(--text-xs);
+            font-family: var(--font-sans);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+        .pf-pptx-dl:hover { background: var(--accent-hover); }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <main id="main">
+        <div class="pf-wrapper">
+            <!-- Step dots -->
+            <div class="pf-dots">
+                <div class="pf-dot active" onclick="goTo(0)"></div>
+                <div class="pf-dot" onclick="goTo(1)"></div>
+                <div class="pf-dot" onclick="goTo(2)"></div>
+                <div class="pf-dot" onclick="goTo(3)"></div>
+                <div class="pf-dot" onclick="goTo(4)"></div>
+                <div class="pf-dot" onclick="goTo(5)"></div>
+                <div class="pf-dot" onclick="goTo(6)"></div>
+            </div>
+
+            <!-- Card -->
+            <div class="pf-card">
+                <!-- Step 0: Connection -->
+                <div class="pf-step active" data-step="0">
+                    <div class="pf-step-title" data-i18n="pf.s0title">Connection</div>
+                    <div class="pf-step-subtitle" data-i18n="pf.s0sub">Verifying server and loading configuration...</div>
+                    <div style="flex:1;overflow-y:auto">
+                        <div class="pf-info-row">
+                            <span class="pf-status-dot" id="pfConnDot"></span>
+                            <span class="pf-info-label" data-i18n="pf.labelServer">Server</span>
+                            <span class="pf-info-value" id="pfServer">—</span>
+                        </div>
+                        <div class="pf-info-row">
+                            <span class="pf-info-label" data-i18n="pf.labelPlan">Plan</span>
+                            <span class="pf-info-value" id="pfPlan">—</span>
+                        </div>
+                        <div class="pf-info-row pf-model-row" id="pfModelRow" onclick="toggleModelDropdown()">
+                            <span class="pf-info-label" data-i18n="pf.labelModel">Model</span>
+                            <span class="pf-info-value" id="pfModel">—</span>
+                            <span class="pf-model-change" data-i18n="pf.changeModel">change</span>
+                            <div class="pf-model-dropdown" id="pfModelDropdown"></div>
+                        </div>
+                        <div class="pf-info-row" id="pfLlmRow" style="display:none">
+                            <span class="pf-status-dot" id="pfLlmDot"></span>
+                            <span class="pf-info-label" data-i18n="pf.labelLlm">Model Link</span>
+                            <span class="pf-info-value pf-test-status" id="pfLlmStatus"></span>
+                        </div>
+                        <div class="pf-info-row" id="pfFsRow" style="display:none">
+                            <span class="pf-status-dot" id="pfFsDot"></span>
+                            <span class="pf-info-label" data-i18n="pf.labelFiles">File System</span>
+                            <span class="pf-info-value pf-test-status" id="pfFsStatus"></span>
+                        </div>
+                        <div class="pf-info-row" id="pfPyRow" style="display:none">
+                            <span class="pf-status-dot" id="pfPyDot"></span>
+                            <span class="pf-info-label" data-i18n="pf.labelPython">Code</span>
+                            <span class="pf-info-value pf-test-status" id="pfPyStatus"></span>
+                        </div>
+                        <div class="pf-connect-msg" id="pfConnMsg" data-i18n="pf.connecting">Connecting...</div>
+                    </div>
+                </div>
+                <!-- Step 1: Basic Inputs -->
+                <div class="pf-step" data-step="1">
+                    <div class="pf-step-title" data-i18n="pf.s1title">Basic Inputs</div>
+                    <div class="pf-step-subtitle" data-i18n="pf.s1sub">What should this presentation be about?</div>
+                    <div style="flex:1">
+                        <div class="pf-field">
+                            <label data-i18n-html="pf.labelTopic">Topic <span class="pf-required">*</span></label>
+                            <input type="text" id="pfTopic" value="">
+                        </div>
+                        <div class="pf-field">
+                            <label data-i18n="pf.labelAudience">Audience</label>
+                            <input type="text" id="pfAudience" value="">
+                        </div>
+                        <div class="pf-field">
+                            <label data-i18n="pf.labelLength">Length</label>
+                            <input type="text" id="pfLength" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: PPT Template -->
+                <div class="pf-step" data-step="2">
+                    <div class="pf-step-title" data-i18n="pf.s2title">PPT Template</div>
+                    <div class="pf-step-subtitle" data-i18n="pf.s2sub">Upload the PPTX slide template to use.</div>
+                    <div style="flex:1;overflow-y:auto">
+                        <div class="pf-ref-section">
+                            <div class="pf-ref-label" data-i18n="pf.refTemplate">PPT Template</div>
+                            <div class="pf-file-list" id="pfTemplateList"></div>
+                            <div class="pf-drop-area" id="pfTemplateDrop"
+                                 onclick="document.getElementById('pfTemplateInput').click()"
+                                 ondrop="pfDrop(event,'template')" ondragover="pfDragOver(event)" ondragleave="pfDragLeave(event)">
+                                <span id="pfTemplateDropLabel" data-i18n="pf.dropTemplate">+ Upload .pptx</span>
+                                <!-- No 'multiple' — enforces exactly one template -->
+                                <input type="file" id="pfTemplateInput" hidden
+                                       accept=".pptx"
+                                       onchange="pfFiles(event,'template')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Content Files -->
+                <div class="pf-step" data-step="3">
+                    <div class="pf-step-title" data-i18n="pf.s3title">Content Files</div>
+                    <div class="pf-step-subtitle" data-i18n="pf.s3sub">Add content reference files (optional).</div>
+                    <div style="flex:1;overflow-y:auto">
+                        <div class="pf-ref-section">
+                            <div class="pf-ref-label" data-i18n="pf.refContent">Content Files</div>
+                            <div class="pf-file-list" id="pfContentList"></div>
+                            <div class="pf-drop-area" id="pfContentDrop"
+                                 onclick="document.getElementById('pfContentInput').click()"
+                                 ondrop="pfDrop(event,'content')" ondragover="pfDragOver(event)" ondragleave="pfDragLeave(event)">
+                                <span data-i18n="pf.dropContent">+ Add .md, .txt, .json, .pdf, .docx, .pptx, .xlsx</span>
+                                <input type="file" id="pfContentInput" multiple hidden
+                                       accept=".md,.txt,.json,.pdf,.docx,.pptx,.xlsx"
+                                       onchange="pfFiles(event,'content')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Style Guides -->
+                <div class="pf-step" data-step="4">
+                    <div class="pf-step-title" data-i18n="pf.s4title">Style Guides</div>
+                    <div class="pf-step-subtitle" data-i18n="pf.s4sub">Add text style guides (optional).</div>
+                    <div style="flex:1;overflow-y:auto">
+                        <div class="pf-ref-section">
+                            <div class="pf-ref-label" data-i18n="pf.refStyle">Style Guides</div>
+                            <div class="pf-file-list" id="pfStyleList"></div>
+                            <div class="pf-drop-area" id="pfStyleDrop"
+                                 onclick="document.getElementById('pfStyleInput').click()"
+                                 ondrop="pfDrop(event,'style')" ondragover="pfDragOver(event)" ondragleave="pfDragLeave(event)">
+                                <span data-i18n="pf.dropStyle">+ Add .md, .txt</span>
+                                <input type="file" id="pfStyleInput" multiple hidden
+                                       accept=".md,.txt"
+                                       onchange="pfFiles(event,'style')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Review & Launch -->
+                <div class="pf-step" data-step="5">
+                    <div class="pf-step-title" data-i18n="pf.s5title">Review & Launch</div>
+                    <div class="pf-step-subtitle" data-i18n="pf.s5sub">Confirm your settings and start generation.</div>
+                    <div style="flex:1">
+                        <div id="pfReviewContent"></div>
+                        <button class="pf-launch-btn" id="pfLaunchBtn" onclick="launchRun()" data-i18n="pf.launch">Launch</button>
+                    </div>
+                </div>
+
+                <!-- Step 6: Running -->
+                <div class="pf-step" data-step="6">
+                    <div class="pf-step-title" data-i18n="pf.s6title">Running</div>
+                    <div class="pf-step-subtitle" id="pfRunSub" data-i18n="pf.runSub">Generating your presentation...</div>
+                    <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+                        <div class="pf-progress-bar">
+                            <div class="pf-progress-fill" id="pfProgressFill"></div>
+                        </div>
+                        <div class="pf-run-status" id="pfRunStatus" data-i18n="pf.runWaiting">Waiting...</div>
+
+                        <!-- Step timeline -->
+                        <div class="pf-section-label" data-i18n="pf.timelineTitle">Steps</div>
+                        <div class="pf-timeline" id="pfTimeline"></div>
+
+                        <!-- Files produced -->
+                        <div class="pf-files-toggle" id="pfFilesToggle" onclick="this.classList.toggle('open')">
+                            <span data-i18n="pf.filesTitle">Files</span>
+                            <span class="pf-toggle-arrow">&#9654;</span>
+                        </div>
+                        <div class="pf-files-body" id="pfFilesBody">
+                            <div id="pfFinalFiles"></div>
+                            <div id="pfIntermediateFiles"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="pf-nav">
+                <button class="pf-btn pf-btn-back" id="pfBtnBack" onclick="prevStep()" disabled data-i18n-html="pf.back">&larr; Back</button>
+                <button class="pf-btn pf-btn-next" id="pfBtnNext" onclick="nextStep()" disabled data-i18n-html="pf.next">Next &rarr;</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Preview modal -->
+    <div class="pf-modal-overlay" id="pfPreviewOverlay" onclick="closePreview(event)">
+        <div class="pf-modal" onclick="event.stopPropagation()">
+            <div class="pf-modal-header">
+                <span class="pf-modal-title" id="pfPreviewTitle"></span>
+                <div class="pf-modal-actions">
+                    <button class="pf-modal-toggle" id="pfPreviewToggle" onclick="togglePreviewMode()" style="display:none" data-i18n="pf.rendered">Rendered</button>
+                    <button class="pf-modal-close" onclick="closePreview()">&times;</button>
+                </div>
+            </div>
+            <div class="pf-modal-body" id="pfPreviewBody"></div>
+        </div>
+    </div>
+
+    <!-- Document conversion warning dialog -->
+    <div class="pf-convert-overlay" id="pfConvertOverlay">
+        <div class="pf-convert-dialog">
+            <div class="pf-convert-icon">&#9888;</div>
+            <div class="pf-convert-title" data-i18n="pf.convertTitle">Convert to Plain Text?</div>
+            <div class="pf-convert-msg" data-i18n="pf.convertMsg">These files will be converted to plain text. Formatting, images, charts, and layout will be lost. Only the extracted text will be used as reference content.</div>
+            <div class="pf-convert-files" id="pfConvertFileList"></div>
+            <div class="pf-convert-actions">
+                <button class="pf-btn pf-btn-back" id="pfConvertCancel" data-i18n="pf.convertCancel">Cancel</button>
+                <button class="pf-btn pf-btn-next" id="pfConvertProceed" data-i18n="pf.convertProceed">Convert &amp; Add</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shared site JS (../../ = new_website/) -->
+    <script src="../../js/i18n.js"></script>
+    <script src="../../js/nav.js"></script>
+
+    <!-- Page-flows modules -->
+    <script src="js/page-flows-i18n.js"></script>
+    <script src="js/page-flows-state.js"></script>
+    <script src="js/page-flows-core.js"></script>
+    <script src="js/page-flows-convert.js"></script>
+    <script src="js/page-flows-files.js"></script>
+    <script src="js/page-flows-exec.js"></script>
+    <script src="js/page-flows-init.js"></script>
+
+</body>
+</html>
