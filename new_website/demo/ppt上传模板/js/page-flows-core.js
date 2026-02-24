@@ -33,13 +33,38 @@ function goTo(n) {
     btnNext.style.display = step >= 5 ? 'none' : '';
     btnNext.disabled = step === 0 && !connected;
 
-    if (step === 5) buildReview();
+    if (step === 5) {
+        // Close any running SSE stream so a fresh run can start
+        if (pfEvtSource) { pfEvtSource.close(); pfEvtSource = null; }
+        if (pfPollTimer)  { clearTimeout(pfPollTimer); pfPollTimer = null; }
+        // Re-enable launch button; show "重新启动" if a prior run exists
+        const launchBtn = document.getElementById('pfLaunchBtn');
+        if (launchBtn) { launchBtn.disabled = false; launchBtn.textContent = currentRunId ? t('relaunch') : t('launch'); }
+        buildReview();
+    }
 }
 
 function nextStep() {
     if (step === 1) {
         const topic = document.getElementById('pfTopic').value.trim();
         if (!topic) { document.getElementById('pfTopic').focus(); return; }
+    }
+    if (step === 2 && pfTemplate.length === 0) {
+        const drop = document.getElementById('pfTemplateDrop');
+        if (drop) {
+            drop.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            drop.style.outline = '2px solid #e55353';
+            drop.style.outlineOffset = '2px';
+            setTimeout(() => { drop.style.outline = ''; drop.style.outlineOffset = ''; }, 1500);
+        }
+        const msg = document.getElementById('pfTemplateDropLabel');
+        if (msg) {
+            const orig = msg.textContent;
+            msg.textContent = t('templateRequired');
+            msg.style.color = '#e55353';
+            setTimeout(() => { msg.textContent = orig; msg.style.color = ''; }, 2500);
+        }
+        return;
     }
     if (step < 6) goTo(step + 1);
 }

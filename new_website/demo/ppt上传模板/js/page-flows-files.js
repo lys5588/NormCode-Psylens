@@ -211,10 +211,14 @@ function isPreviewable(name) {
 }
 
 function detectRenderMode(name, opts) {
-    if (opts?.renderAs) return opts.renderAs;
-    if (/\.html?$/i.test(name)) return 'html';
-    if (/\.md$/i.test(name))   return 'markdown';
-    if (/\.json$/i.test(name)) return 'json';
+    if (opts?.renderAs)                                      return opts.renderAs;
+    if (/\.html?$/i.test(name))                              return 'html';
+    if (opts?.filePath && /\.html?$/i.test(opts.filePath))   return 'html';
+    if (opts?.fileType === 'html_template')                  return 'html';
+    if (/\.md$/i.test(name))                                 return 'markdown';
+    if (opts?.filePath && /\.md$/i.test(opts.filePath))      return 'markdown';
+    if (/\.json$/i.test(name))                               return 'json';
+    if (opts?.filePath && /\.json$/i.test(opts.filePath))    return 'json';
     return 'text';
 }
 
@@ -245,6 +249,7 @@ ul{padding-left:24px}li{margin:8px 0}strong{color:#0550ae}</style>
 function renderPreviewContent(body, name, content, opts) {
     body.innerHTML = '';
     const toggleBtn = document.getElementById('pfPreviewToggle');
+    const openBtn   = document.getElementById('pfPreviewOpenBtn');
 
     if (!isPreviewable(name) && !(opts?.renderAs || opts?.fileType)) {
         const ext = name.split('.').pop().toUpperCase();
@@ -258,12 +263,15 @@ function renderPreviewContent(body, name, content, opts) {
         `;
         body.appendChild(div);
         toggleBtn.style.display = 'none';
+        if (openBtn) openBtn.style.display = 'none';
         return;
     }
 
-    const mode     = detectRenderMode(name, opts);
+    const mode      = detectRenderMode(name, opts);
     const hasToggle = mode === 'html' || mode === 'markdown' || mode === 'json';
     _previewState   = { name, content, rendered: hasToggle, mode };
+
+    if (openBtn) openBtn.style.display = (mode === 'html' || mode === 'markdown') ? '' : 'none';
 
     if (hasToggle) {
         toggleBtn.style.display = '';
@@ -273,19 +281,68 @@ function renderPreviewContent(body, name, content, opts) {
         toggleBtn.style.display = 'none';
     }
 
-    if (mode === 'markdown') {
+    if (mode === 'html' || mode === 'markdown') {
+        renderRenderedView(body, content, mode);
+    } else if (mode === 'json') {
+        const modal = body.closest('.pf-modal');
+        if (modal) modal.classList.remove('pf-modal-wide');
+        renderJsonPreview(body, content);
+    } else {
+        const modal = body.closest('.pf-modal');
+        if (modal) modal.classList.remove('pf-modal-wide');
+        const pre = document.createElement('pre');
+        pre.textContent = content;
+        body.appendChild(pre);
+    }
+}
+
+/** Render HTML or Markdown in a sandboxed iframe. HTML gets scale-to-fit. */
+function renderRenderedView(body, content, mode) {
+    body.innerHTML = '';
+    const modal = body.closest('.pf-modal');
+    if (modal) modal.classList.add('pf-modal-wide');
+
+    const rendered = mode === 'html'
+        ? replaceTemplatePlaceholders(content)
+        : renderMarkdownToHtml(content);
+
+    if (mode === 'html') {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'pf-preview-scaled';
+        body.appendChild(wrapper);
+
+        const iframe = document.createElement('iframe');
+        iframe.sandbox = 'allow-same-origin allow-scripts';
+        iframe.style.cssText = 'position:absolute;border:none;width:100%;height:100%;transform-origin:top left';
+        wrapper.appendChild(iframe);
+
+        iframe.contentDocument.open();
+        iframe.contentDocument.write(rendered);
+        iframe.contentDocument.close();
+
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            const doc = iframe.contentDocument;
+            if (!doc || !doc.body) return;
+            const fw = iframe.clientWidth;
+            const fh = iframe.clientHeight;
+            const cw = doc.documentElement.scrollWidth;
+            const ch = doc.documentElement.scrollHeight;
+            if (cw > fw || ch > fh) {
+                iframe.style.width  = cw + 'px';
+                iframe.style.height = ch + 'px';
+                const scale = Math.min(fw / cw, fh / ch);
+                iframe.style.transform = 'scale(' + scale + ')';
+                iframe.style.left = Math.max(0, (fw - cw * scale) / 2) + 'px';
+                iframe.style.top  = Math.max(0, (fh - ch * scale) / 2) + 'px';
+            }
+        }));
+    } else {
         const iframe = document.createElement('iframe');
         iframe.sandbox = 'allow-same-origin allow-scripts';
         body.appendChild(iframe);
         iframe.contentDocument.open();
-        iframe.contentDocument.write(renderMarkdownToHtml(content));
+        iframe.contentDocument.write(rendered);
         iframe.contentDocument.close();
-    } else if (mode === 'json') {
-        renderJsonPreview(body, content);
-    } else {
-        const pre = document.createElement('pre');
-        pre.textContent = content;
-        body.appendChild(pre);
     }
 }
 
@@ -307,7 +364,7 @@ function togglePreviewMode() {
         _previewState.rendered = false;
     } else {
         if (mode === 'json') renderJsonPreview(body, content);
-        else renderPreviewContent(body, _previewState.name, content, { renderAs: mode });
+        else renderRenderedView(body, content, mode);
         toggleBtn.textContent = t('source');
         toggleBtn.classList.remove('active');
         _previewState.rendered = true;
@@ -429,6 +486,63 @@ function closePreview(event) {
     const overlay = document.getElementById('pfPreviewOverlay');
     overlay.classList.remove('open');
     document.getElementById('pfPreviewBody').innerHTML = '';
+    const modal = overlay.querySelector('.pf-modal');
+    if (modal) modal.classList.remove('pf-modal-wide');
+}
+
+// ---- Open rendered HTML/Markdown in a new popup window ----
+function pfOpenInWindow() {
+    const { name, content } = _previewState;
+    openRenderedHtmlWindow(content, name);
+}
+
+function openRenderedHtmlWindow(content, filePath) {
+    const isHtml = /\.html?$/i.test(filePath);
+    const isMd   = /\.md$/i.test(filePath);
+    let previewContent;
+    if (isHtml) {
+        previewContent = replaceTemplatePlaceholders(content);
+    } else if (isMd) {
+        previewContent = renderMarkdownToHtml(content);
+    } else {
+        previewContent = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:monospace;padding:20px;white-space:pre-wrap;}</style></head><body>${escapeHtml(content)}</body></html>`;
+    }
+    const blob     = new Blob([previewContent], { type: 'text/html' });
+    const url      = URL.createObjectURL(blob);
+    const fileName = filePath.split('/').pop() || 'preview.html';
+    const width = 1100, height = 700;
+    const left  = Math.round((screen.width  - width)  / 2);
+    const top   = Math.round((screen.height - height) / 2);
+    const win   = window.open(url, `preview_${Date.now()}`,
+        `width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=no,status=no`);
+    if (win) {
+        win.document.title = `预览: ${fileName}`;
+        win.onload = () => URL.revokeObjectURL(url);
+    } else {
+        alert('无法打开新窗口，请检查浏览器是否阻止了弹出窗口');
+        URL.revokeObjectURL(url);
+    }
+}
+
+// ---- Replace {{placeholder}} tokens in HTML for preview ----
+function replaceTemplatePlaceholders(content) {
+    const sampleData = {
+        title:                '示例标题 - Sample Title',
+        presentation_title:   '演示文稿标题',
+        subtitle:             '副标题内容',
+        presenter:            '演讲者姓名',
+        date:                 new Date().toLocaleDateString('zh-CN'),
+        slide_number:         '1',
+        visual_description:   '[图表/图像描述区域]',
+        caption:              '图片说明文字',
+        speaker_notes:        '演讲者备注：这里是演讲提示内容...',
+        content:              '• 要点一\n• 要点二\n• 要点三',
+        bullet_points:        '• 第一点内容\n• 第二点内容\n• 第三点内容',
+        key_message:          '核心信息内容',
+        quote:                '"这是一段引用文字"',
+        author:               '作者名称'
+    };
+    return content.replace(/\{\{(\w+)\}\}/g, (_, key) => sampleData[key.toLowerCase()] || `[${key}]`);
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });

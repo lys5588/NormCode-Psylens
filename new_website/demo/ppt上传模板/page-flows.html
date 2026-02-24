@@ -213,7 +213,7 @@
                     <div class="pf-step-subtitle" data-i18n="pf.s5sub">Confirm your settings and start generation.</div>
                     <div style="flex:1">
                         <div id="pfReviewContent"></div>
-                        <button class="pf-launch-btn" id="pfLaunchBtn" onclick="launchRun()" data-i18n="pf.launch">Launch</button>
+                        <button class="pf-launch-btn" id="pfLaunchBtn" onclick="launchRun()">Launch</button>
                     </div>
                 </div>
 
@@ -258,6 +258,7 @@
             <div class="pf-modal-header">
                 <span class="pf-modal-title" id="pfPreviewTitle"></span>
                 <div class="pf-modal-actions">
+                    <button class="pf-modal-toggle" id="pfPreviewOpenBtn" onclick="pfOpenInWindow()" style="display:none" title="Open in window">&#8599;</button>
                     <button class="pf-modal-toggle" id="pfPreviewToggle" onclick="togglePreviewMode()" style="display:none" data-i18n="pf.rendered">Rendered</button>
                     <button class="pf-modal-close" onclick="closePreview()">&times;</button>
                 </div>

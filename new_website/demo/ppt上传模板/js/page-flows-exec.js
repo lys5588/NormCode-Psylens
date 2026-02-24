@@ -17,6 +17,11 @@ async function launchRun() {
     const userId   = `gui_${Date.now()}`;
     const launchBtn = document.getElementById('pfLaunchBtn');
 
+    if (pfTemplate.length === 0) {
+        alert(t('templateRequired'));
+        return;
+    }
+
     launchBtn.disabled    = true;
     launchBtn.textContent = t('uploading');
 
@@ -131,6 +136,8 @@ async function launchRun() {
         document.getElementById('pfTimeline').innerHTML         = '';
         document.getElementById('pfFinalFiles').innerHTML       = '';
         document.getElementById('pfIntermediateFiles').innerHTML = '';
+        pfTimelineMap = {};
+        pfRestartMap  = {};
 
         startPfEventStream(runId, userId);
 
@@ -222,7 +229,18 @@ function pfHandleEvent(type, data) {
         const isLoop = (data.sequence_type || '').toLowerCase().includes('loop') ||
                        (data.sequence_type || '').toLowerCase().includes('iterate');
         if (isLoop) { pfLoop.current = idx; pfLoop.iteration = 1; }
-        addTimelineItem(idx, name, 'running', isLoop ? `${t('loopIter')} 1` : '');
+
+        if (pfTimelineMap[idx]) {
+            // Step already in timeline — restart or new loop iteration; never add a duplicate
+            pfRestartMap[idx] = (pfRestartMap[idx] || 1) + 1;
+            const meta = isLoop
+                ? `${t('loopIter')} ${pfRestartMap[idx]}`
+                : `#${pfRestartMap[idx]}`;
+            updateTimelineItem(idx, 'retry', meta);
+        } else {
+            pfRestartMap[idx] = 1;
+            addTimelineItem(idx, name, 'running', isLoop ? `${t('loopIter')} 1` : '');
+        }
     }
     else if (type === 'inference:completed') {
         const idx = data.flow_index || '';

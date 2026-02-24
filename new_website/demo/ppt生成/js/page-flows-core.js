@@ -32,7 +32,15 @@ function goTo(n) {
     btnNext.style.display = step >= 5 ? 'none' : '';
     btnNext.disabled = step === 0 && !connected;
 
-    if (step === 5) buildReview();
+    if (step === 5) {
+        // Close any running SSE stream so a fresh run can start
+        if (pfEvtSource) { pfEvtSource.close(); pfEvtSource = null; }
+        if (pfPollTimer)  { clearTimeout(pfPollTimer); pfPollTimer = null; }
+        // Re-enable launch button; show "重新启动" if a prior run exists
+        const launchBtn = document.getElementById('pfLaunchBtn');
+        if (launchBtn) { launchBtn.disabled = false; launchBtn.textContent = currentRunId ? t('relaunch') : t('launch'); }
+        buildReview();
+    }
 }
 
 function nextStep() {
