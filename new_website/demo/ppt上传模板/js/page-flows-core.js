@@ -223,7 +223,7 @@ async function loadDefaults() {
         // Load default style guides from [风格参考元数据]
         if (defaults['[风格参考元数据]']?.data?.[0]) {
             defaults['[风格参考元数据]'].data[0].forEach(ref => {
-                pfStyle.push({ name: ref.name, path: ref.path, type: ref.type, isDefault: true });
+                pfStyle.push({ name: ref.name, path: 'provisions/inputs/' + ref.path, type: ref.type, isDefault: true });
             });
             renderFileList('style');
         }
