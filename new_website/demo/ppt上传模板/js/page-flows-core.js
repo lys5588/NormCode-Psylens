@@ -208,18 +208,15 @@ async function loadDefaults() {
         const fileResponse = await resp.json();
         const defaults     = JSON.parse(fileResponse.content);
 
-        // Load default PPT templates from [模板元数据]
-        if (defaults['[模板元数据]']?.data?.[0]) {
-            defaults['[模板元数据]'].data[0].forEach(ref => {
-                pfTemplate.push({
-                    name:      ref.name || (ref.pptx_path || '').split('/').pop() || 'template.pptx',
-                    path:      ref.pptx_path || ref.path || '',
-                    type:      ref.type || 'pptx_file',
-                    isDefault: true
-                });
+        // Load default PPT template from {模板相对路径} (scalar path relative to provisions/inputs/)
+        const templateRelPath = defaults['{模板相对路径}']?.data?.[0]?.[0];
+        if (templateRelPath) {
+            pfTemplate.push({
+                name:      templateRelPath.split('/').pop(),
+                path:      'provisions/inputs/' + templateRelPath,
+                type:      'pptx_file',
+                isDefault: true
             });
-            // Enforce max 1 — keep only the first
-            if (pfTemplate.length > 1) pfTemplate.splice(1);
             renderFileList('template');
         }
 

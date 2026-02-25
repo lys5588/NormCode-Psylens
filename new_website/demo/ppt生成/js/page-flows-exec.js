@@ -119,6 +119,7 @@ async function launchRun() {
         document.getElementById('pfIntermediateFiles').innerHTML = '';
         pfTimelineMap = {};
         pfRestartMap  = {};
+        pfDurationMap = {};
 
         startPfEventStream(runId, userId);
 
@@ -224,13 +225,18 @@ function pfHandleEvent(type, data) {
         }
     }
     else if (type === 'inference:completed') {
-        const idx = data.flow_index || '';
-        const dur = (data.duration || 0).toFixed(1) + t('seconds');
+        const idx      = data.flow_index || '';
+        pfDurationMap[idx] = (pfDurationMap[idx] || 0) + (data.duration || 0);
+        const totalDur = pfDurationMap[idx].toFixed(1) + t('seconds');
+        const runCount = pfRestartMap[idx] || 1;
         if (data.is_loop && pfLoop.current === idx) {
-            updateTimelineItem(idx, 'done', `${data.total_iterations || pfLoop.iteration || 1} ${t('loopIter')} · ${dur}`);
+            const iters = data.total_iterations || pfLoop.iteration || runCount;
+            updateTimelineItem(idx, 'done', `${iters} ${t('loopIter')} · ${totalDur}`);
             pfLoop.current = null; pfLoop.iteration = 0;
+        } else if (runCount > 1) {
+            updateTimelineItem(idx, 'done', `${runCount} ${t('loopIter')} · ${totalDur}`);
         } else {
-            updateTimelineItem(idx, 'done', dur);
+            updateTimelineItem(idx, 'done', totalDur);
         }
         pfPollOutputFiles();
     }

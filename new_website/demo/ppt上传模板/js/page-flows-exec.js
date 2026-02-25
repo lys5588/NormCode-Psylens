@@ -2,12 +2,12 @@
  * Page-Flows Execution — PPT Template variant
  *
  * Payload differences from the demo variant:
- *   - Sends three separate keys instead of two:
- *       [模板元数据]     axes: ["模板"]
- *       [内容参考元数据] axes: ["内容参考"]
- *       [风格参考元数据] axes: ["风格参考"]
+ *   - Template passed as a scalar path string:
+ *       {模板相对路径}   axes: ["_none_axis"]   (relative to provisions/inputs/)
  *   - Template PPTX uploaded as application/octet-stream (binary).
- *   - Output display highlights the final .pptx with a prominent download card.
+ *   - [内容参考元数据] axes: ["内容参考"]
+ *   - [风格参考元数据] axes: ["风格参考"]
+ *   - Output display highlights 最终演示文稿.pptx with a prominent download card.
  */
 
 async function launchRun() {
@@ -57,10 +57,10 @@ async function launchRun() {
 
         // If no content files provided, upload a placeholder so the plan always
         // receives a non-empty [内容参考元数据] axis.
+        const PLACEHOLDER_PATH = 'provisions/inputs/内容/无内容参考.txt';
         if (pfContent.length === 0) {
-            const placeholderPath = 'content/无内容参考.txt';
             uploads.push(
-                fetch(`${serverUrl}/api/userbenches/${userId}/files/${placeholderPath}`, {
+                fetch(`${serverUrl}/api/userbenches/${userId}/files/${PLACEHOLDER_PATH}`, {
                     method:  'PUT',
                     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
                     body:    '没有内容参考，请根据演示主题自由发挥。'
@@ -71,23 +71,23 @@ async function launchRun() {
         await Promise.all(uploads);
 
         // ---- Build ground_inputs ----
-        const templateRefs = pfTemplate.map(f => ({
-            name:      f.name.replace(/\.pptx$/i, ''),
-            type:      f.type || 'pptx_file',
-            pptx_path: f.path
-        }));
+        // All paths below are relative to provisions/inputs/ to match inputs.json schema.
+        const stripInputPrefix = p => p.replace(/^provisions\/inputs\//, '');
+
+        // {模板相对路径} is a scalar path relative to provisions/inputs/
+        const templateRelPath = stripInputPrefix(pfTemplate[0].path);
 
         const contentRefs = pfContent.length > 0
             ? pfContent.map(f => ({
                 name: f.name.replace(/\.[^.]+$/, ''),
-                path: f.path,
+                path: stripInputPrefix(f.path),
                 type: f.type || 'content'
               }))
-            : [{ name: '无内容参考', path: 'content/无内容参考.txt', type: 'content' }];
+            : [{ name: '无内容参考', path: '内容/无内容参考.txt', type: 'content' }];
 
         const styleRefs = pfStyle.map(f => ({
             name: f.name.replace(/\.[^.]+$/, ''),
-            path: f.path,
+            path: stripInputPrefix(f.path),
             type: f.type || 'guide'
         }));
 
@@ -99,8 +99,8 @@ async function launchRun() {
                 '{演示主题}': { data: [[topic]],                    axes: ['_none_axis'] },
                 '{目标受众}': { data: [[audience || '一般受众']],   axes: ['_none_axis'] },
                 '{期望长度}': { data: [[length  || '6张幻灯片']],   axes: ['_none_axis'] },
-                '[模板元数据]':     { data: [templateRefs], axes: ['模板'] },
-                '[内容参考元数据]': { data: [contentRefs],  axes: ['内容参考'] },
+                '{模板相对路径}':   { data: [[templateRelPath]],  axes: ['_none_axis'] },
+                '[内容参考元数据]': { data: [contentRefs],        axes: ['内容参考'] },
                 '[风格参考元数据]': { data: [styleRefs],    axes: ['风格参考'] },
             }
         };
@@ -138,6 +138,7 @@ async function launchRun() {
         document.getElementById('pfIntermediateFiles').innerHTML = '';
         pfTimelineMap = {};
         pfRestartMap  = {};
+        pfDurationMap = {};
 
         startPfEventStream(runId, userId);
 
@@ -166,60 +167,7 @@ function startPfEventStream(runId) {
     };
 }
 
-// ---- Plan-specific step name translation (c1cc3210 / 模板生成ppt_v1) ----
-const STEP_LABELS = {
-    // Content reference loading
-    '[内容参考]':                                                        '加载内容参考',
-    '*. %>([内容参考元数据]) %<({加载的内容}) %:({当前内容元数据':       '处理每个内容参考',
-    // Style reference loading
-    '[样式参考]':                                                        '加载样式参考',
-    '{加载的样式}':                                                      '加载样式文件',
-    '*. %>([样式参考元数据]) %<({加载的样式}) %:({当前样式元数据':       '处理每个样式参考',
-    // Aggregation
-    '{所有内容参考}':                                                    '汇总内容参考',
-    '{所有样式参考}':                                                    '汇总样式参考',
-    // Analysis
-    '{分析}':                                                            '分析内容',
-    '{已保存的分析}':                                                    '保存分析结果',
-    // Outline
-    '{大纲}':                                                            '生成大纲',
-    '{已保存的大纲}':                                                    '保存大纲',
-    // Slide spec generation
-    '[幻灯片规格]':                                                      '生成幻灯片规格',
-    // Slide rendering loop
-    '[所有已渲染的幻灯片]':                                              '成功生成所有已渲染的幻灯片',
-    '*. %>([幻灯片规格]) %<({幻灯片渲染结果}) %:({当前幻灯片规格':       '处理每个幻灯片规格',
-    // Per-slide steps
-    '{幻灯片内容上下文}':                                                '准备内容上下文',
-    '{幻灯片内容}':                                                      '生成幻灯片内容',
-    '{已保存的幻灯片内容}':                                              '保存幻灯片内容',
-    '{选定的html模板}':                                                  '选择 HTML 模板',
-    '{html模板内容}':                                                    '加载 HTML 模板',
-    '{html幻灯片}':                                                      '渲染 HTML 幻灯片',
-    '{已保存的html幻灯片}':                                              '保存 HTML 幻灯片',
-    '{选定的pptx布局}':                                                  '选择 PPTX 布局',
-    '{pptx幻灯片规格}':                                                  '生成 PPTX 规格',
-    '{已保存的pptx幻灯片规格}':                                          '保存 PPTX 规格',
-    '{幻灯片渲染结果}':                                                  '完成幻灯片渲染',
-    // Final assembly
-    '{所有幻灯片集合}':                                                  '汇总所有幻灯片',
-    '{html演示文稿}':                                                    '生成 HTML 演示文稿',
-    '{已保存的html演示文稿}':                                            '保存 HTML 演示文稿',
-    '{pptx演示文稿}':                                                    '生成 PPTX 演示文稿',
-    '{已保存的pptx演示文稿}':                                            '保存 PPTX 演示文稿',
-    '{所有报告输出}':                                                    '汇总输出文件',
-    '{演示文稿包}':                                                      '打包演示文稿',
-};
-
-function translateStepName(raw) {
-    if (!raw) return raw;
-    if (STEP_LABELS[raw]) return STEP_LABELS[raw];
-    // Prefix match — handles expressions that may be truncated on either end
-    for (const key of Object.keys(STEP_LABELS)) {
-        if (raw.startsWith(key) || key.startsWith(raw)) return STEP_LABELS[key];
-    }
-    return raw;
-}
+// Step name translation provided by page-flows-steps.js
 
 function pfHandleEvent(type, data) {
     if (type === 'inference:started') {
@@ -243,13 +191,18 @@ function pfHandleEvent(type, data) {
         }
     }
     else if (type === 'inference:completed') {
-        const idx = data.flow_index || '';
-        const dur = (data.duration || 0).toFixed(1) + t('seconds');
+        const idx      = data.flow_index || '';
+        pfDurationMap[idx] = (pfDurationMap[idx] || 0) + (data.duration || 0);
+        const totalDur = pfDurationMap[idx].toFixed(1) + t('seconds');
+        const runCount = pfRestartMap[idx] || 1;
         if (data.is_loop && pfLoop.current === idx) {
-            updateTimelineItem(idx, 'done', `${data.total_iterations || pfLoop.iteration || 1} ${t('loopIter')} · ${dur}`);
+            const iters = data.total_iterations || pfLoop.iteration || runCount;
+            updateTimelineItem(idx, 'done', `${iters} ${t('loopIter')} · ${totalDur}`);
             pfLoop.current = null; pfLoop.iteration = 0;
+        } else if (runCount > 1) {
+            updateTimelineItem(idx, 'done', `${runCount} ${t('loopIter')} · ${totalDur}`);
         } else {
-            updateTimelineItem(idx, 'done', dur);
+            updateTimelineItem(idx, 'done', totalDur);
         }
         pfPollOutputFiles();
     }
@@ -357,13 +310,17 @@ async function pfPollOutputFiles() {
 
 /**
  * Render output file cards.
- * .pptx final outputs get a large prominent download card.
- * All other finals and intermediates use the standard compact card.
+ * 最终演示文稿.pptx is always the primary output (prominent card), identified by name.
+ * Other .pptx files are secondary finals. Everything else is intermediate.
  */
 function pfRenderFiles(files) {
-    const allFiles     = files.filter(f => !f.is_dir);
-    const finals       = allFiles.filter(f =>  f.path.includes('output/'));
-    const intermediates = allFiles.filter(f => !f.path.includes('output/'));
+    const allFiles = files.filter(f => !f.is_dir);
+
+    // Name-based split — this plan's output dir is 'productions', not 'output/'
+    const pptxFinals  = allFiles.filter(f => /最终演示文稿\.pptx$/i.test(f.name));
+    const otherFinals = allFiles.filter(f => /\.pptx$/i.test(f.name) && !/最终演示文稿\.pptx$/i.test(f.name));
+    const intermediates = allFiles.filter(f => !/\.pptx$/i.test(f.name));
+    const finals = [...pptxFinals, ...otherFinals];
 
     const extIcons = { html: '&#127760;', pptx: '&#128202;', json: '&#128203;', pdf: '&#128196;', md: '&#128221;', txt: '&#128196;' };
     function icon(name) { return extIcons[name.split('.').pop().toLowerCase()] || '&#128196;'; }
@@ -373,8 +330,6 @@ function pfRenderFiles(files) {
     const interEl = document.getElementById('pfIntermediateFiles');
 
     if (finals.length > 0) {
-        const pptxFinals  = finals.filter(f => /\.pptx$/i.test(f.name));
-        const otherFinals = finals.filter(f => !/\.pptx$/i.test(f.name));
 
         let html = `<div class="pf-section-label">${t('finalOutputs')}</div>`;
 

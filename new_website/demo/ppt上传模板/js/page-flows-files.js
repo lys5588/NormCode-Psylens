@@ -168,7 +168,7 @@ async function pfProcessFiles(files, category) {
         try {
             const text    = await convertFileToText(file);
             const txtName = file.name.replace(/\.[^.]+$/, '.txt');
-            const catPath = category === 'style' ? 'style' : 'content';
+            const catPath = category === 'style' ? '风格' : '内容';
             getFileArray(category).push({
                 name:          txtName,
                 path:          `provisions/inputs/${catPath}/${txtName}`,
@@ -188,7 +188,7 @@ async function pfProcessFiles(files, category) {
 function pfReadTextFile(file, category) {
     const reader = new FileReader();
     reader.onload = (e) => {
-        const catPath = category === 'style' ? 'style' : 'content';
+        const catPath = category === 'style' ? '风格' : '内容';
         getFileArray(category).push({
             name:      file.name,
             path:      `provisions/inputs/${catPath}/${file.name}`,

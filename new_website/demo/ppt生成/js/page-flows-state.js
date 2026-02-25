@@ -38,4 +38,5 @@ let pfEvtSource   = null;
 let pfLoop        = { current: 0, iteration: 0, completed: 0, total: 0 };
 let pfTimelineMap = {};
 let pfRestartMap  = {};  // flow_index → how many times seen after first start
+let pfDurationMap = {};  // flow_index → accumulated total duration (seconds)
 let _previewState = { name: '', content: '', rendered: true, mode: 'text' };
