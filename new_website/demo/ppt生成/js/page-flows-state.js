@@ -31,6 +31,13 @@ const steps   = document.querySelectorAll('.pf-step');
 const btnBack = document.getElementById('pfBtnBack');
 const btnNext = document.getElementById('pfBtnNext');
 
+// ---- Template set picker ----
+let templateSetsData    = null;
+let currentSetId        = null;
+let templateSelections  = {};
+let templateContentCache = {};
+let customUploadTemplates = [];
+
 // ---- Run tracking ----
 let currentRunId  = '';
 let currentUserId = '';

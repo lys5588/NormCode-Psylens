@@ -476,9 +476,84 @@ function replaceTemplatePlaceholders(content) {
         speaker_notes:        '演讲者备注：这里是演讲提示内容...',
         content:              '• 要点一\n• 要点二\n• 要点三',
         bullet_points:        '• 第一点内容\n• 第二点内容\n• 第三点内容',
+        bullets:              '<li>关键发现与分析</li><li>策略建议与方案</li><li>下一步实施计划</li>',
         key_message:          '核心信息内容',
-        quote:                '"这是一段引用文字"',
-        author:               '作者名称'
+        intro_text:           '以下是本次讨论的核心要点总结：',
+        quote:                '"数据驱动决策是现代企业的核心竞争力。"',
+        author:               '张明远',
+        author_role:          '首席数据官',
+        badge:                '核心',
+        side_panel_title:     '关键指标',
+        footnote:             '数据来源：2026年度报告',
+        section_number:       '02',
+        contact_email:        'contact@example.com',
+        contact_link:         'www.example.com',
+        outcome:              '实现30%效率提升',
+        call_to_action:       '立即开始数字化转型 →',
+        diagram_label:        '系统架构图',
+        chart_title:          '季度营收趋势',
+        insights_title:       '关键洞察',
+        insights:             '<li>同比增长 23%</li><li>用户留存率提升</li><li>成本降低 15%</li>',
+        takeaways:            '<li>1. 营收同比增长 23%</li><li>2. 用户满意度达 96%</li><li>3. 市场份额扩大 5%</li>',
+        table_rows:           '<tr><td>Q1</td><td>¥2.4M</td><td>+18%</td><td>1,240</td><td>92%</td></tr><tr><td>Q2</td><td>¥3.1M</td><td>+29%</td><td>1,580</td><td>95%</td></tr><tr><td>Q3</td><td>¥2.8M</td><td>+12%</td><td>1,420</td><td>94%</td></tr>',
+        highlight_1_value: '42%', highlight_1_label: '增长率',
+        highlight_2_value: '1.2M', highlight_2_label: '用户数',
+        highlight_3_value: '99.9%', highlight_3_label: '可用性',
+        metric_1_value: '¥2,847', metric_1_label: '营收(万)', metric_1_trend: '+12%',
+        metric_2_value: '1,580', metric_2_label: '新客户', metric_2_trend: '+29%',
+        metric_3_value: '96%', metric_3_label: '满意度', metric_3_trend: '+3%',
+        metric_4_value: '45ms', metric_4_label: '响应时间', metric_4_trend: '-18%',
+        bar_1_value: '78%', bar_1_label: 'Q1',
+        bar_2_value: '85%', bar_2_label: 'Q2',
+        bar_3_value: '92%', bar_3_label: 'Q3',
+        bar_4_value: '88%', bar_4_label: 'Q4',
+        bar_5_value: '95%', bar_5_label: '目标',
+        left_icon: '📊', left_header: '方案 A', left_metric_value: '¥1.2M', left_metric_label: '预算',
+        left_bullets: '<li>快速部署</li><li>低风险</li><li>3个月周期</li>',
+        right_icon: '🚀', right_header: '方案 B', right_metric_value: '¥2.5M', right_metric_label: '预算',
+        right_bullets: '<li>全面升级</li><li>长期收益</li><li>6个月周期</li>',
+        annotation_1_value: '42%', annotation_1_text: '效率提升',
+        annotation_2_value: '3x', annotation_2_text: '吞吐量',
+        annotation_3_value: '99.9%', annotation_3_text: '系统可用性',
+        milestone_1_date: '2025 Q1', milestone_1_title: '项目启动', milestone_1_desc: '需求分析与团队组建',
+        milestone_2_date: '2025 Q2', milestone_2_title: '原型开发', milestone_2_desc: '核心功能开发完成',
+        milestone_3_date: '2025 Q3', milestone_3_title: '测试上线', milestone_3_desc: '内测与优化迭代',
+        milestone_4_date: '2025 Q4', milestone_4_title: '全面推广', milestone_4_desc: '市场推广与用户增长',
+        milestone_5_date: '2026 Q1', milestone_5_title: '持续优化', milestone_5_desc: '数据驱动持续改进',
+        step_1_title: '数据采集', step_1_desc: '多渠道数据整合',
+        step_2_title: '分析建模', step_2_desc: 'AI驱动深度分析',
+        step_3_title: '策略制定', step_3_desc: '基于洞察的决策',
+        step_4_title: '执行优化', step_4_desc: '持续迭代改进',
+        stat_1_value: '2.4M', stat_1_label: '月活用户', stat_1_detail: '同比+35%',
+        stat_2_value: '99.9%', stat_2_label: '系统可用性', stat_2_detail: 'SLA达标',
+        stat_3_value: '45ms', stat_3_label: '平均响应', stat_3_detail: 'P99<100ms',
+        stat_4_value: '¥8.2M', stat_4_label: '季度营收', stat_4_detail: '超目标12%',
+        stat_5_value: '96%', stat_5_label: '客户满意度', stat_5_detail: 'NPS 72',
+        stat_6_value: '340+', stat_6_label: '企业客户', stat_6_detail: '新增58家',
+        quote_stat_1_value: '73%', quote_stat_1_label: '效率提升',
+        quote_stat_2_value: '2.1x', quote_stat_2_label: '投资回报',
+        quote_stat_3_value: '96%', quote_stat_3_label: '推荐率',
+        summary_metric_1_value: '+23%', summary_metric_1_label: '营收增长',
+        summary_metric_2_value: '1.2M', summary_metric_2_label: '用户规模',
+        summary_metric_3_value: '96%', summary_metric_3_label: '满意度',
+        col_1_header: '季度', col_2_header: '营收', col_3_header: '增长', col_4_header: '客户数', col_5_header: '满意度',
+        center_concept: '数字化转型',
+        spoke_1_title: '数据驱动', spoke_1_desc: '建立统一数据平台，实现决策智能化',
+        spoke_2_title: '流程优化', spoke_2_desc: '端到端自动化，减少人工干预',
+        spoke_3_title: '客户体验', spoke_3_desc: '全渠道触达，提升满意度',
+        spoke_4_title: '组织升级', spoke_4_desc: '敏捷协作，赋能创新文化',
+        flow_1_title: '需求分析', flow_1_desc: '深入调研用户痛点与业务目标',
+        flow_2_title: '方案设计', flow_2_desc: '制定技术架构与实施路线图',
+        flow_3_title: '开发交付', flow_3_desc: '迭代开发并持续集成测试',
+        flow_4_title: '运营优化', flow_4_desc: '数据监控与持续改进闭环',
+        flow_outcome: '实现端到端数字化闭环，关键指标提升30%以上',
+        root_title: '企业战略', root_desc: '公司愿景与核心目标',
+        branch_1_title: '产品线', branch_1_desc: '核心产品与创新业务',
+        branch_2_title: '运营体系', branch_2_desc: '供应链与客户服务',
+        branch_3_title: '技术平台', branch_3_desc: '基础设施与数据能力',
+        leaf_1a: '旗舰产品', leaf_1b: '新兴业务',
+        leaf_2a: '供应链', leaf_2b: '客户服务',
+        leaf_3a: '云平台', leaf_3b: '数据中台',
     };
     return content.replace(/\{\{(\w+)\}\}/g, (_, key) => sampleData[key.toLowerCase()] || `[${key}]`);
 }
@@ -492,7 +567,6 @@ function buildReview() {
     const length   = document.getElementById('pfLength').value.trim()   || '—';
     const cCount   = pfContent.length;
     const tCount   = pfTemplate.length;
-    const sCount   = pfStyle.length;
 
     document.getElementById('pfReviewContent').innerHTML = `
         <div class="pf-review-item"><span class="pf-review-label">${t('reviewTopic')}</span><span class="pf-review-value">${escapeHtml(topic)}</span></div>
@@ -500,7 +574,6 @@ function buildReview() {
         <div class="pf-review-item"><span class="pf-review-label">${t('reviewLength')}</span><span class="pf-review-value">${escapeHtml(length)}</span></div>
         <div class="pf-review-item"><span class="pf-review-label">${t('reviewContent')}</span><span class="pf-review-value">${cCount}${t('nFiles')}</span></div>
         <div class="pf-review-item"><span class="pf-review-label">${t('reviewTemplate')}</span><span class="pf-review-value">${tCount}${t('nFiles')}</span></div>
-        <div class="pf-review-item"><span class="pf-review-label">${t('reviewStyle')}</span><span class="pf-review-value">${sCount}${t('nFiles')}</span></div>
         <div class="pf-review-item"><span class="pf-review-label">${t('reviewModel')}</span><span class="pf-review-value">${escapeHtml(selectedModel)}</span></div>
     `;
 }

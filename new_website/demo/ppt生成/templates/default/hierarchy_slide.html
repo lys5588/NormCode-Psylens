@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #2D2D2D;
+        }
+
+        .slide {
+            width: 960px;
+            height: 540px;
+            margin: 20px auto;
+            background: #FAFBFC;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .side-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #0078D4 0%, #005A9E 60%, #003F6E 100%);
+        }
+
+        .header {
+            margin: 0 0 0 6px;
+            padding: 22px 50px 14px 48px;
+            border-bottom: 1px solid #E8EBF0;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1A1A2E;
+        }
+
+        .tree-area {
+            position: absolute;
+            top: 70px;
+            left: 6px;
+            right: 0;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 48px;
+        }
+
+        .root-node {
+            background: linear-gradient(135deg, #0078D4, #005A9E);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 14px rgba(0,120,212,0.3);
+            z-index: 2;
+            position: relative;
+        }
+
+        .root-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .root-desc {
+            font-size: 12px;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+
+        .trunk {
+            width: 2px;
+            height: 30px;
+            background: #C9D6E3;
+        }
+
+        .branch-bar {
+            width: 580px;
+            height: 2px;
+            background: #C9D6E3;
+            position: relative;
+        }
+
+        .branches {
+            display: flex;
+            width: 580px;
+            justify-content: space-between;
+        }
+
+        .branch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 170px;
+        }
+
+        .branch-stem {
+            width: 2px;
+            height: 24px;
+            background: #C9D6E3;
+        }
+
+        .branch-node {
+            background: white;
+            border: 2px solid #0078D4;
+            border-radius: 8px;
+            padding: 12px 14px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .branch-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0078D4;
+            margin-bottom: 4px;
+        }
+
+        .branch-desc {
+            font-size: 11px;
+            color: #5A6577;
+            line-height: 1.45;
+        }
+
+        .branch-children {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .leaf {
+            flex: 1;
+            background: #F0F4F8;
+            border-radius: 5px;
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        .leaf-text {
+            font-size: 10px;
+            color: #3D3D3D;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 6px;
+            right: 0;
+            height: 40px;
+            border-top: 1px solid #E8EBF0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px 0 48px;
+            font-size: 11px;
+            color: #9CA3AF;
+        }
+
+        .slide-number { font-weight: 600; }
+
+        .speaker-notes {
+            width: 960px;
+            margin: 10px auto;
+            padding: 15px 20px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .speaker-notes strong { color: #0078D4; }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="side-accent"></div>
+        <div class="header">
+            <h1>{{title}}</h1>
+        </div>
+        <div class="tree-area">
+            <div class="root-node">
+                <div class="root-title">{{root_title}}</div>
+                <div class="root-desc">{{root_desc}}</div>
+            </div>
+            <div class="trunk"></div>
+            <div class="branch-bar"></div>
+            <div class="branches">
+                <div class="branch">
+                    <div class="branch-stem"></div>
+                    <div class="branch-node">
+                        <div class="branch-title">{{branch_1_title}}</div>
+                        <div class="branch-desc">{{branch_1_desc}}</div>
+                    </div>
+                    <div class="branch-children">
+                        <div class="leaf"><div class="leaf-text">{{leaf_1a}}</div></div>
+                        <div class="leaf"><div class="leaf-text">{{leaf_1b}}</div></div>
+                    </div>
+                </div>
+                <div class="branch">
+                    <div class="branch-stem"></div>
+                    <div class="branch-node">
+                        <div class="branch-title">{{branch_2_title}}</div>
+                        <div class="branch-desc">{{branch_2_desc}}</div>
+                    </div>
+                    <div class="branch-children">
+                        <div class="leaf"><div class="leaf-text">{{leaf_2a}}</div></div>
+                        <div class="leaf"><div class="leaf-text">{{leaf_2b}}</div></div>
+                    </div>
+                </div>
+                <div class="branch">
+                    <div class="branch-stem"></div>
+                    <div class="branch-node">
+                        <div class="branch-title">{{branch_3_title}}</div>
+                        <div class="branch-desc">{{branch_3_desc}}</div>
+                    </div>
+                    <div class="branch-children">
+                        <div class="leaf"><div class="leaf-text">{{leaf_3a}}</div></div>
+                        <div class="leaf"><div class="leaf-text">{{leaf_3b}}</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>{{presentation_title}}</span>
+            <span class="slide-number">{{slide_number}}</span>
+        </div>
+    </div>
+
+    <div class="speaker-notes">
+        <strong>Speaker Notes:</strong> {{speaker_notes}}
+    </div>
+</body>
+</html>

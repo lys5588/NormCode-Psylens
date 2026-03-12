@@ -1,0 +1,42 @@
+{
+  "sets": [
+    {
+      "id": "default",
+      "name": { "en": "Default", "zh": "默认" },
+      "description": { "en": "Text-focused editorial style for explanatory content", "zh": "文字优先的编辑风格，适合说明性内容" },
+      "accent": "#0078D4",
+      "templates": [
+        { "name": "标题页", "file": "title_slide.html", "for": "opening/title with subtitle" },
+        { "name": "内容页", "file": "content_slide.html", "for": "explanatory text with bullet points" },
+        { "name": "两列页", "file": "two_column_slide.html", "for": "compare/contrast two concepts" },
+        { "name": "图文页", "file": "image_focus_slide.html", "for": "visual + key message + caption" },
+        { "name": "关系图", "file": "hub_spoke_slide.html", "for": "central concept with 4 connected ideas" },
+        { "name": "流程链", "file": "flow_chain_slide.html", "for": "linear 4-step process with outcome" },
+        { "name": "层级图", "file": "hierarchy_slide.html", "for": "tree structure with parent-child relations" },
+        { "name": "总结页", "file": "summary_slide.html", "for": "numbered takeaways with call-to-action" },
+        { "name": "问答页", "file": "qa_slide.html", "for": "Q&A / closing with contact" }
+      ]
+    },
+    {
+      "id": "infographic",
+      "name": { "en": "Infographic", "zh": "信息图表" },
+      "description": { "en": "Data-rich with charts, metrics, and diagrams", "zh": "数据丰富，含图表、指标和示意图" },
+      "accent": "#1B2A4A",
+      "templates": [
+        { "name": "标题页", "file": "title_slide.html", "for": "opening/title with key metrics" },
+        { "name": "内容页", "file": "content_slide.html", "for": "bullet content with side visual panel" },
+        { "name": "数据仪表盘", "file": "data_dashboard.html", "for": "KPIs, bar chart, insights" },
+        { "name": "两列对比", "file": "two_column_slide.html", "for": "data comparison with metrics per column" },
+        { "name": "图表/图示", "file": "image_focus_slide.html", "for": "diagram/infographic with annotations" },
+        { "name": "时间线", "file": "timeline_slide.html", "for": "milestones, roadmap, chronological events" },
+        { "name": "流程图", "file": "process_flow_slide.html", "for": "step-by-step process with outcome" },
+        { "name": "数据网格", "file": "stats_grid_slide.html", "for": "6 key statistics in a grid layout" },
+        { "name": "引用/证言", "file": "quote_slide.html", "for": "featured quote with supporting stats" },
+        { "name": "数据表格", "file": "table_slide.html", "for": "structured data table with headers" },
+        { "name": "过渡页", "file": "transition_slide.html", "for": "section divider / transition" },
+        { "name": "总结页", "file": "summary_slide.html", "for": "key metrics summary with takeaways" },
+        { "name": "问答页", "file": "qa_slide.html", "for": "Q&A / closing with contact info" }
+      ]
+    }
+  ]
+}

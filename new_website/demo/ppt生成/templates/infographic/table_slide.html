@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+        }
+
+        .slide {
+            width: 960px;
+            height: 540px;
+            margin: 20px auto;
+            background: #fff;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #1B2A4A;
+            padding: 14px 36px;
+            color: white;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .header-subtitle {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 18px 36px;
+            min-height: 0;
+        }
+
+        .table-wrap {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 6px;
+            border: 1px solid #E2E8F0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead th {
+            background: #1B2A4A;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border-bottom: 2px solid #00BFA5;
+        }
+
+        thead th:first-child {
+            border-bottom-color: #00BFA5;
+        }
+
+        tbody td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #E2E8F0;
+            color: #334155;
+        }
+
+        tbody tr:nth-child(even) td {
+            background: #F7F9FC;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover td {
+            background: #EEF2FF;
+        }
+
+        .cell-highlight {
+            font-weight: 700;
+            color: #1B2A4A;
+        }
+
+        .cell-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .tag-green  { background: rgba(0,191,165,0.12); color: #00897B; }
+        .tag-blue   { background: rgba(59,130,246,0.12); color: #2563EB; }
+        .tag-amber  { background: rgba(245,158,11,0.12); color: #D97706; }
+        .tag-purple { background: rgba(139,92,246,0.12); color: #7C3AED; }
+        .tag-red    { background: rgba(239,68,68,0.12);  color: #DC2626; }
+
+        .table-footnote {
+            font-size: 11px;
+            color: #94A3B8;
+            margin-top: 8px;
+            font-style: italic;
+            flex-shrink: 0;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 26px;
+            background: #1B2A4A;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .slide-number { font-weight: 600; }
+
+        .speaker-notes {
+            width: 960px;
+            margin: 10px auto;
+            padding: 15px 20px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .speaker-notes strong { color: #1B2A4A; }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1>{{title}}</h1>
+            <span class="header-subtitle">{{subtitle}}</span>
+        </div>
+
+        <div class="content-area">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{col_1_header}}</th>
+                            <th>{{col_2_header}}</th>
+                            <th>{{col_3_header}}</th>
+                            <th>{{col_4_header}}</th>
+                            <th>{{col_5_header}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{table_rows}}
+                    </tbody>
+                </table>
+            </div>
+            <p class="table-footnote">{{footnote}}</p>
+        </div>
+
+        <div class="footer">
+            <span>{{presentation_title}}</span>
+            <span class="slide-number">{{slide_number}}</span>
+        </div>
+    </div>
+
+    <div class="speaker-notes">
+        <strong>Speaker Notes:</strong> {{speaker_notes}}
+    </div>
+</body>
+</html>

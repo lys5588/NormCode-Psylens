@@ -83,7 +83,6 @@
                 <div class="pf-dot" onclick="goTo(3)"></div>
                 <div class="pf-dot" onclick="goTo(4)"></div>
                 <div class="pf-dot" onclick="goTo(5)"></div>
-                <div class="pf-dot" onclick="goTo(6)"></div>
             </div>
 
             <!-- Card -->
@@ -169,52 +168,38 @@
                 <!-- Step 3: HTML Templates -->
                 <div class="pf-step" data-step="3">
                     <div class="pf-step-title" data-i18n="pf.s3title">HTML Templates</div>
-                    <div class="pf-step-subtitle" data-i18n="pf.s3sub">Add HTML slide templates (optional).</div>
+                    <div class="pf-step-subtitle" data-i18n="pf.s3sub">Choose a template set for your slides.</div>
                     <div style="flex:1;overflow-y:auto">
-                        <div class="pf-ref-section">
-                            <div class="pf-ref-label" data-i18n="pf.refTemplate">HTML Templates</div>
-                            <div class="pf-file-list" id="pfTemplateList"></div>
-                            <div class="pf-drop-area" id="pfTemplateDrop"
-                                 onclick="document.getElementById('pfTemplateInput').click()"
-                                 ondrop="pfDrop(event,'template')" ondragover="pfDragOver(event)" ondragleave="pfDragLeave(event)">
-                                <span data-i18n="pf.dropTemplate">+ Add .html</span>
-                                <input type="file" id="pfTemplateInput" multiple hidden onchange="pfFiles(event,'template')">
-                            </div>
+                        <div class="pf-set-tabs" id="pfSetTabs"></div>
+                        <div class="pf-set-controls" id="pfSetControls">
+                            <button class="pf-set-ctrl-btn" onclick="selectAllTemplates()" data-i18n="pf.selectAll">Select All</button>
+                            <button class="pf-set-ctrl-btn" onclick="deselectAllTemplates()" data-i18n="pf.deselectAll">Deselect All</button>
+                            <span class="pf-set-count" id="pfSetCount"></span>
+                        </div>
+                        <div class="pf-template-grid" id="pfTemplateGrid"></div>
+                        <div class="pf-drop-area" id="pfTemplateDrop"
+                             onclick="document.getElementById('pfTemplateInput').click()"
+                             ondrop="handleCustomTemplateDrop(event)" ondragover="pfDragOver(event)" ondragleave="pfDragLeave(event)">
+                            <span data-i18n="pf.dropCustom">+ Add custom .html</span>
+                            <input type="file" id="pfTemplateInput" multiple hidden accept=".html,.htm"
+                                   onchange="handleCustomTemplateUpload(event)">
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 4: Style Guides -->
+                <!-- Step 4: Review & Launch -->
                 <div class="pf-step" data-step="4">
-                    <div class="pf-step-title" data-i18n="pf.s4title">Style Guides</div>
-                    <div class="pf-step-subtitle" data-i18n="pf.s4sub">Add CSS or text style guides (optional).</div>
-                    <div style="flex:1;overflow-y:auto">
-                        <div class="pf-ref-section">
-                            <div class="pf-ref-label" data-i18n="pf.refStyle">Style Guides</div>
-                            <div class="pf-file-list" id="pfStyleList"></div>
-                            <div class="pf-drop-area" id="pfStyleDrop"
-                                 onclick="document.getElementById('pfStyleInput').click()"
-                                 ondrop="pfDrop(event,'style')" ondragover="pfDragOver(event)" ondragleave="pfDragLeave(event)">
-                                <span data-i18n="pf.dropStyle">+ Add .css, .md, .txt</span>
-                                <input type="file" id="pfStyleInput" multiple hidden onchange="pfFiles(event,'style')">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 5: Review & Launch -->
-                <div class="pf-step" data-step="5">
-                    <div class="pf-step-title" data-i18n="pf.s5title">Review & Launch</div>
-                    <div class="pf-step-subtitle" data-i18n="pf.s5sub">Confirm your settings and start generation.</div>
+                    <div class="pf-step-title" data-i18n="pf.s4title">Review & Launch</div>
+                    <div class="pf-step-subtitle" data-i18n="pf.s4sub">Confirm your settings and start generation.</div>
                     <div style="flex:1">
                         <div id="pfReviewContent"></div>
                         <button class="pf-launch-btn" id="pfLaunchBtn" onclick="launchRun()">Launch</button>
                     </div>
                 </div>
 
-                <!-- Step 6: Running -->
-                <div class="pf-step" data-step="6">
-                    <div class="pf-step-title" data-i18n="pf.s6title">Running</div>
+                <!-- Step 5: Running -->
+                <div class="pf-step" data-step="5">
+                    <div class="pf-step-title" data-i18n="pf.s5title">Running</div>
                     <div class="pf-step-subtitle" id="pfRunSub" data-i18n="pf.runSub">Generating your presentation...</div>
                     <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
                         <div class="pf-progress-bar">
@@ -287,6 +272,7 @@
     <script src="js/page-flows-convert.js"></script>
     <script src="js/page-flows-files.js"></script>
     <script src="js/page-flows-exec.js"></script>
+    <script src="js/page-flows-templates.js"></script>
     <script src="js/page-flows-init.js"></script>
 
 </body>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+        }
+
+        .slide {
+            width: 960px;
+            height: 540px;
+            margin: 20px auto;
+            background: #1B2A4A;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .left-panel {
+            width: 6px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .left-panel span { flex: 1; }
+        .left-panel span:nth-child(1) { background: #00BFA5; }
+        .left-panel span:nth-child(2) { background: #3B82F6; }
+        .left-panel span:nth-child(3) { background: #F59E0B; }
+        .left-panel span:nth-child(4) { background: #8B5CF6; }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px 70px;
+        }
+
+        .section-number {
+            font-size: 64px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.08);
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: -2px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.15;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: #00BFA5;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.5;
+            max-width: 500px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 26px;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .slide-number { font-weight: 600; }
+
+        .speaker-notes {
+            width: 960px;
+            margin: 10px auto;
+            padding: 15px 20px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .speaker-notes strong { color: #1B2A4A; }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="left-panel"><span></span><span></span><span></span><span></span></div>
+
+        <div class="content-area">
+            <div class="section-number">{{section_number}}</div>
+            <h1>{{title}}</h1>
+            <div class="divider"></div>
+            <p class="subtitle">{{subtitle}}</p>
+        </div>
+
+        <div class="footer">
+            <span>{{presentation_title}}</span>
+            <span class="slide-number">{{slide_number}}</span>
+        </div>
+    </div>
+
+    <div class="speaker-notes">
+        <strong>Speaker Notes:</strong> {{speaker_notes}}
+    </div>
+</body>
+</html>

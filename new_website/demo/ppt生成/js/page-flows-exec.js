@@ -9,6 +9,7 @@
  */
 
 async function launchRun() {
+    syncPfTemplateFromSets();
     const topic    = document.getElementById('pfTopic').value.trim();
     const audience = document.getElementById('pfAudience').value.trim();
     const length   = document.getElementById('pfLength').value.trim();
@@ -109,7 +110,7 @@ async function launchRun() {
         const data  = await resp.json();
         const runId = data.run_id;
 
-        goTo(6);
+        goTo(5);
         currentRunId  = runId;
         currentUserId = userId;
         document.getElementById('pfRunStatus').textContent      = t('runStarted') + `${runId.substring(0, 8)}...`;

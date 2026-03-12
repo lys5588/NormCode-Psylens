@@ -5,10 +5,9 @@
  *   0  Connection
  *   1  Basic Inputs
  *   2  Content Files
- *   3  HTML Templates
- *   4  Style Guides
- *   5  Review & Launch
- *   6  Running
+ *   3  HTML Templates (set picker)
+ *   4  Review & Launch
+ *   5  Running
  */
 
 i18n.init({
@@ -19,10 +18,9 @@ i18n.init({
             s0title: 'Connection',      s0sub: 'Verifying server and loading configuration...',
             s1title: 'Basic Inputs',    s1sub: 'What should this presentation be about?',
             s2title: 'Content Files',   s2sub: 'Add content reference files (optional).',
-            s3title: 'HTML Templates',  s3sub: 'Add HTML slide templates (optional).',
-            s4title: 'Style Guides',    s4sub: 'Add CSS or text style guides (optional).',
-            s5title: 'Review & Launch', s5sub: 'Confirm your settings and start generation.',
-            s6title: 'Running',
+            s3title: 'HTML Templates',  s3sub: 'Choose a template set for your slides.',
+            s4title: 'Review & Launch', s4sub: 'Confirm your settings and start generation.',
+            s5title: 'Running',
 
             labelServer: 'Server', labelPlan: 'Plan', labelModel: 'Model',
             connecting: 'Connecting...', connected: 'Connected successfully', connFailed: 'Connection failed: ',
@@ -31,8 +29,9 @@ i18n.init({
             phTopic: 'e.g. Company Introduction', phAudience: 'e.g. Investors and partners', phLength: 'e.g. 6 slides',
 
             refContent:  'Content Files',  dropContent:  '+ Add .md, .txt, .json, .pdf, .docx, .pptx, .xlsx',
-            refTemplate: 'HTML Templates', dropTemplate: '+ Add .html',
+            refTemplate: 'HTML Templates', dropTemplate: '+ Add .html', dropCustom: '+ Add custom .html',
             refStyle:    'Style Guides',   dropStyle:    '+ Add .css, .md, .txt',
+            selectAll: 'Select All', deselectAll: 'Deselect All', nSelected: 'selected', customUpload: 'custom upload',
 
             convertTitle: 'Convert to Plain Text?',
             convertMsg: 'These files will be converted to plain text. Formatting, images, charts, and layout will be lost. Only the extracted text will be used as reference content.',
@@ -68,10 +67,9 @@ i18n.init({
             s0title: '连接',        s0sub: '正在验证服务器并加载配置...',
             s1title: '基本输入',    s1sub: '这个演示文稿应该关于什么？',
             s2title: '内容文件',    s2sub: '添加内容参考文件（可选）。',
-            s3title: 'HTML 模板',  s3sub: '添加HTML幻灯片模板（可选）。',
-            s4title: '样式指南',    s4sub: '添加CSS或文字样式指南（可选）。',
-            s5title: '确认并启动',  s5sub: '确认设置并开始生成。',
-            s6title: '运行中',
+            s3title: 'HTML 模板',  s3sub: '为幻灯片选择模板集。',
+            s4title: '确认并启动',  s4sub: '确认设置并开始生成。',
+            s5title: '运行中',
 
             labelServer: '服务器', labelPlan: '计划', labelModel: '模型',
             connecting: '正在连接...', connected: '连接成功', connFailed: '连接失败：',
@@ -80,8 +78,9 @@ i18n.init({
             phTopic: '例如：公司介绍', phAudience: '例如：投资人和合作伙伴', phLength: '例如：6张幻灯片',
 
             refContent:  '内容文件',  dropContent:  '+ 添加 .md, .txt, .json, .pdf, .docx, .pptx, .xlsx',
-            refTemplate: 'HTML 模板', dropTemplate: '+ 添加 .html',
+            refTemplate: 'HTML 模板', dropTemplate: '+ 添加 .html', dropCustom: '+ 添加自定义 .html',
             refStyle:    '样式指南',  dropStyle:    '+ 添加 .css, .md, .txt',
+            selectAll: '全选', deselectAll: '取消全选', nSelected: '已选', customUpload: '自定义上传',
 
             convertTitle: '转换为纯文本？',
             convertMsg: '这些文件将被转换为纯文本。格式、图片、图表和布局将会丢失，仅提取文本内容作为参考材料。',
@@ -132,7 +131,8 @@ function t(key) {
         noFiles: 'Files will appear here...', download: 'Download',
         loopIter: 'iter', seconds: 's', rendered: 'Rendered', source: 'Source',
         converting: 'Converting', convertFailed: 'Conversion failed — ',
-        legacyFormat: 'Legacy formats (.doc, .ppt, .xls) are not supported.\nPlease save as .docx, .pptx, or .xlsx.'
+        legacyFormat: 'Legacy formats (.doc, .ppt, .xls) are not supported.\nPlease save as .docx, .pptx, or .xlsx.',
+        selectAll: 'Select All', deselectAll: 'Deselect All', nSelected: 'selected', customUpload: 'custom upload'
     };
     const zh = {
         phTopic: '例如：公司介绍', phAudience: '例如：投资人和合作伙伴', phLength: '例如：6张幻灯片',
@@ -151,7 +151,8 @@ function t(key) {
         noFiles: '文件将在此显示...', download: '下载',
         loopIter: '轮', seconds: '秒', rendered: '渲染视图', source: '源代码',
         converting: '正在转换', convertFailed: '转换失败 — ',
-        legacyFormat: '不支持旧版格式（.doc、.ppt、.xls）。\n请保存为 .docx、.pptx 或 .xlsx。'
+        legacyFormat: '不支持旧版格式（.doc、.ppt、.xls）。\n请保存为 .docx、.pptx 或 .xlsx。',
+        selectAll: '全选', deselectAll: '取消全选', nSelected: '已选', customUpload: '自定义上传'
     };
     return (lang === 'zh' ? zh : en)[key] || en[key] || key;
 }

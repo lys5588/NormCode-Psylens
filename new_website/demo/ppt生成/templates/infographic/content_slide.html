@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+        }
+
+        .slide {
+            width: 960px;
+            height: 540px;
+            margin: 20px auto;
+            background: #fff;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #1B2A4A;
+            padding: 14px 36px;
+            color: white;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .header-badge {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+            padding: 20px 36px;
+            min-height: 0;
+        }
+
+        .text-content {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-content ul {
+            list-style: none;
+            flex: 1;
+        }
+
+        .text-content li {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 14px;
+            padding-left: 24px;
+            position: relative;
+            color: #334155;
+        }
+
+        .text-content li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            background: #00BFA5;
+        }
+
+        .text-content li:nth-child(2)::before { background: #3B82F6; }
+        .text-content li:nth-child(3)::before { background: #F59E0B; }
+        .text-content li:nth-child(4)::before { background: #8B5CF6; }
+        .text-content li:nth-child(5)::before { background: #00BFA5; }
+
+        .side-panel {
+            flex: 2;
+            background: #F7F9FC;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-panel-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1B2A4A;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 12px;
+        }
+
+        .side-visual {
+            flex: 1;
+            background: #EEF2F7;
+            border: 2px dashed #CBD5E1;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #64748B;
+            font-size: 13px;
+            padding: 12px;
+        }
+
+        .side-visual .icon { font-size: 32px; margin-bottom: 8px; opacity: 0.6; }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 26px;
+            background: #1B2A4A;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .slide-number { font-weight: 600; }
+
+        .speaker-notes {
+            width: 960px;
+            margin: 10px auto;
+            padding: 15px 20px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .speaker-notes strong { color: #1B2A4A; }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1>{{title}}</h1>
+            <span class="header-badge">{{badge}}</span>
+        </div>
+
+        <div class="content-area">
+            <div class="text-content">
+                <ul>
+                    {{bullets}}
+                </ul>
+            </div>
+            <div class="side-panel">
+                <div class="side-panel-title">{{side_panel_title}}</div>
+                <div class="side-visual">
+                    <div class="icon">📊</div>
+                    <div>{{visual_description}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span>{{presentation_title}}</span>
+            <span class="slide-number">{{slide_number}}</span>
+        </div>
+    </div>
+
+    <div class="speaker-notes">
+        <strong>Speaker Notes:</strong> {{speaker_notes}}
+    </div>
+</body>
+</html>

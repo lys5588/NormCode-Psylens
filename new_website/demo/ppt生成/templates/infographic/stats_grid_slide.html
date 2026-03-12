@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+        }
+
+        .slide {
+            width: 960px;
+            height: 540px;
+            margin: 20px auto;
+            background: #fff;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #1B2A4A;
+            padding: 14px 36px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 36px;
+            gap: 12px;
+            min-height: 0;
+        }
+
+        .stats-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .stat-cell {
+            background: #F7F9FC;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-cell::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #00BFA5;
+        }
+
+        .stat-cell:nth-child(2)::before { background: #3B82F6; }
+        .stat-cell:nth-child(3)::before { background: #F59E0B; }
+        .stat-cell:nth-child(4)::before { background: #8B5CF6; }
+        .stat-cell:nth-child(5)::before { background: #EF4444; }
+        .stat-cell:nth-child(6)::before { background: #06B6D4; }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1B2A4A;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #64748B;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .stat-detail {
+            font-size: 11px;
+            color: #94A3B8;
+        }
+
+        .footnote {
+            font-size: 11px;
+            color: #94A3B8;
+            text-align: right;
+            font-style: italic;
+            flex-shrink: 0;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 26px;
+            background: #1B2A4A;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .slide-number { font-weight: 600; }
+
+        .speaker-notes {
+            width: 960px;
+            margin: 10px auto;
+            padding: 15px 20px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .speaker-notes strong { color: #1B2A4A; }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1>{{title}}</h1>
+        </div>
+
+        <div class="content-area">
+            <div class="stats-grid">
+                <div class="stat-cell">
+                    <div class="stat-value">{{stat_1_value}}</div>
+                    <div class="stat-label">{{stat_1_label}}</div>
+                    <div class="stat-detail">{{stat_1_detail}}</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-value">{{stat_2_value}}</div>
+                    <div class="stat-label">{{stat_2_label}}</div>
+                    <div class="stat-detail">{{stat_2_detail}}</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-value">{{stat_3_value}}</div>
+                    <div class="stat-label">{{stat_3_label}}</div>
+                    <div class="stat-detail">{{stat_3_detail}}</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-value">{{stat_4_value}}</div>
+                    <div class="stat-label">{{stat_4_label}}</div>
+                    <div class="stat-detail">{{stat_4_detail}}</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-value">{{stat_5_value}}</div>
+                    <div class="stat-label">{{stat_5_label}}</div>
+                    <div class="stat-detail">{{stat_5_detail}}</div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-value">{{stat_6_value}}</div>
+                    <div class="stat-label">{{stat_6_label}}</div>
+                    <div class="stat-detail">{{stat_6_detail}}</div>
+                </div>
+            </div>
+            <p class="footnote">{{footnote}}</p>
+        </div>
+
+        <div class="footer">
+            <span>{{presentation_title}}</span>
+            <span class="slide-number">{{slide_number}}</span>
+        </div>
+    </div>
+
+    <div class="speaker-notes">
+        <strong>Speaker Notes:</strong> {{speaker_notes}}
+    </div>
+</body>
+</html>

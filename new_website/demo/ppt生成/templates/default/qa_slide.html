@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+            color: #2D2D2D;
+        }
+
+        .slide {
+            width: 960px;
+            height: 540px;
+            margin: 20px auto;
+            background: #FAFBFC;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 340px;
+            height: 100%;
+            background: linear-gradient(160deg, #0078D4 0%, #005A9E 50%, #003F6E 100%);
+        }
+
+        .bg-panel-inner {
+            position: absolute;
+            bottom: 60px;
+            left: 50px;
+            right: 50px;
+        }
+
+        .bg-panel-inner .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .bg-panel-inner .label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .main-content {
+            position: absolute;
+            top: 0;
+            left: 340px;
+            right: 0;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 300;
+            color: #1A1A2E;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        h1 strong {
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #5A6577;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .contact-row {
+            display: flex;
+            gap: 24px;
+        }
+
+        .contact-item {
+            font-size: 14px;
+            color: #0078D4;
+            font-weight: 500;
+        }
+
+        .contact-item span {
+            color: #9CA3AF;
+            font-weight: 400;
+            margin-right: 6px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 340px;
+            right: 0;
+            height: 40px;
+            border-top: 1px solid #E8EBF0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 60px;
+            font-size: 11px;
+            color: #9CA3AF;
+        }
+
+        .slide-number { font-weight: 600; }
+
+        .speaker-notes {
+            width: 960px;
+            margin: 10px auto;
+            padding: 15px 20px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .speaker-notes strong { color: #0078D4; }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="bg-panel">
+            <div class="bg-panel-inner">
+                <div class="icon">💬</div>
+                <div class="label">Q & A</div>
+            </div>
+        </div>
+        <div class="main-content">
+            <h1>{{title}}</h1>
+            <p class="subtitle">{{subtitle}}</p>
+            <div class="contact-row">
+                <div class="contact-item"><span>✉</span> {{contact_email}}</div>
+                <div class="contact-item"><span>🔗</span> {{contact_link}}</div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>{{presentation_title}}</span>
+            <span class="slide-number">{{slide_number}}</span>
+        </div>
+    </div>
+
+    <div class="speaker-notes">
+        <strong>Speaker Notes:</strong> {{speaker_notes}}
+    </div>
+</body>
+</html>

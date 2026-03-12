@@ -16,7 +16,7 @@ function escapeHtml(str) {
 // ---- Navigation ----
 function goTo(n) {
     if (n > 0 && !connected) return;
-    if (n === 6 && step !== 5) return;
+    if (n === 5 && step !== 4) return;
 
     step = n;
     steps.forEach(s => s.classList.remove('active'));
@@ -29,14 +29,13 @@ function goTo(n) {
     dots[step].classList.add('active');
 
     btnBack.disabled = false;
-    btnNext.style.display = step >= 5 ? 'none' : '';
+    btnNext.style.display = step >= 4 ? 'none' : '';
     btnNext.disabled = step === 0 && !connected;
 
-    if (step === 5) {
-        // Close any running SSE stream so a fresh run can start
+    if (step === 4) {
         if (pfEvtSource) { pfEvtSource.close(); pfEvtSource = null; }
         if (pfPollTimer)  { clearTimeout(pfPollTimer); pfPollTimer = null; }
-        // Re-enable launch button; show "重新启动" if a prior run exists
+        syncPfTemplateFromSets();
         const launchBtn = document.getElementById('pfLaunchBtn');
         if (launchBtn) { launchBtn.disabled = false; launchBtn.textContent = currentRunId ? t('relaunch') : t('launch'); }
         buildReview();
@@ -48,7 +47,7 @@ function nextStep() {
         const topic = document.getElementById('pfTopic').value.trim();
         if (!topic) { document.getElementById('pfTopic').focus(); return; }
     }
-    if (step < 6) goTo(step + 1);
+    if (step < 5) goTo(step + 1);
 }
 
 function prevStep() {
@@ -190,16 +189,17 @@ async function loadDefaults() {
         const fileResponse = await resp.json();
         const defaults     = JSON.parse(fileResponse.content);
 
-        // Load default style refs (html templates + style guides) from [样式参考元数据]
         if (defaults['[样式参考元数据]']?.data?.[0]) {
             defaults['[样式参考元数据]'].data[0].forEach(ref => {
-                const isTemplate = ref.type === 'html_template';
-                (isTemplate ? pfTemplate : pfStyle).push({ name: ref.name, path: ref.path, type: ref.type, isDefault: true });
+                if (ref.type !== 'html_template') {
+                    pfStyle.push({ name: ref.name, path: ref.path, type: ref.type, isDefault: true });
+                }
             });
-            renderFileList('template');
             renderFileList('style');
         }
     } catch (e) {
         console.warn('[loadDefaults]', e);
     }
+
+    await loadTemplateSets();
 }
