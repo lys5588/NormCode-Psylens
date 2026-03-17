@@ -16,6 +16,9 @@ __pycache__/
 develop-eggs/
 dist/
 downloads/
+# Exception: track website installer assets so they can be deployed
+!new_website/assets/downloads/
+!new_website/assets/downloads/*
 eggs/
 .eggs/
 lib/
