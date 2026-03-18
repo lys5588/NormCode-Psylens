@@ -104,7 +104,7 @@
                 <p><strong>NormCode 规范码</strong> — <span data-i18n="footer.tagline">Structured AI Planning That You Can Audit</span></p>
                 <p>广州心镜智科技工作室 © 2025</p>
                 <div class="footer-links">
-                    <a href="https://arxiv.org/abs/2512.10563" target="_blank" rel="noopener noreferrer" data-i18n="footer.paper">Research Paper</a>
+                    <a href="https://arxiv.org/abs/2603.13443" target="_blank" rel="noopener noreferrer" data-i18n="footer.paper">Research Paper</a>
                     <a href="mailto:xin.guan@psylensai.com" data-i18n="footer.contact">Contact</a>
                 </div>
                 <p style="margin-top: var(--space-md); font-size: var(--text-xs); opacity: 0.7;">
